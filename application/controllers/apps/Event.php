@@ -3,7 +3,7 @@
 class Event extends CI_Controller {
     function __construct(){
         parent::__construct();
-        $this->load->model('eventModel');
+        $this->load->model('eventmodel');
         $this->load->model('languagemodel');
         $this->load->model('eventCategoryModel');
         $this->load->model('eventFilesModel');
@@ -41,7 +41,7 @@ class Event extends CI_Controller {
     public function add($id=''){
         if($id){
             $id_lang_default = $this->languagemodel->langId();
-            $datas           = $this->eventModel->selectData($id);
+            $datas           = $this->eventmodel->selectData($id);
             if(!$datas){
                 die('404');
             }
@@ -402,8 +402,8 @@ class Event extends CI_Controller {
 
     public function view($id=''){
         if($id){
-            $datas  = $this->eventModel->findById($id);
-            // $data = $this->eventModel->findById($id);
+            $datas  = $this->eventmodel->findById($id);
+            // $data = $this->eventmodel->findById($id);
             if(!$datas){
                 die('404');
             } 
@@ -462,7 +462,7 @@ class Event extends CI_Controller {
     }
 
     function records(){
-        $data = $this->eventModel->records();
+        $data = $this->eventmodel->records();
         foreach ($data['data'] as $key => $value) {
             /*if($data['data'][$key]['is_not_available'] == 1){
                 $this->db->select('a.*, b.name as category');
@@ -500,8 +500,8 @@ class Event extends CI_Controller {
         render('apps/event/records',$data,'blank');
     }   
     function records_participant($id){
-        $data  = $this->eventModel->records_participant($id); //data partisipan
-        $event = $this->eventModel->findById($id); // data event
+        $data  = $this->eventmodel->records_participant($id); //data partisipan
+        $event = $this->eventmodel->findById($id); // data event
 
         foreach ($data['data'] as $key => $value) { 
                            $this->db->order_by('sort', 'asc');
@@ -552,7 +552,7 @@ class Event extends CI_Controller {
             $where['a.id !='] = $idedit;
         }
         $where['a.uri_path'] = $post['uri_path'][0];
-        $unik                = $this->eventModel->findBy($where);
+        $unik                = $this->eventmodel->findBy($where);
             
         if($unik){
             $ret['message'] = "Page URL $value already taken";
@@ -643,7 +643,7 @@ class Event extends CI_Controller {
                     if($idedit && $post['img'][$key]){
                         $data_save['img']   = $post['img'][$key];
                     }elseif($idedit){
-                        $datas              = $this->eventModel->selectData($idedit);
+                        $datas              = $this->eventmodel->selectData($idedit);
                         $data_save['img']   = $datas[$key]['img'];
                     }else{
                         $data_save['img']   = $post['img'][$key];
@@ -692,15 +692,15 @@ class Event extends CI_Controller {
 
                     if($cek_record != null){
                         if ($key == 0) {
-                            $iddata         = $this->eventModel->update($data_save,$idedit);
+                            $iddata         = $this->eventmodel->update($data_save,$idedit);
                         } else {
-                            $iddata         = $this->eventModel->updateKedua($data_save,$idedit);
+                            $iddata         = $this->eventmodel->updateKedua($data_save,$idedit);
                         }
                     } else{
                         auth_insert();
                         $ret['message'] = 'Insert Success';
                         $act            = "Insert Event";
-                        $iddata         = $this->eventModel->insert($data_save);
+                        $iddata         = $this->eventmodel->insert($data_save);
                         $id_eventx      = $iddata;
                     }
 
@@ -708,7 +708,7 @@ class Event extends CI_Controller {
                     auth_insert();
                     $ret['message'] = 'Insert Success';
                     $act            = "Insert Event";
-                    $iddata         = $this->eventModel->insert($data_save);
+                    $iddata         = $this->eventmodel->insert($data_save);
 
                     if(!empty($post['detail_img'])){
                         foreach ($data_save_img_detail as $key => $value) {
@@ -927,8 +927,8 @@ class Event extends CI_Controller {
     function del(){
         auth_delete();
         $id = $this->input->post('iddel');
-        $this->eventModel->delete($id);
-        $this->eventModel->delete2($id);
+        $this->eventmodel->delete($id);
+        $this->eventmodel->delete2($id);
         detail_log();
         insert_log("Delete Event");
     }
@@ -944,7 +944,7 @@ class Event extends CI_Controller {
     }
 
     function record_select_page(){
-        $data = $this->eventModel->records();
+        $data = $this->eventmodel->records();
         foreach ($data['data'] as $key => $value) {
             $data['data'][$key]['name'] = quote_form($value['name']);
         }
@@ -952,8 +952,8 @@ class Event extends CI_Controller {
     }
     public function approve($event_id='',$id=''){
         if($id){
-            $datas  = $this->eventModel->selectDataParticipant($id);
-            $event = $this->eventModel->findById($event_id);
+            $datas  = $this->eventmodel->selectDataParticipant($id);
+            $event = $this->eventmodel->findById($event_id);
 
             if(!$datas){
                 die('404');
@@ -990,7 +990,7 @@ class Event extends CI_Controller {
         auth_update();
         $id = $this->input->post('id');
         $data_save['is_close'] = 1;
-        $this->eventModel->update_status($data_save,$id);
+        $this->eventmodel->update_status($data_save,$id);
         detail_log();
         insert_log("Update status Event");
     }
@@ -1009,11 +1009,11 @@ class Event extends CI_Controller {
             // echo $id;exit;
             // $data = $this->galleryModel->findById($id);
             // get_event_gallery_id($id);
-            $datas_event           = $this->eventModel->selectData($id);
+            $datas_event           = $this->eventmodel->selectData($id);
             $id_gallery = get_event_gallery_id($id)?get_event_gallery_id($id):0; 
             $datas  = $this->galleryModel->selectData($id_gallery);
             if (!$datas) { // gallery sudah tidak ada
-                $ins_data   = $this->eventModel->selectData($id,1);
+                $ins_data   = $this->eventmodel->selectData($id,1);
                 
                 $ins_datas['name']                = $ins_data['name'] ;
                 $ins_datas['description']         = $ins_data['teaser'] ;
@@ -1037,7 +1037,7 @@ class Event extends CI_Controller {
                     die('404');
                 }
             }else{
-                $ins_data                         = $this->eventModel->selectData($id,1);
+                $ins_data                         = $this->eventmodel->selectData($id,1);
                 $ins_datas['name']                = $ins_data['name'] ;
                 $ins_datas['description']         = $ins_data['teaser'] ;
                 $ins_datas['uri_path']            = $ins_data['uri_path'] ;
@@ -1666,7 +1666,7 @@ class Event extends CI_Controller {
         }else{
             $update_gallery['id_gallery'] = ','.$arrayid.',';
         }
-        $this->eventModel->update($update_gallery,$idevent);
+        $this->eventmodel->update($update_gallery,$idevent);
         
         render('apps/event/gallery_list_images_album_gallery',$allImages,'blank');
     }
@@ -1751,7 +1751,7 @@ class Event extends CI_Controller {
         }   
 
         $update_gallery['id_gallery'] = ','.$idgallery.',';
-        $this->eventModel->update($update_gallery,$idevent);
+        $this->eventmodel->update($update_gallery,$idevent);
 
         render('apps/event/gallery_list_images_album_gallery',$allImages,'blank');
     }
@@ -1762,8 +1762,8 @@ class Event extends CI_Controller {
  //        $id_event = $post['id_event'];
  //        $where    = '';
 
- //         $data  = $this->eventModel->records_participant($id_event);
-    //  $event = $this->eventModel->findById($id_event);
+ //         $data  = $this->eventmodel->records_participant($id_event);
+    //  $event = $this->eventmodel->findById($id_event);
     //  $nomor = 1;
     //  foreach ($data['data'] as $key => $value) {
     //                     $this->db->order_by('sort', 'asc');
@@ -1801,7 +1801,7 @@ class Event extends CI_Controller {
         $this->db->where('b.event_id', $id_event);
         $data = $this->paymentconfirmation_model->findBy(array('a.id_ref_payment_category'=>1));
 
-        $event = $this->eventModel->findById($id_event);
+        $event = $this->eventmodel->findById($id_event);
                        $this->db->order_by('sort', 'asc');
         $field_event = $this->Template_tipe_input_form_register_model->findBy(array('id_template'=>$event['id_template_form_register']));
 

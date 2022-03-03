@@ -3,7 +3,7 @@
 class Event extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('eventModel');
+		$this->load->model('eventmodel');
 		$this->load->model('languagemodel');
 		$this->load->model('eventCategoryModel');
 	}
@@ -14,9 +14,9 @@ class Event extends CI_Controller {
 	public function add($id=''){
 		if($id){
 			// echo $id;exit;
-			// $data = $this->eventModel->findById($id);
+			// $data = $this->eventmodel->findById($id);
 			$id_lang_default	= $this->languagemodel->langId();
-			$datas 	= $this->eventModel->selectData($id);
+			$datas 	= $this->eventmodel->selectData($id);
 
 			if(!$datas){
 				die('404');
@@ -69,8 +69,8 @@ class Event extends CI_Controller {
 	}
 	public function view($id=''){
 		if($id){
-			$datas 	= $this->eventModel->selectData($id);
-			// $data = $this->eventModel->findById($id);
+			$datas 	= $this->eventmodel->selectData($id);
+			// $data = $this->eventmodel->findById($id);
 			if(!$datas){
 				die('404');
 			} 
@@ -84,7 +84,7 @@ class Event extends CI_Controller {
 		render('apps/event/view',$data,'apps');
 	}
 	function records(){
-		$data = $this->eventModel->records();
+		$data = $this->eventmodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['name'] = quote_form($value['name']);
 			$data['data'][$key]['start_date'] = iso_date($value['start_date']);
@@ -94,7 +94,7 @@ class Event extends CI_Controller {
 		render('apps/event/records',$data,'blank');
 	}	
 	function records_participant($id){
-		$data = $this->eventModel->records_participant($id);
+		$data = $this->eventmodel->records_participant($id);
 			foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['name'] = quote_form($value['name']);
 			$data['data'][$key]['dob'] = iso_date($value['dob']);
@@ -125,7 +125,7 @@ class Event extends CI_Controller {
 			}
 			if(!$idedit){
 				// $where['a.uri_path']			= $post['uri_path'][$key];
-				// $unik 	= $this->eventModel->findBy($where);
+				// $unik 	= $this->eventmodel->findBy($where);
 				$this->form_validation->set_rules('name', '"page Name"', 'required'); 
 				$this->form_validation->set_rules('uri_path', '"Page URL"', 'required'); 
 				$this->form_validation->set_rules('teaser', '"Teaser"', 'required'); 
@@ -158,7 +158,7 @@ class Event extends CI_Controller {
 			if($idedit && $post['img'][$key]){
 				$data_save['img']	= $post['img'][$key];
 			}elseif($idedit){
-				$datas 				= $this->eventModel->selectData($idedit);
+				$datas 				= $this->eventmodel->selectData($idedit);
 				$data_save['img']	= $datas[$key]['img'];
 			}else{
 				$data_save['img']	= $post['img'][$key];
@@ -171,12 +171,12 @@ class Event extends CI_Controller {
 					// if(!$post['img'][$key]){
 					// 	unset($post['img'][$key]);
 					// }
-					$iddata 		= $this->eventModel->update($data_save,$idedit);
+					$iddata 		= $this->eventmodel->update($data_save,$idedit);
 			}else{
 				auth_insert();
 				$ret['message'] = 'Insert Success';
 				$act			= "Insert Event";
-				$iddata 		= $this->eventModel->insert($data_save);
+				$iddata 		= $this->eventmodel->insert($data_save);
 				// print_r($unik);
 			}
 			if($key==0){
@@ -193,8 +193,8 @@ class Event extends CI_Controller {
 	function del(){
 		auth_delete();
 		$id = $this->input->post('iddel');
-		$this->eventModel->delete($id);
-		$this->eventModel->delete2($id);
+		$this->eventmodel->delete($id);
+		$this->eventmodel->delete2($id);
 		detail_log();
 		insert_log("Delete Event");
 	}
@@ -210,7 +210,7 @@ class Event extends CI_Controller {
 	}
 
 	function record_select_page(){
-		$data = $this->eventModel->records();
+		$data = $this->eventmodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['name'] = quote_form($value['name']);
 		}
@@ -218,7 +218,7 @@ class Event extends CI_Controller {
 	}
 	public function approve($event_id='',$id=''){
 		if($id){
-			$datas 	= $this->eventModel->selectDataParticipant($id);
+			$datas 	= $this->eventmodel->selectDataParticipant($id);
 			if(!$datas){
 				die('404');
 			} 
@@ -242,7 +242,7 @@ class Event extends CI_Controller {
 
 		if (!empty($id)){
 			$data_save['is_approve'] = 1;
-			$update_status = $this->eventModel->updateApprovaalParticipant($data_save,$id);
+			$update_status = $this->eventmodel->updateApprovaalParticipant($data_save,$id);
 			if ($update_status){
 				//redirect ke halaman participant
 				redirect(base_url("apps/event/view/$event_id"));

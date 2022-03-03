@@ -12,7 +12,7 @@ class Member extends CI_Controller
 		$this->load->model('paymentconfirmation_model');
 		$this->load->model('paymentconfirmationfiles_model');
 		$this->load->model('membership_model');
-		$this->load->model('eventModel');
+		$this->load->model('eventmodel');
 		$this->load->model('committee_model');
 		$this->load->model('sector_model');
 		$this->load->model('auth_member_committee_model');
@@ -273,7 +273,7 @@ class Member extends CI_Controller
 			$where_up['a.id_status_publish'] = 2; //berpengaruh karena id status 1 290 record
 			$where_up['a.publish_date <=']  = $today;
 			$this->db->limit(PAGING_PERPAGE, 0);
-			$data_events_up       = $this->eventModel->findViewBy($where_up);
+			$data_events_up       = $this->eventmodel->findViewBy($where_up);
 
 			$id_cat_amcham_event  = id_child_news(26, 1);
 
@@ -301,7 +301,7 @@ class Member extends CI_Controller
 			// buat load more
 			$where_up['a.end_date >=']  = $today;
 			$this->db->limit(PAGING_PERPAGE, PAGING_PERPAGE_MORE);
-			$data_events_up_more       = $this->eventModel->findViewBy($where_up);
+			$data_events_up_more       = $this->eventmodel->findViewBy($where_up);
 
 			$data['dsp_load_more_upcoming_events'] = !$data_events_up_more ? 'hide' : '';
 
@@ -313,7 +313,7 @@ class Member extends CI_Controller
 			$this->db->where('a.id_status_publish = 2');
 			$this->db->limit(PAGING_PERPAGE, 0);
 			$this->db->order_by('start_date', 'desc');
-			$data_events_past       = $this->eventModel->findViewBy($where_past);
+			$data_events_past       = $this->eventmodel->findViewBy($where_past);
 
 			$id_cat_amcham_eventpast = id_child_news(26, 1);
 			foreach ($data_events_past as $key => $value) {
@@ -348,7 +348,7 @@ class Member extends CI_Controller
 			$this->db->where_in('a.id_event_category', $id_event_category);
 			$this->db->where('a.id_status_publish = 2');
 			$this->db->order_by('start_date', 'desc');
-			$data_events_past_more      = $this->eventModel->findViewBy($where_past);
+			$data_events_past_more      = $this->eventmodel->findViewBy($where_past);
 
 			$data['dsp_load_more_past_events'] = !$data_events_past_more ? 'hide' : '';
 
@@ -490,12 +490,12 @@ $ret_sector ='';
 	}
 	function payment_confirmation_proses()
 	{
-		$this->load->model('EventModel');
+		$this->load->model('eventmodel');
 		$post                 = purify($this->input->post());
 		$post['payment_date'] = iso_date_custom_format($post['payment_date'], 'Y-m-d');
 		$data_payment         = $this->paymentconfirmation_model->findBy(array('invoice_number' => $post['invoice_number'], 'is_paid' => 0), 1);
 		$is_membership 		  = empty($data_payment['event_id']) ? true : false;
-		$data_member          = $is_membership ? $this->member_model->findById($data_payment['member_id']) : $this->EventModel->selectDataParticipant($data_payment['member_id'], 1);
+		$data_member          = $is_membership ? $this->member_model->findById($data_payment['member_id']) : $this->eventmodel->selectDataParticipant($data_payment['member_id'], 1);
 
 		$where['invoice_number'] = $data_payment['invoice_number'];
 		$where['is_paid']        = 0;
@@ -2722,7 +2722,7 @@ $ret_sector ='';
 	// 		$today    = date('Y-m-d');
 	// 		$where_up['a.end_date >=']  = $today;
 	// 		$where_up['a.is_close ']    = 0;
-	// 		$data_events_up          = $this->eventModel->findBy($where_up);
+	// 		$data_events_up          = $this->eventmodel->findBy($where_up);
 
 	// 		$id_cat_amcham_event = id_child_news(26,1);
 	// 		    // print_r($data_events);exit;
@@ -2748,7 +2748,7 @@ $ret_sector ='';
 	// 		//pass
 	// 		$where_past['a.end_date <'] = $today;
 	// 		$where_past['a.is_close_1'] = '1';
-	// 		$data_events_past           = $this->eventModel->findBy($where_past);
+	// 		$data_events_past           = $this->eventmodel->findBy($where_past);
 
 	// 		$id_cat_amcham_eventpast = id_child_news(26,1);
 	// 		foreach ($data_events_past as $key => $value) {
@@ -2876,7 +2876,7 @@ $ret_sector ='';
 		// $where_past['a.end_date <'] = $today;
 		// $where_past['a.is_close_1'] = '1';
 		// $this->db->join('event_participant d',"d.event_id = x.id",'left');
-		// $data_events_past           = $this->eventModel->findBy($where_past);
+		// $data_events_past           = $this->eventmodel->findBy($where_past);
 		// $count_data_event_past 		= count($data_events_past);
 
 		// if ($count_data_event_past == 0){

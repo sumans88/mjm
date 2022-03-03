@@ -1,6 +1,6 @@
 <?php
 
-class Eventmodel extends  CI_Model{
+class eventmodel extends  CI_Model{
 
 	var $table            = 'event';
 

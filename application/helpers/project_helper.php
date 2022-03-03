@@ -3110,7 +3110,7 @@ function tags_records($text, $separator = ' // ', $limit = 5){
 function event_approve($event_id, $id, $render,$popup_json)
 {
 	$CI =& get_instance();
-	$CI->load->model('eventModel');
+	$CI->load->model('eventmodel');
 	$CI->load->model('paymentconfirmation_model');
 	if (!empty($id)){
 
@@ -3118,12 +3118,12 @@ function event_approve($event_id, $id, $render,$popup_json)
 			$data['is_paid'] = 1;
 			$CI->paymentconfirmation_model->update_frontend($data,$data_payment['id']);
 
-			$data_event = $CI->eventModel->findById($event_id);
+			$data_event = $CI->eventmodel->findById($event_id);
 
 			$data_save['is_approve'] = 1;
-			$update_status = $CI->eventModel->updateApprovaalParticipant($data_save,$id);
+			$update_status = $CI->eventmodel->updateApprovaalParticipant($data_save,$id);
 			
-			$data_participant = $CI->eventModel->selectDataParticipant($id,1);
+			$data_participant = $CI->eventmodel->selectDataParticipant($id,1);
 			$email_usernya = $data_participant['email_2'] != '' ? $data_participant['email_2']: $data_participant['email_1'];
 
 			if ($data_participant['fullname'] != '') {

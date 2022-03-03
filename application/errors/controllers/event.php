@@ -2,7 +2,7 @@
 class Event extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-        $this->load->model('eventModel');
+        $this->load->model('eventmodel');
         $this->load->model('eventCategoryModel');
 		
 	}
@@ -32,7 +32,7 @@ class Event extends CI_Controller {
         $bulan  = array(1=>'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
         $this->db->order_by('start_date','desc');
         // $this->db->limit(1,0);
-        $top    = $this->eventModel->fetchRow($where);
+        $top    = $this->eventmodel->fetchRow($where);
         // echo $this->db->last_query();
         if($top){
             $data['top_start_date_day']     = substr($top['start_date'], 8);
@@ -51,7 +51,7 @@ class Event extends CI_Controller {
 
         $this->db->limit(3,1);
         $this->db->order_by('start_date','desc');
-        $top3    = $this->eventModel->findBy($where);
+        $top3    = $this->eventmodel->findBy($where);
         // echo $this->db->last_query();
         foreach ($top3 as $key => $value) {
             $top3[$key]['top3_title']   = $value['name'];
@@ -66,7 +66,7 @@ class Event extends CI_Controller {
 
         $this->db->limit(3,4);
         $this->db->order_by('start_date','desc');
-        $event = $this->eventModel->findBy($where);
+        $event = $this->eventmodel->findBy($where);
         foreach ($event as $key => $value) {
             $event[$key]['event_url']     = site_url("event/detail/$value[uri_path]");
             $event[$key]['event_day']     = substr($value['start_date'], 8);
@@ -77,9 +77,9 @@ class Event extends CI_Controller {
 
 
         /*
-        $total          = count($this->eventModel->findBy(array('a.id_lang'=>$id_lang,'b.uri_path'=>$uri_path)));
+        $total          = count($this->eventmodel->findBy(array('a.id_lang'=>$id_lang,'b.uri_path'=>$uri_path)));
         $this->db->limit(PAGING_PERPAGE,$page);
-        $event          = $this->eventModel->findBy(array('a.id_lang'=>$id_lang,'b.uri_path'=>$uri_path));
+        $event          = $this->eventmodel->findBy(array('a.id_lang'=>$id_lang,'b.uri_path'=>$uri_path));
         foreach ($event as $key => $value) {
             $event[$key]['start_date']       = iso_date($value['start_date']);
             $event[$key]['uri_path_detail']  = $value['uri_path'];
@@ -100,13 +100,13 @@ class Event extends CI_Controller {
     }
 
     /*function index($page=0){
-        $this->load->model('eventModel');
+        $this->load->model('eventmodel');
         $lang           = $this->uri->segment(1);
         $currentLang    = id_lang(); 
-        $total          = count($this->eventModel->findBy(array('id_lang'=>$currentLang)));
+        $total          = count($this->eventmodel->findBy(array('id_lang'=>$currentLang)));
         $this->db->order_by('start_date','desc');
         $this->db->limit(PAGING_PERPAGE,$page);
-        $event          = $this->eventModel->findBy(array('id_lang'=>$currentLang));
+        $event          = $this->eventmodel->findBy(array('id_lang'=>$currentLang));
         foreach ($event as $key => $value) {
             $event[$key]['start_date'] = iso_date($value['start_date']);
         }
@@ -124,10 +124,10 @@ class Event extends CI_Controller {
     }*/
 
     function detail($uri_path){
-        $this->load->model('eventModel');
+        $this->load->model('eventmodel');
         $lang           = $this->uri->segment(1);
         $currentLang    = id_lang();
-        $data           = $this->eventModel->fetchRow(array('a.uri_path'=>$uri_path,'a.id_lang'=>$currentLang));
+        $data           = $this->eventmodel->fetchRow(array('a.uri_path'=>$uri_path,'a.id_lang'=>$currentLang));
         $today          = date('Y-m-d');
         if ($data['is_open'] != 1 || $data['end_date'] <  $today) { //asumsinya selama event masih berlangsung, walaupun hari terakhir masih boleh daftar
             $data['hide'] = 'hidden';
@@ -136,12 +136,12 @@ class Event extends CI_Controller {
             $data['hide'] = '';
         }
         if(!$data){
-            $data       = $this->eventModel->fetchRow(array('uri_path'=>$uri_path));
+            $data       = $this->eventmodel->fetchRow(array('uri_path'=>$uri_path));
         }
         if($currentLang != $data['id_lang']){
             $id          = $data['id_parent_lang'] ? $data['id_parent_lang'] : $data['id'];
             $this->db->where("(a.id_parent_lang = '$id' or a.id = '$id')");
-            $datas       = $this->eventModel->findBy();
+            $datas       = $this->eventmodel->findBy();
             foreach ($datas as $key => $value) {
                 if($value['id_lang'] == $currentLang){
                     redirect(base_url("$lang/pages/$value[uri_path]"));

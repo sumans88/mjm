@@ -129,7 +129,7 @@ class payment_confirmation extends CI_Controller {
 		$data_payment         = $this->paymentconfirmation_model->findBy(array('invoce_number'=>$post['invoice_number'],'is_paid' => 0),1);
 			
 		$is_membership 		  = empty($data_payment['event_id']) ? true : false;
-		$data_member          = $is_membership ? $this->member_model->findById($data_payment['member_id']):$this->EventModel->selectDataParticipant($data_payment['member_id'],1);
+		$data_member          = $is_membership ? $this->member_model->findById($data_payment['member_id']):$this->eventmodel->selectDataParticipant($data_payment['member_id'],1);
 		
 		$where['invoice_number'] = $post['invoice_number'];
 		$where['is_paid']        = 0;

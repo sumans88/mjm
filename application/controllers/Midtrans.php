@@ -13,7 +13,7 @@ class Midtrans extends CI_Controller {
 		include APPPATH . 'third_party/veritrans/Veritrans.php';
 		$this->load->model('eventprice_model');
 		$this->load->model('paymentconfirmation_model');
-		$this->load->model('EventModel');
+		$this->load->model('eventmodel');
 		$this->load->model('member_model');
 		$this->load->model('company_model');
 	}
@@ -288,7 +288,7 @@ class Midtrans extends CI_Controller {
 
 				//delete event participant
 				$participant_id = $payment_data['member_id'];
-				$this->EventModel->deleteParticipant($participant_id);
+				$this->eventmodel->deleteParticipant($participant_id);
 
 				break;
 		}

@@ -4,7 +4,7 @@ class Event extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('eventModel');
+        $this->load->model('eventmodel');
         $this->load->model('pagesmodel');
     }
 
@@ -63,7 +63,7 @@ class Event extends CI_Controller
         $where['a.id_lang']           = $id_lang;
         $where['a.id_status_publish'] = 2;
         $where['a.publish_date <= '] = $today;
-        $data_events                  = $this->eventModel->findViewBy($where);
+        $data_events                  = $this->eventmodel->findViewBy($where);
 
         $id_cat_amcham_event = array('26', '40');
         foreach ($data_events as $key => $value) {
@@ -100,7 +100,7 @@ class Event extends CI_Controller
 
 
         // buat kalender
-        $data_events_calendar       = $this->eventModel->data_amcham();
+        $data_events_calendar       = $this->eventmodel->data_amcham();
 
         foreach ($data_events_calendar as $key => $value) {
 
@@ -188,7 +188,7 @@ class Event extends CI_Controller
         $this->db->limit(PAGING_PERPAGE, ($page));
         $this->db->group_by('id');
         $this->db->order_by('start_date', 'desc');
-        $data = $this->eventModel->findViewBy($where);
+        $data = $this->eventmodel->findViewBy($where);
         if ($ret == 1) {
             return $data ? 1 : 0;
         }
@@ -257,7 +257,7 @@ class Event extends CI_Controller
         $data = $this->more($uri_path, $page + PAGING_PERPAGE_MORE, 1, $year, $month);
         // $this->db->limit(PAGING_PERPAGE,($page+PAGING_PERPAGE_MORE));
         // $this->db->order_by('start_date','desc');
-        // $data = $this/->eventModel->findBy($where);
+        // $data = $this/->eventmodel->findBy($where);
         if ($data) {
             echo "<div class='text-center'><a href='" . site_url('event/more/' . $uri_path . '/' . (PAGING_PERPAGE_MORE + $page) . '/0/' . $year . '/' . $month) . "' class='load-more'>" . language('load_more') . "</a></div>";
         }
@@ -266,7 +266,7 @@ class Event extends CI_Controller
 
     function detail($uri_path, $test_view)
     {
-        $this->load->model('eventModel');
+        $this->load->model('eventmodel');
         $this->load->model('template_tipe_input_form_register_model');
         $this->load->model('NewsTagsModel');
         $this->load->model('eventFilesModel');
@@ -287,7 +287,7 @@ class Event extends CI_Controller
             $where['a.id_status_publish'] = 2;
         }
 
-        $data     = $this->eventModel->fetchRow($where);
+        $data     = $this->eventmodel->fetchRow($where);
 
 
         if (!$data) {
@@ -547,7 +547,7 @@ class Event extends CI_Controller
 
     function register($type_input)
     {
-        $this->load->model('eventModel');
+        $this->load->model('eventmodel');
         $this->load->model('bank_account_model');
         $this->load->model('paymentconfirmation_model');
         $this->load->model('eventprice_model');
@@ -555,7 +555,7 @@ class Event extends CI_Controller
         $post              = purify($this->input->post());
         $full_url = $post['full_url'];
         $uri_path          = end(explode("/", $post['full_url']));
-        $data_event        = $this->eventModel->findBy(array('a.uri_path' => $uri_path), 1);
+        $data_event        = $this->eventmodel->findBy(array('a.uri_path' => $uri_path), 1);
         $online_payment = $post['online_payment'];
         unset($post['full_url'], $post['online_payment']);
 
@@ -713,7 +713,7 @@ class Event extends CI_Controller
             unset($post['full_url']);
             unset($post['invoice_number']);
             unset($post['success_invoice']);
-            $insert           = $this->eventModel->insertParticipant($post);
+            $insert           = $this->eventmodel->insertParticipant($post);
             // event_approve($event_id,$insert,'','nothing');
 
 
@@ -782,7 +782,7 @@ class Event extends CI_Controller
 
     function search()
     {
-        $this->load->model('eventModel');
+        $this->load->model('eventmodel');
 
         $post = $this->input->post();
         $uri_path                     = $this->uri->segment(4);
@@ -793,7 +793,7 @@ class Event extends CI_Controller
             $where['a.end_date    <=']      = $today;
             // $this->db->order_by('start_date','desc'); 
 
-            $data_amcham_event = $this->eventModel->data_amcham_event();
+            $data_amcham_event = $this->eventmodel->data_amcham_event();
             $i = 1;
             if ($data_amcham_event) {
                 foreach ($data_amcham_event as $key => $value) {
@@ -814,7 +814,7 @@ class Event extends CI_Controller
             $where['a.end_date    <=']      = $today;
             // $this->db->order_by('start_date','desc'); 
 
-            $data_nonamcham_event = $this->eventModel->data_nonamcham_event();
+            $data_nonamcham_event = $this->eventmodel->data_nonamcham_event();
             $i = 1;
             if ($data_nonamcham_event) {
                 foreach ($data_nonamcham_event as $key => $value) {
