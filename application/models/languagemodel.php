@@ -56,7 +56,7 @@ class LanguageModel extends  CI_Model
 		$where['is_delete'] = 0;
 		return 	$this->db->get_where($this->table.' a',$where)->row_array();
 	}
-	function findBy($where,$is_single_row=0){
+	function findBy($where='',$is_single_row=0){
 		$where['is_delete'] = 0;
 		$this->db->select('*');
 		if($is_single_row==1){

@@ -1460,7 +1460,7 @@ $ret_sector ='';
 
 		return $createInvoice;
 	}
-	function register($category)
+	function register($category='')
 	{
 		$user_sess_data = $this->session->userdata('MEM_SESS');
 		if ($user_sess_data) {

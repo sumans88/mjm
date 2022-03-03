@@ -250,7 +250,7 @@ function item_menu($menu,$file,$sub_menu=''){
  * @return string Breadcrumb
  *
  */
-function breadcrumb2($parent='',$ret){
+function breadcrumb2($parent='',$ret=''){
 	$CI 		= & get_instance();
 	$id_lang 	= id_lang();
 	$CI->load->model('frontendmenumodel');
