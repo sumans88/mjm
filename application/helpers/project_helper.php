@@ -173,7 +173,7 @@ function side_menu(){
 
 function new_expert($page=0,$limit=4){
 	$CI 			= & get_instance();
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 	$ctrl 			= $CI->router->fetch_class();
 	$kategori 		= $CI->uri->segment(3);
 	$id_category 	= db_get_one('news_category','id',array('uri_path'=>"category/$kategori"));
@@ -191,7 +191,7 @@ function new_expert($page=0,$limit=4){
 	// if($id_category){
 		// $CI->db->where(array("id_news_category"=>$id_category));
 	// }
-	$dt = $CI->newsModel->findBy(array('id_status_publish'=>2,'approval_level'=>100,'publish_date <='=>date('Y-m-d')));
+	$dt = $CI->newsmodel->findBy(array('id_status_publish'=>2,'approval_level'=>100,'publish_date <='=>date('Y-m-d')));
 	// last_query();
 	foreach ($dt as $key => $value) {
 		$CI->newExpertIds[] = $value['id'];
@@ -227,7 +227,7 @@ function new_expert($page=0,$limit=4){
 }
 function new_article($page=0,$limit=4,$expert=0,$kategory=''){
 	$CI 			= & get_instance();
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 	$ctrl 			= $CI->router->fetch_class();
 	$kategori 		= ($kategory) ?  $kategory : $CI->uri->segment(3);
 	$id_category 	= db_get_one('news_category','id',array('uri_path'=>"category/$kategori"));
@@ -257,7 +257,7 @@ function new_article($page=0,$limit=4,$expert=0,$kategory=''){
 	// if($id_category){
 		// $CI->db->where(array("id_news_category"=>$id_category));
 	// }
-	$dt = $CI->newsModel->findBy(array('id_status_publish'=>2,'approval_level'=>100,'publish_date <='=>date('Y-m-d')));
+	$dt = $CI->newsmodel->findBy(array('id_status_publish'=>2,'approval_level'=>100,'publish_date <='=>date('Y-m-d')));
 	// last_query();
 	foreach ($dt as $key => $value) {
 		$CI->new_article[] = $value['id'];
@@ -294,12 +294,12 @@ function new_article($page=0,$limit=4,$expert=0,$kategory=''){
 function top_article($id_category=0,$is_featured=1,$is_qa=0,$is_expert=0){
 	$CI=& get_instance();
 	$CI->load->model('topArticleModel');
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 	// $where['a.sort'] = 1;
 	// $where['a.is_featured'] = 1;
 
 	// $top_article = $CI->topArticleModel->fetchRow($where);
-	// $news = $CI->newsModel->findById($top_article['id_news']);
+	// $news = $CI->newsmodel->findById($top_article['id_news']);
 
 	// $CI->data = array_merge($CI->data,$news);
 	// $CI->data['img'] = image($news['img'],'ori');
@@ -314,7 +314,7 @@ function top_article($id_category=0,$is_featured=1,$is_qa=0,$is_expert=0){
 	// $CI->data['list_data'] = $news2;
 	$news2 = $CI->topArticleModel->get_top_news_by_category($id_category,$is_featured);
 	foreach ($news2 as $key => $value) {
-		$news = $CI->newsModel->findById($value['id']);
+		$news = $CI->newsmodel->findById($value['id']);
 		$CI->topArticleIds[] = $value['id'];
 		if($key==0){
 			$CI->data = array_merge($CI->data,$news);
@@ -369,11 +369,11 @@ function top_article($id_category=0,$is_featured=1,$is_qa=0,$is_expert=0){
 function top_article_expert($id_category=0,$is_featured=1,$is_qa=0,$is_expert=0){
 	$CI=& get_instance();
 	$CI->load->model('topArticleModel');
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 	$news2 = $CI->topArticleModel->get_top_news_by_category($id_category,$is_featured);
     $i=0;
 	foreach ($news2 as $key => $value) {
-		$news = $CI->newsModel->findById($value['id']);
+		$news = $CI->newsmodel->findById($value['id']);
 		$CI->topArticleIds[] = $value['id'];
         if($i==0){
 			$CI->data = array_merge($CI->data,$news);
@@ -425,12 +425,12 @@ function top_article_expert($id_category=0,$is_featured=1,$is_qa=0,$is_expert=0)
 function popular_topic(){
 	$CI=& get_instance();
 	$CI->load->model('tagsModel');
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 	$CI->load->model('newsTagsModel');
 	$CI->db->order_by('tags_count','desc');
 	$CI->db->limit(10);
 	$list_tag = $CI->tagsModel->findBy(array('tags_count >'=> 0));
-	// $data['list_popular_topic'] = $CI->newsModel->getPopularTopic();
+	// $data['list_popular_topic'] = $CI->newsmodel->getPopularTopic();
 	$CI->db->order_by('tags_count','desc');
 	$CI->db->limit(4);
 	$list_tag_bottom = $CI->tagsModel->findBy(array('tags_count >'=> 0));
@@ -460,13 +460,13 @@ function popular_topic(){
 function popular_topic_search(){
 	$CI=& get_instance();
 	$CI->load->model('tagsModel');
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 	$CI->load->model('newsTagsModel');
 	$CI->db->order_by('tags_count','desc');
 	$CI->db->limit(10);
 
 	$list_tag = $CI->tagsModel->findBy(array('tags_count >'=> 0));
-	// $data['list_popular_topic'] = $CI->newsModel->getPopularTopic();
+	// $data['list_popular_topic'] = $CI->newsmodel->getPopularTopic();
 
 	$data['list_tags'] = $list_tag;
 	foreach ($list_tag as $key => $value) {
@@ -483,9 +483,9 @@ function popular_topic_search(){
 }
 function popular_article($page=1){ /*editor choice*/
 	$CI=& get_instance();
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 	$CI->db->limit(3);
-	$data = $CI->newsModel->findBy(array('is_editor_choice'=>1));
+	$data = $CI->newsmodel->findBy(array('is_editor_choice'=>1));
 	foreach ($data as $key => $value) {
 	    $data[$key]['img'] =  image($value['img'],'small');
 	    $data[$key]['uri_path'] = get_url_article_qa($value['is_qa'],$value['is_experts']).$value['uri_path'];
@@ -552,7 +552,7 @@ function artikel_terkait($id,$status){
 }
 /*function artikel_terkait($id_news){
 	$CI=& get_instance();
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 	$CI->load->model('newsTagsModel');
 	$tags = $CI->newsTagsModel->findBy(array('id_news'=>$id_news));
 	$newsIds[] = 0;
@@ -599,7 +599,7 @@ function artikel_terkait($id,$status){
 function top_content($static=0){
 	$CI=& get_instance();
 	$CI->load->model('topArticleModel');
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 	// $where['a.is_featured'] = 1;
 	// $news2 = $CI->topArticleModel->findBy($where);
 	// foreach ($news2 as $key => $value) {
@@ -608,7 +608,7 @@ function top_content($static=0){
 	// $CI->data['list_data'] = $news2;
 	$news2 = $CI->topArticleModel->get_top_news_by_category(0,1);
 	foreach ($news2 as $key => $value) {
-		$news = $CI->newsModel->findById($value['id']);
+		$news = $CI->newsmodel->findById($value['id']);
 		$news2[$key] = $news;
 		$news2[$key]['img'] = image($news['img'],'small');
 		$news2[$key]['url_detail'] = get_url_article_qa($news['is_qa'],$news['is_experts']);
@@ -701,11 +701,11 @@ function frontend_menu($pos,$id_parent=''){
 	$extraParam	= $CI->uri->segment(3);
 	$uri4 		= $CI->uri->segment(4);
 	$uri5 		= $CI->uri->segment(5);
-	$CI->load->model('frontendMenuModel');
+	$CI->load->model('frontendmenumodel');
 	$CI->load->model('languageModel');
 	$language 	= $CI->languageModel->fetchRow(array('code'=>$lang));
 	$CI->db->order_by('position');
-	$data 		= $CI->frontendMenuModel->findBy(array('id_menu_position'=>$pos,'id_language'=>$language['id'],'id_parent'=>$id_parent)); 
+	$data 		= $CI->frontendmenumodel->findBy(array('id_menu_position'=>$pos,'id_language'=>$language['id'],'id_parent'=>$id_parent)); 
 
 	$pathname   = $_SERVER['REQUEST_URI'];
 	/*echo "<pre>";
@@ -724,7 +724,7 @@ function frontend_menu($pos,$id_parent=''){
 
 		// echo "$value[controller] == $class && $value[extra_param] == $extraParam : <br>";
 		$CI->db->order_by('a.name', 'asc');
-		$sub = $CI->frontendMenuModel->findBy(array('id_menu_position'=>$pos,'id_language'=>$language['id'],'id_parent'=>$value['id']));
+		$sub = $CI->frontendmenumodel->findBy(array('id_menu_position'=>$pos,'id_language'=>$language['id'],'id_parent'=>$value['id']));
 		
 		$aktif  = '';
 		$aktif2 = '';
@@ -951,11 +951,11 @@ function get_language_id(){
 	$class 		= $class ? $class : 'home';
 	$uri4 		= $CI->uri->segment(4);
 	$extraParam	= $CI->uri->segment(3);
-	$CI->load->model('frontendMenuModel');
+	$CI->load->model('frontendmenumodel');
 	$CI->load->model('languageModel');
 	$language 	= $CI->languageModel->fetchRow(array('code'=>$lang));
 	$CI->db->order_by('position');
-	$data 		= $CI->frontendMenuModel->findBy(array('id_menu_position'=>$pos,'id_language'=>$language['id'],'id_parent'=>$id_parent)); 
+	$data 		= $CI->frontendmenumodel->findBy(array('id_menu_position'=>$pos,'id_language'=>$language['id'],'id_parent'=>$id_parent)); 
 	// echo print_r($CI->breadcrumb);
 	// echo '<br>';
 	// echo '<pre>';
@@ -974,8 +974,8 @@ function get_language_id(){
 			}
 			else if(!array_filter($CI->breadcrumb)){
 				$where['extra_param'] 	= $uri4;
-				$dt 					= $CI->frontendMenuModel->fetchRow($where);
-				$parent 				= $CI->frontendMenuModel->fetchRow(array('a.id'=>$dt['id_parent']));
+				$dt 					= $CI->frontendmenumodel->fetchRow($where);
+				$parent 				= $CI->frontendmenumodel->fetchRow(array('a.id'=>$dt['id_parent']));
 				if($parent){
 					if($parent['extra_param'] ==$value['extra_param']){
 						$aktif = 'active';
@@ -1064,9 +1064,9 @@ function getParentMenu($parent=''){
 
 function top_menu($parent = null){
 	$CI=& get_instance();
-	$CI->load->model('frontendMenuModel');
-	$CI->load->model('newsModel');
-	$data = $CI->frontendMenuModel->findBy(array('id_menu_position'=>1,'id_parent'=>$parent)); 
+	$CI->load->model('frontendmenumodel');
+	$CI->load->model('newsmodel');
+	$data = $CI->frontendmenumodel->findBy(array('id_menu_position'=>1,'id_parent'=>$parent)); 
 	if($parent){
 		return $data;
 	}
@@ -1090,7 +1090,7 @@ function top_menu($parent = null){
                 } else {
                     $class_add = '';
                 }
-				$news = $CI->newsModel->getNewsByCategory($s['extra_param'],$limit,$s['controller']);
+				$news = $CI->newsmodel->getNewsByCategory($s['extra_param'],$limit,$s['controller']);
                 $ret .= '<span class="thumb-menu">';	
 	      		$ret .= "<ul class='widget-container $class_add' id='nav-3-".($n)."'>";
 	      		foreach ($news as $article) {
@@ -1125,10 +1125,10 @@ function limit_text($text, $limit) {
 }
 function top_menu_mobile($parent = null){
 	$CI=& get_instance();
-	$CI->load->model('frontendMenuModel');
-	$CI->load->model('newsModel');
+	$CI->load->model('frontendmenumodel');
+	$CI->load->model('newsmodel');
 	//$CI->output->cache(60);
-	$data = $CI->frontendMenuModel->findBy(array('id_menu_position'=>1,'id_parent'=>$parent)); 
+	$data = $CI->frontendmenumodel->findBy(array('id_menu_position'=>1,'id_parent'=>$parent)); 
 	if($parent){
 		return $data;
 	}
@@ -1601,16 +1601,16 @@ function id_member(){
 
 function set_image_as_title_news($id_news){
     $CI=& get_instance();
-    $CI->load->model('newsModel');
+    $CI->load->model('newsmodel');
     $CI->load->model('filemanagerModel');
-    $news = $CI->newsModel->findById($id_news);
+    $news = $CI->newsmodel->findById($id_news);
     $news_ext = explode(".", $news['img']);
     $extension_img = '.'.$news_ext[1];
     $post_file['name'] = $news['uri_path'].$extension_img;
     $check_image_exist = $CI->filemanagerModel->findBy(array('name'=>$post_file['name']));
     if(!$check_image_exist and $news_ext[1] != ''){
 		$post['img'] = $news['uri_path'].$extension_img;
-		$CI->newsModel->update($post,$id_news);
+		$CI->newsmodel->update($post,$id_news);
 		
 		$CI->filemanagerModel->insert($post_file);
 		
