@@ -3,7 +3,7 @@
 class Pages extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('pagesModel');
+		$this->load->model('pagesmodel');
 		$this->load->model('languageModel');
 	}
 	function index(){
@@ -12,8 +12,8 @@ class Pages extends CI_Controller {
 	}
 	public function add($id=''){
 		if($id){
-			// $data = $this->pagesModel->findById($id);
-			$datas 	= $this->pagesModel->selectData($id);
+			// $data = $this->pagesmodel->findById($id);
+			$datas 	= $this->pagesmodel->selectData($id);
 
 			if(!$datas){
 				die('404');
@@ -57,8 +57,8 @@ class Pages extends CI_Controller {
 	}
 	public function view($id=''){
 		if($id){
-			$datas 	= $this->pagesModel->selectData($id);
-			// $data = $this->pagesModel->findById($id);
+			$datas 	= $this->pagesmodel->selectData($id);
+			// $data = $this->pagesmodel->findById($id);
 			if(!$datas){
 				die('404');
 			}
@@ -81,7 +81,7 @@ class Pages extends CI_Controller {
 		render('apps/pages/view',$data,'apps');
 	}
 	function records(){
-		$data = $this->pagesModel->records();
+		$data = $this->pagesmodel->records();
 		foreach ($data['data'] as $key => $value) {
 			// $data['data'][$key]['page_name'] = quote_form($value['page_name']);
 		}
@@ -100,7 +100,7 @@ class Pages extends CI_Controller {
 		foreach ($post['teaser'] as $key => $value){
 			if(!$idedit){
 				$where['uri_path']			= $post['uri_path'][$key];
-				$unik 	= $this->pagesModel->findBy($where);
+				$unik 	= $this->pagesmodel->findBy($where);
 				$this->form_validation->set_rules('page_name', '"page Name"', 'required'); 
 				$this->form_validation->set_rules('uri_path', '"Page URL"', 'required'); 
 				$this->form_validation->set_rules('teaser', '"Teaser"', 'required'); 
@@ -130,7 +130,7 @@ class Pages extends CI_Controller {
 			if($idedit && $post['img'][$key]){
 				$data_save['img']	= $post['img'][$key];
 			}elseif($idedit){
-				$datas 				= $this->pagesModel->selectData($idedit);
+				$datas 				= $this->pagesmodel->selectData($idedit);
 				$data_save['img']	= $datas[$key]['img'];
 			}else{
 				$data_save['img']	= $post['img'][$key];
@@ -145,7 +145,7 @@ class Pages extends CI_Controller {
 					// if(!$post['img'][$key]){
 					// 	unset($post['img'][$key]);
 					// }
-					$iddata 		= $this->pagesModel->update($data_save,$idedit);
+					$iddata 		= $this->pagesmodel->update($data_save,$idedit);
 				}else{
 					auth_update();
 					$ret['message'] = 'Update Success';
@@ -153,13 +153,13 @@ class Pages extends CI_Controller {
 					// if(!$post['img'][$key]){
 					// 	unset($post['img'][$key]);
 					// }
-					$iddata 		= $this->pagesModel->updateKedua($data_save,$idedit);
+					$iddata 		= $this->pagesmodel->updateKedua($data_save,$idedit);
 				}
 			}else{
 				auth_insert();
 				$ret['message'] = 'Insert Success';
 				$act			= "Insert Pages";
-				$iddata 		= $this->pagesModel->insert($data_save);
+				$iddata 		= $this->pagesmodel->insert($data_save);
 				// print_r($unik);
 			}
 			if($key==0){
@@ -176,8 +176,8 @@ class Pages extends CI_Controller {
 	function del(){
 		auth_delete();
 		$id = $this->input->post('iddel');
-		$this->pagesModel->delete($id);
-		$this->pagesModel->delete2($id);
+		$this->pagesmodel->delete($id);
+		$this->pagesmodel->delete2($id);
 		detail_log();
 		insert_log("Delete Pages");
 	}
@@ -186,7 +186,7 @@ class Pages extends CI_Controller {
 
 	}
 	function record_select_page(){
-		$data = $this->pagesModel->records();
+		$data = $this->pagesmodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['page_name'] = quote_form($value['page_name']);
 		}

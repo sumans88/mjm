@@ -174,14 +174,14 @@ function render($view,$data='',$layout="", $ret=false){
 		$data['signout']             = '';
 	}
 
-	$CI->load->model('pagesModel');
+	$CI->load->model('pagesmodel');
 	$langSelected 		= $CI->languagemodel->fetchRow(array("code"=>$data['lang']));
 	if($langSelected['id'] == 1){
 		$idPrivacy = 17;
 	} else{
 		$idPrivacy = 18;
 	}
-	$dataPrivacy 		= $CI->pagesModel->fetchRow(array("id" => $idPrivacy));
+	$dataPrivacy 		= $CI->pagesmodel->fetchRow(array("id" => $idPrivacy));
 	$data['privacy_teaser'] = $dataPrivacy['teaser'];
 	$data['privacy_title'] = $dataPrivacy['page_name'];
 	$data['privacy_url'] = base_url().$data['lang']."/pages/".$dataPrivacy['uri_path'];

@@ -1,5 +1,5 @@
 <?php
-class PagesModel extends  CI_Model
+class pagesmodel extends  CI_Model
 {
   var $table = 'pages';
   var $tableAs = 'pages a';

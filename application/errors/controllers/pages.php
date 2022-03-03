@@ -6,18 +6,18 @@ class Pages extends CI_Controller {
 	}
     function index($uri_path){
         $lang = $this->uri->segment(1);
-        $this->load->model('pagesModel');
+        $this->load->model('pagesmodel');
         $currentLang = id_lang();
-        $data = $this->pagesModel->fetchRow(array('uri_path'=>$uri_path,'id_lang'=>$currentLang));
+        $data = $this->pagesmodel->fetchRow(array('uri_path'=>$uri_path,'id_lang'=>$currentLang));
         if(!$data){
-            $data = $this->pagesModel->fetchRow(array('uri_path'=>$uri_path));
+            $data = $this->pagesmodel->fetchRow(array('uri_path'=>$uri_path));
         }
         // unset($data['page_content'],$data['teaser']);
         // print_r($data);exit;
         if($currentLang != $data['id_lang']){
             $id = $data['id_parent_lang'] ? $data['id_parent_lang'] : $data['id'];
             $this->db->where("(id_parent_lang = '$id' or id = '$id')");
-            $datas = $this->pagesModel->findBy();
+            $datas = $this->pagesmodel->findBy();
             foreach ($datas as $key => $value) {
                 if($value['id_lang'] == $currentLang){
                     redirect(base_url("$lang/pages/$value[uri_path]"));

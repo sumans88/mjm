@@ -358,7 +358,7 @@ class News extends CI_Controller {
 			// if($idedit && $post_image){ //kondisi saat edit tapi user tidak browse image
 			// 	$data_save['img']	= $post['img'][$key];
 			// }elseif($idedit){ //kondisi saat edit dan kalau user browse image
-			// 	$datas 				= $this->pagesModel->selectData($idedit);
+			// 	$datas 				= $this->pagesmodel->selectData($idedit);
 			// 	$data_save['img']	= $datas[$key]['img'];
 			// }else{ //kondisi input image
 			// 	$data_save['img']	= $post['img'][$key];
