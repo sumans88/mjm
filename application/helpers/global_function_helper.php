@@ -231,23 +231,22 @@ function render($view,$data='',$layout="", $ret=false){
 		$data['hide_development'] = '';
 	}
     $data['current_controller'] = current_controller();
+	$CI->data['list_language'] = list_language();
 	if(is_array($data)){
 		$CI->data = array_merge($CI->data,$data);
-	}
-	$CI->data['list_language'] = list_language();
-	
-	if(!$layout){
+   }
+   if(!$layout){
 		$CI->parser->parse($view.'.html', $CI->data);
-	}
-	else{
+   }
+   else{
 		$CI->data['content'] = $CI->parser->parse($view.'.html', $CI->data,true);
 		if($ret==true){
-			return $CI->parser->parse("layout/$layout.html",$CI->data,true);
+			 return $CI->parser->parse("layout/$layout.html",$CI->data,true);
 		}
 		else{
-			$CI->parser->parse("layout/$layout.html",$CI->data);
+			 $CI->parser->parse("layout/$layout.html",$CI->data);
 		}
-	}
+   }
 }
 function id_lang(){
 	$CI = &get_instance();

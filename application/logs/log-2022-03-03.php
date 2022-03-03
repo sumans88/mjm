@@ -1900,3 +1900,18 @@ ERROR - 2022-03-03 11:36:00 --> Severity: Notice  --> Undefined index: meta_desc
 ERROR - 2022-03-03 11:36:00 --> Severity: Notice  --> Undefined index: meta_keywords_general /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/global_function_helper.php 217
 ERROR - 2022-03-03 11:36:00 --> Severity: Warning  --> Missing argument 1 for LanguageModel::findBy(), called in /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/global_function_helper.php on line 261 and defined /Users/omnitech-tri/Sites/localhost/mjm/application/models/languagemodel.php 59
 ERROR - 2022-03-03 11:36:00 --> Severity: Notice  --> Undefined variable: ret /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/global_function_helper.php 266
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Only variable references should be returned by reference /Users/omnitech-tri/Sites/localhost/mjm/system/core/Common.php 257
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Undefined variable: mimes /Users/omnitech-tri/Sites/localhost/mjm/system/core/Output.php 107
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Only variable references should be returned by reference /Users/omnitech-tri/Sites/localhost/mjm/system/core/Common.php 257
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Undefined variable: mimes /Users/omnitech-tri/Sites/localhost/mjm/system/core/Output.php 107
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Undefined variable: data /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/global_function_helper.php 483
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Undefined index: ADM_SESS /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/menu_helper.php 75
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Undefined variable: file /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/menu_helper.php 87
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Trying to get property of non-object /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/global_function_helper.php 442
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Undefined variable: file /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/menu_helper.php 90
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Trying to get property of non-object /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/global_function_helper.php 442
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Trying to get property of non-object /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/global_function_helper.php 442
+ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Undefined index: ADM_SESS /Users/omnitech-tri/Sites/localhost/mjm/application/helpers/menu_helper.php 92
+ERROR - 2022-03-03 11:38:30 --> Severity: Runtime Notice --> Declaration of MY_Config::site_url() should be compatible with CI_Config::site_url($uri = '', $protocol = NULL) /Users/omnitech-tri/Sites/localhost/mjm/application/core/MY_Config.php 34
+ERROR - 2022-03-03 11:38:30 --> Unable to load the requested class: Uri
+ERROR - 2022-03-03 11:38:30 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/omnitech-tri/Sites/localhost/mjm/system/core/Exceptions.php:272) /Users/omnitech-tri/Sites/localhost/mjm/system/core/Common.php 565
