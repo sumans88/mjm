@@ -175,7 +175,7 @@ function render($view,$data='',$layout="", $ret=false){
 	}
 
 	$CI->load->model('pagesModel');
-	$langSelected 		= $CI->languageModel->fetchRow(array("code"=>$data['lang']));
+	$langSelected 		= $CI->languagemodel->fetchRow(array("code"=>$data['lang']));
 	if($langSelected['id'] == 1){
 		$idPrivacy = 17;
 	} else{
@@ -255,7 +255,7 @@ function id_lang(){
 function list_language(){
 	$CI 		 = &get_instance();
 	$selected 	 = $CI->uri->segment(1);
-	$lang 		 = $CI->languageModel->findBy();
+	$lang 		 = $CI->languagemodel->findBy();
 	foreach ($lang as $key => $value) {
 		$active  = $selected == $value['code'] ? " 'opacity:1;'" :'opacity:0.5;';
 		$url 	 = str_replace("/$selected/", "/$value[code]/", current_url());
@@ -268,8 +268,8 @@ function list_language(){
 }
 function default_lang_id(){
 	$CI 		 = &get_instance();
-	$CI->load->model('languageModel');
-	$lang 		 = $CI->languageModel->fetchRow(array('status_lang'=>1,'is_delete' =>0));
+	$CI->load->model('languagemodel');
+	$lang 		 = $CI->languagemodel->fetchRow(array('status_lang'=>1,'is_delete' =>0));
 	return $lang['id'];
 
 }
