@@ -1,0 +1,40 @@
+<h1 class="page-header">Event</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">Hits File Download</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear-fix">&nbsp;</div>
+				{list_files}
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="clearfix">&nbsp;</div>
+					<div class="col-md-1">
+						<img src="{base_url}assets/images/{imageFile}" width="70px" />
+					</div>
+					<div class="col-md-11">
+						<h4><a href="{base_url}document/material/{filename}">{name_file}</a></h4>
+						<label style="font-size: 15px;">Hits Download : {hits_file}</label>
+					</div>
+					<div class="clearfix">&nbsp;</div>
+				</div>
+				{/list_files}
+			</div>
+		</div>
+	</div>
+</div>
+

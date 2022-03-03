@@ -1,0 +1,28 @@
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+           <th class="center" width="28"  >No </th>
+            <th class="center" width="150" >Invoice Number  </th>
+            <th class="center" width="230" >Payment Type </th>
+            <th class="center" width="230" >Price </th>
+            <th class="center" width="80"  >Status  </th>
+            {field}
+            <!-- </th> -->
+        </tr>
+    </thead>
+    <tbody>
+
+        {content}
+        <tr>
+                <td class="teaser" style="max-width:125px;">{no}</td>
+                <td class="teaser" style="max-width:125px;">{invoice_number}</td>
+                <td class="teaser" style="max-width:125px;">{payment_type}</td>
+                <td class="teaser" style="max-width:125px;">{event_price_amount}</td>
+                <td class="teaser" style="max-width:125px;">{status}</td>
+            {td}
+            <!-- <td style="vertical-align:top;" class="center">{td}</td> -->
+        </tr>
+        {/content}
+        
+    </tbody>
+</table>

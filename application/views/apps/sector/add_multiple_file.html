@@ -1,0 +1,268 @@
+<!-- The template to display files available for upload -->
+<script>
+<!-- Progress Bar -->
+function progressBar(idLang, idFile){
+	var elem = document.getElementById("myBar" + idLang + idFile); 	    
+    var width = 10;
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+        	width++; 
+    		elem.style.width = width + '%'; 
+    		document.getElementById('statusFile' + idLang + idFile).value = 1;
+    		document.getElementById('btnFile' + idLang + idFile).innerHTML = "Update";
+        	document.getElementById("label" + idLang + idFile).innerHTML = width * 1 + '%';
+        }
+    }
+}
+<!-- End Progress Bar -->
+
+<!-- Save Data -->
+function saveOne(idLang, idFile, getJml) {
+	var inp = document.getElementById('uploadFiles' + idLang);
+	if(idLang == 0){
+		getJml = parseInt(jmlFilesSaved0);
+	} else{
+		getJml = parseInt(jmlFilesSaved1);
+	}
+
+	var jmlImages = 0;
+	if((getJml != 0 || getJml != '') && inp.files.length != 0){
+		idFileNew = idFile + getJml;
+	} else{
+		idFileNew = idFile;
+	}
+
+	var statusFile = document.getElementById('statusFile' + idLang + idFileNew).value;
+	var nameFile = document.getElementById('nameFile' + idLang + idFileNew).value;
+	var id_lang = document.getElementById('id_lang' + idLang).value;
+	var id_event = document.getElementById('id' + idLang).value;
+	var idSavedFile = document.getElementById('idSavedFile' + idLang + idFileNew).value;
+
+	var formData = new FormData();
+    //for each entry, add to formdata to later access via $_FILES["file" + i]
+  	formData.append("file", inp.files.item(idFile));
+  	formData.append("statusFile", statusFile);
+  	formData.append("nameFile", nameFile);
+  	formData.append("id_lang", id_lang);
+  	formData.append("idSavedFile", idSavedFile);
+  	formData.append("id_event", id_event);
+  	formData.append("key", idLang);
+
+    //send formdata to server-side
+    $.ajax({
+        url: "{this_controller}uploadFiles/{id}", // our php file
+        type: 'post',
+        data: formData,
+        dataType: 'html', // we return html from our php file
+        async: true,
+        processData: false,  // tell jQuery not to process the data
+        contentType: false,   // tell jQuery not to set contentType
+        success : function(data) {
+        	var obj = JSON.parse(data);
+    		if(obj.status == true){
+    			document.getElementById('idSavedFile' + idLang + idFileNew).value = obj.idSavedFile;
+        		document.getElementById('fileSaved' + idLang).innerHTML = obj.reloadFiles;
+        		document.getElementById('myBar' + idLang + idFileNew).setAttribute("style","width:1%");
+        		progressBar(idLang, idFileNew);
+        	}
+        },
+        error : function(request) {
+            console.log(request.responseText);
+        },
+        complete:function(){
+            document.getElementById('filePreview' + idLang).innerHTML = '';
+        }
+    }); 
+}
+
+function saveAll(idLang, getJml) {
+	if(idLang == 0){
+		getJml = jmlFilesSaved0;
+	} else{
+		getJml = jmlFilesSaved1;
+	}
+	var inp = document.getElementById('uploadFiles' + idLang);
+	var statusFile = '';
+	var nameFile = '';
+	var id_lang = '';
+	var idSavedFile = '';
+	var id_event = '';
+	var jmlAll = parseInt(inp.files.length) + parseInt(getJml);
+
+	for (var i = 0; i < jmlAll; i++) {
+		if((getJml != 0 || getJml != '') && i >= getJml){
+			iNew = i - getJml;
+		} else{
+			iNew = i;
+		}
+			
+		statusFile = document.getElementById('statusFile' + idLang + i).value;
+		nameFile = document.getElementById('nameFile' + idLang + i).value;
+		id_lang = document.getElementById('id_lang' + idLang).value;
+		id_event = document.getElementById('id' + idLang).value;
+		idSavedFile = document.getElementById('idSavedFile' + idLang + i).value;
+
+		var formData = new FormData();
+	    //for each entry, add to formdata to later access via $_FILES["file" + i]
+	    if(i >= getJml){
+	  		formData.append("file", inp.files.item(iNew));
+	  	}
+	  	formData.append("imag", i);
+  		formData.append("statusFile", statusFile);
+	  	formData.append("nameFile", nameFile);
+  		formData.append("id_lang", id_lang);
+  		formData.append("idSavedFile", idSavedFile);
+  		formData.append("id_event", id_event);
+  		formData.append("key", idLang);
+
+	    //send formdata to server-side
+	    $.ajax({
+	        url: "{this_controller}uploadFiles/{id}", // our php file
+	        type: 'post',
+	        data: formData,
+	        dataType: 'html', // we return html from our php file
+	        async: true,
+	        processData: false,  // tell jQuery not to process the data
+	        contentType: false,   // tell jQuery not to set contentType
+	        success : function(data) {
+	        	var obj = JSON.parse(data);
+        		if(obj.status == true){
+        			document.getElementById('idSavedFile' + idLang + obj.idFile).value = obj.idSavedFile;
+        			document.getElementById('myBar' + idLang + obj.idFile).setAttribute("style","width:1%");
+	        		progressBar(idLang, obj.idFile);
+	        		document.getElementById('fileSaved' + idLang).innerHTML = obj.reloadFiles;
+	        	}
+	        },
+	        error : function(request) {
+	            console.log(request.responseText);
+	        },
+	        complete:function(){
+	            document.getElementById('filePreview' + idLang).innerHTML = '';
+	        }
+	    }); 
+	}
+}
+<!-- End Save Data -->
+
+<!-- Delete Data -->
+function deleteOne(idLang, idFile, getJml, filename) {
+	var inp = document.getElementById('uploadFiles' + idLang);
+
+	var jmlImages = 0;
+	if((getJml != 0 || getJml != '') && inp.files.length != 0){
+		idFileNew = idFile + getJml;
+	} else{
+		idFileNew = idFile;
+	}
+
+	var statusFile = document.getElementById('statusFile' + idLang + idFileNew).value;
+	var idSavedFile = document.getElementById('idSavedFile' + idLang + idFileNew).value;
+	var id_event = document.getElementById('id' + idLang).value;
+
+	var formData = new FormData();
+    //for each entry, add to formdata to later access via $_FILES["file" + i]
+    if(filename != 0){
+    	formData.append("filename", filename);
+    } else{
+    	formData.append("filename", inp.files.item(idFileNew).name);
+    }
+  	formData.append("statusFile", statusFile);
+  	formData.append("idSavedFile", idSavedFile);
+  	formData.append("id_event", id_event);
+  	formData.append("key", idLang);
+
+  	if(statusFile == 1){
+	    //send formdata to server-side
+	    $.ajax({
+	        url: "{this_controller}deleteFile", // our php file
+	        type: 'post',
+	        data: formData,
+	        dataType: 'html', // we return html from our php file
+	        async: true,
+	        processData: false,  // tell jQuery not to process the data
+	        contentType: false,   // tell jQuery not to set contentType
+	        success : function(data) {
+	        	var obj = JSON.parse(data);
+	        	if(obj.status == true){
+	        		//document.getElementById('imag' + idLang + idFileNew).remove();
+	        		document.getElementById('fileSaved' + idLang).innerHTML = obj.reloadFiles;
+	        	}
+	        },
+	        error : function(request) {
+	            console.log(request.responseText);
+	        },
+	        complete:function(){
+	            document.getElementById('filePreview' + idLang).innerHTML = '';
+	        }
+	    }); 
+	} else{
+		document.getElementById('imag' + idLang + idFileNew).remove();
+	}
+}
+
+function deleteAll(idLang, getJml) {
+	var inp = document.getElementById('uploadFiles' + idLang);
+	var idSavedFile = '';
+	var filename = '';
+	var statusFile = '';
+	var jmlAll = parseInt(inp.files.length) + parseInt(getJml);
+	var id_event = '';
+
+	for (var i = 0; i < jmlAll; i++) {
+		if((getJml != 0 || getJml != '') && i >= getJml){
+			iNew = i - getJml;
+		} else{
+			iNew = i;
+		}
+		
+		idSavedFile = document.getElementById('idSavedFile' + idLang + i).value;
+		statusFile = document.getElementById('statusFile' + idLang + i).value;
+		id_event = document.getElementById('id' + idLang).value;
+
+		var formData = new FormData();
+	    //for each entry, add to formdata to later access via $_FILES["file" + i]
+	    if((getJml != 0 || getJml != '') && i >= getJml){
+	    	formData.append("filename", inp.files.item(iNew).name);
+	    } else{
+	    	filename = document.getElementById('filename' + idLang + i).value;
+	    	formData.append("filename", filename);
+	    }
+	  	formData.append("imag", i);
+	  	formData.append("idSavedFile", idSavedFile);
+  		formData.append("id_event", id_event);
+  		formData.append("key", idLang);
+
+  		if(statusFile == 1){
+		    //send formdata to server-side
+		    $.ajax({
+		        url: "{this_controller}deleteFile", // our php file
+		        type: 'post',
+		        data: formData,
+		        dataType: 'html', // we return html from our php file
+		        async: true,
+		        processData: false,  // tell jQuery not to process the data
+		        contentType: false,   // tell jQuery not to set contentType
+		        success : function(data) {
+		        	var obj = JSON.parse(data);
+		        	if(obj.status == true){
+		        		//document.getElementById('imag' + idLang + obj.idFile).remove();
+		        		document.getElementById('fileSaved' + idLang).innerHTML = obj.reloadFiles;
+		        	}
+		        },
+		        error : function(request) {
+		            console.log(request.responseText);
+		        },
+		        complete:function(){
+		            document.getElementById('filePreview' + idLang).innerHTML = '';
+		        }
+		    }); 
+		} else{
+			document.getElementById('imag' + idLang + i).remove();
+		}
+	}
+}
+<!-- End Delete Data -->
+</script>

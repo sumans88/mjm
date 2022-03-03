@@ -1,0 +1,26 @@
+<table class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th class="center" width="40">No</th>
+			<th class="center" title='Sort' id='namadepan'>Nama Depan<span></span></th>
+			<th class="center" title='Sort' id='namabelakang'>Nama Belakang<span></span></th>
+			<th class="center" title='Sort' id='email'width="120">Email <span></span></th>
+			<th class="center" title='Sort' id='nohp' width="110">No HP <span></span></th>
+			<th class="center" title='Sort' id='process_time' width="100">Join Date <span></span></th>
+			<th class="center" title='Sort' id='is_active' width="100">Status <span></span></th>
+		</tr>
+	</thead>
+	<tbody>
+		{data}
+			<tr>
+				<td class="center">{nomor}</td>
+				<td>{namadepan}</td>
+				<td>{namabelakang}</td>
+				<td>{email}</td>
+				<td>{nohp}</td>
+				<td class="center">{process_time}</td>
+				<td class="center">{is_active_status}</td>
+			</tr>
+		{/data}
+	</tbody>
+</table>

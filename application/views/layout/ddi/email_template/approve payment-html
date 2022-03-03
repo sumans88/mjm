@@ -1,0 +1,10 @@
+<p>hello ,{full_name}</p>
+
+<p>&nbsp;</p>
+
+<p>we approve your membership use account below to login</p>
+
+<p>username : {email}</p>
+
+<p>password&nbsp; : {password}<br />
+&nbsp;</p>

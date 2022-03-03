@@ -1,0 +1,35 @@
+<div class="row-fluid">
+	<div class="col-sm-12">
+		<div class='col-sm-6 judul'>Buy Product</div>
+		<span class='col-sm-6'>
+			<div class='text-right'><a class="btn btn-primary insert tangan" href="{this_controller}add"><i class="fa fa-plus"></i> Add Buy Product</a></div>
+		</span>
+	</div>
+</div>
+<hr>
+<div id='grid1' class='my_grid' data-perpage='10' data-url="{this_controller}records">
+	<table class="table table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th class="center" width="20">No</th>
+				<th class="center" title='Sort' id='nama'>Name <span></span></th>
+				<th class="center" title='Sort' id='email'width="120">Email <span></span></th>
+				<th class="center" title='Sort' id='mobile' width="100">Mobile <span></span></th>
+				<th class="center" title='Sort' id='city' width="94">City <span></span></th>
+                <th class="center" title='Sort' id='create_date' width="94">Create Date <span></span></th>
+                <th class="center" width="80">Action</th>
+			</tr>
+			<tr class='filter'>
+				<td></td>
+				<td><input type='text' class='cari' id='search_nama' placeholder='Search...'></td>
+				<td><input type='text' class='cari' id='search_email' placeholder='Search...'></td>
+				<td><input type='text' class='cari' id='search_mobile' placeholder='Search...'></td>
+				<td><select id="search_city" class='cari'>{list_city}</select></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+

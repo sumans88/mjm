@@ -1,0 +1,226 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="media">
+
+              <div class="frame-content" >
+              <div class="frame-search-news">
+                <div class="select-sortby">
+                  <select class="form-control" id="month-other" name="month">
+                    {list_month}
+                  </select>
+                  <select class="form-control" id="year-other" name="year">
+                    {list_year}
+                  </select>
+                </div>
+                <div class="input-group ig-srclist mb15">
+                  <input type="text" id="search-news-input-other" name="search-news-input" value="{search}" class="form-control search-news" placeholder="Search our news">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" id="search-news-btn-other" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                  </span>             
+
+                </div>
+              </div>
+
+              <div id="media-news">
+
+                {list_news}
+                <!-- <div class="media media-latest">
+                  <div class="media-left">
+                    <div class="thumbnail-amcham thumb-latest">{show_img}</div>
+                  </div>
+                  <div class="media-body">
+                    <div class="widget-white">
+                      <div class="event-type">{cat}  |  {publish_date}</div> Sep 29, 2017
+                      <div class="title-event-list"><a href="{base_url}{lang}/{module}{uri_path_detail}">{name}</a></div>
+                      <p>{description}</p>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="widget-white widget-blue-left media-latest mb15">
+                  <div class="event-type">{cat}  |  {publish_date}</div> <!-- Sep 29, 2017 -->
+                  <div class="title-event-list"><a href="{base_url}{lang}/{module}{uri_path_detail}">{name}</a></div>
+                  <p>{description}</p>
+                </div>
+                {/list_news}
+                <div class="text-center mt15 {dsp_load_more}" id="load-more-search"><span href="{base_url}{lang}/news/more/{paging}" class="load-moree tangan" nojs="true">{lang_load_more}</span></div>
+              </div>
+
+              </div>
+
+           </div>
+          </div>
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+   <!--  <div class="container-fluid container-fluid-dtl">
+      <div class="container">
+        <div class="row row-dtl">
+          <div class="col-sm-12 col-md-12 col-xs-12 col-dtl">
+            <div class="breadcrumb-share">
+              <div class="breadcrumb-dtl">
+                <ol class="breadcrumb">
+                  <li class="active">{lang_search}</li>
+                </ol>
+              </div> 
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-xs-12 col-dtl">
+            <div class="decs-dtl">
+              <div class="form-searchpage">
+                <form class="form-inline" method="get" action="{base_url}{lang}/search/">
+                  <div class="keywords">
+                    <input type="text" name="search" class="form-control" value="{search}">
+                  </div>Date : 
+                  <div class="form-group">
+                    <select class="form-control" id="day" name="day">
+                      {list_day}
+                    </select>
+                    <select class="form-control" id="month" name="month">
+                      {list_month}
+                    </select>
+                    <select class="form-control" id="year" name="year">
+                      {list_year}
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-default">Search</button>
+                </form>
+                <div class="searchresult">{lang_search_result} {keyword_search}</div>
+              </div>
+              <div class="list-search">
+              {list_news}
+                <div class="list-search-ft">
+                  <div class="date-ft-src"><span>{cat}</span> {publish_date}</div>
+                  <h3 class="title-ft-src"><a href="{base_url}{lang}/{module}{uri_path_detail}">{name}</a></h3>
+                  <p>{description}</p>
+                </div> 
+                {/list_news}
+                <div class="text-center">
+                  <button class="btn-readmore">{paging}</button>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+
+    <div><div> -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  
+    $("#month-other,#year-other").change(function(){
+      search_news_other();
+      return false;
+    });
+
+    $(document).on('click','#search-news-btn-other',function(e){
+      search_news_other();
+      return false;
+    });
+    // untuk load more
+    $(document).on('click','#load-more-search',function(e){
+      search_more_news_other(this);
+      return false;
+    });
+
+$('#search-news-input-other').keypress(function (e) {
+  if (e.which == 13) {
+    search_news_other();
+    return false;
+  }  
+});
+
+
+function search_news_other(){
+  var lang      = 'en';
+  var full_url  = window.location.href;
+  var uri_path  = full_url.split('/index/').pop();
+  var page      = '0';
+  var keyword    = $('#search-news-input-other').val();
+  var month     = $('#month-other').val();
+  var year      = $('#year-other').val();
+
+  $.ajax({
+    url   : base_url+'en/search/search_data',
+    type  : 'post',
+    data  : {keyword   : keyword,
+              uri_path : uri_path,
+              page     : page,
+              month    : month,
+              year     : year
+            },
+    success: function (data) {
+      $('#media-news').empty();
+      $('#media-news').html(data);
+    }
+    
+    });
+}
+
+
+function search_more_news_other(x){
+  if ($(x).val() == 'Loading...') {
+    return false;
+  };
+  
+  $(x).val('Loading...');
+  var lang      = 'en';
+  var full_url  = window.location.href;
+  var uri_path  = full_url.split('/index/').pop();
+
+                  
+  var page      = $(x).children().attr('href').split('/more/').pop();
+  var keyword    = $('#search-news-input-other').val();
+  var month     = $('#month-other').val();
+  var year      = $('#year-other').val();
+  $.ajax({
+    url   : base_url+'en/search/search_data/1',
+    type  : 'post',
+    data  : {keyword   : keyword,
+              uri_path : uri_path,
+              page     : page,
+              month    : month,
+              year     : year
+            },
+    success: function (data) {
+      $(x).remove();
+      $('#media-news').append(data);
+    }
+    
+    });
+}
+
+
+});
+
+</script>

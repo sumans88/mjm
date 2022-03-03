@@ -1,0 +1,21 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{name}</td>
+		<td>{chair}</td>
+		<td>{co_chair}</td>
+		<td>{co_chair2}</td>
+		<td class="center">
+			<!-- <a href="{this_controller}view/{id}" title="View Detail" class="fa fa-search action-form-icon"></a>
+			<a href="{this_controller}hits_files/{id}" title="View Hits Download Files" class="fa fa-download action-form-icon"></a>
+			<a href="{this_controller}add_multiple_image/{id}" title="Add Gallery Event" class="fa fa-image action-form-icon"></a>
+			<br/> -->
+      <a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

@@ -1,0 +1,84 @@
+<h1 class="page-header">Gallery : {name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} {category_name} Gallery</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" data-back='view/{id_gallery}' id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}view/{id_gallery}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear-fix">&nbsp;</div>
+				<div class="col-sm-12 col-lg-9 col-md-12">
+					<form action='{this_controller}prosesgallery/{id_gallery}/{idedit}' id='form1' class="form-horizontal">
+						<ul class="nav nav-pills">
+							{list_lang2}
+							<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+							{/list_lang2}
+						</ul>
+						<div class="tab-content">
+							{list_lang}
+
+							<div class="tab-pane fade {active}" id="nav-pills-tab-{nomor}">
+								<div class="form-group  no-margin {invis}">
+										<label class="col-md-3 control-label">Image</label>
+										<div class="col-md-9">{img}</div>
+								</div>
+								<div class="form-group  no-margin {dsp_video} {invis}">
+									<label class="col-md-3 control-label">Youtube URL</label>
+									<div class="col-md-9"><input type="text" value="{youtube_url}" id="youtube_url{nomor}" class='form-control' name="youtube_url[]"></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Title</label>
+									<div class="col-md-9"><input type="text" value="{name_data}" id="title{nomor}" class='form-control' name="title[]"></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Description</label>
+									<div class="col-md-9"><textarea name="description[]" rows="4" id="description{nomor}" class="form-control">{description}</textarea></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<label class="col-md-3 control-label">Gallery URL</label>
+									<div class="col-md-9"><input type="text" value="{uri_path}" id="uri_path{nomor}" class='form-control' name="uri_path[]"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{lang_id}" id="id_lang{nomor}" class='form-control' name="id_lang[]"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{id}" id="id{nomor}" class='form-control' name="id[]"></div>
+								</div>
+							</div>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$('#title{nomor},#uri_path{nomor}').keyup(function(){
+										$('#uri_path{nomor}').val(convert_to_uri($(this).val()));
+									});
+								})
+							</script>
+							{imagemanager_config}
+							{/list_lang}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.is_open').change(function(){
+		if(!$(this).attr("checked")){
+			$('.is_open').attr('checked',false);
+		}
+	})
+</script>

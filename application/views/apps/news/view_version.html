@@ -1,0 +1,31 @@
+<div class="content-list">
+	<div class="row-fluid">
+		<div class="judul col-sm-9">TEASER : {news_title}</div>
+		<div class="judul-kecil col-sm-3 text-right">{create_date}</div>
+	</div>
+	<hr>
+	<div class="row-fluid">
+	      <div class="col-sm-12">
+			<img src="{img_thumb}" class="thumb" />
+		      {teaser}
+	      </div>
+	</div>
+	<hr>
+</div>
+<br><br>
+<div class="content-list">
+	<div class="row-fluid">
+		<div class="judul col-sm-9">DETAIL : {news_title}<br><span class='judul-kecil'>{username}</span></div>
+		<div class="judul-kecil col-sm-3 text-right">{create_date}</div>
+	</div>
+	<hr>
+	<div class="row-fluid">
+	      <div class="col-sm-12">
+			<img src="{img_ori}" class="thumb" style="max-width:800px" />
+		      {page_content}
+	      </div>
+	</div>
+	<strong>Tags :</strong> {tags}
+</div>
+
+<hr>

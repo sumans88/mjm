@@ -1,0 +1,26 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{full_name}</td>
+		<td>{email}</td>
+		<td>{job}</td>
+		<td>{company}</td>
+		<td>{membership}</td>
+		<td>{invoice_number}</td>
+		<!-- <td><a class="btn btn-primary" href="{base_url}apps/individual/view/{member_id}">Preview</a></td> -->
+		<!-- <td><a class="btn btn-success modal-send-invoice {is_paid}" data-id="{member_id}">Send</a></td> -->
+		<td>{status}</td>
+		<!-- <td>{language}</td> -->
+		<td class="center">
+			<a href="{this_controller}view/{member_id}" title="View Detail" target="_BLANK" class="fa fa-search action-form-icon"></a>
+			<a href="{this_controller}add/{member_id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Block Member"class="fa fa-times-circle-o tangan block action-form-icon {dsp_btn_block}" id='{member_id}' data-url-rm='block'></a>
+			<a title="Unblock Member" class="fa fa-check-circle-o tangan unblock action-form-icon {dsp_btn_unblock}" id='{member_id}' data-url-rm='unblock'></a>
+			<a title="Delete Member" class="fa fa-trash-o tangan hapus action-form-icon" id='{member_id}' data-url-rm='del'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="20">{paging}</td>
+</tr>

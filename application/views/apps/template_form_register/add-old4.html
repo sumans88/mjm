@@ -1,0 +1,183 @@
+					<script>
+						$(function() {
+							$( "#sortable" ).sortable({ 
+								placeholder: "ui-sortable-placeholder",
+								stop: function(event, ui) {
+								alert('Dropped To Sort');
+								},
+								connectWith: "tr",
+								update: function(event, ui) {
+									var productOrder = $(this).sortable('toArray',{attribute: 'data-id'}).toString();
+									$("#sortable-value").text (productOrder);
+								}
+							});
+						});
+					</script>
+
+<h1 class="page-header">Template Form Register</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Template Form Register</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="span12 text-right">
+							<a class="btn btn-primary insert_data {disable_edit} tangan" id='save'><i class="icon-save"></i> {proses}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}'><i class="icon-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-12 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+
+							<div class="form-group  no-margin">
+								<label class="col-md-2 control-label">Template <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name}" id="title" class='form-control' id="title" name="name" data-parsley-required="true"></div>
+							</div>
+							
+							<div class="form-group  no-margin" id="uri_path_form">
+								<label class="col-md-2 control-label">URL <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{uri_path}" id="uri_path" class='form-control' name="uri_path" ></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-2 control-label">Template <i class='req'>*</i></label>
+
+								<!-- form builder -->
+								<div class="col-md-4">
+									<div class="form-builder">	
+										<ul class="ui-selectable">
+
+											{list_tipe_input}
+								        	<li id="tipe_input" class="list availablelist" data-id={id_tipe_input} data-name="{name_tipe_input}">{name_tipe_input}
+								        	</li>
+								        	{/list_tipe_input}
+
+								    	</ul>
+						    		</div>
+								</div>
+						    	<!-- end form builder -->
+
+			<div class="col-md-6">	
+				<div id="timetable">		
+					<div class="table-responsive">  
+						<table class="table table-striped table-bordered table-hover" height="500px">
+							<thead>
+								<tr>
+									<th class="text-center" width="20">Name</th>
+									<th class="text-center" title='Sort' id=''>
+										Is Required<span></span>
+									</th>
+									<th class="text-center" title='Sort' id=''>
+										Is One Row<span></span>
+									</th>
+									<th class="text-center" width="90">Delete</th>
+								</tr>
+							</thead>
+							<tbody class="items" id="sortable">
+								<!-- <tr class="list" id="aaa">
+										<td colspan="4">Drag Input Form Here</td>
+								</tr> -->
+								<tr class="list" data-id="1">
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								</tr>
+
+								<tr class="list" data-id="2">
+								<td>2</td>
+								<td>2</td>
+								<td>2</td>
+								<td>2</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+						    </div>
+
+
+							<div id="sortable-value" name="sortable" class="invis"></div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+	.form-builder{
+    border:3px dashed #ccc;
+    margin-right:5px;
+    background-color:hsla(0,0%,100%,.25);
+    width:100%;
+    height:500px;
+    background:#F0FFFF;
+}
+</style>
+
+
+<!-- Javascript -->
+<script type="text/javascript">
+ $(function() {
+$(".availablelist" ).draggable({
+ 	// helper: "clone",
+ 	connectToSortable: ".items"
+});
+
+$(".items").droppable({
+		drop: function( event, ui ) {
+
+		var name 	= ui.draggable.attr("data-name");
+		var id 		= ui.draggable.attr("data-id");
+
+		$(ui.draggable).html("<tr class='items' data-id='"+id+"'  data-id='"+name+"'><td>"+name+"</td><td><span class='text-center'><input type='checkbox' class='is_required' id='is_required"+id+"'  data-id='is_required"+id+"' value='0' name='is_required[]'></span></td><td><span class='text-center'><input type='checkbox' id='is_row"+id+"' data-id='is_row"+id+"' value='0' name='is_row[]' class='is_row'></span></td><td><a href='#' class='closeIt' data-id='"+id+"'>X</a></td></tr>");
+
+
+
+	    }
+	});
+
+	
+	
+});
+
+// $(document).on("click", ".is_row", function(){
+// 	var id = $(this).data("id");
+// 	if($(this).attr('checked')){
+//           $(this).val('1');
+//      }else{
+//           $(this).val('0');
+//      }
+// });
+
+// $(document).on("click", ".is_required", function(){
+// 	var id = $(this).data("id");
+// 	if($(this).attr('checked')){
+//           $(this).val(1);
+//      }else{
+//           $(this).val(0);
+//      }
+// });
+
+// $(document).on("click", ".closeIt", function(){
+// 	var id = $(this).data("id");
+// 	$('.list[data-id="'+id+'"]').remove();
+// });
+</script>
+<!-- end include -->

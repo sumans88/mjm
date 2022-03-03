@@ -1,0 +1,65 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} {page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear-fix">&nbsp;</div>
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+						<!-- <ul class="nav nav-pills">
+							{list_lang2}
+							<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+							{/list_lang2}
+						</ul> -->
+						<!-- <div class="tab-content"> -->
+							<!-- <div class="tab-pane fade {active}"> -->
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Name Category<i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{name}" data-parsley-required="true" id="name" class='uri_path form-control' name="name"></div>
+								</div>
+								
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Tags</label>
+									<div class="col-md-9"><select id="tags" multiple class='form-control' name="tags[]"></select></div>
+								</div>
+								<div class="form-group  no-margin {enable_edit_status_publish} {invis}">
+									<label class="col-md-2 control-label">Status <i class='req'>*</i></label>
+									<div class="col-md-9"><select id="id_status_publish" class='form-control' name="id_status_publish" data-parsley-required="true">{list_status_publish}</select></div>
+								</div>
+							</div>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$("#tags").select2({
+									  tags: [{tags}],
+									  tokenSeparators: [","]
+									})
+									var selectedValues = "{tags_data}".split(',');
+									$("#tags").select2('val',selectedValues);
+								}) 
+
+							
+							</script>
+						<!-- </div> -->
+					</form>
+				<!-- </div> -->
+			</div>
+		</div>
+	</div>
+</div>

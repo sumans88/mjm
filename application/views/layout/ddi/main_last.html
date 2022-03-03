@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <base href="{base_url}">
+    <title>{seo_title}</title>
+
+    <!-- Bootstrap -->
+    <link href="{base_url}asset/css/bootstrap.min.css" rel="stylesheet">    
+    <link href="{base_url}asset/css/owl.carousel.css" rel="stylesheet">
+    <link href="{base_url}asset/css/owl.theme.css" rel="stylesheet">
+    <link href="{base_url}asset/css/style.css" rel="stylesheet">
+    <link href="{base_url}asset/css/style2.css" rel="stylesheet">
+    <link href="{base_url}asset/css/responsive.css" rel="stylesheet">
+    <meta name="description" content="{meta_description}">
+    <meta name="keywords" content="{meta_keywords}">
+
+    {meta_og}
+
+    <script type="text/javascript">
+      var news_title = "{news_title}";
+      var full_url = window.location.href;
+      var base_url = '{base_url}';
+    </script>
+    <style type="text/css">
+      .privacyStyle:hover{
+        text-decoration: underline !important;
+      }
+    </style>
+    <script src="{base_url}asset/js/jquery.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="{base_url}asset/js/html5shiv.min.js"></script>
+      <script src="{base_url}asset/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google Tag Manager -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5GZFMK"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5GZFMK');</script>
+    <!-- End Google Tag Manager -->
+  </head>
+  <body>
+    <header class="noprint">
+      <div class="container-fluid header-top-new">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 center">
+              <div class="header-top-frame-new">
+                <div class="top-logo">
+                  <h2><a href="http://www.bappenas.go.id/" target="_blank"><img src="{base_url}asset/images/logo-ppn.png"></a></h2>
+                  <h2><a href="{base_url}"><img src="{base_url}asset/images/logo.png"></a></h2>
+                  <h2><a href="http://dfat.gov.au/" target="_blank"><img src="{base_url}asset/images/logo-aus.png"></a></h2>
+                </div>
+                <hr>
+                <div class="tagline-new">Better Policies Better Lives <sup>TM</sup></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="container-fluid header-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12">
+              <div class="header-top-frame">
+                <h1 class="logo"><a href="{base_url}"><img src="{base_url}asset/images/logo.png"></a></h1>
+                <div class="tagline">Better Policies Better Lives</div>
+                <div class="other-logo">
+                  <h2><a href="#"><img src="{base_url}asset/images/logo-ppn.png"></a></h2>
+                  <h2><a href="#"><img src="{base_url}asset/images/logo-aus.png"></a></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div id="container-atas" class="container-fluid header-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-navmenu">
+              <label class="label-navmenu-mobile" for="nav-menu-mobile"><i class="glyphicon glyphicon-menu-hamburger"></i></label>
+              <input type="checkbox" id="nav-menu-mobile" name="">
+              <div class="nav-menu">
+                <div class="label-navframe">
+                  <label class="label-navmenu-mobile" for="nav-menu-mobile"><i class="glyphicon">X</i></label>
+                </div>
+                
+                <div class="form-search-page src-mobile">
+                  <form action="{base_url}{lang}/search/">
+                    <div class="col-sm-5 col-md-5 col-xs-12 col-form-search">
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="{lang_search}..." name="q">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <ul class="nav nav-tabs">
+                  {header_menu}
+                </ul>
+              </div>
+              <div class="flag-search">
+                <div class="form-search">
+                  <label for="input-search-icon"><i class="glyphicon glyphicon-search"></i></label>
+                  <input type="checkbox" name="" id="input-search-icon">
+                  <div class="form-search-page">
+  					         <form action="{base_url}{lang}/search/">
+                      <div class="col-sm-5 col-md-5 col-xs-12 col-form-search">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="{lang_search}..." name="q">
+                          <span class="input-group-btn">
+  	                          <button class="btn btn-default" type="submit">Search</button>
+                          </span>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="flag-link">
+                {list_language}
+                  <!-- <a href="#"><img src="{base_url}asset/images/ind.png"></a> -->
+                  <!-- <a href="#"><img src="{base_url}asset/images/eng.png"></a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {content}
+
+    <div class="container-fluid container-fluid-footer noprint">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-xs-12">
+            <div class="footer-left">
+              <div class="title-footer">Our Partners</div>
+              <div class="list-menu-footer">
+              {partner_menu} 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid container-fluid-footer-btm noprint">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-xs-12">
+            <div class="list-footer-link">
+              {footer_logo}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid container-fluid-footer noprint">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-xs-12">
+            <div class="footer-left">
+              <div class="list-menu-footer" style="color:white;text-align: center;">
+                <br/>
+                {privacy_teaser}
+                <br/>
+                <a href="{privacy_url}" class="privacyStyle">{privacy_title}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{base_url}asset/js/owl.carousel.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{base_url}asset/js/bootstrap.min.js"></script>
+    <script src="{base_url}asset/js/jquery.jscroll.min.js"></script>
+    <script src="{base_url}template/assets/plugins/parsley/dist/parsley.js"></script> 
+    <script src="{base_url}asset/js/custom.js"></script>
+  </body>
+</html>

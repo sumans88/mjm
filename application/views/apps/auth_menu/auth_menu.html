@@ -1,0 +1,367 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<legend class="pointer tangan" onclick="toggle_frm($('#tambah'),'form1');$('#img_edit').html('')">
+						Manage <span id="tambah">[+]</span>
+					</legend>
+					<form name="form1" id="form1" method="post" class="invis form-horizontal" action="{base_url}apps/auth_menu/proses" enctype="multipart/form-data">
+						<div class="well">
+							<div class="row-fluid">
+								<div class="col-sm-12">
+									<div class="col-sm-12 col-lg-5 col-md-12">
+										<div class="form-group  no-margin">
+											<label class="col-md-12 control-label"><div id="message"></div></label>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Menu Parent</label>
+											<div class="col-md-9">
+												<select class='select full form-control' name='id_parents_menu_admin' id='id_parents_menu_admin'>
+													<option value='0'>Top Menu</option>
+													{list_parent}
+												</select>
+											</div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Menu Name*</label>
+											<div class="col-md-9"><input type="text" data-parsley-required="true"  class="frm form-control" name="menu" id="menus"></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Module Name*</label>
+											<div class="col-md-9"><input type="text" data-parsley-required="true"  class="frm form-control" name="controller" id="controller"></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Breadcrumb</label>
+											<div class="col-md-9"><input type="text" class="frm form-control" name="breadcrumb" id="breadcrumb"></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Icon</label>
+											<div class="col-md-9"><input type="text" class="frm form-control" name="img_icon" id="img_icon"></div>
+										</div>
+									</div>
+									
+									<div class="col-sm-12 col-lg-6 col-md-12">
+										<b>Privileges</b>
+										<table class='table table-striped' cellspacing='0' id="auth_area">
+											<tr bgcolor='#c0c0c0'>
+												<th class='ui-state-default ui-th-column ui-th-ltr bl bt bb' rowspan='2'>User Group</th>
+												<th class='ui-state-default ui-th-column ui-th-ltr bt bb'>View</th>
+												<th class='ui-state-default ui-th-column ui-th-ltr bt bb'>Insert</th>
+												<th class='ui-state-default ui-th-column ui-th-ltr bt bb'>Update</th>
+												<th class='ui-state-default ui-th-column ui-th-ltr bt bb br'>Delete</th>
+											</tr>
+											<tr bgcolor='#c0c0c0' align='center'>
+												<td class='ui-state-default ui-th-column ui-th-ltr bb'><input type='checkbox' onclick="$('.v').attr('checked',this.checked);"></td>
+												<td class='ui-state-default ui-th-column ui-th-ltr bb'><input type='checkbox' onclick="$('.i').attr('checked',this.checked);"></td>
+												<td class='ui-state-default ui-th-column ui-th-ltr bb'><input type='checkbox' onclick="$('.u').attr('checked',this.checked);"></td>
+												<td class='ui-state-default ui-th-column ui-th-ltr bb br'><input type='checkbox' onclick="$('.d').attr('checked',this.checked);"></td>
+											</tr>
+											{list_group}
+												<tr align='center' class='hov'>
+													<td  class='bb bl' align='left'>{grup}<input type='hidden' class='no_clear' value='{id_auth_user_grup}' name='grup[{id_auth_user_grup}]'></td>
+													<td class='bb bl'><input type='checkbox' class='v' name='view[{id_auth_user_grup}]' value='1'></td>
+													<td class='bb bl'><input type='checkbox' class='i' name='insert[{id_auth_user_grup}]' value='1'></td>
+													<td class='bb bl'><input type='checkbox' class='u' name='update[{id_auth_user_grup}]' value='1'></td>
+													<td class='bb bl br'><input type='checkbox' class='d' name='delete[{id_auth_user_grup}]' value='1'></td>
+												</tr>
+											{/list_group}
+										</table>
+								
+									</div>
+								</div>
+							
+							</div>
+							<br><br>
+							<button   type="submit" value="Save" id="save" class="btn btn-primary insert"><i class="fa fa-save"></i> Save</button>
+							<a class="pointer invis tangan" onclick="restore_form();$('#img_edit').html('')" id="form1_new">Input New</a>
+							<input type="hidden" name="idedit" id="idedit">
+						</div>
+					</form>
+					<div class="col-sm-12 col-lg-6 col-md-12">
+						<table id="gridMenuLvl1" class='table table-striped'></table>
+						<div id="pgridMenuLvl1"></div>
+						<div class="clearfix">&nbsp;</div>
+						
+					</div>
+					<div class="col-sm-12 col-lg-6 col-md-12">
+						<table id="xgridMenuLvl2" class='table table-striped'></table>
+						<div id="pxgridMenuLvl2"></div>
+						<div class="clearfix">&nbsp;</div>
+					</div>
+					<div class="col-sm-12 col-lg-6 col-md-12">
+						<table id="xgridMenuLvl3" class="invis table table-striped"></table>
+						<div id="pxgridMenuLvl3"></div>
+						<div class="clearfix">&nbsp;</div>
+					</div>
+				<div id='popup_auth_edit' title='Edit Auth' class='invis'>
+					<form name='form_auth' id='form_auth'>
+						<div id='area_auth'>Loading...</div>
+						<br>
+						<button type="button" value='Update' id='ubah_auth' class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+						<button type="button" id='cancel_auth' class="btn btn-warning"><i class="icon-ban-circle"></i> Cancel</button>
+						<input type="hidden" id='id_editnya' name='id_editnya'>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('#cancel_auth').click(function(){
+		$('#popup_auth_edit').dialog('close');
+	})
+$('#ubah_auth').click(function(){
+	var param 			= $('#form_auth').serialize();
+	var url 				= '{base_url}apps/auth_menu/update_auth';
+	$.ajax({
+			url         : url,
+			type        : "POST",
+			data        : param,
+			beforeSend  : function(){$('#ubah_auth').html('Loading...');},
+			success     : function(msg){
+								$('#popup_auth_edit').dialog('close');
+								$('#ubah_auth').html('<i class="fa fa-save"></i> Update');
+			}
+	})
+})
+function popup_auth(idedit){
+		jPopup('popup_auth_edit',430,360);
+		$.ajax({
+			url         : '{base_url}apps/auth_menu/view_edit/id/'+idedit,
+			success     : function(msg){
+								data = msg.split('|');
+								$('#area_auth').html(data[0]);
+								$('#id_editnya').val(idedit);
+			}
+		})
+}
+
+jQuery(document).ready(function(){
+  jQuery("#form1").validationEngine();
+});
+
+//level 1
+jQuery("#gridMenuLvl1").jqGrid({
+	scroll					: 1,
+	url						: '{base_url}apps/auth_menu/index/id_parent/0/?q=1',
+	datatype					: "json",
+	height					: 390,
+	width					: 480,
+	colNames					: ['id','','','','','','Menu Name','Module Name','parent','breadcrumb'],
+	colModel					: [
+									{name:'id_ref_company',index:'id_ref_company',hidden:true},
+									{name:'edit',index:'edit',align:'center', width:20,align:'center',search:false},
+									{name:'delete',index:'delete',hidden:false,align:'center', width:20,search:false},
+									{name:'auth',index:'auth', width:20,search:false},
+									{name:'urut_up',index:'urut_up', width:20,search:false,sortable:false},
+									{name:'urut_down',index:'urut_down', width:20,search:false,sortable:false},
+									{name:'menu',index:'menu', width:200},
+									{name:'controller',index:'controller', width:200},
+									{name:'id_parents_menu_admin',index:'id_parents_menu_admin',hidden:true},
+									{name:'breadcrumb',index:'breadcrumb',hidden:true}
+									],
+	rowNum					: 25,
+	rowList					: [25,50,100],
+	pager						: '#pgridMenuLvl1',
+	sortname					: 'urut',
+	viewrecords				: true,
+	sortorder				: "asc",
+	multiselect				: false,
+	caption					: 'Top Menu',
+	rownumbers				: true,
+	onSelectRow				: function(ids) {
+									var urlnya = '{base_url}apps/auth_menu/index/id_parent/'+ids+'/?q=1';
+									var urlnya2 = '{base_url}apps/auth_menu/index/id_parent/999/?q=1';
+									$('#xgridMenuLvl3').show();
+									jQuery("#xgridMenuLvl2").jqGrid('setGridParam',{url:urlnya}).trigger('reloadGrid');
+									jQuery("#xgridMenuLvl3").jqGrid('setGridParam',{url:urlnya2}).trigger('reloadGrid');
+					}
+});
+jQuery("#gridMenuLvl1").jqGrid('navGrid','#pgridMenuLvl1',{add:false,edit:false,del:false,search:false});
+jQuery("#gridMenuLvl1").jqGrid('filterToolbar');
+
+//level 2
+jQuery("#xgridMenuLvl2").jqGrid({
+	scroll					: 1,
+	url						: '{base_url}apps/auth_menu/index/id_parent//?q=1',
+	datatype					: "json",
+	height					: 390,
+	width					: 480,
+	colNames					: ['id','','','','','','Menu Name','Module Name','parent','breadcrumb'],
+	colModel					: [
+									{name:'id_ref_company',index:'id_ref_company',hidden:true},
+									{name:'edit',index:'edit',align:'center', width:20,align:'center',search:false},
+									{name:'delete',index:'delete',hidden:false,align:'center', width:20,search:false},
+									{name:'auth',index:'auth', width:20,search:false},
+									{name:'urut_up',index:'urut_up', width:20,search:false,sortable:false},
+									{name:'urut_down',index:'urut_down', width:20,search:false,sortable:false},
+									{name:'menu',index:'menu', width:200},
+									{name:'controller',index:'controller', width:200},
+									{name:'id_parents_menu_admin',index:'id_parents_menu_admin',hidden:true},
+									{name:'breadcrumb',index:'breadcrumb',hidden:true}
+									],
+	rowNum					: 25,
+	rowList					: [25,50,100],
+	pager						: '#pxgridMenuLvl2',
+	sortname					: 'urut',
+	viewrecords				: true,
+	sortorder				: "asc",
+	multiselect				: false,
+	caption					: 'Sub Menu',
+	rownumbers				:true,
+	onSelectRow: function(ids) {
+									var urlnya = '{base_url}apps/auth_menu/index/id_parent/'+ids+'/?q=1';
+									jQuery("#xgridMenuLvl3").jqGrid('setGridParam',{url:urlnya}).trigger('reloadGrid');
+					}
+
+});
+jQuery("#xgridMenuLvl2").jqGrid('navGrid','#pxgridMenuLvl2',{add:false,edit:false,del:false,search:false});
+jQuery("#xgridMenuLvl2").jqGrid('filterToolbar');
+
+jQuery("#xgridMenuLvl3").jqGrid({
+	scroll					: 1,
+	url						: '{base_url}apps/auth_menu/index/id_parent/0/?q=1',
+	datatype					: "json",
+	height					: 110,
+	width					: 480,
+	colNames					: ['id','','','','','','Menu Name','Module Name','parent','breadcrumb'],
+	colModel					: [
+									{name:'id_ref_company',index:'id_ref_company',hidden:true},
+									{name:'edit',index:'edit',align:'center', width:20,align:'center',search:false},
+									{name:'delete',index:'delete',hidden:false,align:'center', width:20,search:false},
+									{name:'auth',index:'auth', width:20,search:false},
+									{name:'urut_up',index:'urut_up', width:20,search:false,sortable:false},
+									{name:'urut_down',index:'urut_down', width:20,search:false,sortable:false},
+									{name:'menu',index:'menu', width:200},
+									{name:'controller',index:'controller', width:200},
+									{name:'id_parents_menu_admin',index:'id_parents_menu_admin',hidden:true},
+									{name:'breadcrumb',index:'breadcrumb',hidden:true}
+									],
+	rowNum					: 25,
+	rowList					: [25,50,100],
+	pager						: '#pxgridMenuLvl3',
+	sortname					: 'urut',
+	viewrecords				: true,
+	sortorder				: "asc",
+	multiselect				: false,
+	caption					: 'Menu Level 3',
+	rownumbers				:true
+});
+jQuery("#xgridMenuLvl3").jqGrid('navGrid','#pxgridMenuLvl3',{add:false,edit:false,del:false,search:false});
+jQuery("#xgridMenuLvl3").jqGrid('filterToolbar');
+
+function remove_img(img){
+	$('#remove_img').html('Loading...');
+	$.ajax({
+		type			: 'POST',
+		url         : '{base_url}apps/auth_menu/remove_img',
+		data			: 'img='+img,
+		success     : function(msg){$('#img_edit').html('')}
+	})
+	
+}
+function edit(idedit){
+	$('#form1').show(500);
+	$('#tambah').html('[-]');
+	jQuery("#gridMenuLvl1").jqGrid('setGridParam',{}).trigger('reloadGrid');
+	$('#idedit').val(idedit);
+	$('#id_parents_menu_admin').focus();
+	$('#auth_area').html('');
+
+	//ret = jQuery("#gridMenuLvl1").jqGrid('getRowData',idedit);
+	$.ajax({
+			url         : '{base_url}apps/auth_menu/view_edit/id/'+idedit,
+			success     : function(msg){
+				data = msg.split('|');
+				$('#auth_area').html(data[0]);
+				$('#id_parents_menu_admin').val(data[1]);
+				$('#menus').val(data[2]);
+				$('#controller').val(data[3]);
+				$('#breadcrumb').val(data[5]);
+				$('#img_icon').val(data[4]);
+				if(data[4] == 'y'){
+					$('#show_home').attr('checked',true);
+				}
+				else{
+					$('#show_home').removeAttr('checked');
+				}
+				if(data[5] != ''){
+					$('#img_edit').html('<img src="{base_url}uploads/'+data[5]+'" width="100"><span onclick="remove_img(\''+data[5]+'\')" id="remove_img" class="cursor" title="Remove Icon" />[x]</span>');
+				}
+				else{
+					$('#img_edit').html('');
+				}
+			}
+	});
+
+
+	$('#save').val('Update');
+	$('#save').html('<i class="fa fa-save"></i> Update');
+	$('#message').removeClass('error');
+	$('#message').html('');
+	$('#form1_new').show();
+}
+function hapus(iddel){
+	jQuery("#gridMenuLvl1").jqGrid('setGridParam',{}).trigger('reloadGrid');
+	restore_form();
+	$.ajax({
+			type			: 'POST',
+			url         : '{base_url}apps/auth_menu/delete/',
+			data			: 'iddel='+ iddel,
+			success     : function(msg){
+								$.gritter.add({title:page_name, text: msg});
+								if(msg=='Delete Success'){
+								jQuery("#gridMenuLvl1").jqGrid('setGridParam',{}).trigger('reloadGrid');
+								}
+							}
+	});
+}
+function delete_all(){
+	restore_form();
+	var s;
+	s = jQuery("#gridMenuLvl1").jqGrid('getGridParam','selarrrow');
+	if(s == ''){
+	$.gritter.add({title:page_name, text: 'Select Row!'});
+	return false;
+	}
+	else if (confirm('Delete Selected Row(s) ?')) {
+		$.ajax({
+				type			: 'POST',
+				url         : '{base_url}apps/ref/delete_selected_company/',
+				data			: 'iddel='+ s,
+				success     : function(msg){
+									$.gritter.add({title:page_name, text: msg});
+									jQuery("#gridMenuLvl1").jqGrid('setGridParam',{}).trigger('reloadGrid');
+								}
+		});
+	}
+}
+function ubah_urutan(id,urutan,parent,tipe){
+	$.ajax({
+				type			: 'POST',
+				url         : '{base_url}apps/auth_menu/ubah_urutan/',
+				data			: 'id_menu='+ id+'&urutan='+urutan+'&tipe='+tipe+'&parent='+parent,
+				success     : function(msg){
+									jQuery("#gridMenuLvl1").jqGrid('setGridParam',{}).trigger('reloadGrid');
+									jQuery("#xgridMenuLvl2").jqGrid('setGridParam',{}).trigger('reloadGrid');
+									jQuery("#xgridMenuLvl3").jqGrid('setGridParam',{}).trigger('reloadGrid');
+								}
+		});
+}
+//jQuery("#gridMenuLvl1").jqGrid('gridResize');
+//jQuery("#xgridMenuLvl2").jqGrid('gridResize');
+//jQuery("#xgridMenuLvl3").jqGrid('gridResize');
+
+</script>

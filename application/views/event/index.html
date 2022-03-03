@@ -1,0 +1,166 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      {breadcrumb_frontend}
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt50 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+              <div class="tabs-highlight">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs navbar-right">
+                  <li role="presentation" class="active"> <a data-toggle="tab" href="#events_list"><span
+                        class="glyphicon glyphicon-list"></span></a></li>
+                  <li role="presentation" class=""> <a data-toggle="tab" href="#events_calender"><span
+                        class="glyphicon glyphicon-th-large"></span></a></li>
+                  <!-- <a href="past-events.html"><span class="glyphicon glyphicon-list"></span></a> -->
+                  <!-- <li role="presentation" class="{active}""><a href="past-events-calendar.html"><span class="glyphicon glyphicon-th-large"></span></a></li> -->
+                </ul>
+
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <ul class="status-color">
+                    {button_tab}
+                  </ul>
+                  <div id="events_list" class="tab-pane fade in active">
+                    {events_list}
+                    <div class="widget-white {color} mb15">
+                      <div class="event-type">{category}</div>
+                      <div class="title-event-list mb20"><a href="{link}">{title}</a></div>
+                      <div class="row">
+                        <div class="col-sm-5 col-md-5 col-xs-12">
+                          <div class="media">
+                            <div class="media-left media-middle"><span class="icon-time"></span></div>
+                            <div class="media-body media-middle">{time}
+                              <!-- 18:00 - 20:30 -->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-7 col-md-7 col-xs-12">
+                          <div class="media">
+                            <div class="media-left media-middle"><span class="icon-maps"></span></div>
+                            <div class="media-body media-middle">{address}
+                              <!-- Ayana Hotel, Midplaza -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/events_list}
+                    <!-- <div class="widget-white widget-red-left mb15">
+                         <div class="event-type">Social &amp; networking event</div>
+                         <div class="title-event-list mb20"><a href="past-events-detail.html">Red Nose Foundation's Festival of Laughs</a></div>
+                         <div class="row">
+                           <div class="col-sm-5 col-md-5 col-xs-12">
+                             <div class="media">
+                               <div class="media-left media-middle"><span class="icon-time"></span></div>
+                               <div class="media-body media-middle">Nov 4, 2017   /   18:00 - 20:30</div>
+                             </div>
+                           </div>
+                           <div class="col-sm-7 col-md-7 col-xs-12">
+                             <div class="media">
+                               <div class="media-left media-middle"><span class="icon-maps"></span></div>
+                               <div class="media-body media-middle">Ayana Hotel, Midplaza</div>
+                             </div>
+                           </div>
+                         </div>
+                       </div> -->
+                    <div class="text-center mt15 {dsp_load_more}"><span
+                        href="{base_url}{lang}/event/more/{uri_path}/{paging}"
+                        class="load-more tangan">{lang_load_more}</span>
+                    </div>
+                    <!-- <div class="text-center mt15"><a href="#" class="load-more">Load More</a></div> -->
+                  </div>
+
+                  <div id="events_calender" class="tab-pane fade in active">
+                    <div class="calender-events">
+                      <div id='calendar'></div>
+                      <!-- <div style='clear:both'></div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<link href='{base_url}/assets/fullcalender/core/main.css' rel='stylesheet' />
+<link href='{base_url}/assets/fullcalender/daygrid/main.css' rel='stylesheet' />
+<link href='{base_url}/assets/fullcalender/timegrid/main.css' rel='stylesheet' />
+<link href='{base_url}/assets/fullcalender/list/main.css' rel='stylesheet' />
+<script src='{base_url}/assets/fullcalender/core/main.js'></script>
+<script src='{base_url}/assets/fullcalender/core/locales-all.js'></script>
+<script src='{base_url}/assets/fullcalender/interaction/main.js'></script>
+<script src='{base_url}/assets/fullcalender/daygrid/main.js'></script>
+<script src='{base_url}/assets/fullcalender/timegrid/main.js'></script>
+<script src='{base_url}/assets/fullcalender/list/main.js'></script>
+<script>
+$(document).ready(function(){
+  
+  
+  var calendar;
+  
+    var dateTime = Date();
+    dateTime = moment(dateTime).format("YYYY-MM-DD");
+
+    var calendarEl = document.getElementById('calendar');
+    event_data = {event_data};
+    
+
+    calendar = new FullCalendar.Calendar(calendarEl, {
+
+      plugins: ['interaction', 'dayGrid'],
+      header: {
+        left: 'prev',
+        center: 'title',
+        right: 'next'
+      },
+      defaultDate: dateTime,
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        meridiem: false
+      },
+
+      events: event_data
+    });
+
+    calendar.render();
+
+    $('#events_calender').removeClass('active');  
+
+  });
+  
+
+</script>

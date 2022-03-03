@@ -1,0 +1,159 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<!-- <div class="row-fluid">
+						<div class="col-sm-12">
+							<span class='col-sm-12'>
+								<div class='text-right'><a class="btn btn-primary insert" href="{this_controller}add"><i class="fa fa-plus"></i> Add New</a></div>
+							</span>
+						</div>
+					</div> -->
+					<div class="clearfix">&nbsp;</div>
+					<div id='grid1' class='my_grid' data-perpage='10' data-url="{this_controller}records" data-order-id="a.start_date" data-order-direction="desc">
+						<div class="row-fluid">
+							<div class="row">
+								<div class="col-sm-6 {disable_add}">	
+									<button class="btn ml-28 btn-filter-date-unhide"><i class="fa fa-calendar"><span class="default-font"> Filter by Date</span></i></button>
+								</div>
+								<div class="col-sm-6">
+									<span class='col-sm-12 text-right'>
+										<div class='text-right'><a class="btn btn-primary insert" href="{this_controller}add"><i class="fa fa-plus"></i> Add New</a></div>
+									</span>
+								</div>
+							</div>	
+						</div>
+						<div class="row">
+							<div id="filter-date" class="round-index col-md-8 hidden">
+								<div class="margs row">
+									<div class="col-md-6">
+										<strong>Start Date Event </strong>
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+											<input type="text" class='cari form-control' readonly="readonly" id="between_from_start_date" placeholder="From" name="between_from_start_date">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<label></label>
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+											<input type="text" class='cari form-control' readonly="readonly" id="between_to_start_date" placeholder="To" name="between_to_start_date">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="margs row">
+									<div class="col-md-6">
+										<strong>End Date Event</strong>
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+											<input type="text" class='cari form-control' readonly="readonly" id="between_from_end_date" placeholder="From" name="between_from_end_date">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<label></label>
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+											<input type="text" class='cari form-control' readonly="readonly" id="between_to_end_date" placeholder="To" name="between_to_end_date">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix">&nbsp;</div>
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th class="center" width="20">No</th>
+										<!-- <th class="center" title='Sort' id='a-id'>ID <span></span></th> -->
+										<!-- <th class="center" title='Sort' id='a-modify_date'>Modify Date <span></span></th> -->
+										<th class="center" title='Sort' id='name'>Name <span></span></th>
+										<th class="center" title='Sort' id='b-name'>Category <span></span></th>
+										<!-- <th class="center" title='Sort'>Sub Category <span></span></th> -->
+										<!-- <th class="center" title='Sort' id='name'>Name (English) <span></span></th> -->
+										<!-- <th class="center" title='Sort' id='speaker'>Speaker <span></span></th> -->
+										<th class="center" title='Sort' id='start_date' width="175">Start Event Date <span></span></th>
+										<th class="center" title='Sort' id='end_date' width="175">End Event Date <span></span></th>
+										<!--th class="center" title='Sort' id='teaser'>About <span></span></th>-->
+										<th class="center" width="100">Close Event</th>
+										<th class="center" title="Sort" id="d-id">Status Publish <span></span></th>
+										<th class="center" width="120">Action</th>
+									</tr>
+									<tr class='filter'>
+										<!-- <td></td> -->
+										<!-- <td><input type='text' class='cari form-control' id='search_id' placeholder='Search...'></td> -->
+										<td></td>
+										<td><input type='text' class='cari form-control' id='search_name' placeholder='Search...'></td>
+										<td><select id="search_id_event_category" class='cari form-control'>{select_category}</select></td>
+										<!-- <td><select id="search_id_event_category" class='cari form-control'></select></td> -->
+										</td>
+										<!-- <td><input type='text' class='cari form-control' id='search_name_e' placeholder='Search...'></td> -->
+										<!-- <td><input type='text' class='cari form-control' id='search_speaker' placeholder='Search...'> -->
+										<td></td>
+										<td></td>
+										<!--td></td>-->
+										<td></td>
+										<td><select id="search_status_publish" class='cari form-control'>{list_status_publish}</select></td>
+										<td></td>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('#search_id_event_category').change(function(){
+		$('#search_id_event_subcategory').empty();
+		var id = $(this).val();
+		$.ajax({
+			url 	: this_controller+'listopt_subevent',
+			type	: 'post',
+			data	: 'id='+id,
+			dataType: 'json',
+			success	: function(ret){
+				$('#search_id_event_subcategory').empty();
+				$('#search_id_event_subcategory').append(ret.listopt);
+			},
+			error 	:function(err){
+			},
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$('#between_from_start_date').change(function(){
+		$( "#between_from_start_date").keyup();
+		return false;
+    });
+    $('#between_to_start_date').change(function(){
+		$( "#between_to_start_date").keyup();
+		return false;
+    });
+</script>
+
+<script type="text/javascript">
+	$('#between_from_end_date').change(function(){
+		$( "#between_from_end_date").keyup();
+		return false;
+    });
+    $('#between_to_end_date').change(function(){
+		$( "#between_to_end_date").keyup();
+		return false;
+    });
+</script>

@@ -1,0 +1,53 @@
+<h1 class="page-header">Preview</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid"> 
+						<span class='col-sm-12'>
+							<div class='text-right'>
+								<a class="btn btn-warning" href="{this_controller}"><i class="fa fa-arrow-left"></i> Back</a>
+								<!-- <a class="btn btn-primary" href="{this_controller}add/{id}"><i class="fa fa-pencil-square-o tangan"></i> Edit</a> -->
+							</div>
+						</span>
+					</div>
+					<hr>
+					<ul class="nav nav-pills">
+						{list_lang2}
+						<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+						{/list_lang2}
+					</ul>
+					<div class="tab-content">
+						{list_lang}
+						<div class="tab-pane fade {active}" id="nav-pills-tab-{nomor}">
+							<div class="row-fluid">
+								<div class="judul">PAGE NAME : {name}</div>
+								<div class="judul">PUBLISH DATE : {publish_date}</div>
+							</div>
+							<br>
+							<div class="content-list">
+								<div class="row-fluid">
+									<div class="col-sm-12">
+										DESCRIPTION 	:
+										<textarea name="description[]" rows="4" id="description{nomor}" class="form-control ckeditor" >{description}</textarea>
+								   	</div>
+								</div>
+							</div>
+						</div>
+						{/list_lang}
+					</div>		
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

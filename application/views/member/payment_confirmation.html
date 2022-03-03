@@ -1,0 +1,211 @@
+<!-- <link rel="stylesheet" type="text/css" href="{base_url}asset/css/normalize.css" /> -->
+<!-- <link rel="stylesheet" type="text/css" href="{base_url}asset/css/demo.css" /> -->
+<link rel="stylesheet" type="text/css" href="{base_url}asset/css/component.css" />
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      
+      <!-- <div class="{hide_breadcrumb}">
+        {breadcrumb_frontend}
+      </div> -->
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+
+              <!-- content -->
+              <!-- <div class="title-event-list">Join Amcham</div>
+              <p>AmCham Indonesia is a voluntary organization of professionals with commercials activities in Indonesia. Its central mission is to promote U.S.-Indonesia commercial relations and to serve its members as a key resource for information and business networking. First formed in 1971 as a committee, AmCham Indonesia has grown to hundreds of members representing more than 250 companies</p>
+              <p>By becoming a member of AmCham Indonesia, you benefit from business intelligence from leaders of the Indonesia business community, promotion of your firm, networking, access to business and political leaders, social activities and issue advocacy. These are just a few of the numerous benefits to membership.</p>
+              <p>Membership application is open to all and reviewed by the Board of Governors. Please review the Membership Categories to determine the appropriate membership level for you and/or your firm.</p> -->
+
+
+              <div class="title-event-list mt0">Please fill this form</div>
+              <hr class="line-content">
+              <!-- <div class="title-content mb15">PAYMENT DETAILS</div> -->
+              <form class="form-join" action='{base_url}{lang}/member/payment_confirmation_proses' id='form1' method="POST">
+                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                <div class="row row-form">
+                  <input type="hidden" name="invoice_number" value="{invoice_number}" required>
+
+                  <!-- <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group  no-margin">
+                    <label class="label-amcham">Invoice Number </label>
+                    <label class="label-amcham">Invoice Number <span class="red">*</span> </label>
+                    <input type="text" class="form-control input-amcham" name="invoice_number" value="{invoice_number}" required>
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group  no-margin">
+                  <label class="label-amcham">Bank Name</label>
+                    <input type="text" class="form-control input-amcham" name="bank_name"  value="{bank_name}">
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group  no-margin">
+                  <label class="label-amcham">Account Name </label>
+                    <input type="text" class="form-control input-amcham" name="bank_account"  value="{bank_account}" >
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group  no-margin " data-date-format="dd-mm-yyyy">
+                  <label class="label-amcham ">Payment Date </label> 
+                  
+                    <div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+                    <input type="text" value="{payment_date}" id="payment_date" class="form-control" name="payment_date" readonly="readonly">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>    
+                    <input type="text" class="form-control input-amcham" name="payment_date" >
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group  no-margin">
+                  <label class="label-amcham">Amount  </label>
+                    <input type="text" class="form-control input-amcham" name="amount"  value="{amount}">
+                  </div> -->
+                  <div class="col-sm-12 col-md-12 col-xs-12 col-form ">
+                  <label class="label-amcham">Upload a copy of yours payment confirmation </label>
+                    <!-- <input type="file" class="form-control input-amcham" name="file[]"> -->
+                    <div class="box">
+                      <div class="input-group">
+                        <span class="input-group-btn">
+                          <span class="btn btn-default btn-file">
+                            Browse… <input type="file" id="imgInp" name="file[]" accept="image/*" >
+                          </span>
+                        </span>
+                        <input type="text" class="form-control" value="{filename}" readonly>
+                      </div>
+                      <img id='img-upload' src="{filename_src}" style="max-width: 40%"  />
+
+                      <!-- <input type="file" name="file[]" id="file-7" class="inputfile inputfile-6 hide" accept="image/*" id="imgInp" />
+                      <label for="file-7"><span>{filename}</span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file</strong></label>
+                      <div class="img-upload">
+                        <img src="{filename_src}" alt="Confirmation-preview" style="max-width: 560px;">
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group  no-margin">
+                  <label class="label-amcham">Notes</label>
+                  <input type="text" class="form-control input-amcham" name="note" value="{note}">
+                </div>
+                <hr class="line-content">
+                
+                <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group  no-margin">
+                  <button type="button" class="btn-red btn-link-price tangan" id="btn-submit-konten">Submit</button>
+                </div>
+                <!-- onClick="formclick() -->
+              </form>      
+              <!-- end content -->
+
+
+            </div>
+          </div>
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade fade-events" id="myModalThanks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="text-center">
+          <div class="media logo">
+            <div class="media-left media-middle"><img src="asset/images/logo.png"></div>
+            <div class="media-body media-middle">
+              <span>AMCHAM INDONESIA</span>
+              <i>MJM<br>SINCE 1971</i>
+            </div>
+          </div>
+        </div>
+        <hr class="line-content line-white">
+        <div class="pop-header">
+          <div class="title-event-list">Thanks for confirm your payment!</div>
+          <div class="disclamer-tq">Please wait until our staff check your payment and the confirmation will be sent to your email</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+<script src="{base_url}asset/js/jquery.custom.inputfile.js"></script>
+<script src='https://www.google.com/recaptcha/api.js?render={recaptcha_site_key}'></script>
+<script>
+   grecaptcha.ready(function() {
+   grecaptcha.execute('{recaptcha_site_key}', {action: 'index'}).then(function(token) {  
+    document.getElementById('g-recaptcha-response').value=token;
+   });
+  });
+</script>
+<script>  
+  $(document).ready( function() {
+    $(document).on('change', '.btn-file :file', function() {
+      var input = $(this),
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+      input.trigger('fileselect', [label]);
+    });
+
+    $('.btn-file :file').on('fileselect', function(event, label) {
+
+      var input = $(this).parents('.input-group').find(':text'),
+      log = label;
+
+      if( input.length ) {
+        input.val(log);
+      } else {
+        if( log ) alert(log);
+      }
+      
+    });
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#img-upload').show();
+          $('#img-upload').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#imgInp").change(function(){
+      readURL(this);
+    });
+  });
+
+    </script>
+
+    <script>
+    $(document).ready(function(){
+        
+    $('.fade-events').on('hidden.bs.modal', function (e) {
+      window.location.href = '{base_url_lang}member/profile';
+    })
+    })
+</script>

@@ -1,0 +1,179 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+			    <div class="col-sm-12 col-lg-6 col-md-12">
+				    <legend class="pointer" onclick="toggle_frm($('#tambah'),'form1');$('#grup').val('');">Auth Pages Group
+					    <span id="tambah">[+]</span>
+				    </legend>
+				    <form name="form1" id="form1" method="post" class="invis">
+					<div class="alert alert-info">
+						<span class="close"  onclick='$("#form1").hide();'><i class="fa fa-times"></i></span>
+						<p><label id="message"></label>
+							Group Name*
+								<div class="row">
+			    					<div class="col-sm-12 col-lg-12 col-md-12">
+
+									<input type="text" class="frm validate[required]" name="grup" id="grup" style='width:328px; margin-top: 12px;padding-top: 7px;'>
+									<!--<input type="button" value="Simpan" id="save" class='insert'>-->
+									<button type="button" value="Simpan" id="save" class="btn btn-primary insert"><i class="fa fa-save"></i> Save</button>
+									</div>
+								</div>
+								<!--<a class="pointer invis" onclick="restore_form();$('#grup').val('');$('#list_menu').html('');" id="form1_new">Input New</a>-->
+								<input type="hidden" name="idedit" id="idedit">
+						</p>
+					</div>
+				   </form>
+				    <table id="gridData" class='table table-striped'></table>
+				    <!--<div id="pgridData"></div>-->
+				    <div>
+					*Klik baris untuk mengedit autentifikasi
+				    </div>
+				    <br>
+				    <!--<input type="button" class='delete' value="Delete Selected Row" onclick="delete_all()">-->
+						    
+				    </div>
+				<div id='list_menu'></div>
+				</div>
+			</div> 
+		</div>	
+	</div>
+</div>
+<script>
+jQuery("#gridData").jqGrid({
+	url						: '{base_url}apps/auth_pages/index/?q=1',
+	datatype					: "json",
+	height					    : 300,
+	width						: 480,
+	colNames					: ['id','','','Group','Jumlah User'],
+	colModel					: [
+									{name:'id_auth_user_grup',index:'id_auth_user_grup',hidden:true},
+									{name:'edit',index:'edit', width:30,align:'center',search:false,hidden:false},
+									{name:'delete',index:'delete',align:'center', width:30,search:false,hidden:true},
+									{name:'grup',index:'grup', width:360},
+									{name:'total',index:'total', width:100,search:false,align:'center'},
+									],
+	rowNum					: 25,
+	rowList					: [25,50,100],
+	pager						: '#pgridData',
+	sortname					: 'id_auth_user_grup',
+	viewrecords				: true,
+	sortorder				: "desc",
+	multiselect				: false,
+	rownumbers				: true,
+	onSelectRow				: function(ids) {
+									$('#list_menu').html('Loading...');
+									$.ajax({
+											url         : '{base_url}apps/auth_pages/auth_pages_edit',
+											type        : "POST",
+											data        : "id="+ids,
+											success     : function(msg){
+																$('#list_menu').html(msg).find('input:button').button();
+															}
+									})
+									
+									
+								}
+});
+jQuery("#gridData").jqGrid('navGrid','#pgridData',{add:false,edit:false,del:false,search:false});
+jQuery("#gridData").jqGrid('filterToolbar');
+$('#save').click(function(){
+	if( $("#form1").validationEngine('validate') == true){
+		var param 			= $('#form1').serialize();
+		var url 				= '{base_url}apps/auth_pages/proses';
+		$.ajax({
+				url         : url,
+				type        : "POST",
+				data        : param,
+				beforeSend  : function(){$('#save').html('Loading...');},
+				success     : function(msg){
+									if(msg.substring(0,5) == 'error'){
+										$('#message').html(msg.substring(5));
+										$('#message').addClass('error');
+										if($('#idedit').val() != '')
+												$('#save').val('<i class="fa fa-save"></i> Update');
+										else
+												$('#save').val('<i class="fa fa-save"></i> Save');
+									}
+									else if(msg == 'duplicate'){
+										$('#grup').validationEngine('showPrompt', 'Group Name is Exist','');
+										if($('#idedit').val() != ''){
+											$('#save').val('<i class="fa fa-save"></i> Update');
+										}
+										else{
+											$('#save').val('<i class="fa fa-save"></i> Save');
+										}
+									}
+									else{
+										$.gritter.add({title:page_name, text: msg});
+										jQuery("#gridData").jqGrid('setGridParam',{}).trigger('reloadGrid');
+										restore_form();
+										$('#grup').val('');
+									}
+				}
+		});
+	}
+});
+function edit(idedit){
+	$('#form1').show(500);
+	$('#tambah').html('[-]');
+	jQuery("#gridData").jqGrid('setGridParam',{}).trigger('reloadGrid');
+	$('#idedit').val(idedit);
+	$('#company').focus();
+	ret = jQuery("#gridData").jqGrid('getRowData',idedit);
+	$('#grup').val(ret.grup);
+	$('#save').val('<i class="fa fa-save"></i> Update');
+	$('#message').removeClass('error');
+	$('#message').html('');
+	$('#form1_new').show();
+	$('#list_menu').html('');
+}
+function hapus(iddel){
+	jQuery("#gridData").jqGrid('setGridParam',{}).trigger('reloadGrid');
+	restore_form();
+	$('#grup').val('');
+	$.ajax({
+			type			: 'POST',
+			url         : '{base_url}apps/auth_pages/delete/',
+			data			: 'iddel='+ iddel,
+			success     : function(msg){
+								alert(msg)
+								if(msg=='Delete Success'){
+								jQuery("#gridData").jqGrid('setGridParam',{}).trigger('reloadGrid');
+								$('#list_menu').html('');
+								}
+							}
+	});
+}
+function delete_all(){
+	restore_form();
+	$('#grup').val('');
+	var s;
+	s = jQuery("#gridData").jqGrid('getGridParam','selarrrow');
+	if(s == ''){
+	alert('Select Row!');
+	return false;
+	}
+	else if (confirm('Delete Selected Row(s) ?')) {
+		$.ajax({
+				type			: 'POST',
+				url         : '{base_url}apps/ref_company/delete_selected/',
+				data			: 'iddel='+ s,
+				success     : function(msg){
+									alert(msg)
+									jQuery("#gridData").jqGrid('setGridParam',{}).trigger('reloadGrid');
+								}
+		});
+	}
+}
+</script>

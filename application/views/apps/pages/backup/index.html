@@ -1,0 +1,50 @@
+<h1 class="page-header">Pages</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12">
+							<span class='col-sm-12'>
+								<div class='text-right'><a class="btn btn-primary insert" href="{this_controller}add"><i class="fa fa-plus"></i> Add New</a></div>
+							</span>
+						</div>
+					</div>
+					<div class="clearfix">&nbsp;</div>
+					<div id='grid1' class='my_grid' data-perpage='10' data-url="{this_controller}records">
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th class="center" width="20">No</th>
+										<th class="center" title='Sort' id='page_name'>Page Name <span></span></th>
+										<th class="center" title='Sort' id='uri_path'>Page URL <span></span></th>
+										<th class="center" width="100">Action</th>
+									</tr>
+									<tr class='filter'>
+										<td></td>
+										<td><input type='text' class='cari form-control' id='search_page_name' placeholder='Search...'></td>
+										<td><input type='text' class='cari form-control' id='search_uri_path' placeholder='Search...'></td>
+										<td></td>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

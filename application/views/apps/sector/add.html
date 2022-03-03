@@ -1,0 +1,105 @@
+<form action='{this_controller}proses/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+
+<h1 class="page-header">{page_name}</h1>
+
+<div class="row">
+
+	<!-- begin col-12 -->
+
+	<div class="col-md-12">
+
+		<!-- begin panel -->
+
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+
+			<div class="panel-heading">
+
+			    <div class="panel-heading-btn">
+
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+
+			    </div>
+
+			    <h4 class="panel-title">{judul} Sector</h4>
+
+			</div>
+
+			<div class="panel-body">
+
+				<div class="col-sm-12 col-lg-12 col-md-12">
+
+					<div class="row-fluid">
+
+						<div class="col-sm-12 text-right">
+
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="clear-fix">&nbsp;</div>
+
+				<div class="col-sm-12 col-lg-9 col-md-12">
+
+
+
+					<div class="form-group  no-margin">
+
+						<label class="col-md-3 control-label">Sector Name <i class='req'>*</i></label>
+
+						<div class="col-md-9"><input type="text" value="{name}" data-parsley-required="true" id="title" class='form-control' name="name"></div>
+
+					</div>
+
+				
+					<div class="form-group  no-margin">
+
+						<label class="col-md-3 control-label">Teaser </label>
+
+						<div class="col-md-9"><textarea name="teaser" rows="4" id="teaser" class="form-control">{teaser}</textarea></div>
+
+					</div>
+
+					<div class="form-group  no-margin">
+
+						<label class="col-md-3 control-label">Description</label>
+
+						<div class="col-md-9"><textarea  rows="4" id="page_content" class="form-control ckeditor">{page_content}</textarea></div>
+
+					</div>
+
+					<div class="form-group  no-margin">
+
+						<label class="col-md-3 control-label">Page URL <i class='req'>*</i></label>
+
+						<div class="col-md-9"><input type="text" value="{uri_path}" data-parsley-required="true" id="uri_path" class='form-control' name="uri_path"></div>
+
+					</div>
+
+					<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<select id="id_status_publish" class='form-control' data-parsley-required="true" name="id_status_publish">
+											{list_status_publish}
+										</select>
+									</div>
+							</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+{imagemanager_config}

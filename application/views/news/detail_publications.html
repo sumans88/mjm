@@ -1,0 +1,149 @@
+<style>
+a.btn-ebooks {
+    color: #fff;
+    font-size: 18px;
+    background: #0173ba;
+    padding: 10px 15px;
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #0173ba;
+    text-decoration: none;
+    margin-top: 15px;
+    cursor:pointer;
+    font-family: 'DINRegular';
+}
+
+a.btn-ebooks:hover {
+    background: #fff;
+    border: 1px solid #0173ba;
+    color: #0173ba
+}
+
+a.btn-ebooks span {
+    width: 26px;
+    height: 26px;
+    background: url({base_url}asset/images/getebooks.png) no-repeat;
+    background-position: left;
+    display: inline-block;
+    position: relative;
+    margin-right: 15px;
+    float: left
+}
+
+a.btn-ebooks:hover span {
+    background-position: right
+}
+</style>
+<div class="container-fluid container-fluid-dtl">
+  <div class="container">
+    <div class="row row-dtl">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-dtl" style="padding-top:60px;">
+        <!-- <div class="breadcrumb-share">
+          <div class="breadcrumb-dtl">
+            <ol class="breadcrumb">
+              {breadcrumb}
+            </ol>
+          </div>
+          <div class="share-dtl">
+            
+            <ul>
+              <li><a href="#"><img src="{base_url}asset/images/icon-download.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-share.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-print.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-email.png"></a></li>
+            </ul>
+          </div>
+        </div> -->
+      </div>
+      <div class="col-sm-4 col-md-3 col-xs-12 col-dtl">
+          <div class="intro-dtl">
+            {teaser}
+          </div>
+          {artikel_terkait}
+      </div> 
+      <div class="col-sm-8 col-md-9 col-xs-12 col-dtl">
+        <div class="date-ft-src"><span>{category}</span>{publish_date}</div>
+        <br>
+        <div class="decs-dtl" style="margin-bottom: 25px;">
+          <h2 class="title-dtl-cnt">{news_title}</h2>
+          <div class="col-sm-12 col-md-12 col-xs-12" style="padding-left: 0px;">{share} </div>
+          {lang_not_available}
+          <div class="thumb-detail-img {isImg} {invis_infographic}">{thumbx}</div>
+          {page_content}
+
+          <span class="tag-article {invis_tags}">{lang_topic} : {list_tags}  <a href="{url}/index/{uri_path_tags}">{tags}</a> {/list_tags}</span>
+
+           <div class="{invis_download}">
+           <br>
+            <!--<button class="btn btn-default" id="{idx}" d-title="news" onclick="download_file(this)">Download File</button>-->
+            <a class="btn-ebooks" id="{idx}" d-title="news" onclick="download_file(this)"><span></span>  DOWNLOAD FILE</a>
+          </div>
+        </div>
+        <div class="container-fluid container-form-contact" style="padding: 21px;">
+		  <div class="container" style="width:100%;">
+		    <div class="row">
+		      <div class="col-sm-12 col-md-12 col-xs-12 frame-what-folio">
+		       <h4 class="what-folio">
+		         Write Your Comments Here
+		       </h3>
+		        <div class="form-contactus">
+		        <span style="color:red;" id="error_area"></span>
+		          <form class="form-comment" id="frm-comment" action="{base_url}{lang}/news/send">
+		            <div class="row">
+		              <div class="col-sm-12 col-md-12 col-xs-12">
+		                <div class="input-contact sameheight">
+		                  <span id="span-fullname" class="req hide">*required</span>
+		                <input type ="text" placeholder="Name" name="fullname" id="fullname" data-parsley-required="true" class="form-control" />
+
+		                  <span id="span-email" class="req hide">*email required</span>
+		                <input type ="text" placeholder="Email" name="email" id="email" data-parsley-type="email" class="form-control" />
+
+		                </div>
+		                <span id="span-message" class="req hide">*required</span>
+		                <div style="height: 183px;">
+		                  <textarea placeholder="Comment" name="commentar" id="commentar" data-parsley-required="true" class="form-control"></textarea>
+		                </div>
+
+		                <input type ="hidden" id="id_parent" name="id_parent" value="{id}" />
+                    <input type ="hidden" id="id_parent" name="page_category" value="{page_cat}" />
+		              </div>
+		              <div class="col-sm-12 col-md-12 col-xs-12 text-right">
+		                <button class="btn btn-default btn-send-contact" id="btn-send-comment">Send</button>
+		              </div>
+		            </div>
+		          </form>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+      </div> 
+
+    </div>
+  </div>
+</div>
+<div class="container-fluid container-fluid-reli">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12 col-md-12">
+        <div class="title-reli">{lang_related}</div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div id="slider-choice">
+          {related}
+          <div class="item">
+            <div class="frame-slider-choice rel-i-frame">
+              <div class="title-slider-choice"><a href="{related_url}">{related_title}</a></div>
+                <div class="thumb-slider-choice"><a href="{related_url}">{related_img}</a></div>
+                <div>
+                    <p>{related_teaser}</p>
+                </div>
+            </div>
+          </div>
+          {/related}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

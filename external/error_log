@@ -1,0 +1,3 @@
+[29-May-2017 07:57:21 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 15552 bytes) in /home/wwwfopos/public_html/external/resize_and_crop.php on line 11
+[29-May-2017 07:57:26 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 15552 bytes) in /home/wwwfopos/public_html/external/resize_and_crop.php on line 11
+[29-May-2017 07:57:29 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 15552 bytes) in /home/wwwfopos/public_html/external/resize_and_crop.php on line 11

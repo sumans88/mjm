@@ -1,0 +1,19 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{account_number}</td>
+		<td>{account_name}</td>
+		<td>{bank_name}</td>
+		<td>{bank_address}</td>
+		<td>{bank_key}</td>
+		<td>{swift_code}</td>
+		<td>{status_publish}</td>
+		<td class="center">
+      		<a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td>
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

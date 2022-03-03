@@ -1,0 +1,200 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Event</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear-fix">&nbsp;</div>
+				<div class="col-sm-12 col-lg-9 col-md-12">
+					<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal" enctype="multipart/form-data">
+						<ul class="nav nav-pills">
+							{list_lang2}
+							<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+							{/list_lang2}
+						</ul>
+						<div class="tab-content">
+							{list_lang}
+							<div class="tab-pane fade {active}" id="nav-pills-tab-{nomor}">
+								<div class="form-group  no-margin {invis}">
+									<label class="col-md-3 control-label">Event Schedule <i class='req'>*</i></label>
+									<div class="col-md-9">
+										<style type="text/css">.datepicker{min-width:200px !important;max-width:150px;float: left;}</style>
+										<!-- <input type="text" value="{start_date}" data-parsley-required="{validation}" id="title{nomor}" class='datepicker' name="start_date[]"> -->
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+												<input type="text" value="{start_date}" id="start_date{nomor}" class='form-control' name="start_date[]" readonly="readonly">
+												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+										<div class="span1" style="float:left;padding:13px;">to</div>
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+												<input type="text" value="{end_date}" id="end_date{nomor}" class='form-control' name="end_date[]" readonly="readonly">
+												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group  no-margin {invis}">
+									<label class="col-md-3 control-label">Time Schedule</label>
+									<div class="col-md-9">
+										<input type="text" value="{start_time}"  name="start_time[]" {start_time} class="start_time">  to
+										<input type="text" value="{end_time}"  name="end_time[]" {end_time} class="end_time">  
+									</div>
+								</div>
+								<div class="form-group  no-margin {invis}">
+									<label class="col-md-3 control-label">Location <i class='req'>*</i></label>
+									<div class="col-md-9"><textarea name="location[]" rows="4" data-parsley-required="{validation}" id="location{nomor}" class="form-control">{location}</textarea></div>
+								</div>
+								<!-- <div class="form-group  no-margin {invis}">
+									<label class="col-md-3 control-label">Is Open</label>
+									<div class="col-md-9"><input type="checkbox" value="1"  name="is_open[]" {is_open} class="is_open"> Yes</div>
+								</div> -->
+								<div class="form-group no-margin {invis}">
+									<label class="col-md-3 control-label">Category <i class='req'>*</i></label>
+									<div class="col-md-9"><select id="id_event_category{nomor}" class='form-control' name="id_event_category[]" data-parsley-required="{validation}">{list_event_category}</select></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Event Name <i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{name_data}" data-parsley-required="{validation}" id="title{nomor}" class='form-control' name="name[]"></div>
+								</div>
+								
+								
+								<div class="form-group  no-margin hide">
+									<label class="col-md-3 control-label">Event URL <i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{uri_path}" data-parsley-required="{validation}" id="uri_path{nomor}" class='form-control' name="uri_path[]"></div>
+								</div>
+								<div class="form-group  no-margin {invis}">
+									<label class="col-md-3 control-label">Speaker <i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{speaker}" data-parsley-required="{validation}" id="speaker{nomor}" class='form-control' name="speaker[]"><br>
+									Jika pembicara lebih dari 1 pisahkan dengan tanda ";"</div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Image</label>
+									<div class="col-md-9">{img}</div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">about <i class='req'>*</i></label>
+									<div class="col-md-9"><textarea name="teaser[]" rows="4" data-parsley-required="{validation}" id="teaser{nomor}" class="form-control">{teaser}</textarea></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Content<i class='req'>*</i></label>
+									<div class="col-md-9"><textarea  rows="4" id="content{nomor}" name="content[]" class="form-control ckeditor" data-parsley-required="{validation}">{content}</textarea></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Tags</label>
+									<div class="col-md-9"><select id="tags{nomor}" multiple class='form-control' name="tags[{lang_id}][]"></select></div>
+								</div>
+								<!-- <div class="form-group  no-margin">
+									<label class="col-md-3 control-label" style="padding-top: 20px !important;">Upload File</label>
+									{file_upload}			
+								</div>  -->
+								<div class="form-group  no-margin {invis}">
+									<label class="col-md-3 control-label">Brochures</label>
+									<div class="col-md-9">
+										<input type="file" class="upload-file" style="float: left" name="file-brochures"  id="file-brochures"> 
+										<span id="loading-file-brochures"></span>
+										<input type="hidden" name="brochures[]" id="file-brochuresnya" value="{brochures}">
+									</div>
+								</div>
+								<div class="form-group  no-margin {invis}">
+									<label class="col-md-3 control-label">Material 1</label>
+									<div class="col-md-9">
+										<input type="file" class="upload-file" style="float: left" name="file-material1"  id="file-material1"> 
+										<span id="loading-file-material1"></span>
+										<input type="hidden" name="material1[]" id="file-material1nya" value="{material1}">
+									</div>
+								</div>
+								<div class="form-group  no-margin {invis}">
+									<label class="col-md-3 control-label">Material 2</label>
+									<div class="col-md-9">
+										<input type="file"  class="upload-file" style="float: left" name="file-material2"  id="file-material2"> 
+										<span id="loading-file-material2"></span>
+										<input type="hidden" name="material2[]" id="file-material2nya" value="{material2}">
+									</div>
+								</div>
+								<div class="form-group  no-margin {invis}">
+									<label class="col-md-3 control-label">Material 3</label>
+									<div class="col-md-9">
+										<input type="file" class="upload-file" style="float: left" name="file-material3"  id="file-material3"> 
+										<span id="loading-file-material3"></span>
+										<input type="hidden" name="material3[]" id="file-material3nya" value="{material3}">
+									</div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{lang_id}" id="id_lang{nomor}" class='form-control' name="id_lang[]"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{id_event}" id="id{nomor}" class='form-control' name="id_event[]"></div>
+								</div>
+							</div>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$('#title{nomor},#uri_path{nomor}').keyup(function(){
+										$('#uri_path{nomor}').val(convert_to_uri($(this).val()));
+									});
+								})
+							</script>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$("#tags{nomor}").select2({
+									  tags: [{tags}],
+									  tokenSeparators: [","]
+									})
+									var selectedValues = "{tags_data}".split(',');
+									$("#tags{nomor}").select2('val',selectedValues);
+								})
+							</script>
+							{imagemanager_config}
+							{/list_lang}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- {filemanager_config} -->
+<script type="text/javascript">
+	$('.is_open').change(function(){
+		if(!$(this).attr("checked")){
+			$('.is_open').attr('checked',false);
+		}
+	})
+	function uploadFile(id){
+		$('#loading-'+id).html('<i class="fa fa-refresh fa-spin"><i>');
+		$.ajaxFileUpload({
+			url				: '{this_controller}prosesdocument/'+id,
+			secureuri		: false,
+			fileElementId	: id,
+			dataType		: 'json',
+			success			: function (ret){
+								console.log(ret);
+								$('#loading-'+id).html('<i class="fa fa-check"><i>');
+								$('#'+id+'nya').val(ret.fname);
+							},
+			error			: function(a){
+								alert('error');
+								$('#loading-'+id).html('upload failed');
+							}
+			
+		})
+	}
+	$(document).on('change','.upload-file',function(){
+		if($(this).val()){
+			uploadFile($(this).attr("id"));
+		}
+	})
+</script>

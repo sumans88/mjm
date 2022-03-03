@@ -1,0 +1,21 @@
+{data}
+	{date_group}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{id}</td>
+		<td>{news_category}</td>
+		<td><div class="teaser" style="max-width:250px" title="{news_title}">{news_title}</div></td>
+		<td><div class="teaser" style="width:150px;" title="{uri_path}">{uri_path}</div></td>
+		<td class="center {is_publisher}">{publish_date}</td>
+		<td class="center">{hits}</td>
+		<td class="center">
+			<a href="{base_url}apps/news/view/{id}" title="View Detail" class="fa fa-search action-form-icon"></a>
+			{edit}
+			{delete}
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="9">{paging}</td>
+</tr>

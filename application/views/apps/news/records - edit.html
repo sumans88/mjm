@@ -1,0 +1,25 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{id}</td>
+		<td>{news_category}</td>
+		<td><div class="teaser" style="max-width:250px" title="{news_title}">{news_title}</div></td>
+		<td><div class="teaser" style="width:150px;" title="{uri_path}">{uri_path}</div></td>
+		<td><div class="teaser" style="width:120px;" title="{username}">{username}</div></td>
+		<td class="center">{publish_date}</td>
+		<td class="center">{modify_date}</td>
+		<td>{approval_level}</td>
+		<td>{status}</td>
+		<td class="center">{hits}</td>
+		<td class="center">
+			<a href="{this_controller}view/{id_parent_lang}" title="View Detail" class="fa fa-search action-form-icon"></a>
+			<a href="{this_controller}add/{id_parent_lang}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<!-- {edit} -->
+			{delete}
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="12">{paging}</td>
+</tr>

@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      {breadcrumb_frontend}
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+              <!-- heading -->
+              <div class="title-comdet mb30">Annual Golf Tournament</div>
+              {pages_annual}
+              <hr class="line-amcham mb30 mt30">
+              <!-- end heading -->
+            
+             
+              <div class="{no_events_list}">
+              {events_list}
+
+
+              <div class="media media-latest">
+                <div class="media-left">
+                  <div class="thumbnail-amcham thumb-top-art">{img}</div>
+                </div>
+                <div class="media-body">
+                  <div class="widget-white">
+                    <div class="event-type">{time}</div>
+                    <div class="title-event-list"><a href="{link}">{title}</a></div>
+                    <p>{teaser}</p>
+                  </div>
+                </div>
+              </div>
+             {/events_list}
+             
+             <div class="text-center mt15 {dsp_load_more}"><span href="{base_url}{lang}/event/more/{uri_path}/{paging}" class="load-more tangan">{lang_load_more}</span></div>
+            </div> 
+
+
+              <!-- <div class="widget-white {color} mb15">
+               <div class="event-type">{category} event</div>
+               <div class="title-event-list mb20"><a href="{link}">{title}</a></div>
+               <div class="row">
+                 <div class="col-sm-5 col-md-5 col-xs-12">
+                   <div class="media">
+                     <div class="media-left media-middle"><span class="icon-time"></span></div>
+                     <div class="media-body media-middle">{time} 18:00 - 20:30</div>
+                   </div>
+                 </div>
+                 <div class="col-sm-7 col-md-7 col-xs-12">
+                   <div class="media">
+                     <div class="media-left media-middle"><span class="icon-maps"></span></div>
+                     <div class="media-body media-middle">{address}Ayana Hotel, Midplaza</div>
+                   </div>
+                 </div>
+               </div>
+                           </div> -->
+
+             <!-- <div class="text-center mt15"><a href="#" class="load-more">Load More</a></div> -->
+           </div>
+         </div>
+          <div class="media-right">
+           {widget_sidebar}
+         </div>
+       </div>
+     </div>
+
+     
+  </div>
+</div>
+</div>

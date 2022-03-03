@@ -1,0 +1,24 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td class="center">{invoice_number}</td>
+		{field}
+
+		<!-- <td>{name}</td>
+		<td>{company}</td>
+		<td>{title}</td>
+		<td>{company_address}</td>
+		<td>{email}</td>
+		<td>{t_number}</td>
+		<td>{m_number}</td>
+		<td>{comment}</td> -->
+		<td>{status}</td>
+		<td class="text-center">
+			<a href="{this_controller}approve/{event_id}/{id}" title="Approval" class="{st}">Paid</a> 
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="40">{paging}</td>
+</tr>

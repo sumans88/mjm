@@ -1,0 +1,37 @@
+<!-- check invoice modal -->
+<div class="modal fade" id="modal-add-price" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <h1><div class="title-event-list mt0">Add price </div></h1>
+        <hr class="line-content">
+        <!-- <div class="title-content mb15">PAYMENT DETAILS</div> -->
+	    <form class="form-horizontal" action='{base_url}apps/event/proses_add_price' id='form2' method="POST">
+        <div class="row">
+	        	<div class="form-group  no-margin">
+	        		<label class="col-md-3 control-label">Name Price<i class='req'>*</i></label>
+	        		<div class="col-md-9"><input type="text"  data-parsley-required="true" id="title" class='form-control' name="name"></div>
+	        	</div>
+	        	<div class="form-group  no-margin">
+	        		<label class="col-md-3 control-label">Alias</label>
+	        		<div class="col-md-9"><input type="text"  id="alias" class='form-control' name="alias"></div>
+	        	</div>
+	        	<div class="form-group  no-margin">
+	        		<label class="col-md-3 control-label">Amount<i class='req'>*</i></label>
+	        		<div class="col-md-9"><input type="text"  data-parsley-required="true" id="amount" class='form-control number' name="amount"></div>
+	        	</div>
+	          <input type="hidden" class="form-control input-amcham" name="member_id" id="modal-id-member">
+
+        </div>
+      	<div class="row"></div>
+		<hr class="line-content">
+		<a class="btn btn-success tangan btn-submit-konten" >Add </a>
+		<a class="btn btn-danger tangan" data-dismiss="modal">Cancel</a>
+	     </form>      
+          <!-- onClick="formclick() -->
+      </div>
+    </div>
+  </div>
+</div>

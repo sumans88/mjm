@@ -1,0 +1,44 @@
+{list_data}
+    <li class="{class_abu}">    
+	<div class="timeline-badge primary {is_news}"><a><i class="glyphicon glyphicon-record {invert}" rel="tooltip" title="{last_date_read_ago}" id=""></i></a></div>
+	<div class="timeline-panel {is_news}">
+	  <div class="timeline-heading">
+	     <a href="{base_url}articledetail/index/{uri_path}"><img class="img-responsive" src="{img}" /></a>
+	  </div>
+	  <div class="timeline-body">
+	     <a class="topik-kat" href="{base_url}article/index/{uri_path_category}">{category}</a>
+	     <h4><a class="topik-title" href="{base_url}articledetail/index/{uri_path}">{news_title}</a></h4>
+	     {teaser}
+	  </div>
+	  <div class="timeline-footer">
+	     <a>{last_date_read}</a>
+	     <a class="pull-right" href="#">{lang_total_view}: <span>{log_count}</span></a>
+	 </div>
+	  
+	</div>
+	
+	<div class="timeline-badge primary {is_not_news} {is_not_qa}"><a><i class="glyphicon glyphicon-record {invert}" rel="tooltip" title="{create_date_ago}" id=""></i></a></div>
+	<div class="timeline-panel {is_not_news} {is_not_qa}">
+	     <div class="timeline-body">
+	       <p>{description}</p>
+	     </div>
+	     
+	     <div class="timeline-footer primary">
+		 <a>{create_date}</a>
+	     </div>
+	</div>
+	
+	<div class="timeline-badge primary {is_qa}"><a><i class="glyphicon glyphicon-record {invert}" rel="tooltip" title="{create_date_ago}" id=""></i></a></div>
+	<div class="timeline-panel {is_qa}">
+		 <div class="timeline-body qa-activity">
+		   <p>{description} {title_category_qa} {lang_topic_activity} {title_subcategory_qa}</p>
+		   <p class="well">"{question_qa}"</p>
+		 </div>
+		 
+		 <div class="timeline-footer primary">
+			 <a>{create_date}</a>
+		 </div>
+	</div>
+   </li>
+{/list_data}
+{load_more}

@@ -1,0 +1,10 @@
+<div id="media-news">
+{news}
+<div class="widget-white widget-blue-left media-latest mb15">
+  <div class="event-type">{news_category}  |  {news_date}</div>
+  <div class="title-event-list mb20"><a href="{news_url}" {mailchimp}>{news_title}</a></div>
+  <p>{news_teaser}</p>
+</div>
+{/news}
+</div>
+<div class="text-center mt15 {dsp_load_more}"><span href="{base_url}{lang}/news/more/{uri_path}/{paging}/0/{keyword}/{month}/{year}" class="load-more tangan">{lang_load_more}</span></div>

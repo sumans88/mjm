@@ -1,0 +1,203 @@
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12 p0">
+          <div class="banner-top responsive-banner">
+            {banner_top}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid cf-grey4">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-xs-12">
+            <div class="title-pagination">Committees</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid cf-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-xs-12">
+            <div class="breadcrumb-page">
+              <ol class="breadcrumb">
+                <li><a href="{base_url_lang}">AmCham</a></li>
+                <li><a href="{base_url_lang}pages/committee">Committees</a></li>
+                <li class="active">{name_committee}</li>
+              </ol>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-xs-12 pt50 pb50">
+            <div class="media media-content">
+              <div class="media-body">
+                <div class="frame-content">
+                  <div class="title-comdet">{name_committee}</div>
+                  <hr class="line-content mt10">
+                  <h4 class="title-content"><b>About committee</b></h4>
+                  {page_content}
+                  
+                  <div class="{dsp_committee_chair_cochair_all}">
+                  <hr class="line-content mt50 mb50">
+                    <h4 class="title-content {dsp_committee_chair_all}"><b>Chairs</b></h4>
+                    <div class="row {dsp_committee_chair_cochair_all}">
+                      <div class="col-sm-6 col-md-6 col-xs-12 {dsp_committee_chair}">
+                        <div class="media media-cochair">
+                          <div class="media-left">
+                            <div class="thumnail-amcham thumb-cochair {dsp_desc_chair}"><img src="{chair_img}"></div>
+                          </div>
+                          <div class="media-body">
+                            <h3 class="title-cochair {dsp_desc_chair}" {html_desc_chair}>{chair}</h3>
+                            <!-- <p>{name_committee} Committee Chair  </p> -->
+                            <p>Chair  </p>
+                            <p class="desc-cochair">{chair_teaser}</p>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <h4 class="title-content {dsp_committee_cochair_all}" style="margin-top: 50px;"><b> Co-Chairs</b></h4>
+                    <div class="row {dsp_committee_cochair_all}" >
+                      <div class="col-sm-6 col-md-6 col-xs-12 ">
+                        <div class="media media-cochair">
+                          <div class="media-left">
+                            <div class="thumnail-amcham thumb-cochair {dsp_desc_cochair} "><img src="{co_chair_img}"></div>
+                          </div>
+                          <div class="media-body">
+                            <h3 class="title-cochair {dsp_desc_cochair}" {html_co_desc_chair}>{co_chair}</h3>
+                            <!-- <p>{name_committee} Committee Co-Chair  </!--> 
+                            <p>Co-Chair  </p>
+                            <p class="desc-cochair">{co_chair_teaser}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-6 col-xs-12 {dsp_committee_cochair2}">
+                        <div class="media media-cochair">
+                          <div class="media-left">
+                            <div class="thumnail-amcham thumb-cochair {dsp_desc_cochair2} "><img src="{co_chair_img2}"></div>
+                          </div>
+                          <div class="media-body">
+                            <h3 class="title-cochair {dsp_desc_cochair2}" {html_co_desc_chair2}>{co_chair2}</h3>
+                            <!-- <p>Co-Chair </p> -->
+                            <p>Second  Co-Chair </p>
+                            <p class="desc-cochair">{co_chair_teaser2}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <hr class="line-content mt50 mb50 {hidden_contact2}"> -->
+                  <!-- <h4 class="title-content {hidden_contact2}"><b>Contact committee</b></h4> -->
+                  <!-- {contact2} -->
+
+                  <hr class="line-content mt50 mb50 {hidden_events}">
+                  <h4 class="title-content {hidden_events}"><b>Upcoming events</b></h4>
+
+                  {events}
+                    <div class="widget-white widget-{color}-left mb15">
+                      <div class="event-type">{category}</div>
+                      <div class="title-event-list mb20"><a href="{url}">{name_event}</a></div>
+                      <div class="row">
+                        <div class="col-sm-5 col-md-5 col-xs-12">
+                          <div class="media">
+                            <div class="media-left media-middle"><span class="icon-time"></span></div>
+                            <div class="media-body media-middle">{time}</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-7 col-md-7 col-xs-12">
+                          <div class="media">
+                            <div class="media-left media-middle"><span class="icon-maps"></span></div>
+                            <div class="media-body media-middle">{place}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                   {/events}
+
+                  <hr class="line-content mt50 mb50 {hidden_related_articles}" >
+                  <h4 class="title-content {hidden_related_articles}" ><b>Related News</b></h4>
+                  <div class="row {hidden_related_articles}">
+                    <div class="col-sm-3 col-md-3 col-xs-12">
+                      <select class="form-control select-amcham" id="month" name="month">
+                          {list_month}
+                      </select>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-xs-12">
+                        <select class="form-control select-amcham" id="year" name="year">
+                          {list_year}
+                        </select>
+                    </div>
+                  </div>
+
+                  {related_articles}
+                  <div class="media media-latest">
+                    <div class="media-left">
+                      <div class="thumbnail-amcham thumb-latest">{img}</div>
+                    </div>
+                    <div class="media-body">
+                      <div class="widget-white">
+                        <div class="event-type">{publish_date}</div>
+                        <div class="title-event-list"><a href="#">{news_title}</a></div>
+                        <p>{teaser}</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/related_articles}
+                 
+                
+                  <hr class="line-content mt50 mb20 {signout} {dsp_committee_materials}">
+                  <h4 class="title-content {signout} {dsp_committee_materials}"><b>Committee Materials</b></h4>
+
+                  <ul class="ul-committee {signout} {dsp_committee_materials}">
+                    {committee_materials}
+                      {linkddd}
+                    {/committee_materials}
+                  </ul>
+
+                  <div class="message-error {signin} {is_expired} {dsp_committee_materials} mt15">Members Only Access. Please submit your user name and password in the Members Only area to access the full current Committee Material. <a href="{base_url}member">LOGIN</a></div>
+
+                  <a href="{back_to_committee}" class="btn-grey mt50 mb50">Back to Committee List</a>
+
+                </div>
+              </div>
+              <div class="media-right">
+              {widget_sidebar}
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="modal fade fade-events" id="detailPerson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="text-center">
+              <div class="media logo">
+                <div class="media-left media-middle"><img src="asset/images/logo.png"></div>
+                <div class="media-body media-middle">
+                  <span>AMCHAM INDONESIA</span>
+                  <i>MJM<br>SINCE 1971</i>
+                </div>
+              </div>
+            </div>
+            <hr class="line-content line-white">
+            <div class="pop-header">
+              <div class="title-person">Welcome to AmCham Indonesia! </div>
+              <div class="disclamer-tq">
+               Your membership application has been successfully submitted. AmCham will now review your application to ensure it is complete and we will respond to you by email within two business days to advise you of payment options and next steps.  
+              <br><br>We look forward to welcoming you at our events and getting you involved in our many activities in support of the US-Indonesia commercial relationship.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    

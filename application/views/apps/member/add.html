@@ -1,0 +1,477 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} {page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update {disable_edit} tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}{url_back}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1'  class="form-horizontal">
+						<h1>&nbsp;&nbsp;Profile Member</h1>
+						<hr>
+							<div class="form-group  no-margin">
+								<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">First Name<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{firstname}" id="firstname" data-parsley-required="true" class='form-control' name="firstname"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Last Name</label>
+								<div class="col-md-9"><input type="text" value="{lastname}" id="lastname"class='form-control' name="lastname"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Mr/Ms/etc</label>
+								<div class="col-md-9"><input type="text" value="{prefix_name}" id="prefix_name" class='form-control' name="prefix_name"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Job Title</label>
+								<div class="col-md-9"><input type="text" value="{job}" id="job" class='form-control' name="job"></div>
+							</div>
+							<!-- <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">LinkedIn</label>
+								<div class="col-md-9"><input type="hidden" value="{linkedin_id}" name="linkedin_id"></div>
+							</div> -->
+							<!-- <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Citizenship</label>
+								<div class="col-md-9"><input type="text" value="{citizenship}" id="citizenship" class='form-control' name="citizenship"></div>
+							</div> -->
+
+							<!-- <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Mobile Number</label>
+								<div class="col-md-9"><input type="text" value="{m_m_number_profile}" id="m_m_number_profile" class='form-control' name="m_m_number_profile"></div>
+							</div> -->
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Email<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{email_user}" id="email_user" class='form-control' data-parsley-required="true" name="email_user"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Telephone Number</label>
+								<div class="col-md-9"><input type="text" value="{m_t_number_profile}" id="m_t_number_profile" class='form-control' name="m_t_number_profile"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Address</label>
+								<div class="col-md-9">
+									<textarea name="address_member" rows="4" id="address_member" class="form-control">{address_member}</textarea>
+								</div>
+							</div>
+						
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Photo</label>
+								<div class="col-md-9">
+									<div class="input-group">
+				                          <span class="input-group-btn">
+				                              <span class="btn btn-default btn-file">
+				                                  Browse… <input type="file" id="imgInp" src="{img}" name="img">
+				                              </span>
+				                          </span>
+				                          <input type="text" class="form-control" readonly>
+				                      </div>
+                      				<img id='img-upload' style="max-width: 40%" src="{img}"/>
+									<input type="hidden" name="img_del">
+								</div>
+								<div class="col-md-9 col-md-push-3 media tangan">
+									<a class="del_img">Delete Image </a>
+								</div>
+							</div>
+
+
+							<hr>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Committee</label>
+								<div class="col-md-9">
+
+									 <div class="title-frame text-left"></div>
+					                    <div id="area-committee">
+					                        {list_committee}
+					                    </div>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Information not available for Public<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="checkbox" value="1" name="is_invis" id="is_invis" {checked_gratis}> Hide </div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Member Category<i class='req'>*</i></label>
+								<div class="col-md-9">
+									<select id="member_category_id" class='form-control' data-parsley-required="true" name="member_category_id">
+										{list_member_category}
+									</select>
+								</div>
+							</div>
+
+							<div id="content-company">
+							<h1>&nbsp;&nbsp;Profile Company</h1>
+							<hr>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Company Name <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name_in}" id="name_in" class='form-control' name="name_in"></div>
+							</div>
+
+							<!-- <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">International/Affiliate Name (USA/Overseas)<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name_out}" id="name_out" class='form-control' name="name_out"></div>
+							</div> -->
+
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">City</label>
+								<div class="col-md-9"><input type="text" value="{city}" id="city" class='form-control' name="city"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Address</label>
+								<div class="col-md-9"><textarea name="address" rows="4" id="address" class="form-control">{address}</textarea></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Postal Code</label>
+								<div class="col-md-9"><input type="text" value="{postal_code}" id="postal_code" class='form-control' name="postal_code"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Headquarters</label>
+								<div class="col-md-9"><input type="text" value="{headquarters}" id="headquarters" class='form-control' name="headquarters"></div>
+							</div>
+
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Website</label>
+								<div class="col-md-9"><input type="text" value="{website}" id="website" class='form-control' name="website"></div>
+							</div>
+
+							<!-- <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Mobile Number</label>
+								<div class="col-md-9"><input type="text" value="{m_m_number_company}" id="m_m_number_company" class='form-control' name="m_m_number_company"></div>
+							</div> -->
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Telephone Number</label>
+								<div class="col-md-9"><input type="text" value="{m_t_number_company}" id="m_t_number_company" class='form-control' name="m_t_number_company"></div>
+							</div>
+
+							<!-- <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Email<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="email" value="{email_company}" id="email_company" class='form-control' name="email_company"></div>
+							</div> -->
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Description </label>
+								<div class="col-md-9"><textarea  rows="4" id="description" class="form-control" name="description">{description}</textarea></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Company Image</label>
+								<div class="col-md-9">
+									<div class="input-group">
+				                          <span class="input-group-btn">
+				                              <span class="btn btn-default btn-file">
+				                                  Browse… <input type="file" id="imgInp1" src="{img_company}" name="img_company" >
+				                              </span>
+				                          </span>
+				                          <input type="text" class="form-control" readonly>
+				                      </div>
+									  <img id='img-upload1' src="{img_company}" style="max-width: 40%"  />
+									<input type="hidden" name="img_company_del">
+								</div>
+								<div class="col-md-9 col-md-push-3 media tangan">
+									<a class="del_img">Delete Image </a> 
+								</div>
+							</div>
+							<hr>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Sector</label>
+								<div class="col-md-9">
+
+									 <div class="title-frame text-left"></div>
+					                    <div id="area-sector">
+					                    	 <div class="col-sm-6 col-md-6 col-xs-12">
+								              {list_sector_1}
+								            </div><div class="col-sm-6 col-md-6 col-xs-12">
+								              {list_sector_2}
+								              <input type="text" name="other-sector-name" class="form-control input-amcham" placeholder="Name of Sector" style="border:1px solid #ccc ;display: none;">
+								            </div>
+					                    </div>
+								</div>
+							</div>
+							<hr>
+
+							</div>
+
+							<div class="form-group  no-margin content_representative">
+								<label class="col-md-3 control-label">Name of Company<i class='req'>*</i></label>
+								<div class="col-md-9">
+									<select id="company_id" class='form-control' name="company_id"  data-parsley-required="true">
+										{list_company}
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Status Member<i class='req'>*</i></label>
+								<div class="col-md-9">
+									<select id="status_payment_id" class='form-control' name="status_payment_id" data-parsley-required="true">
+										{list_status_payment}
+									</select>
+								</div>
+							</div>
+
+
+							<div class="form-group no-margin content_membership_code">
+								<label class="col-md-3 control-label">Membership Code / Password<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{member_code}" id="member_code" class='form-control upper' name="member_code"></div>
+							</div>
+							
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Sort</label>
+								<div class="col-md-9"><input type="text" value="{sort}" id="sort" class='form-control' name="sort"></div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	
+	// untuk gambar
+	img = "{img}";
+	img_company = "{img_company}";
+
+	if (img.split('/').pop() =='no_image.png' ) {
+		$("#img-upload").hide();
+	}
+
+	if (img_company.split('/').pop() =='no_image.png' ) {
+		$("#img-upload1").hide();
+	}
+
+	$(document).ready( function() {
+		$(document).on('click', '.del_img', function () {
+			del_img(this)
+		});
+		function del_img(e) {
+			// $(e).hide();
+			$(e).parent().prev().find(':text').val('')
+			$(e).parent().prev().find(':file').attr('src', '');
+			$(e).parent().prev().find('img').attr('src', '');
+			$(e).parent().prev().find(':hidden').val(1);
+		}
+		$(document).on('change', '.btn-file :file', function() {
+			var input = $(this),
+			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+			input.trigger('fileselect', [label]);
+			
+		});
+
+		$('.btn-file :file').on('fileselect', function(event, label) {
+
+			var input = $(this).parents('.input-group').find(':text'),
+			log = label;
+
+			if( input.length ) {
+				input.val(log);
+			} else {
+				if( log ) alert(log);
+			}
+
+		});
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#img-upload').show();
+					$('#img-upload').attr('src', e.target.result);
+					$('#img-upload').parent().parent().parent().find(':hidden').val(0);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imgInp").change(function(){
+			readURL(this);
+		});   
+	});
+
+	$(document).ready( function() {
+		$(document).on('change', '.btn-file :file', function() {
+			var input = $(this),
+			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+			input.trigger('fileselect', [label]);
+		});
+
+		$('.btn-file :file').on('fileselect', function(event, label) {
+
+			var input = $(this).parents('.input-group').find(':text'),
+			log = label;
+
+			if( input.length ) {
+				input.val(log);
+			} else {
+				if( log ) alert(log);
+			}
+
+		});
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#img-upload1').show();
+					$('#img-upload1').attr('src', e.target.result);
+					$('#img-upload1').parent().parent().parent().find(':hidden').val(0);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imgInp1").change(function(){
+			readURL(this);
+		});   
+	});
+</script>
+
+
+<script type="text/javascript">
+	// untuk sector
+$(document).ready(function(){
+	$('.sector').change(function() {
+	var maxCheckedSector = 5
+	var countCheckedSector = document.querySelectorAll('input[name="id_sector[]"]:checked').length;
+
+	if (countCheckedSector > maxCheckedSector){
+		console.log('enough');
+		this.checked = false; 
+    	event.preventDefault();
+    	alert('Maximal 5 Sector You Are Choosen')
+	} else {
+		console.log('more than');
+	}
+
+	});
+});
+
+$(document).on("click", "#is_invis", function(){
+	if($(this).attr('checked')){
+          $(this).val(1);
+     }else{
+          $(this).val(0);
+     }
+});
+</script>
+
+<script type="text/javascript">
+ // unutk category  dan status 
+$('#content-company').hide();
+$('.content_representative').hide();
+$('.content_membership_code').hide();
+
+// $(document).ready(function(){
+
+	// $('#member_category_id option[value=3]').prop('selected', true);
+	 // $('#member_category_id').val(3).change().prop( "disabled", true );
+
+	 // untuk category saat ubah 
+ 	var member_category_id = "{member_category_id}";
+ 	if (member_category_id != "{member_category_id}") {
+ 		$('#member_category_id').val(member_category_id);
+ 	}
+	$('#member_category_id').change(function() {
+		member_catergory_change()	
+	})
+
+	function  member_catergory_change() {
+ 	 	var member_category_id = $('#member_category_id').val() ;
+
+ 	 	if (member_category_id == 3 ){
+ 	 	 	// representative 
+ 	 	 	$('#content-company').slideUp();
+ 	 	 	$('.content_representative').slideDown();
+ 	 	 	$('#name_in').attr('data-parsley-required',false);
+ 	 	 	$('#company_id').attr('data-parsley-required',true);
+ 	 	 }
+ 	 	 else if (member_category_id ==4) {
+ 	 	 	// subdiary
+ 	 	 	$('#content-company').slideDown();
+ 	 	 	$('.content_representative').slideDown();
+ 	 	 	$('#name_in').attr('data-parsley-required',true);
+ 	 	 	$('#company_id').attr('data-parsley-required',true);
+ 	 	 }else if (member_category_id == 2 || member_category_id == 1){
+ 	 	 	// company or individual
+ 	 	 	$('#content-company').slideDown();
+ 	 	 	$('.content_representative').slideUp();
+ 	 	 	$('#name_in').attr('data-parsley-required',true);
+ 	 	 	$('#company_id').attr('data-parsley-required',false);
+ 	 	 }else{
+ 	 	 	// kosong yang lain
+ 	 	 	$('#content-company').slideUp();
+ 	 	 	$('.content_representative').slideUp();
+ 	 	 	$('#name_in').attr('data-parsley-required',false);
+ 	 	 	$('#company_id').attr('data-parsley-required',false);
+ 	 	 }
+	 }
+	 // saat status di ubah 
+	 var status_payment_id = "{status_payment_id}" ;
+	 // console.log(status_payment_id)	
+	 if (status_payment_id != "{status_payment_id}") {
+	 	$('#status_payment_id').val(status_payment_id)
+	 }
+	 function status_payment_change(argument) {
+		var status_payment_id = $('#status_payment_id').val() ;
+		if (status_payment_id == 1){
+			$('.content_membership_code').slideDown();
+			$('#member_code').attr('data-parsley-required', 'true');
+		} else {
+			$('.content_membership_code').slideUp();
+			$('#member_code').attr('data-parsley-required', 'false');
+		}
+	 }
+	 $('#status_payment_id').change(function() {
+	 	status_payment_change()
+	 })
+	
+
+	// untuk custom view
+	var category_view = "{category_view}";
+	if (category_view == 3) {
+		readonly_select("member_category_id", true);
+		$('[name=company_id]').val('{company_id}').trigger('change');
+		readonly_select("company_id", true);
+	}else if (category_view == 4) {
+
+	}
+	else{
+
+	}
+$(document).ready(function(){
+		member_catergory_change()	
+		status_payment_change()	
+});
+
+</script>

@@ -1,0 +1,102 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      {breadcrumb_frontend}
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt45 pb45">
+        <div class="media media-content pt30 ">
+          <div class="media-body">
+            <div class="frame-content {hidden_gallery}">
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+                  <div class="select-directory">
+                    <select class="form-control" id="nama_category_photo" name="nama_category_photo" style="width:auto;">
+                      <option value="">Select Category</option>
+                      {list_category_gallery}
+                      <option value="{id}">{name}</option>
+                      {/list_category_gallery}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                  <div id="data-photo">
+                  {gallery}
+                    <div class="media media-latest">
+                      <div class="media-left">
+                        <div class="thumbnail-amcham thumb-latest">{img}</div>
+                      </div>
+                      <div class="media-body">
+                        <div class="widget-white">
+                          <div class="event-type">{date}</div> <!-- Sep 29, 2017 -->
+                          <div class="title-event-list"><a href="{url}">{title}</a></div>
+                          <p>{teaser}</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/gallery}
+                    <div class="text-center mt15 {dsp_load_more}"><span href="{base_url}{lang}/gallery/morephoto/-/{paging}" class="load-more tangan">{lang_load_more}</span></div>
+                  </div>
+                </div>
+                </div>
+                
+              </div>
+          </div>
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+   $('#nama_category_photo').on('change',function(){
+        the_type = $('#nama_category_photo').val();
+        var this_controller = '{this_controller}gallery/';
+
+        request  = $.ajax({
+            url     : this_controller+'search',
+            type    : 'post',
+            data    : 'search_photo='+the_type,
+            dataType: 'json',
+            success : function(ret){
+                $('#data-photo').fadeOut();
+                $('#data-photo').find('div').remove();
+                $('#data-photo').hide();
+                if (ret.list_photo) {
+                    $.each(ret.list_photo, function(key, value){
+                         $('#data-photo').append('<div class="media media-latest"><div class="media-left"><div class="thumbnail-amcham thumb-latest">'+value.img+'</div></div><div class="media-body"><div class="widget-white"><div class="event-type">'+value.date+'</div><div class="title-event-list"><a href="'+value.url+'">'+value.title+'</a></div><p>'+value.teaser+'</p></div></div></div>');
+                    });
+                    $('#data-photo').append(ret.load_more);
+                }
+
+                $('#data-photo').fadeIn();
+
+            },
+            error   :function(err){
+            },
+        })
+
+    });
+</script>

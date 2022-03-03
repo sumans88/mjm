@@ -1,0 +1,54 @@
+<div class="container-fluid container-fluid-dtl">
+  <div class="container">
+    <div class="row row-dtl">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-dtl" style="padding-top:60px;">
+        <!-- <div class="breadcrumb-share">
+          <div class="breadcrumb-dtl">
+            <ol class="breadcrumb">
+              {breadcrumb}
+            </ol>
+          </div>
+          <div class="share-dtl">
+            
+            <ul>
+              <li><a href="#"><img src="{base_url}asset/images/icon-download.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-share.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-print.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-email.png"></a></li>
+            </ul>
+          </div>
+        </div> -->
+      </div>
+      <div class="col-sm-4 col-md-3 col-xs-12 col-dtl">
+          <div class="intro-dtl">
+            {teaser}
+          </div>
+          <div class="other-interviewlist">
+              <div class="title-other-interlist">{lang_related_article}</div>
+              {related}
+                <div class="frame-slider-choice other-interlist">
+                  <div class="thumb-slider-choice  {isImgRelated}"><a href="{related_url}">{related_img}</a></div>
+                  <div class="title-news-slider-choice">
+                    <a href="{related_url}">{related_title}</a>
+                   <p>{r_teaser}</p> 
+                  </div>
+                </div>
+              {/related}
+          </div>
+      </div> 
+      <div class="col-sm-8 col-md-9 col-xs-12 col-dtl">
+        <div class="decs-dtl">
+          <h2 class="title-dtl-cnt">{news_title}</h2>
+          <div class="col-sm-12 col-md-12 col-xs-12">{share} </div>
+          {lang_not_available}
+          <div class="thumb-detail-img {isImg}">{thumbx}</div>
+          {page_content}
+
+          {lang_topic} : {list_tags}  <a href="{url}/tags/{uri_path_tags}">{tags}</a> {/list_tags}
+        </div>
+      </div> 
+
+    </div>
+  </div>
+</div>
+{artikel_terkait}

@@ -1,0 +1,154 @@
+<!--     <div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        <div class="feature-partners">
+          <ul>
+            {partners}
+              <li><span><img src="{img}"></span></li>
+            {/partners}
+          </ul> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">Directory</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="breadcrumb-page">
+          <ol class="breadcrumb">
+            <li><a href="{base_url}">Amcham</a></li>
+            <li><a href="{base_url}directorys">Directory</a></li>
+            <li class="active">{bread_fullname}</li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+              {data_company}
+              <div class="title-member-dtl mb0">{company_fullname}</div>
+              <div class="widget-white pt30 pb0 mb15">
+                <div class="row">
+                  <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="media media-listmember">
+                      <div class="media-left">
+                        <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/maps.png"></div>
+                      </div>
+                      <div class="media-body">{company_address}</div>
+                    </div>
+                    <div class="media media-listmember mt30">
+                      <div class="media-left">
+                        <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/phone-o.png"></div>
+                      </div>
+                      <div class="media-body">{company_t_number}</div>
+                    </div>
+                    <div class="media media-listmember mt30">
+                      <div class="media-left">
+                        <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/link-website.png"></div>
+                      </div>
+                      <div class="media-body">
+                        <!-- <a href="{company_url}" target='__blank'>{company_website}</a> -->
+                        {company_website}
+                      </div>
+                    </div>
+                    <div class="media media-listmember mt30">
+                      <div class="media-left">
+                        <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/sector-icon.png"></div>
+                      </div>
+                      <div class="media-body">{company_sector}</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-xs-12 text-right">
+                    <div class="thumbnail-amcham thumb-gallery thumb-logo">
+                      {company_fullname_img}
+                      <img src="{company_img}">
+                    </div>
+                  </div>
+                </div>
+                <hr class="line-content" {dsp_company_description}>
+                {company_description}
+              </div>
+              {/data_company}
+
+              <div class="{no_re}">                
+              {representative}
+              <div class="widget-white pt15 pb15 mb15">
+                <div class="media media-listmember">
+                  <div class="media-left">
+                    <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/people.png""></div>
+                  </div>
+                  <div class="media-body">{re_name}</div>
+                </div>
+                <div class="media media-listmember {dsp_user_detail}">
+                  <div class="media-left">
+                    <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/card.png"></div>
+                  </div>
+                  <div class="media-body">{re_job}</div>
+                </div>
+                <div class="media media-listmember {dsp_user_detail}">
+                  <div class="media-left">
+                    <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/phone.png"></div>
+                  </div>
+                  <div class="media-body">{re_m_t_number}</div>
+                </div>
+                <div class="media media-listmember {dsp_user_detail}">
+                  <div class="media-left">
+                    <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/envalop.png"></div>
+                  </div>
+                  <div class="media-body">{re_email}</div>
+                </div>
+                <div class="media media-listmember {dsp_user_detail}">
+                  <div class="media-left">
+                    <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/maps.png"></div>
+                  </div>
+                  <div class="media-body">{re_address}</div>
+                </div>
+                <!-- <div class="media media-listmember {dsp_user_detail}">
+                  <div class="media-left">\
+                    <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/in-o.png"></div>
+                  </div>
+                  <div class="media-body">{re_linkedin_id}</div>
+                </div> -->
+              </div>
+              {/representative}
+
+              <div class="message-error {signin} {dsp_error}">Members Only Access. Please submit your user name and password in the Members Only area to access the full current Directory. <a href="{base_url}member">LOGIN</a></div>
+              <div class="message-error {signin} {dsp_error_expired}">Sorry has expired. Please Contact our staff to access the full current Material Event.</div>
+              </div>
+
+            <a href="{base_url}directorys" class="btn-red btn-grey-direct">Back to Membership Directory</a>
+          </div>
+        </div>
+        <div class="media-right">
+         {widget_sidebar}
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+</div>

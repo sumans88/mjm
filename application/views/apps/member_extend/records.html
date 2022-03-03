@@ -1,0 +1,15 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{full_name}</td>
+		<td>{job}</td>
+		<td>{company}</td>
+		<td>{membership}</td>
+		<td><a class="btn btn-primary" href="{base_url}apps/member/view/{member_id}">Preview</a></td>
+		<td><a class="btn btn-success modal-send-invoice" data-id="{member_id}">Send</a></td>
+		<td><a class="btn btn-success modal-check-invoice {is_paid}" data-id="{member_id}" data-id-payment="{payment_id}">Check</a></td>
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="20">{paging}</td>
+</tr>

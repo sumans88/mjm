@@ -1,0 +1,28 @@
+<table class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th class="center" width="40">No</th>
+			<th class="center" title='Sort' id='b-title'>Category <span></span></th>
+			<th class="center" title='Sort' id='sub_category'>Sub Category <span></span></th>
+			<th class="center" title='Sort' id='a-create_date'>First Name<span></span></th>
+			<th class="center" title='Sort' id='a-create_date'>Last Name<span></span></th>	
+			<th class="center" title='Sort' id='d-email'>Email<span></span></th>											
+			<th class="center" title='Sort' id='question_descr'>Question <span></span></th>
+			<th class="center" title='Sort' id='a-create_date'>Date <span></span></th>
+		</tr>
+	</thead>
+	<tbody>
+		{data}
+			<tr>
+				<td class="center">{nomor}</td>
+				<td class="teaser" style="max-width:125px;" title="{topic}">{category}</td>
+				<td class="teaser" style="max-width:125px;" title="{fullname}">{title}</td>
+				<td class="teaser" style="max-width:125px;" title="{namadepan}">{namadepan}</td>
+				<td class="teaser" style="max-width:125px;" title="{namabelakang}">{namabelakang}</td>
+				<td class="teaser" style="max-width:125px;" title="{email}">{email}</td>
+				<td class="teaser" style="max-width:125px;" title="{question_descr}">{question_descr}</td>
+				<td class="teaser" style="max-width:125px;" title="{create_date}">{create_date}</td>
+			</tr>
+		{/data}
+	</tbody>
+</table>

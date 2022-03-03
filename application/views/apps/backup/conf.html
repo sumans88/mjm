@@ -1,0 +1,60 @@
+<form id='form1' action='{this_controller}proses'>
+<fieldset>
+    <legend>Backup Configuration</legend>
+    <div class='row-fluid'>
+        <span class='col-sm-3'>Status</span>
+        <span class='col-sm-7'>
+            <input type='radio' value='1' name='status' checked> Aktif
+            <input type='radio' value='0' name='status' {status_not_active}> Tidak Aktif
+        </span>
+    </div>
+    <div class='row-fluid'>
+        <span class='col-sm-3'>Database Name</span>
+        <span class='col-sm-7'><input type='text' name='db_name' value='{db_name}'></span>
+    </div>
+    <div class='row-fluid'>
+        <span class='col-sm-3'>Database User</span>
+        <span class='col-sm-7'><input type='text' name='db_user' value='{db_user}'></span>
+    </div>
+    <div class='row-fluid'>
+        <span class='col-sm-3'>Database Password</span>
+        <span class='col-sm-7'><input type='text' name='db_pass' value='{db_pass}'></span>
+    </div>
+    <div class='row-fluid'>
+        <span class='col-sm-3'>Backup Path</span>
+        <span class='col-sm-7'><input type='text' name='path' value='{path}'></span>
+    </div>
+    <div class='row-fluid'>
+        <span class='col-sm-3'>Lamanya Backup yg di simpan</span>
+        <span class='col-sm-7'>
+            <select style='width:60px' name='hari'>{list_hari}</select>
+            Hari Terakhir
+        </span>
+    </div>
+    <div class='row-fluid'>
+        <span class='col-sm-3'>
+            <a class='btn btn-primary' id='save'><i class='fa fa-save'></i> Simpan</a>
+        </span>
+    </div>
+</fieldset>
+<script>
+$('#save').click(function(){
+    alert('Under Consruction');
+    return false;
+
+	var val = $(this).html();
+	if(val == loadingBtn){return}
+
+    $.ajax({
+        url         : $('#form1').attr('action'),
+        type        : "POST",
+        data        : $('#form1').serialize(),
+        beforeSend  : function(){$('#save').html(loadingBtn);},
+        error		: function () {alert('Error!');$('#save').html(val);},
+        success     : function(msg){
+                        $.gritter.add({title:page_name, text: msg});
+                        $('#save').html(val);
+        }
+    });
+})
+</script>

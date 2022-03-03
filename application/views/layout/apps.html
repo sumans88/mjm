@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>{page_title} - {app_name}</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    
+    <link rel="stylesheet" type="text/css" href="{base_url}assets/css/bootstrap-fileupload.min.css">
+    <link href="{base_url}template/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{base_url}template/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+
+    <link  rel="stylesheet" href="{base_url}assets/plugins/imagemanager/imagemanager.css">
+    <link rel="icon" href="{base_url}asset/images/favicon.png">
+
+    <!-- New js and css template -->
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
+	<link href="{base_url}template/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="{base_url}template/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="{base_url}template/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="{base_url}template/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="{base_url}template/assets/css/style.min.css" rel="stylesheet" />
+	<link href="{base_url}template/assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link href="{base_url}template/assets/css/theme/blue.css" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link href="{base_url}template/assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+	<link href="{base_url}template/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+	<link href="{base_url}template/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+	<link href="{base_url}template/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+	<link  rel="stylesheet" href="{base_url}assets/css/jqgrid_bootstrap/jquery-ui-1.10.2.custom.css">
+	<link href="{base_url}template/assets/plugins/jqgrid-bootstrap/ui.jqgrid.css" rel="stylesheet" id="theme" />
+	<link href="{base_url}assets/css/validationEngine.css" rel="stylesheet"  />
+    <link  rel="stylesheet" href="{base_url}assets/css/custom.css">
+
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{base_url}template/assets/plugins/pace/pace.min.js"></script>
+	<script src="{base_url}template/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<link href="{base_url}assets/css/wickedpicker.css" rel="stylesheet" />
+	<script src="{base_url}template/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="{base_url}template/assets/plugins/select2/dist/js/select2.min.js"></script>
+	<script type="text/javascript" src="{base_url}assets/ckeditor/ckeditor.js?ver={ASSETS_VERSIONING}"></script>
+	<link  rel="stylesheet" href="{base_url}assets/css/bootstrap-datetimepicker.css">
+		<script src="{base_url}assets/js/moment.min.js"></script>
+		<script src="{base_url}assets/js/bootstrap-datetimepicker.js"></script>
+	<script>
+		$(document).ready(function() {
+			App.init();
+			Dashboard.init();
+			$('select').select2();			
+		});
+		var ai                = "{auth_insert}";
+		var admin_name        = "{nama_admin}";
+		var page_name         = "{page_name}";
+		var au                = "{auth_update}";
+		var ad                = "{auth_delete}";
+		var base_url          = '{base_url}';
+		var this_controller   = '{this_controller}';
+		var ASSETS_VERSIONING = '{ASSETS_VERSIONING}';
+		var im                = 0;
+
+		/* start search imagemanager by tanggal */
+		$(function() {
+		    $("#searchImageByTanggal").datepicker( {
+			    format: "yyyy-mm",
+			    viewMode: "months", 
+			    minViewMode: "months",
+			    autoclose: true
+			});
+		});
+
+		$(function() {
+			$('.datetimepicker').datetimepicker({
+			     format : 'dd-mm-yyyy hh:ii',
+			     ignoreReadonly : true,
+			     pickerPosition: "bottom-left",
+			     todayBtn: true,
+			     autoclose: true,
+        		 minuteStep: 10
+			   });
+			
+			$('.datepicker_req').datepicker({
+				dateFormat: 'dd-mm-yy', 
+				changeMonth: true,
+				changeYear: true,
+				autoclose: true,
+				beforeShow: function(input) {$(input).unbind('blur')},
+				onClose: function(dateText, inst) {$(this).validationEngine();this.focus();this.blur()}
+			});
+			$('.datepicker').datepicker({
+				dateFormat: 'dd-mm-yy', 
+				changeMonth: true,
+				changeYear: true,
+				autoclose: true
+				// beforeShow: function(input) {$(input).unbind('blur')},
+				// onClose: function(dateText, inst) {$(this).validationEngine();this.focus();this.blur()}
+			});
+
+		});
+		/* end search imagemanager by tanggal */
+	</script>
+	
+	<script type="text/javascript" src="{base_url}assets/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="{base_url}assets/js/jquery.validationEngine-en.js"></script>
+	<script type="text/javascript" src="{base_url}template/assets/plugins/jqgrid-bootstrap/grid.locale-en.js"></script>
+	<script type="text/javascript" src="{base_url}template/assets/plugins/jqgrid-bootstrap/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript" src="{base_url}assets/js/script.js"></script>
+	<script type="text/javascript" src="{base_url}assets/js/mygrid.js"></script>
+	<script type="text/javascript" src="{base_url}assets/js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="{base_url}assets/js/notify.min.js"></script>
+	<script type="text/javascript" src="{base_url}assets/js/bootstrap-fileupload.min.js"></script>
+	<script language="JavaScript" src="{base_url}assets/js/ddi.js"></script>
+	<script src="{base_url}asset/js/jquery-form.js"></script>
+	<script src="{base_url}asset/js/ajaxfileupload.js"></script>
+	<script src="{base_url}template/assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script language="JavaScript" src="{base_url}assets/plugins/imagemanager/imagemanager.js"></script>
+	<script src="{base_url}template/assets/js/dashboard.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+    <!-- END New js and css template -->
+    
+    <style>
+	.control-label{
+		padding-left: 0px !important;
+	}
+    </style>
+    
+    {message}
+</head>
+
+<body>
+    <!-- begin #page-loader -->
+    <div id="page-loader" class="fade in"><span class="spinner"></span></div>
+    <!-- end #page-loader -->
+    
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+	    <!-- begin #header -->
+	    <div id="header" class="header navbar navbar-fixed-top navbar-inverse">
+		    <!-- begin container-fluid -->
+		    <div class="container-fluid">
+			<!-- begin mobile sidebar expand / collapse button -->
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand"><span class="navbar-logo"></span> {app_name}</a>
+				<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- end mobile sidebar expand / collapse button -->
+			
+			<!-- begin header navigation right -->
+			<ul class="nav navbar-nav navbar-right">
+			    <li><a href="{base_url}" target="_BLANK">View Website</a></li>
+			    <li class="dropdown navbar-user">
+				    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+					    <img src="{base_url}template/assets/img/no_image.jpg" alt="" /> 
+					    <span class="hidden-xs">{nama_admin}</span> <b class="caret"></b>
+				    </a>
+				    <ul class="dropdown-menu animated fadeInLeft">
+					    <li class="arrow"></li>
+					    <li><a href="{base_url}apps/profile">Edit Profile</a></li>
+					    <li><a href="{base_url}apps/change_pwd">Edit Password</a></li>
+					    <li class="divider"></li>
+					    <li><a href="{base_url}apps/login/logout">Log Out</a></li>
+				    </ul>
+			    </li>
+			</ul>
+			<!-- end header navigation right -->
+		</div>
+		<!-- end container-fluid -->
+	</div>
+	<!-- end #header -->
+	
+	<!-- begin #sidebar -->
+	<div id="sidebar" class="sidebar sidebar-grid">
+	    <!-- begin sidebar scrollbar -->
+	    <div data-scrollbar="true" data-height="100%">
+		<!-- begin sidebar user -->
+		<ul class="nav">
+		    <li class="nav-header">Navigation</li>
+		    {menu}
+		    <!-- begin sidebar minify button -->
+			    <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+		    <!-- end sidebar minify button -->
+		</ul>
+	    </div>
+	<!-- end sidebar scrollbar -->
+	</div>
+	<div class="sidebar-bg"></div>
+	<!-- end #sidebar -->
+	<div id="content" class="content">
+	    <div id='notify'></div>
+
+	    <!-- begin breadcrumb -->
+	    <ol class="breadcrumb pull-right">
+		    {breadcrumb}
+	    </ol>
+	    <!-- end breadcrumb -->
+	    
+	    <!-- begin page-header -->
+	    <!--<h1 class="page-header">Dashboard <small>header small text goes here...</small></h1>-->
+	    <!-- end page-header -->
+	    
+	    <!-- begin web content -->
+		{content}
+	    <!-- end web content -->
+	</div>
+	<!-- end #content -->
+	<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade in" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    </div>    
+	<!-- New js and css template -->
+	    <!-- ================== BEGIN BASE JS ================== -->
+	     <script src="{base_url}template/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	    <script src="{base_url}template/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	    <!--[if lt IE 9]>
+		    <script src="{base_url}template/assets/crossbrowserjs/html5shiv.js"></script>
+		    <script src="{base_url}template/assets/crossbrowserjs/respond.min.js"></script>
+		    <script src="{base_url}template/assets/crossbrowserjs/excanvas.min.js"></script>
+	    <![endif]-->
+	    <script src="{base_url}template/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	    <script src="{base_url}template/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+	    <!-- ================== END BASE JS ================== -->
+	    
+	    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	    <!-- <script src="{base_url}template/assets/plugins/jquery/jquery.min.js"></script> -->
+	    <script src="{base_url}template/assets/plugins/gritter/js/jquery.gritter.js"></script>
+	    <script src="{base_url}template/assets/plugins/flot/jquery.flot.min.js"></script>
+	    <script src="{base_url}template/assets/plugins/flot/jquery.flot.time.min.js"></script>
+	    <script src="{base_url}template/assets/plugins/flot/jquery.flot.resize.min.js"></script>
+	    <script src="{base_url}template/assets/plugins/flot/jquery.flot.pie.min.js"></script>
+	    <script src="{base_url}template/assets/plugins/sparkline/jquery.sparkline.js"></script>
+     	<script src="{base_url}asset/js/parsley.js"></script>
+
+	    <!-- <script src="{base_url}template/assets/plugins/parsley/dist/parsley.js"></script> -->
+	    <script src="{base_url}template/assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	    <script src="{base_url}template/assets/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+	    <script src="{base_url}template/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		
+
+	    <script type="text/javascript" src="{base_url}assets/js/jquery.bootpag.min.js"></script>
+	    
+		<script src="{base_url}assets/js/wickedpicker.js"></script>
+	    <script src="{base_url}template/assets/js/apps.js"></script>
+	    <script src="{base_url}assets/js/jquery-clock-timepicker.min.js"></script>
+	    <script type="text/javascript">
+	    	var options = { 
+	    					twentyFour: true,
+	    					title: 'Pick a Time' 
+	    	};
+	    	$('#start_time_picker, #end_time_picker').wickedpicker(options);
+	    	// $('#end_time_picker').wickedpicker(options2);
+	    	
+	    </script>
+	    <!-- ================== END PAGE LEVEL JS ================== -->
+	    
+	<!-- END New js and css template -->
+	 
+	
+	
+</body>
+</html>

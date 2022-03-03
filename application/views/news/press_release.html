@@ -1,0 +1,43 @@
+     <div class="container-fluid container-fluid-dtl ">
+      <div class="container">
+        <div class="row row-dtl">
+          <div class="col-sm-12 col-md-12 col-xs-12 col-dtl">
+            <!-- <div class="breadcrumb-share">
+              <div class="breadcrumb-dtl">
+                <ol class="breadcrumb">
+                  <li><a href="{url}/index/{uri}">Media</a></li>
+                  <li class="active">{judul}</li>
+                </ol>
+              </div>
+            </div> -->
+          </div>
+          <div id="list-news"> 
+          {top3}
+          <div class="col-sm-12 col-md-12 col-xs-12 col-list-eventspage">
+            <div class="list-events-page list-events-listall">
+              <div class="thumb-list-events-page">
+                <div class="type-newsvents">{top3_category}</div>
+                <a href="{url}/detail/{top3_url}">{top3_img}</a>
+              </div>
+              <div class="desc-list-events-page">
+                <div class="media">
+                  <div class="media-left">
+                    <div class="date-slider-page"><span>{top3_day}</span><span class="month">{top3_month}</span></div>
+                  </div>
+                  <div class="media-body">
+                    <div class="title-ft-news"><a href="{url}/detail/{top3_url}">{top3_title}</a></div>
+                    <p>{top3_teaser}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>   
+          {/top3}
+          </div>
+           <div class="text-center"><a href="{base_url}{lang}/news/more/{uri_path}/{paging}" class="load-more">{lang_load_more}</a></div>
+  
+
+        </div>
+      </div>
+    </div>
+ 

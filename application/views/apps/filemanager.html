@@ -1,0 +1,70 @@
+{list_data}
+<div class="img-list"  title='{name}'>
+	<div class='img'><img width="100%" src="{base_url}images/article/small/{name}" data-img="{name}"></div>
+	<div>
+		<span class='img-name'>{name}</span>
+		<i class="fa fa-close action-form-icon icon-zoom-in pull-right del-img" data-id="{id}"></i>
+		<i class='fa fa-search-plus action-form-icon icon-zoom-in pull-right zoom-image' title='Zoom'></i>
+		<i class='fa fa-circle-o action-form-icon  icon-ok pull-right select-image' title='Select Image'></i>
+	</div>
+</div>
+{/list_data}
+
+<script type="text/javascript">
+function pagination(){
+	if(function_pagination==0){
+		$(".pagination").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+		$(".pagination").empty();
+		$(".pagination").bootpag({
+		   total: {pages},
+		   page: 1,
+		   maxVisible: 6,
+		   firstLastUse: true,
+		   first: 'FIRST',
+		   last: 'LAST'
+		}).on("page", function(event, num){
+			event.preventDefault();
+			var searchKeyword = $("#search-picture").val();
+			$("#list-image-manager").html("<i class='fa fa-spinner fa-spin'></i>");
+			$("#list-image-manager").load('{load}', {'page':num, 'searchPicture' : searchKeyword});
+			return false;
+		});
+		function_pagination=1;
+	}
+}
+
+function search_filemanager() {
+	var searchKeyword = $('#search-picture').val();
+	$("#list-image-manager").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+	$("#list-image-manager").load('{load}', {'searchPicture': searchKeyword});
+	$(".pagination").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+}
+
+function search_filemanager_bydate() {
+	var searchDate = $('#searchImageByTanggal').val();
+	$("#list-image-manager").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+	$("#list-image-manager").load('{load}', {'searchDate': searchDate});
+	$(".pagination").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+}
+
+$(document).ready(function(event){
+	$('#search-picture').keydown(function (e){
+		if(e.keyCode == 13){
+			search_filemanager();
+			function_pagination=0;
+			return false;
+		}
+	});
+	$('#search_image_manager').click(function (){
+		search_filemanager();
+		function_pagination=0;
+		return false;
+	});
+	$('#searchImageByTanggal').change(function (){
+		search_filemanager_bydate();
+		function_pagination=0;
+		return false;
+	});
+});
+	pagination();
+</script>

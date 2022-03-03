@@ -1,0 +1,156 @@
+<div class="row-fluid">
+	<span class='col-sm-4 judul'>User Management</span>
+	<div class='col-sm-8 text-right'>
+        <button class="btn btn-primary insert" type="button" value="Add Career" onclick="open_form()"><i class="fa fa-plus"></i> Add User</button>
+    	<button class="btn btn-danger delete" type="button" value="Delete Selected Row" onclick="delete_selected_grid('gridData','{this_controller}delete')">
+            <i class="fa fa-trash-o"></i> Delete Selected Row
+        </button>
+    </div>
+    <br><br>
+</div>
+
+<table id="gridData"></table>
+<div id="pgridData"></div>
+
+<form name="form1" id="form1" method="post" class="invis">
+	<table>
+		<tr>
+			<td colspan="2"><div id="message"></div></td>
+		</tr>
+		<tr>
+			<td>Userid</td>
+			<td><input type="text" class="frm validate[required,custom[onlyLetterNumber]]" name="userid" id="userid" maxlength='64'></td>
+		</tr>
+		<tr>
+			<td>User Name</td>
+			<td><input type="text" class="frm validate[required]" name="username" id="username"></td>
+		</tr>
+		<tr>
+			<td>Title</td>
+			<td><select class="frm validate[required]" style="width:228px" id="id_auth_user_grup" name="id_auth_user_grup"> {grup_select}</select></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><input type="text" class="frm validate[required,custom[email]]" name="email" id="email"></td>
+		</tr>
+		<tr>
+			<td>Phone</td>
+			<td><input type="text" class="frm validate[]" name="phone" id="phone"></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td>
+				<span id='cpwd' class='invis'><input type='checkbox' id='chpwd' onclick='change_pwd(this.checked);'> Change Password<br></span>
+				<input type="password" class="frm validate[required]" name="userpass" id="userpass"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<br><br>
+				<button type="button" value="Simpan" id="save" class="btn btn-primary insert"><i class="fa fa-save"></i> Save</button>
+				<button type="button" onclick='tutup()' class="btn btn-warning"><i class="icon-ban-circle"></i> Cancel</button>
+				<input type="hidden" name="idedit" id="idedit">
+			</td>
+		</tr>
+	</table>
+</form>
+<script>
+function open_form(title){
+	$('#userpass').show();
+	$('#cpwd').hide();
+	jPopup('form1',500);
+    title = (title) ? title : 'Add User';
+    $('#form1').dialog('option', 'title', title);
+}
+function tutup(){
+   $('#form1').dialog('close');
+	clear_form_elements('#form1');
+	$('#view_delete').hide();
+	$('#save').html(saveBtn);
+	jQuery('#form1').validationEngine('hide')
+}
+
+
+
+
+function restore_form2(){
+	restore_form();
+	$('#cpwd').hide();
+	$('#userpass').show();
+}
+function change_pwd(st){ 
+	if(st == true){
+		$('#userpass').show();
+	}
+	else{
+		$('#userpass').hide();
+	}
+}
+$('#chpwd').attr('checked',false);
+jQuery("#gridData").jqGrid({
+	url			: '{base_url}apps/user/index/?q=1',
+	datatype	: "json",
+	height		: 150,
+	colNames	: ['id','','','Userid','Username','Group','Email','Phone','id_grup'],
+	rowNum		: 25,
+	rowList		: [25,50,100],
+	pager		: '#pgridData',
+	sortname	: 'id_auth_user',
+	sortorder	: "desc",
+	multiselect	: true,
+	rownumbers	: true,
+	autowidth	: true,
+	colModel	: [
+					{name:'id_auth_user',index:'id_auth_user',hidden:true},
+					{name:'edit',index:'edit', width:30,align:'center',search:false},
+					{name:'delete',index:'delete',align:'center', width:30,search:false},
+					{name:'userid',index:'userid', width:250},
+					{name:'username',index:'username', width:350},
+					{name:'grup',index:'grup', width:350},
+					{name:'email',index:'email', width:350},
+					{name:'phone',index:'phone', width:350},
+					{name:'id_auth_user_grup',index:'id_auth_user_grup', width:200,hidden:true},
+				  ],
+});
+
+$('#save').click(function(){
+    var val = $(this).html();
+    if(val != loadingBtn){
+        if( $("#form1").validationEngine('validate') == true){
+            $.ajax({
+                url			: '{this_controller}proses/'+$('#idedit').val(),
+                type        : "POST",
+                data        : $('#form1').serialize(),
+                beforeSend  : function(){$('#save').html(loadingBtn)},
+                success     : function(msg){
+                                if(msg.substring(1,0)=='1'){
+                                    jQuery('#gridData').jqGrid('setGridParam',{}).trigger('reloadGrid');
+                                    jInfo(msg.substring(1));
+                                    $('#form1').dialog('close');
+                                    clear_form_elements('#form1');
+                                }
+                                else{
+                                    jAlert(msg.substring(1))
+                                }
+                                $('#save').html(saveBtn);
+                              }
+            });
+        }
+    }
+})
+function edit(idedit){
+	ret = jQuery("#gridData").jqGrid('getRowData',idedit);
+	$('#userid').val(ret.userid);
+	$('#username').val(ret.username);
+	$('#id_auth_user_grup').val(ret.id_auth_user_grup);
+	$('#manager_id').val(ret.manager_id);
+	$('#company_id').val(ret.company_id);
+	$('#email').val(ret.email);
+	$('#phone').val(ret.phone);
+	$('#save').html(updateBtn);
+	$('#idedit').val(idedit);
+	open_form('Edit Account');
+	$('#userpass').hide();
+	$('#cpwd').show();
+	$('#chpwd').removeAttr('checked');
+}
+</script>

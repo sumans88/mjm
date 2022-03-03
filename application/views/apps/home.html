@@ -1,0 +1,27 @@
+<h1 class="page-header">Beranda</h1>
+<div class="row">
+    <div class="col-md-3 col-sm-6">
+            <div class="widget widget-stats bg-green">
+                    <div class="stats-icon"><i class="fa fa-comments-o"></i></div>
+                    <div class="stats-info">
+                            <h4>PELAPORAN KOMENTAR ARTIKEL</h4>
+                            <p>{count_article}</p>	
+                    </div>
+                    <div class="stats-link">
+                            <a href="{base_url}apps/comment">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                    </div>
+            </div>
+    </div>
+</div>
+<script>
+    handleDashboardGritterNotification();
+</script>
+<style>
+.box{min-height:413px;border: 1px solid #BFBFBF}
+/*#calendar2{height: 100%px;}*/
+#popupCalendar{overflow-y: auto;width:96% !important;left: 0;height: 96%;left: 2% !important;}
+#popupCalendar.modal{margin-left: 0 !important;}
+</style>
+<link rel='stylesheet' href='{base_url}assets/css/fullcalendar/cupertino/jquery-ui.min.css' />
+<!--<link href='{base_url}assets/css/fullcalendar/fullcalendar.css' rel='stylesheet' />
+<script src='{base_url}assets/js/fullcalendar/fullcalendar.min.js'></script>-->

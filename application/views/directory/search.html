@@ -1,0 +1,25 @@
+{list_data}
+<div class="panel panel-default">
+
+  <div class="panel-heading" role="tab" id="heading{sort_data}">
+    <h4 class="panel-title">
+      <a role="button" class="list-data {alert}" data-sort="{sort_data}" data-id="{data_id}"  {toggle_rule} data-parent="#accordion" href="#collapse{sort_data}" aria-expanded="true" aria-controls="collapse{sort_data}" url_next="{url_data}">
+      <!-- <a role="button" class="list-data {alert}" data-sort="{sort_data}" data-id="{data_id}" data-toggle="collapse" data-parent="#accordion" href="#collapse{sort_data}" aria-expanded="true" aria-controls="collapse{sort_data}" url_next="{url_data}"> -->
+        {name_data}
+      </a>
+    </h4>
+  </div>
+
+  <div id="collapse{sort_data}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{sort_data}">
+    <div class="panel-body">
+      <div class="row">
+
+        <div id="data-content-directory{sort_data}"></div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+{/list_data}
+<div id="back-to-membership-directory"></div>

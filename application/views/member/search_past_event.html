@@ -1,0 +1,25 @@
+{past_event}
+<div class="widget-white {past_color} mb15">
+  <div class="event-type">{past_cat}</div>
+  <div class="title-event-list mb20"><a href="{past_link}">{past_name}</a></div>
+  <div class="row">
+    <div class="col-sm-5 col-md-5 col-xs-12">
+      <div class="media">
+        <div class="media-left media-middle"><span class="icon-time"></span></div>
+        <div class="media-body media-middle">{past_date}</div>
+      </div>
+    </div>
+    <div class="col-sm-7 col-md-7 col-xs-12">
+      <div class="media">
+        <div class="media-left media-middle"><span class="icon-maps"></span></div>
+        <div class="media-body media-middle">{past_address}</div>
+      </div>
+    </div>
+    <ul class="profile-past-file {past_dsp_material}">
+      {past_material}
+        <li>Downloadable {material_file} <a d-title="event" id="{mat_idx}" onclick="download_event_material(this)">click here</a></li>
+      {/past_material}
+    </ul>
+  </div>
+</div>
+{/past_event}

@@ -1,0 +1,180 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+		    <div class="panel-heading">
+			<div class="panel-heading-btn">
+			    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+			    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			</div>
+			<h4 class="panel-title">{page_name}</h4>
+		    </div>
+		    <div class="panel-body">
+			
+			<div class='text-right'>
+					<button class="btn btn-primary insert" type="button" value="Add Career" onclick="open_form()"><i class="fa fa-plus"></i> Add User</button>
+					<!-- <button class="btn btn-danger delete" type="button" value="Delete Selected Row" onclick="delete_selected_grid('gridData','{this_controller}delete')">
+						<i class="fa fa-trash-o"></i> Delete Selected Row
+					</button> -->
+			</div>
+			
+			<hr>
+			<div id="jqGrid_container">
+				<table id="gridData" class='table table-striped'></table>
+				<div id="pgridData"></div>
+			</div>
+			
+			<form name="form1" id="form1" method="post" class="invis form-horizontal">
+				<input type="hidden" name="email">
+					<div class="form-group  no-margin">
+						<label class="col-md-12 control-label"><div id="message"></div></label>
+					</div>
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">User Type</label>
+						<div class="col-md-9"><select class="frm validate[required] form-control" style="width:228px" id="id_auth_user_grup" name="id_auth_user_grup"> {grup_select}</select></div>
+					</div>
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Userid</label>
+						<div class="col-md-9"><input type="text" class="frm validate[required,custom[onlyLetterNumber]] form-control" name="userid" id="userid" maxlength='64'></div>
+					</div>
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">User Name</label>
+						<div class="col-md-9"><input type="text" class="frm validate[required] form-control" name="username" id="username"></div>
+					</div>
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Email</label>
+						<div class="col-md-9"><input type="text" class="frm validate[required,custom[email]] form-control"  name="email" id="email"></div>
+					</div>
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Password</label>
+						<div class="col-md-9">
+							<span id='cpwd' class='invis'><input type='checkbox' id='chpwd' onclick='change_pwd(this.checked);'> Change Password<br></span>
+							<input type="password" class="frm validate[required] form-control" name="userpass" id="userpass">
+						</div>
+					</div>
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">&nbsp;</label>
+						<div class="col-md-9">
+							<button type="button" value="Simpan" id="save" class="btn btn-primary insert"><i class="fa fa-save"></i> Save</button>
+							<button type="button" onclick='tutup()' class="btn btn-warning"><i class="icon-ban-circle"></i> Cancel</button>
+							<input type="hidden" name="idedit" id="idedit">
+						</div>
+					</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+function open_form(title){
+	$('#receive_email_notif').attr('checked','checked');
+	$('#userpass').show();
+	$('#cpwd').hide();
+	jPopup('form1',500);
+    title = (title) ? title : 'Add User';
+    $('#form1').dialog('option', 'title', title);
+    $('select').select2('val',null);
+}
+function tutup(){
+   $('#form1').dialog('close');
+	clear_form_elements('#form1');
+	$('#view_delete').hide();
+	$('#save').html(saveBtn);
+	jQuery('#form1').validationEngine('hide')
+}
+
+
+
+
+function restore_form2(){
+	restore_form();
+	$('#cpwd').hide();
+	$('#userpass').show();
+}
+function change_pwd(st){ 
+	if(st == true){
+		$('#userpass').show();
+	}
+	else{
+		$('#userpass').hide();
+	}
+}
+$('#chpwd').attr('checked',false);
+jQuery("#gridData").jqGrid({
+	url			: '{base_url}apps/user/index/?q=1',
+	datatype	: "json",
+	height		: 300,
+	colNames	: ['id','','','Userid','Username','Group','id_grup','email'],
+	rowNum		: 25,
+	rowList		: [25,50,100],
+	pager		: '#pgridData',
+	sortname	: 'id_auth_user',
+	sortorder	: "desc",
+	multiselect	: false,
+	rownumbers	: true,
+	autowidth	: true,
+	colModel	: [
+					{name:'id_auth_user',index:'id_auth_user',hidden:true},
+					{name:'edit',index:'edit', width:30,align:'center',search:false},
+					{name:'delete',index:'delete',align:'center', width:30,search:false},
+					{name:'userid',index:'userid', width:200},
+					{name:'username',index:'username', width:250},
+					{name:'grup',index:'grup', width:200},
+					{name:'id_auth_user_grup',index:'id_auth_user_grup', width:200,hidden:true},
+					{name:'email',index:'email', width:250,hidden:false},
+				  ],
+});
+
+$('#save').click(function(){
+    var val = $(this).html();
+    if(val != loadingBtn){
+        //if( $("#form1").validationEngine('validate') == true){
+            $.ajax({
+                url			: '{this_controller}proses/'+$('#idedit').val(),
+                type        : "POST",
+                data        : $('#form1').serialize(),
+                beforeSend  : function(){$('#save').html(loadingBtn)},
+                success     : function(msg){
+                                if(msg.substring(1,0)=='1'){
+                                    jQuery('#gridData').jqGrid('setGridParam',{}).trigger('reloadGrid');
+                                    jInfo(msg.substring(1));
+                                    $('#form1').dialog('close');
+                                    clear_form_elements('#form1');
+                                }
+                                else{
+                                    jAlert(msg.substring(1))
+                                }
+                                $('#save').html(saveBtn);
+                              }
+            });
+        //}
+    }
+})
+function edit(idedit){
+	ret = jQuery("#gridData").jqGrid('getRowData',idedit);
+	$('#userid').val(ret.userid);
+	$('#username').val(ret.username);
+	$('#id_auth_user_grup').val(ret.id_auth_user_grup);
+	$('#email').val(ret.email);
+	$('#phone').val(ret.phone);
+	$('#save').html(updateBtn);
+	$('#idedit').val(idedit);
+	open_form('Edit Account');
+	var grp = ret.id_auth_user_grup;
+	//$('#id_ref_jabatan_mitra,#id_ref_jabatan_taf').select2('val',ret.id_ref_jabatan);
+	$('#id_auth_user_grup').select2('val',ret.id_auth_user_grup);
+	$('#userpass').hide();
+	$('#cpwd').show();
+	$('#chpwd').removeAttr('checked');
+	if (ret.receive=='Yes') {
+		$('#receive_email_notif').attr('checked','checked');
+	}
+	else{
+		$('#receive_email_notif').removeAttr('checked');
+	}
+}
+jQuery("#gridData").jqGrid('navGrid','#pgridData',{add:false,edit:false,del:false,search:false});
+jQuery("#gridData").jqGrid('filterToolbar');
+
+</script>

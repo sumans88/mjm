@@ -1,0 +1,277 @@
+<!-- The template to display files available for upload -->
+<script>
+$(document).on("click", ".open-ImagesDialog", function () {
+	var myBookId = $(this).data('id');
+	$("#idModal").val(myBookId);
+});
+
+<!-- Progress Bar -->
+function progressBar(idLang, idImag){
+	var elem = document.getElementById("myBar" + idLang + idImag); 	    
+    var width = 10;
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+        	width++; 
+    		elem.style.width = width + '%'; 
+    		document.getElementById('statusImag' + idLang + idImag).value = 1;
+    		document.getElementById('btnImag' + idLang + idImag).innerHTML = "Update";
+        	document.getElementById("label" + idLang + idImag).innerHTML = width * 1 + '%';
+        }
+    }
+}
+<!-- End Progress Bar -->
+
+<!-- Save Data -->
+function saveOne(idLang, idImag, getJml) {
+	var inp = document.getElementById('uploadImages' + idLang);
+	if(idLang == 0){
+		getJml = parseInt(jmlImagesSaved0);
+	} else{
+		getJml = parseInt(jmlImagesSaved1);
+	}
+
+	var jmlImages = 0;
+	if((getJml != 0 || getJml != '') && inp.files.length != 0){
+		idImagNew = idImag + getJml;
+	} else{
+		idImagNew = idImag;
+	}
+
+	var statusImag = document.getElementById('statusImag' + idLang + idImagNew).value;
+	var nameImag = document.getElementById('nameImag' + idLang + idImagNew).value;
+	var descImag = document.getElementById('descImag' + idLang + idImagNew).value;
+	var id_lang = document.getElementById('id_lang' + idLang).value;
+	var id_gallery = document.getElementById('id' + idLang).value;
+	var idSavedImag = document.getElementById('idSavedImag' + idLang + idImagNew).value;
+
+	var formData = new FormData();
+    //for each entry, add to formdata to later access via $_FILES["file" + i]
+  	formData.append("file", inp.files.item(idImag));
+  	formData.append("statusImag", statusImag);
+  	formData.append("nameImag", nameImag);
+  	formData.append("descImag", descImag);
+  	formData.append("id_lang", id_lang);
+  	formData.append("idSavedImag", idSavedImag);
+  	formData.append("id_gallery", id_gallery);
+  	formData.append("key", idLang);
+
+    //send formdata to server-side
+    $.ajax({
+        url: "{this_controller}uploadImages/{id}", // our php file
+        type: 'post',
+        data: formData,
+        dataType: 'html', // we return html from our php file
+        async: true,
+        processData: false,  // tell jQuery not to process the data
+        contentType: false,   // tell jQuery not to set contentType
+        success : function(data) {
+        	var obj = JSON.parse(data);
+    		if(obj.status == true){
+    			document.getElementById('idSavedImag' + idLang + idImagNew).value = obj.idSavedImag;
+        		document.getElementById('imageSaved' + idLang).innerHTML = obj.reloadImages;
+        		document.getElementById('myBar' + idLang + idImagNew).setAttribute("style","width:1%");
+        		progressBar(idLang, idImagNew);
+        	}
+        },
+        error : function(request) {
+            console.log(request.responseText);
+        },
+        complete:function(){
+            document.getElementById('imagePreview' + idLang).innerHTML = '';
+        }
+    }); 
+}
+
+function saveAll(idLang, getJml) {
+	if(idLang == 0){
+		getJml = jmlImagesSaved0;
+	} else{
+		getJml = jmlImagesSaved1;
+	}
+	var inp = document.getElementById('uploadImages' + idLang);
+	var statusImag = '';
+	var nameImag = '';
+	var descImag = '';
+	var id_lang = '';
+	var idSavedImag = '';
+	var id_gallery = '';
+	var jmlAll = parseInt(inp.files.length) + parseInt(getJml);
+
+	for (var i = 0; i < jmlAll; i++) {
+		if((getJml != 0 || getJml != '') && i >= getJml){
+			iNew = i - getJml;
+		} else{
+			iNew = i;
+		}
+		
+		statusImag = document.getElementById('statusImag' + idLang + i).value;
+		nameImag = document.getElementById('nameImag' + idLang + i).value;
+		descImag = document.getElementById('descImag' + idLang + i).value;
+		id_lang = document.getElementById('id_lang' + idLang).value;
+		id_gallery = document.getElementById('id' + idLang).value;
+		idSavedImag = document.getElementById('idSavedImag' + idLang + i).value;
+
+		var formData = new FormData();
+	    //for each entry, add to formdata to later access via $_FILES["file" + i]
+	    if(i >= getJml){
+	  		formData.append("file", inp.files.item(iNew));
+	  	}
+	  	formData.append("imag", i);
+  		formData.append("statusImag", statusImag);
+	  	formData.append("nameImag", nameImag);
+	  	formData.append("descImag", descImag);
+  		formData.append("id_lang", id_lang);
+  		formData.append("idSavedImag", idSavedImag);
+  		formData.append("id_gallery", id_gallery);
+  		formData.append("key", idLang);
+
+	    //send formdata to server-side
+	    $.ajax({
+	        url: "{this_controller}uploadImages/{id}", // our php file
+	        type: 'post',
+	        data: formData,
+	        dataType: 'html', // we return html from our php file
+	        async: true,
+	        processData: false,  // tell jQuery not to process the data
+	        contentType: false,   // tell jQuery not to set contentType
+	        success : function(data) {
+	        	var obj = JSON.parse(data);
+        		if(obj.status == true){
+        			document.getElementById('idSavedImag' + idLang + obj.idImag).value = obj.idSavedImag;
+        			document.getElementById('myBar' + idLang + obj.idImag).setAttribute("style","width:1%");
+	        		progressBar(idLang, obj.idImag);
+	        		document.getElementById('imageSaved' + idLang).innerHTML = obj.reloadImages;
+	        	}
+	        },
+	        error : function(request) {
+	            console.log(request.responseText);
+	        },
+	        complete:function(){
+	            document.getElementById('imagePreview' + idLang).innerHTML = '';
+	        }
+	    }); 
+	}
+}
+<!-- End Save Data -->
+
+<!-- Delete Data -->
+function deleteOne(idLang, idImag, getJml, filename) {
+	var inp = document.getElementById('uploadImages' + idLang);
+
+	var jmlImages = 0;
+	if((getJml != 0 || getJml != '') && inp.files.length != 0){
+		idImagNew = idImag + getJml;
+	} else{
+		idImagNew = idImag;
+	}
+	var statusImag = document.getElementById('statusImag' + idLang + idImagNew).value;
+	var idSavedImag = document.getElementById('idSavedImag' + idLang + idImagNew).value;
+	var id_gallery = document.getElementById('id' + idLang).value;
+
+	var formData = new FormData();
+    //for each entry, add to formdata to later access via $_FILES["file" + i]
+    if(filename != 0){
+    	formData.append("filename", filename);
+    } else{
+    	formData.append("filename", inp.files.item(idImagNew).name);
+    }
+  	formData.append("statusImag", statusImag);
+  	formData.append("idSavedImag", idSavedImag);
+  	formData.append("id_gallery", id_gallery);
+  	formData.append("key", idLang);
+
+  	if(statusImag == 1){
+	    //send formdata to server-side
+	    $.ajax({
+	        url: "{this_controller}deleteImages", // our php file
+	        type: 'post',
+	        data: formData,
+	        dataType: 'html', // we return html from our php file
+	        async: true,
+	        processData: false,  // tell jQuery not to process the data
+	        contentType: false,   // tell jQuery not to set contentType
+	        success : function(data) {
+	        	var obj = JSON.parse(data);
+	        	if(obj.status == true){
+	        		//document.getElementById('imag' + idLang + idImagNew).remove();
+	        		document.getElementById('imageSaved' + idLang).innerHTML = obj.reloadImages;
+	        	}
+	        },
+	        error : function(request) {
+	            console.log(request.responseText);
+	        },
+	        complete:function(){
+	            document.getElementById('imagePreview' + idLang).innerHTML = '';
+	        }
+	    }); 
+	} else{
+		document.getElementById('imag' + idLang + idImagNew).remove();
+	}
+}
+
+function deleteAll(idLang, getJml) {
+	var inp = document.getElementById('uploadImages' + idLang);
+	var idSavedImag = '';
+	var filename = '';
+	var statusImag = '';
+	var jmlAll = parseInt(inp.files.length) + parseInt(getJml);
+	var id_gallery = '';
+
+	for (var i = 0; i < jmlAll; i++) {
+		if((getJml != 0 || getJml != '') && i >= getJml){
+			iNew = i - getJml;
+		} else{
+			iNew = i;
+		}
+		
+		idSavedImag = document.getElementById('idSavedImag' + idLang + i).value;
+		statusImag = document.getElementById('statusImag' + idLang + i).value;
+		id_gallery = document.getElementById('id' + idLang).value;
+
+		var formData = new FormData();
+	    //for each entry, add to formdata to later access via $_FILES["file" + i]
+	    if((getJml != 0 || getJml != '') && i >= getJml){
+	    	formData.append("filename", inp.files.item(iNew).name);
+	    } else{
+	    	filename = document.getElementById('filename' + idLang + i).value;
+	    	formData.append("filename", filename);
+	    }
+	  	formData.append("imag", i);
+	  	formData.append("idSavedImag", idSavedImag);
+  		formData.append("id_gallery", id_gallery);
+  		formData.append("key", idLang);
+
+  		if(statusImag == 1){
+		    //send formdata to server-side
+		    $.ajax({
+		        url: "{this_controller}deleteImages", // our php file
+		        type: 'post',
+		        data: formData,
+		        dataType: 'html', // we return html from our php file
+		        async: true,
+		        processData: false,  // tell jQuery not to process the data
+		        contentType: false,   // tell jQuery not to set contentType
+		        success : function(data) {
+		        	var obj = JSON.parse(data);
+		        	if(obj.status == true){
+		        		//document.getElementById('imag' + idLang + obj.idImag).remove();
+		        		document.getElementById('imageSaved' + idLang).innerHTML = obj.reloadImages;
+		        	}
+		        },
+		        error : function(request) {
+		            console.log(request.responseText);
+		        },
+		        complete:function(){
+		            document.getElementById('imagePreview' + idLang).innerHTML = '';
+		        }
+		    }); 
+		} else{
+			document.getElementById('imag' + idLang + i).remove();
+		}
+	}
+}
+<!-- End Delete Data -->
+</script>

@@ -1,0 +1,40 @@
+<div class="modal fade" id="modal-download" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <h1><div class="title-event-list mt0">Download</div></h1>
+        <hr class="line-content">
+        <!-- <div class="title-content mb15">PAYMENT DETAILS</div> -->
+        <form class="form-join" action='{this_controller}download' id='form1' method="POST">
+
+          <div class="row row-form">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group no-margin">
+
+              <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group no-margin">
+                <label>Create Date</label>
+              </div>
+              <div class="col-sm-12 col-md-12 col-xs-12 col-form form-group no-margin">
+                <div class="col-sm-6">
+                  <div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+                    <input type="text" class="cari form-control" readonly="readonly" id="from_create_date" placeholder="From" name="from_create_date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+                    <input type="text" class="cari form-control" readonly="readonly" id="to_create_date" placeholder="To" name="to_create_date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  </div>
+                </div>  
+              </div>
+            </div>
+          </div>
+          <hr class="line-content">
+          <button class="btn btn-success " >Download</button>
+        </form>      
+      </div>
+    </div>
+  </div>
+</div>

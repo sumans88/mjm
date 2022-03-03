@@ -1,0 +1,24 @@
+<table class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th class="center" width="40">No</th>
+			<th class="center" title='Sort' id="gs_userid">User ID</th>
+			<th class="center" title='Sort' id="gs_username">Username</th>
+			<th class="center" title='Sort' id="gs_log_date">Log Date</th>
+			<th class="center" title='Sort' id="gs_activity">Activity</th>
+			<th class="center" title='Sort' id="gs_ip">IP Address</th>
+		</tr>
+	</thead>
+	<tbody>
+		{data}
+		<tr>
+			<td class="center">{nomor}</td>
+			<td class="teaser" style="max-width:125px;" title="{userid}">{userid}</td>
+			<td class="teaser" style="max-width:125px;" title="{username}">{username}</td>
+			<td class="teaser" style="max-width:125px;" title="{log_date}">{log_date}</td>
+			<td class="teaser" style="max-width:125px;" title="{activity}">{activity}</td>
+			<td class="teaser" style="max-width:125px;" title="{ip}">{ip}</td>
+		</tr>
+		{/data}
+	</tbody>
+</table>

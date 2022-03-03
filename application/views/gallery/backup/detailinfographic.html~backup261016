@@ -1,0 +1,35 @@
+<div class="container-fluid container-fluid-dtl">
+  <div class="container">
+    <div class="row row-dtl">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-dtl noprint">
+        <div class="breadcrumb-share">
+          <div class="breadcrumb-dtl">
+            <ol class="breadcrumb">
+              &nbsp;
+            </ol>
+          </div>
+          <div class="share-dtl">
+            
+            <ul>
+              <li><a href="{img2}"><img src="{base_url}asset/images/icon-download.png"></a></li>
+              <li><a href="javascript:window:print()"><img src="{base_url}asset/images/icon-print.png"></a></li>
+              <li><a href="mailto:?Subject={name}&body={description}"><img src="{base_url}asset/images/icon-email.png"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-3 col-xs-12 col-dtl">
+          
+      </div> 
+      <div class="col-sm-8 col-md-9 col-xs-12 col-dtl">
+        <div class="decs-dtl">
+          <h2 class="title-dtl-cnt">{name}</h2>
+          <div class="thumb-detail-img {isImg}">{img}</div>
+          {description}
+
+        </div>
+      </div> 
+
+    </div>
+  </div>
+</div>

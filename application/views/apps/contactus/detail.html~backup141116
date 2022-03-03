@@ -1,0 +1,36 @@
+<div class='col-md-12'>
+	<div class='col-md-3 col-sm-3'>Topik</div>
+	<div class="col-md-9 col-sm-9">: {topic}</div>
+</div>
+<div class='col-md-12'>
+	<div class='col-md-3 col-sm-3'>Nama</div>
+	<div class="col-md-9 col-sm-9">: {fullname}</div>
+</div>
+<div class='col-md-12'>
+	<div class='col-md-3 col-sm-3'>Handphone</div>
+	<div class="col-md-9 col-sm-9">: {hp}</div>
+</div>
+<div class='col-md-12'>
+	<div class='col-md-3 col-sm-3'>Telp. Rumah</div>
+	<div class="col-md-9 col-sm-9">: {phone}</div>
+</div>
+<div class='col-md-12'>
+	<div class='col-md-3 col-sm-3'>Email</div>
+	<div class="col-md-9 col-sm-9">: {email}</div>
+</div>
+<div class='col-md-12'>
+	<div class='col-md-3 col-sm-3'>Kota</div>
+	<div class="col-md-9 col-sm-9">: {city}</div>
+</div>
+<div class='col-md-12'>
+	<div class='col-md-3 col-sm-3'>Komentar</div>
+	<div class="col-md-9 col-sm-9">: {message}</div>
+</div> 
+{reply}
+	<div class="clearfix">&nbsp;</div>
+	<div class="well reply col-md-12">
+		<strong>{username}</strong>
+		<strong><span class="pull-right">{create_datex}</span></strong>
+		<div>{messagex}</div>
+	</div>
+{/reply}

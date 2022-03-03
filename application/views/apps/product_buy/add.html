@@ -1,0 +1,27 @@
+<div class="row-fluid">
+	<div class="judul col-sm-6">{judul} Buy Product </div>
+	<div class="col-sm-6 text-right">
+		<a class="btn btn-primary insert_data {disable_edit} tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+		<a class="btn btn-warning tangan" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+	</div>
+</div>
+<hr>
+<form action='{this_controller}proses/{id}' id='form1'>
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Name <i class='req'>*</i></div>
+		<div class="col-sm-8"><input type="text" value="{nama}" id="nama" class='col-sm-12' name="nama"></div>
+	</div>
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Email <i class='req'>*</i></div>
+		<div class="col-sm-8"><input type="text" value="{email}" id="email" class='col-sm-12' name="email"></div>
+	</div>
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Mobile <i class='req'>*</i></div>
+		<div class="col-sm-8"><input type="text" value="{mobile}" id="mobile" class='col-sm-12' name="mobile"></div>
+	</div>
+	<div class='row-fluid'>
+		<div class='col-sm-2'>City <i class='req'>*</i></div>
+		<div class="col-sm-8"><select name="city" class='col-sm-12'>{list_city}</select></div>
+	</div>
+	
+</form>

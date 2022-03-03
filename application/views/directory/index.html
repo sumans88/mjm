@@ -1,0 +1,283 @@
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12 p0">
+          <div class="banner-top responsive-banner">
+            {banner_top}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid cf-grey4">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-xs-12">
+          <div class="title-pagination">Directory</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid cf-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-xs-12">
+            <div class="breadcrumb-page">
+              <ol class="breadcrumb">
+                <li><a href="{base_url}/member">Member</a></li>
+                <li class="active">Directory</li>
+              </ol>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+            <div class="media media-content">
+              <div class="media-body">
+                <div class="frame-content">
+                  <div class="tabs-highlight">
+                    {directory_file}
+                    <!-- Nav tabs -->
+                    <div class="select-directory">
+                      <select class="form-control" name="directorys" id="directorys" >
+                        
+                        <option value="2"{disablesignout} >All Companies</option>
+                        <option value="3"{disablesignout} >All Individuals</option>
+                        <option value="1" >All Sectors</option>
+
+                        <!-- <option value="2" disabled='disabled'>All Corporate</option>
+                        <option value="3" disabled='disabled'>All Individual</option>
+                        <option value="1" readonly="true" selected>All Sector</option> -->
+                      </select>
+                    </div>
+
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li role="presentation" class="active"><a href="#{range_list1}" aria-controls="true" role="tab" data-toggle="tab" id="tab-alpha-1" disabled>{range_list1}</a></li>
+                      <li role="presentation" class=""><a href="#{range_list2}" aria-controls="true" role="tab" data-toggle="tab" id="tab-alpha-2">{range_list2}</a></li>
+                    </ul>
+
+                  <div class="input-group ig-srclist float-right">
+                    <input type="text" class="form-control" placeholder="Search" name="search_directory" id="search_directory">
+                    <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" id="btn-searching-directory"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                  </div>
+
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="{range_list1}">
+                      <div class="panel-group pg-amcham" id="accordion" role="tablist" aria-multiselectable="true">
+                        {first_content}
+                      </div>
+                      </div>
+
+                      <div role="tabpanel" class="tab-pane" id="{range_list2}">
+                        <div class="panel-group pg-amcham" id="accordion" role="tablist" aria-multiselectable="true">
+
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="media-right">
+                {widget_sidebar}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<script src='https://www.google.com/recaptcha/api.js?render={recaptcha_site_key}'></script>
+<script>
+ grecaptcha.ready(function() {
+ grecaptcha.execute('{recaptcha_site_key}', {action: 'index'}).then(function(token) {  
+  document.getElementById('g-recaptcha-response').value=token;
+ });
+});
+</script>
+<script type="text/javascript">
+
+  // NOTE
+  //jika searching_directory tipe 1 maka melakukan search berdasarkan post parameter post title dan tidak menggunakan pembatas AI -JZ
+  // jika searching_directory tipe 2 maka TIDAK melakukan search berdasarkan post parameter post title dan menggunakan pembatas AI -JZ
+
+  function searching_directory(type){
+    $(".tab-pane").each(function(){
+      $(this).children().empty();
+    });
+
+    var target     = $(".nav-tabs").find(".active").children().attr("href");
+    target         = target.replace('#','');
+    $(".nav-tabs").find(".active").attr("id");
+    
+    var title      = $('#search_directory').val();
+    var recaptcha_response = $('#g-recaptcha-response').val();
+    var directorys = $('#directorys').val();
+    var directorys_exist = $('#directorys').length;
+    var type       = type;
+
+    if (directorys_exist == 0){
+       var directorys = $('#directoryAs').val();
+    } else {
+       var directorys = $('#directorys').val();
+    }
+
+    if (type==2){
+      clearSearch();
+    }
+
+    $.ajax({
+      url: base_url_lang+'directorys/get_list_data/'+target+"/"+directorys+"/1" ,
+      data    : {title: title, type: type, recaptcha_response: recaptcha_response},
+      type: 'POST',         
+      success: function(data){
+        data = JSON.parse(data);
+        $("#"+target).children().empty();
+        $("#"+target).children().html(data);
+        grecaptcha.execute('{recaptcha_site_key}', {action: 'index'}).then(function(token) {  
+          document.getElementById('g-recaptcha-response').value=token;
+        });
+        if (directorys==2){
+          $('#back-to-membership-directory').html('<br><a href="'+ base_url_lang+'directorys'+'" class="btn-red btn-grey-direct">Back to Membership Directory</a>');
+        }
+      }
+    });
+  }
+
+
+  function dinamis_filter_alpha(id) {
+
+    $.ajax({
+      url: base_url_lang+'directorys/check_sector_range/'+id,
+      type: 'POST',         
+      success: function(data){
+        data = JSON.parse(data);
+        $(".nav-tabs").find("a").each(function(index, element){
+          $(this).attr('href','#'+ data[index])
+          $(this).html(data[index]);
+
+        });
+        $(".tab-content").children().each(function (index,element) {
+          $(this).attr('id',data[index])
+        })
+
+        $(".tab-pane").each(function(){
+          $(this).children().empty();
+        });
+
+        var target     = $(".nav-tabs").find(".active").children().attr("href");
+        target         = target.replace('#','');
+        $(".nav-tabs").find(".active").attr("id");
+        
+        var title      = $('#search_directory').val();
+        var recaptcha_response = $('#g-recaptcha-response').val();
+        var directorys = $('#directorys').val();
+        $.ajax({
+          url: base_url_lang+'directorys/get_list_data/'+target+"/"+directorys+"/1" ,
+          data: {title:title, recaptcha_response: recaptcha_response}, 
+          type: 'POST',         
+          success: function(data){
+            data = JSON.parse(data);
+            grecaptcha.execute('{recaptcha_site_key}', {action: 'index'}).then(function(token) {  
+              document.getElementById('g-recaptcha-response').value=token;
+            });
+            $("#"+target).children().empty();
+            $("#"+target).children().html(data);
+
+            if (id==2){
+                $('#back-to-membership-directory').html('<br><a href="'+ base_url_lang+'directorys'+'" class="btn-red btn-grey-direct">Back to Membership Directory</a>');
+            }
+
+          }
+        });
+      }
+    });
+  }
+
+  function clearSearch(){
+    $('#search_directory').val('');
+  }
+    
+  $(function(){
+    $(document).on('shown.bs.tab','a[data-toggle="tab"]', function (e) { //ganti tab
+      searching_directory(2)
+    });
+
+    $(document).on('change','#directorys',function(){ //ganti list
+      dinamis_filter_alpha($(this).val())
+    });
+
+    $(document).on("click", "#btn-searching-directory", function() { // ganti button
+       searching_directory(1);
+    });
+
+    $('#search_directory').keypress(function (e) { // tekan enter
+      if (e.which == 13) {
+          searching_directory(1);
+      } 
+    });
+
+  });
+
+
+  $(document).on("click", ".forbidden-non-member", function() {
+    alert('Information not available for non-members');
+    return false;
+  });
+
+  $(document).on("click", ".list-data", function() {
+    url_list = $(this).attr("url_next");
+
+    //redirect when individu  || company
+    if (url_list != "" && typeof url_list != "undefined") {
+      window.location = url_list;
+    }else{
+      var id                      = $(this).attr('data-id');
+      var sort                     = $(this).attr('data-sort');
+      var search                   = $('#search_directory').val();
+      var directorys = $('#directorys').val();
+
+      $.ajax({
+        url     : base_url_lang+'directorys/uri_path_search_directory',
+        type    : 'post',
+        data    : {id: id, sort: sort, title : search, type_member_selected : directorys},
+        success: function (data) {
+          data = JSON.parse(data);
+          $("#data-content-directory"+sort).empty().html(data);
+        }
+      });
+      return false;
+
+    }
+
+  });
+
+  $(document).on('change','#directorys',function(){
+    var id_select = $(this).val()
+    $.ajax({
+     url     : base_url_lang+'directorys/session_back',
+        type    : 'post',
+        data    : {id: id_select},
+        success: function (data) {
+          // console.log(id_select)
+          console.log(data)
+        }
+    })
+  })
+  $(window).on('load', function() {
+  // $(document).on('change','#directorys',function(){
+    $.ajax({
+        url     : base_url_lang+'directorys/session_check',
+        type    : 'post',
+        success: function (data) {
+          data = $.parseJSON(data);
+          if(typeof data.id !="undefined"){
+                   $('#directorys').val(data.id)
+                   $('#directorys').change()}
+        }
+    })
+  })
+
+</script>

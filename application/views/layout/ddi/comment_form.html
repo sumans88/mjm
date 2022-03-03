@@ -1,0 +1,35 @@
+<div class="container-fluid container-form-contact">
+  <div class="container" style="width:100%;">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12 frame-what-folio">
+       <h4 class="what-folio">
+         Write Comment Here
+       </h3>
+        <div class="form-contactus">
+        <span style="color:red;">{form_validation}</span>
+          <form class="form-contact-us" id="frm-contact-us" action="{base_url}{lang}/news/send">
+            <div class="form-group row">
+              <div class="col-sm-12 col-md-12 col-xs-12">
+                <div class="input-contact sameheight">
+                  <span id="span-fullname" class="req hide">*required</span>
+                <input type ="text" placeholder="Name" name="fullname" id="fullname" data-parsley-required="true" class="form-control" />
+
+                  <span id="span-email" class="req hide">*email required</span>
+                <input type ="text" placeholder="Email" name="email" id="email" data-parsley-type="email" class="form-control" />
+
+                </div>
+                <span id="span-message" class="req hide">*required</span>
+                <div style="height: 183px;">
+                  <textarea placeholder="Comment" name="comment" id="comment" data-parsley-required="true" class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-xs-12 text-right">
+                <button class="btn btn-default btn-send-contact">Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

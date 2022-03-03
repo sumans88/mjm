@@ -1,0 +1,27 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<!-- <td>{full_name}</td> -->
+		<td>{name_in}</td>
+		<!-- <td>{name_out}</td> -->
+		<td>{membership}</td>
+		<td>{tanggal_buat}</td>
+		<!-- <td><a class="btn btn-success modal-send-invoice {is_paid}" data-id="{member_id}">Send</a></td> -->
+		<td>{status_payment}</td>
+		<!-- <td>{membership}</td> -->
+		<td class="center">
+			<a href="{this_controller}view/{id}" title="View Detail" target="_BLANK" class="fa fa-search action-form-icon"></a>
+			<a href="{this_controller}add/{member_id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<!-- <a href="{this_controller}add_representative/{id}" title="Edit Data" class="fa fa-user action-form-icon"></a> -->
+			<a href="{this_controller}view_representative/{id}" title="View Representatif" class="fa fa-user action-form-icon {dsp_btn_representative}"></a>
+			<a href="{this_controller}view_subdiary/{id}" title="View Subdiary" class="fa fa-building-o action-form-icon {dsp_btn_subdiary}"></a>
+			<a title="Block Company" class="fa fa-times-circle-o tangan block action-form-icon {dsp_btn_block}" id='{id}' data-url-rm='block'></a>
+			<a title="Unblock Company" class="fa fa-check-circle-o tangan unblock action-form-icon {dsp_btn_unblock}" id='{id}' data-url-rm='unblock'></a>
+			<a title="Delete Company" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="20">{paging}</td>
+</tr>

@@ -1,0 +1,722 @@
+<style type="text/css">
+	.myProgress {
+	    position: relative;
+	    width: 100%;
+	    height: 30px;
+	    background-color: #ababab;
+	    margin-bottom: 10px;
+	}
+	.myBar {
+	    position: absolute;
+	    width: 1%;
+	    height: 100%;
+	    background-color: #31b0d5;
+	}	
+	.labelImag {
+	    text-align: center; /* If you want to center it */
+	    line-height: 30px; /* Set the line-height to the same as the height of the progress bar container, to center it vertically */
+	    color: white;
+	}
+</style>
+<script src="{base_url}assets/js/html5shiv.js"></script>
+<script src="{base_url}assets/js/selectivizr.js"></script>
+<link rel="stylesheet" type="text/css" href="{base_url}assets/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="{base_url}assets/css/component.css" />
+
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+<script type="text/javascript">
+	function checked_check(id){
+    	$('#'+id).click(function() {
+    		var id_data = $(this).attr("id");    		
+		    if ($(this).is(':checked')) {
+		        $('#'+id_data+"checked").val(1);
+		    } else {
+		        $('#'+id_data+"checked").val(0);
+		    };
+		});
+    }
+</script>
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Event</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear-fix">&nbsp;</div>
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal" enctype="multipart/form-data">
+						<!-- <ul class="nav nav-pills">
+							{list_lang2}
+							<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+							{/list_lang2}
+						</ul> -->
+						<div class="tab-content">
+							{list_lang}
+							<div class="tab-pane fade {active}" id="nav-pills-tab-{nomor}">
+								<!-- <div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Not available in  {bahasa}</label>
+									<div class="col-md-9"><input type="checkbox" class="lang_na" value="1" name="is_not_available[{lang_id}]" stat-id="{nomor}" {is_not_available}></div>
+								</div> -->
+									<div class="inv form-group no-margin {invis}">
+										<label class="col-md-3 control-label">Event Category <i class='req'>*</i></label>
+										<div class="col-md-9"><select id="id_event_category{nomor}" class='form-control' name="id_event_category[]" data-parsley-required="{validation}">{id_event_category}</select></div>
+									</div>
+
+									<div class="form-content" id="form-content-event{nomor}">
+									<div class="form-group  no-margin">
+										<label class="col-md-3 control-label">Event Name <i class='req'>*</i></label>
+										<div class="col-md-9"><input type="text" value="{name_data}" data-parsley-required="{validation}" id="title{nomor}" class='form-control' name="name[]"></div>
+									</div
+
+									<div class="form-group  no-margin">
+										<label class="col-md-3 control-label">Event URL <i class='req'>*</i></label>
+										<div class="col-md-9"><input type="text" value="{uri_path}" data-parsley-required="{validation}" id="uri_path{nomor}" class='form-control' name="uri_path[]"></div>
+									</div>
+									
+									<script type="text/javascript">
+
+										// $( "#title0" )
+										//   .keyup(function() {
+										//     var value = $( this ).val().split(" ").join("-");
+										//     $( "#uri_path0" ).text( value );
+										//   })
+										//   .keyup();
+
+											$(document).ready(function(){
+											$('#title{nomor},#uri_path{nomor}').keyup(function(){
+												$('#uri_path{nomor}').val(convert_to_uri($(this).val()));
+											});
+										})
+										</script>
+									<!-- <div class="inv form-group no-margin {invis}">
+										<label class="col-md-3 control-label">Event Sub Category </label>
+										<div class="col-md-9"><select id="id_event_subcategory{nomor}" class='form-control' name="id_event_subcategory[]">{id_event_subcategory}</select></div>
+									</div> -->
+									
+									<div class="inv form-group  no-margin {invis}" id="scheduleForm">
+										<label class="col-md-3 control-label">Event Schedule </label>
+										<div class="col-md-9">
+											<style type="text/css">.datepicker{min-width:200px !important;max-width:150px;float: left;}</style>
+											<!-- <input type="text" value="{start_date}" data-parsley-required="{validation}" id="title{nomor}" class='datepicker' name="start_date[]"> -->
+											<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+													<input type="text" value="{start_date}" id="start_date{nomor}" class='form-control' name="start_date[]" readonly="readonly">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+											</div>
+											<div class="span1" style="float:left;padding:13px;">to</div>
+											<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+													<input type="text" value="{end_date}" id="end_date{nomor}" class='form-control' name="end_date[]" readonly="readonly">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+											</div>
+										</div>
+									</div>
+
+
+
+									<!-- <div class="inv form-group  no-margin {invis}">
+										<label class="col-md-3 control-label">Time Schedule</label>
+										<div class="col-md-9">
+											<input type="text" value="{start_time}"  name="start_time[]" id="start_time_picker" class="timepicker" style="float:left;padding:5px 14px 5px 14px;" tabindex="1">
+											 <span style="float:left;padding:5px 17px 5px 17px;"> to </span>
+											<input type="text"  name="end_time[]" id="end_time_picker" class="timepicker" style="float:left;padding: 5px 14px 5px 14px;" tabindex="2">
+											<input type="text" value="{start_time}"  name="start_time[]" {start_time} class="start_time">  to
+											<input type="text" value="{end_time}"  name="end_time[]" {end_time} class="end_time">  
+										</div>
+									</div> -->
+									<div class="inv form-group  no-margin {invis}" id="timeForm">
+										<label class="col-md-3 control-label">Time Schedule</label>
+										<div class="col-md-9">
+											 <input class="time standard" type="text" name="start_time[]" value="{start_time}"/>
+											 <span style="margin: 13px;">to</span>
+											 <input class="time standard" type="text" name="end_time[]" value="{end_time}" />
+										</div>
+									</div>
+
+									<div class="inv form-group  no-margin {invis}" id="locationnameForm">
+										<label class="col-md-3 control-label">Location Name</label>
+										<div class="col-md-9"><textarea  rows="4" id="location_name{nomor}" name="location_name[]" class="form-control">{location_name}</textarea></div>
+									</div>
+
+									<div class="inv form-group  no-margin {invis}" id="locationaddressForm">
+										<label class="col-md-3 control-label">Location Address</label>
+										<div class="col-md-9"><textarea  rows="4" id="location_address{nomor}" name="location_address[]" class="form-control">{location_address}</textarea></div>
+									</div>
+									<!-- <div class="inv form-group  no-margin {invis}">
+										<label class="col-md-3 control-label">Maps Location</label>
+										<div class="col-md-9"><textarea name="maps_location[]" rows="4" id="maps_location{nomor}" class="form-control">{maps_location}</textarea></div>
+									</div> -->
+									<!-- <div class="form-group  no-margin {invis}">
+										<label class="col-md-3 control-label">Is Open</label>
+										<div class="col-md-9"><input type="checkbox" value="1"  name="is_open[]" {is_open} class="is_open"> Yes</div>
+									</div>  -->
+									
+							
+									
+									<!-- new -->
+									<div class='form-group no-margin {invis}'> 
+										<label class="col-md-3 control-label">Publish Date </label>
+										<div class="col-md-9">
+											<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+												<input type="text" value="{publish_date2}" id="publish_date{nomor}" class='form-control' name="publish_date[]" readonly="readonly">
+												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+											</div>
+										</div>
+									</div>
+									
+									<!-- end new -->
+									
+									<div class="form-group  no-margin" class="imageForm" id="imageForm">
+										<label class="col-md-3 control-label">Image</label>
+										<div class="col-md-9">
+											{img}
+											<div style="color: green">size : 850 x 480px</div><br/>
+											<a style="cursor: pointer;" onclick="delImage('{nomor}', '{base_url}')">Delete Image</a>
+											<input type="hidden" name="imgDelete[]" id="imgDelete{nomor}" value="0">
+										</div>
+									</div>
+
+									{images_detail}
+									<div class="cloneInputdetail" id="entry2{no_img_detail}">
+										<div class="form-group  no-margin invis">
+											<div class="col-md-9"><input class="id_delete_img_detail" type="text" value="" class='form-control' name="id_delete_img_detail"></div>
+										</div>
+										<div class="form-group no-margin">
+											<label class="col-md-3 control-label">{form_images_detail_label}</label>
+											<div id="images_detail" class="col-md-9 input_images_detail">{form_images_detail}</div>
+											<label class="col-md-3 control-label"></label>
+											<div class="col-md-9">
+												<div>
+													<textarea placeholder="Caption" name="description_images_detail[]" class="form-control">{description_images_detail}</textarea>
+												</div>
+
+												<input type="checkbox" value="{is_share}" {is_share_checked} id="is_share{id_disclaim}" class='input_is_share '>
+												<input type="hidden" value="{is_share}" id="is_share{id_disclaim}checked" name="is_share[]">
+												<input type="hidden" value="{id_images_detail}" name="id_images_detail[]">												
+									      <input type="hidden" value="" name="id_images_delete[]">
+												<label> Set image for Share</label>
+
+												<a class="del-img-detail {invis_del_img}" id="delete_img_detail_{no_img_detail}" data-id-img-detail="{id_images_detail}">
+													<i class="fa fa-times-circle" title="Delete" style='font-size:20px; cursor:pointer;'></i>
+												</a>					        						
+											</div>
+										</div>
+									</div>
+									<script type="text/javascript">
+										checked_check("is_share{id_disclaim}");
+									</script>
+									{/images_detail}
+									<span id="image_detail_form"></span>
+									<div class="form-group no-margin">
+										<label class="col-md-3 control-label"></label>
+										<div class="col-md-9">
+											<button type="button" id="btnAdddetail" name="btnAdddetail" class="btn btn-primary">Add Images</button>
+										</div>
+									</div>
+									<div class="form-group  no-margin">
+										<label class="col-md-3 control-label">About</label>
+										<div class="col-md-9"><textarea name="teaser[]" rows="4" id="teaser{nomor}" class="form-control">{teaser}</textarea></div>
+									</div>
+									<div class="form-group  no-margin">
+										<label class="col-md-3 control-label">Content<i class='req'>*</i></label>
+										<div class="col-md-9"><textarea  rows="4" id="content{nomor}" name="content[]" class="form-control ckeditor" data-parsley-required="{validation}">{content}</textarea></div>
+									</div>
+									<div class="form-group  no-margin" id="sponsorForm">
+										<!-- <label class="col-md-3 control-label">Sponsor<i class='req'>*</i></label> -->
+										<label class="col-md-3 control-label">Sponsor</label>
+										<div class="col-md-9"><textarea  rows="4" id="sponsor{nomor}" name="sponsor[]" class="form-control ckeditor">{sponsor}</textarea></div>
+									</div>
+									<div class="form-group  no-margin">
+										<label class="col-md-3 control-label">Event Price</label>
+										<div class="col-md-8"><select id="event_price{nomor}" multiple class='form-control' name="event_price[]"></select></div>
+										<div class="col-md-1"> 
+										<button type="button" data-toggle="modal" data-target="#modal-add-price" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+										</div>
+									</div>
+									<div class="list-price">
+									
+									</div>
+									<div class="form-group  no-margin">
+										<label class="col-md-3 control-label"></i></label>
+										<div class="col-md-9">example: Tickets - Rp. 1,400,000 / guest Tables - Rp. 13,000,000 / 10 guests
+									</div>
+									<div class="inv form-group  no-margin" id="templateeventForm">
+										<label class="col-md-3 control-label">Template Event</label>
+										<div class="col-md-9"><select id="id_template_form_register{nomor}" class='form-control' name="id_template_form_register[]">{list_template_form_register}</select></div>
+									</div>
+									
+
+									<!-- <div class="form-group  no-margin">
+										<label class="col-md-3 control-label">Tags</label>
+										<div class="col-md-9"><select id="tags{nomor}" multiple class='form-control' name="tags[{lang_id}][]"></select></div>
+									</div> -->
+
+									<div class="form-group  no-margin hide">
+										<div class="col-md-9"><input type="text" value="{lang_id}" id="id_lang{nomor}" class='form-control' name="id_lang[]"></div>
+									</div>
+									<div class="form-group  no-margin hide">
+										<div class="col-md-9"><input type="text" value="{id_event}" id="id{nomor}" class='form-control' name="id_event[]"></div>
+									</div>
+								    <div class="form-group  no-margin">
+										<label class="col-md-3 control-label">Seo Title</label>
+										<div class="col-md-9"><input type="text" value="{seo_title}" id="seo_title{nomor}" class='form-control' name="seo_title[]"></div>
+									</div>
+								    <div class="form-group  no-margin">
+										<label class="col-md-3 control-label">Meta Description</label>
+										<div class="col-md-9"><textarea  rows="4" id="meta_description{nomor}" name="meta_description[]" class="form-control ckeditor">{meta_description}</textarea></div>
+									</div>
+								    <br>
+								    <div class="form-group  no-margin">
+										<label class="col-md-3 control-label">Meta Keywords</label>
+										<div class="col-md-9"><input type="text" value="{meta_keywords}" id="meta_keywords{nomor}" class='form-control' name="meta_keywords[]"></div>
+									</div>
+									<script>
+										function progressLoad(idLang, idImag){
+											var elem = document.getElementById("myBar" + idLang + idImag); 	    
+										    var width = 10;
+										    var id = setInterval(frame, 10);
+										    function frame() {
+										        if (width >= 100) {
+										            clearInterval(id);
+										        } else {
+										        	width++; 
+										    		elem.style.width = width + '%'; 
+										        	document.getElementById("label" + idLang + idImag).innerHTML = width * 1 + '%';
+										        }
+										    }
+										}
+									</script>
+									<div class="inv {invis}">
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Material Files</label>
+											<div class="col-md-9">
+												<div class="box">
+													<input type="file" name="uploadFiles[]" id="uploadFiles{nomor}" style="display: none;" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" multiple />
+													<label for="uploadFiles{nomor}"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg>Select Files</strong></label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group no-margin" id="buttonFiles{nomor}" style="display: {showUploadAll};">
+											<div class="col-md-3"></div>
+											<span class="col-md-9" style="padding-top: 10px !important;">
+												<button type="button" class="btn btn-primary" onclick="saveAll('{nomor}', '{jmlFiles}')">Upload & Update All</button>
+												<button type="button" class="btn btn-danger" onclick="deleteAll('{nomor}', '{jmlFiles}')">Delete All</button>
+											</span>
+										</div>
+										<div class="form-group  no-margin">
+											<div class="col-md-3"></div>
+											<span class="col-md-9" style="padding-top: 10px !important;">
+												<div id="fileSaved{nomor}">
+													{event_files}
+												</div>
+												<div id="filePreview{nomor}"></div>
+											</span>
+										</div>
+									</div>
+
+									<div class="inv form-group  no-margin {invis}">
+										<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
+										<div class="col-md-9"><select id="id_status_publish{nomor}" class='form-control' name="id_status_publish[]" data-parsley-required="{validation}" >{list_status_publish}</select></div>
+									</div>
+
+
+
+								</div>
+							</div>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$('#title{nomor},#uri_path{nomor}').keyup(function(){
+										$('#uri_path{nomor}').val(convert_to_uri($(this).val()));
+									});
+									$("#tags{nomor}").select2({
+									  tags: [{tags}],
+									  tokenSeparators: [","]
+									})
+									
+									if ("{tags_data}") {
+										var selectedValues = "{tags_data}".split(',');
+										$("#tags{nomor}").select2('val',selectedValues);
+										
+									}
+									
+									$("#event_price{nomor}").select2({
+									  tags: [{price}],
+									  tokenSeparators: [","],
+									  createTag: function (params) {
+									   	return null ;
+									   }
+									})
+									// console.log({price_data})
+									if ("{price_data}") {
+										var selectedValues1 = "{price_data}".split(';');
+										$("#event_price{nomor}").select2('val',selectedValues1);
+										
+									}
+
+									
+								})
+								$('#title{nomor},#uri_path{nomor}').keyup(function(){
+									$('#uri_path{nomor}').val(convert_to_uri($(this).val()));
+								});
+								$('#title{nomor},#seo_title{nomor}').keyup(function(){
+									$('#seo_title{nomor}').val($(this).val());
+								});
+								$('#teaser{nomor},#meta_description{nomor}').keyup(function(){
+									CKEDITOR.instances.meta_description{nomor}.setData($(this).val());
+								}); 
+
+								var inputLocalFont = document.getElementById("uploadFiles{nomor}");
+								inputLocalFont.addEventListener("change",previewImages,false);
+
+								function previewImages(){
+								    var fileList = this.files;
+								    
+								    if(fileList.length != 0){
+										document.getElementById("buttonFiles{nomor}").style.display = 'block';
+									}
+
+								    var anyWindow = window.URL || window.webkitURL;
+
+								    	var getJml = jmlFilesSaved{nomor};
+								    	var jmlFiles = 0;
+								    	if(getJml != 0 || getJml != ''){
+								    		jmlFiles = getJml;
+								    	} else{
+								    		jmlFiles = 0;
+								    	}
+
+								        for(var i = 0; i < fileList.length; i++){
+								        	//alert(fileList[i]);
+								          var jmlNow = parseInt(i) + parseInt(jmlFiles);
+								          
+								          var arrType = ["application/pdf", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation"];
+
+								          var typeImg = ["{base_url}assets/images/file-pdf.jpg", "{base_url}assets/images/file-excel.png", "{base_url}assets/images/file-excel.png", "{base_url}assets/images/file-word.png", "{base_url}assets/images/file-word.png", "{base_url}assets/images/file-ppt.png", "{base_url}assets/images/file-ppt.png"];
+
+								          var cekType = arrType.indexOf(fileList[i].type);
+								          if(cekType != -1){
+								          		var getImgType = typeImg[cekType];
+								          	
+									          	$('#filePreview{nomor}').append('<div id="imag{nomor}' + jmlNow + '" class="col-md-12" style="margin-bottom: 15px;"><div class="col-md-3"><img src="' + getImgType + '" width="100px" /></div><div class="col-md-9"><div class="myProgress" id="myProgress"><div class="myBar" id="myBar{nomor}' + jmlNow + '"><div class="labelImag" id="label{nomor}' + jmlNow + '">0%</div></div></div><input type="text" id="nameFile{nomor}' + jmlNow + '" placeholder="Name" class="form-control" style="margin-bottom: 10px;"><button type="button" class="btn btn-info" id="btnFile{nomor}' + jmlNow + '" onClick="saveOne({nomor}, ' + i + ', ' + jmlFiles + ')">Upload and Save</button><button type="button" class="btn btn-danger" style="margin-left:10px;" onClick="deleteOne({nomor}, ' + i + ', ' + jmlFiles + ', 0)">Delete</button><input type="hidden" id="statusFile{nomor}' + jmlNow + '" value="0" /><input type="hidden" id="idSavedFile{nomor}' + jmlNow + '" value="" /></div></div>');
+									          	//move(i, 50);
+
+											  	window.URL.revokeObjectURL(fileList[i]);
+								          } else{
+							          		alert("File type must be formatted as .pdf, .xls, .xlsx, .doc, .docx, .ppt and .pptx");
+							          	  }
+								          
+								        }
+								} 
+							</script>
+							{imagemanager_config}
+							{/list_lang}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<span id="image_detail_form_template" class="invis">
+	<div class="cloneInputdetail" id="entry2__NO_IMG_detail_">
+		<div class="form-group no-margin">
+	        <label class="col-md-3 control-label"><!-- Image Detail --></label>
+	        <div id="images_detail" class="col-md-9 input_images_detail">{form_images_detail}</div>
+	    </div>
+	    <div class="form-group no-margin">
+            <label class="col-md-3 control-label"></label>
+	        <div class="col-md-9">
+	        	<div>
+	        		<textarea placeholder="Caption" name="description_images_detail[]" class="form-control"></textarea>
+	        	</div>
+	        	<input type="checkbox" value="0" id="is_share__NO_DISCLAIM_" class='input_is_share'>
+						<input type="hidden" id="is_share__NO_DISCLAIM_checked" name="is_share[]" value="0">
+						<input type="hidden" value="" name="id_images_delete[]">
+	        	<label> Set image for Share</label>
+				<a class="del-img-detail" id="delete_img_detail__NO_IMG_detail_" data-id-img-detail="{id_images_detail}">
+					<i class="fa fa-times-circle" title="Delete" style='font-size:20px; cursor:pointer;'></i>
+				</a>
+			</div>
+		</div>
+        <!-- <a class="del-detail" id="delete_img_detail__NO_IMG_detail_">Delete</a> -->
+	</div>
+	<script type="text/javascript">
+		checked_check("is_share__NO_DISCLAIM_");
+	</script>
+</span>
+{modal_add_price}
+<script type="text/javascript">
+	/* IMAGE DETAIL*/
+	// multiple add 
+	var numImgdetail 	= 1;
+	// $('#images_detail .browse-image').attr('id', 'img_'+numImgdetail);
+	$('#btnAdddetail').click(function (){
+        var numImgdetail 	= $('.cloneInputdetail').length;
+	        numImgdetail 	= numImgdetail+1;
+        $('#image_detail_form_template .browse-image').attr('id', 'detail_img_'+numImgdetail);
+        $('#image_detail_form').append($("#image_detail_form_template").html().replace(/__NO_IMG_detail_/g,numImgdetail).replace(/__NO_DISCLAIM_/g,numImgdetail)        );
+        checked_check("is_share"+numImgdetail);
+    });
+
+    // multiple delete
+    var idDelImgdetail 	= [];
+    var numDelImgdetail 	= $('.cloneInputdetail').length;
+    $(document).on('click', '.del-img-detail', function () {
+    	var idDelImgdetailNew = $(this).attr('data-id-img-detail');
+    	var idImgdetail = $(this).parent().parent().parent().attr('id');
+        if (confirm("Are you sure you wish to remove this image? This cannot be undone.")){
+        	// del image detail pertama beda dengan setelahnya karena pertama tidak bisa di hapus elementnya
+        	if ( $(this).hasClass('del-img-detail-first') ) {
+        		console.log('ada')
+        		$('#'+idImgdetail).find('#images_detail').find('img').attr('src','/images/article/small/no_image.png')
+        		$('#'+idImgdetail).find('#images_detail').find('input').attr('value','')
+        		$('#'+idImgdetail).find('textarea').val('')
+        		$('#'+idImgdetail).find('input[type=checkbox]').prop('checked',false) 
+						$('#'+idImgdetail).find('input[name="is_share[]"]').val(0)
+						$('#' + idImgdetail).find('input[name="id_images_delete[]"]').val(1)									      
+        	}else{
+		    	$('#'+idImgdetail).slideUp('slow',function(){
+		    		$(this).empty();
+		    		numDelImgdetail = numDelImgdetail-1;
+		    	});
+        	}
+    		idDelImgdetail.push(idDelImgdetailNew);
+        }
+    	$('input[name="id_delete_img_detail"]').val(idDelImgdetail);
+        return false;
+    	$('.image_detail_form').append($("#image_detail_form_template").html().replace(/__NO_IMG_detail_/g,numDelImgdetail));
+		console.log(idDelImgdetail);
+    });
+    /* IMAGE DETAIL*/
+
+</script>
+
+
+<script src="{base_url}assets/js/custom-file-input.js"></script>
+<!-- {filemanager_config} -->
+<script type="text/javascript">
+	$('.is_open').change(function(){
+		if(!$(this).attr("checked")){
+			$('.is_open').attr('checked',false);
+		}
+	})
+	function uploadFile(id){
+		$('#loading-'+id).html('<i class="fa fa-refresh fa-spin"><i>');
+		$.ajaxFileUpload({
+			url				: '{this_controller}prosesdocument/'+id,
+			secureuri		: false,
+			fileElementId	: id,
+			dataType		: 'json',
+			success			: function (ret){
+								console.log(ret);
+								$('#loading-'+id).html('<i class="fa fa-check"><i>');
+								$('#'+id+'nya').val(ret.fname);
+							},
+			error			: function(a){
+								alert('error');
+								$('#loading-'+id).html('upload failed');
+							}
+			
+		})
+	}
+	$(document).on('change','.upload-file',function(){
+		if($(this).val()){
+			uploadFile($(this).attr("id"));
+		}
+	})
+
+	$('#id_event_category0, #id_event_category1').change(function(){
+		$('#id_event_subcategory0, #id_event_subcategory1').empty();
+		var id = $(this).val();
+
+		$.ajax({
+			url 	: this_controller+'listopt_subevent',
+			type	: 'post',
+			data	: 'id='+id,
+			dataType: 'json',
+			success	: function(ret){
+				$('#id_event_subcategory0, #id_event_subcategory1').append(ret.listopt);
+			},
+			error 	:function(err){
+			},
+		});
+	});
+
+	$(document).on('change','.id_template_form_register',function(){
+		var id = $('#id_template_form_register0').val();
+
+	    $.ajax({
+	        url         : this_controller+'loadInputTypeFormRegister',
+	        type        : "POST",
+	        dataType    : 'json',
+	        data        : 'id='+id,
+	        success     : function(ret){
+	                     
+	        }
+	      });
+		return false;  
+});
+
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$(document).on('click','.input_is_share',function(e){	
+		var maxCheckedImgShare = 1;
+
+		
+		countCheckedImgShare = 0;
+		$('input[name="is_share[]"]').each(function(){
+			if (parseInt( $(this).val() ) == 1) {
+				countCheckedImgShare++;				
+									    //   <input type="hidden" value="" name="id_images_delete[]">
+			};
+		});
+	// var countCheckedImgShare = document.querySelectorAll('input[name="input_is_share[]"]:checked').length;
+
+	if (countCheckedImgShare > maxCheckedImgShare){
+		this.checked = false; 
+
+		$(this).next().val(0);
+    	e.preventDefault();
+    	alert('Maximal 1 Image You Are Choosen');
+
+	} else {
+		return true;
+	}
+
+	});
+
+});
+
+</script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+	  $('.standard').clockTimePicker();
+	  $('.required').clockTimePicker({required:true});
+	  $('.separatorTime').clockTimePicker({separator:'.'});
+	  $('.amPmTime').clockTimePicker({useAmPm:true});
+	  $('.precisionTime5').clockTimePicker({precision:5});
+	  $('.precisionTime10').clockTimePicker({precision:10});
+	  $('.precisionTime15').clockTimePicker({precision:15});
+	  $('.precisionTime30').clockTimePicker({precision:30});
+	  $('.precisionTime60').clockTimePicker({precision:60});
+	  $('.simpleTime').clockTimePicker({onlyShowClockOnMobile:true});
+	  $('.duration').clockTimePicker({duration:true, maximum:'80:00'});
+	  $('.durationNegative').clockTimePicker({duration:true, durationNegative:true});
+	  $('.durationMinMax').clockTimePicker({duration:true, minimum:'1:00', maximum:'5:00'});
+	  $('.durationNegativeMinMax').clockTimePicker({duration:true, durationNegative:true, minimum:'-5:00', maximum:'5:00', precision:5});
+	});
+  </script>
+  <style type="text/css">
+    h1 { font-size: 20px; margin-bottom:3px; }
+	h2 { margin-top: 40px; margin-bottom:3px; }
+    h3 { font-size: 13px; margin-top:0px; }
+    .main { text-align: center; }
+	.example { margin-bottom: 25px; }
+	.example table { width: 650px; margin: 0px auto; }
+	@media (max-width: 650px) {
+		.example table { width: 100%; }
+		.example td { display: block; text-align: center; }
+	}
+    .time { display:inline-block; font-size:26px; padding:5px; text-align:center; width:94px; margin-top:5px; }
+  </style>
+
+  <script type="text/javascript">
+
+  	var int_max_width_cropzoom  = max_width_cropzoom ;
+	var int_max_height_cropzoom  = max_height_cropzoom ;
+  	
+  	$(document).ready(function(){
+		$('.browse-image').next().next().text('size: '+max_width_cropzoom+' x '+max_height_cropzoom+'px');
+			ganti_category();
+
+		$('#id_event_category0, #id_event_category1').change(function(event) {
+			ganti_category();
+		});
+
+		function ganti_category() {
+		$id_category = $('#id_event_category0').val();
+
+		$url = '{this_controller}/compare_id';
+			$.ajax({
+				url: $url,
+				type: 'POST',
+				dataType: 'JSON',
+				data: {id: $id_category},
+				error       : function (e) {
+					console.log('error');
+				},
+				success: function(data) {
+					// console.log(data)
+		      		//amcham reports
+		      		
+					//amcham newsletter
+
+						// $('#form_thumbnail').slideUp();
+						// $('#mailchimp0').parent().parent().slideDown();
+
+						// $('#page_content0').attr('data-parsley-required',false);
+						// $('#page_content0').parent().parent().find('label').html('Content');
+
+						// $('#teaser0').attr('data-parsley-required',false);
+						// $('#teaser0').parent().parent().find('label').html('Teaser');
+
+		      		// netwoking / amcham in the news
+		      		
+
+		      		 if (data.is_annual_golf_turnament == 1){
+		      			$('#imageForm').slideDown();
+		      			$('#sponsorForm').slideDown();
+		      			// $('#scheduleForm').slideUp();
+		      			// $('#timeForm').slideUp();
+		      			// $('#locationnameForm').slideUp();
+		      			// $('#locationaddressForm').slideUp();
+		      			// $('#templateeventForm').slideUp();
+
+		    			// $('#sponsor0').attr('data-parsley-required',true);
+						// $('#sponsor0').parent().parent().find('label');
+
+					
+					} else if (data.is_annual_golf_turnament == 0){
+		      			$('#imageForm').slideUp();
+		      			$('#sponsorForm').slideUp();
+		      			$('#scheduleForm').slideDown();
+		      			$('#timeForm').slideDown();
+		      			$('#locationnameForm').slideDown();
+		      			$('#locationaddressForm').slideDown();
+		      			$('#templateeventForm').slideDown();
+
+		    			$('#sponsor0').attr('data-parsley-required',false);
+						$('#sponsor0').parent().parent().find('label').html('Sponsor <i class="req">*</i>');
+
+						
+
+
+
+		      		} 
+		      	}
+		      })
+		}
+		
+
+	});
+  </script>
+
+{multiple_file_script}

@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">Edit Sector</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="breadcrumb-page">
+          <ol class="breadcrumb">
+            <li><a href="{base_url}">Amcham</a></li>
+            <li><a href="{base_url}member/profile">Member</a></li>
+            <li class="active">Edit Sector</li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+             <!-- sector -->
+             <div class="title-member-dtl mb0 {hidden_list}">INDUSTRY SECTOR</div>
+             <div class="widget-white pt30 pb0 mb15 {hidden_list}">
+              <div class="subtitle-content mb20">Please describe your Company Industry: (maximum of 3)</div>
+              <div class="row">
+                <form id="sector_data">
+                <div id="area-sector">
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                  {list_sector_1}
+                  <a href="#" class="btn-red btn-link-price mt15 save-sector">Save Changes</a>
+                </div><div class="col-sm-6 col-md-6 col-xs-12">
+                  {list_sector_2}
+                  <!-- <input type="text" name="other-sector-name" class="form-control input-amcham" placeholder="Name of Sector" style="border:1px solid #ccc ;display: none;"> -->
+                </div>
+                </div> 
+                </form>
+              </div>
+            </div>
+            <!-- end sector -->
+
+
+          </div>
+        </div>
+        <div class="media-right">
+          {widget_sidebar}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  $(function () {
+    var other_check       = '{check_other}';
+    var other_check_value = '{check_other_value}';
+
+    if (other_check == 1) {
+     $(".sector[id=66]").prop("checked",true);
+     $("input[name=other-sector-name]").slideDown(); 
+     $("input[name=other-sector-name]").val(other_check_value); 
+    }
+  });
+</script>

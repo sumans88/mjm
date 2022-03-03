@@ -1,0 +1,83 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} {page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update {disable_edit} tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1'  class="form-horizontal">
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Name In<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name_in}" id="name_in" data-parsley-required="true" class='form-control' name="name_in"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Name Out<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name_out}" id="name_out" data-parsley-required="true" class='form-control' name="name_out"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Image</label>
+								<div class="col-md-9">{img}
+									<small><i>(Max Dimension : 1200 x 800px)</i></small>
+								</div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">City<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{city}" id="city" data-parsley-required="true" class='form-control' name="city"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Address</label>
+									<div class="col-md-9"><textarea name="address" rows="4" id="address" class="form-control">{address}</textarea></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Headquarters<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{headquarters}" id="headquarters" data-parsley-required="true" class='form-control' name="headquarters"></div>
+							</div>
+
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Website<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{website}" id="website" data-parsley-required="true" class='form-control' name="website"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Email<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="email" value="{email}" id="email" data-parsley-required="true" class='form-control' name="email"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Description </label>
+								<div class="col-md-9"><textarea  rows="4" id="description" class="form-control" name="description">{description}</textarea></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Is Invis <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="checkbox" id="is_invis" {checked_gratis}> Show</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{imagemanager_config}

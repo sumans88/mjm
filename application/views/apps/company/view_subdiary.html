@@ -1,0 +1,106 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">Company Name : <b>{name}</b></h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div id='grid1' class='my_grid table-responsive' data-perpage='10' data-url="{this_controller}records_subdiary/{id_company}">
+						<div class="row-fluid">
+							<div class="col-sm-12 {disable_add}">
+								<div class="col-sm-9">
+									<button class="btn ml-28 btn-filter-date-unhide"><i class="fa fa-calendar"><span class="default-font"> Filter by Date</span></i></button>
+								</div>
+								<span class='col-sm-3'>
+									<div class='text-right'>
+										<!-- <a class="btn btn-success btn-download" href="{this_controller}download_subdiary">
+											<i class="fa fa-download"></i> Download
+										</a> -->
+										<!-- <a class="btn btn-primary mr-28" href="{this_controller}add_subdiary"><i class="fa fa-plus"></i> Add Subdiary</a> -->
+									</div>
+								</span>
+							</div>
+						</div>
+						<div class="row">
+							<div id="filter-date" class="round-index col-md-8 hidden">
+								<div class="margs row">
+									<div class="col-md-6">
+										<strong>Create Date</strong>
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+											<input type="text" class='cari form-control' readonly="readonly" id="between_from_create_date" placeholder="From" name="between_from_create_date">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<label></label>
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+											<input type="text" class='cari form-control' readonly="readonly" id="between_to_create_date" placeholder="To" name="between_to_create_date">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix">&nbsp;</div>
+
+
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+								<tr>
+									<th class="center" width="20">No</th>
+									<th class="center" >Full Name Member</th>
+									<!-- <th class="center" title='Sort' id='full_name'>Full Name Member<span></span></th> -->
+									<th class="center" title='Sort' id='name_in'>Company Name <span></span></th>
+									<th class="center" title='Sort' id='b-member_category_id'>Menbership<span></span></th>
+									<!-- <th class="center" title='Sort' id='name_out'>Name Overseas <span></span></th> -->
+									<th class="center" title='Sort' id='tanggal_buat'>Create Date <span></span></th>
+									<th class="center" >Send Invoice <span></span></th>	
+									<th class="center" title='Sort' id='c-id'>Status <span></span></th>
+									<!-- <th class="center" title='Sort' id='company_committee'>Commite <span></span></th> -->
+									<!-- <th class="center" title='Sort' id='company_sector'>Sector <span></span></th>		 -->
+									<th class="center" width="90">Action</th>
+								</tr>
+								<tr class='filter'>
+									<td></td>
+									<td><input type='text' class='cari form-control' id='search_fullname' placeholder='Search...'></td>
+									<td><input type='text' class='cari form-control' id='search_name_in' placeholder='Search...'></td>
+									<!-- <td><input type='text' class='cari form-control' id='search_name_out' placeholder='Search...'></td> -->
+									<td><select class='cari form-control'            id="search_membership">{list_membership}</select></td>
+									<!-- <td><input type='text' class='cari form-control datepicker' id='search_tanggal_buat' placeholder='Cari...'></td> -->
+									<td></td>
+									<td></td>
+									<td><select class='cari form-control'            id="search_status"'>{list_status}</select></td>
+									<!-- <td><input type='text' class='cari form-control' id='search_company_committee' placeholder='Search...'></td> -->
+									<!-- <td><select class='cari form-control'            id="search_company_sector">{list_membership}</select></td> -->
+									<td></td>
+								</tr>
+							</thead>
+							<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$('#between_from_create_date').change(function(){
+		$( "#between_from_create_date").keyup();
+		return false;
+    });
+    $('#between_to_create_date').change(function(){
+		$( "#between_to_create_date").keyup();
+		return false;
+    });
+</script>

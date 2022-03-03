@@ -1,0 +1,24 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{full_name}</td>
+		<td>{job}</td>
+		<!-- <td>{citizenship}</td> -->
+		<td>{name_in}</td>
+		<!-- <td>{name_out}</td> -->
+		<td>{membership}</td>
+		<td><a class="btn btn-primary" href="{base_url}apps/member/view/{member_id}">Preview</a></td>
+		<td><a class="btn btn-success modal-send-invoice {is_paid}" data-id="{member_id}">Send</a></td>
+		<td>{status}</td>
+		<!-- <td>{language}</td>
+		<td class="center">
+			<a href="{this_controller}view/{id}" title="View Detail" target="_BLANK" class="fa fa-search action-form-icon"></a>
+			<a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td> -->
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="20">{paging}</td>
+</tr>

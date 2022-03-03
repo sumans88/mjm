@@ -1,0 +1,170 @@
+<!-- banner top -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- heading  -->
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_name}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- content -->
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      <!-- breadcumb -->
+      {breadcrumb_frontend}
+      <!-- <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="breadcrumb-page">
+          <ol class="breadcrumb">
+            {news_breadcrumb}
+          </ol>
+        </div>
+      </div> -->
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+              <!-- content -->
+              <div class="title-comdet title-year {dsp_year}">{news_year}</div>
+              <div class="title-comdet">{news_title}</div>
+              {share}
+              <div class="date-articles {dsp_news_teaser} mb5"><span>{news_teaser}</span></div>
+              <div class="date-articles mb15"><span>{news_date}<!-- November 8, 2017 --> </span>{news_writer}<!--  By Jet Damazo-Santos --></div>
+
+
+              <div class="slider-index si-artdei {dsp_detail_image}">
+                <div class="owl-carousel owl-theme" id="slider-index">
+                  {detail_image}
+                  <div class="item">
+                    {detail_image_img}
+                    <!-- <img src="images/slider.jpg"> -->
+                    <div class="feature-number {dsp_caption_detail_img}">
+                      {detail_image_description}
+                    </div>
+                  </div>
+                  {/detail_image}
+                </div>
+              </div>
+                  
+                <!-- {slider_photo} -->
+                  <!-- <div class="{is_photo} mb20">
+                    {slider_photo_img}
+                  </div> -->
+                <!-- {/slider_photo} -->
+
+              <div class="slider-index si-artdei {is_video}">{video}</div>
+                {page_content}
+
+              <div class="{invis_download}">
+                <br>
+                <!--<button class="btn btn-default" id="{idx}" d-title="news" onclick="download_file(this)">Download File</button>-->
+                <a class="btn btn-danger btn-lg" id="{idx}" d-title="news" onclick="download_file(this)"><span></span>  DOWNLOAD FILE</a>
+              </div>
+
+              <div class="{dsp_download_us}">
+                <hr class="line-content mt50 mb50">
+                <div class="title-event-list mb30">Initiative Indonesia Reports</div>
+                <div class="list-reports">
+                  <div class="media media-latest">
+                    <div class="media-left">
+                      <div class="thumbnail-amcham thumb-reports">{news_img}</div>
+                    </div>
+                    <div class="media-body">
+                      <div class="widget-white pt0">
+                        <div class="event-type et-us">{news_year}</div>
+                        <a class="btn-red link-reports tangan" id="{idx}" d-title="news" onclick="download_file(this)">Read and Download Report</a>
+                        <hr class="line-content mt15">
+                        <div class="title-event-list"><a href="{news_url}">{news_title}</a></div>
+                        <!-- <div class="title-event-list"><a href="{news_url}">{news_title}</a></div> -->
+                        <p>{news_teaser}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- event material -->
+              <div class="{dsp_materials}">
+                <hr class="line-content mt50 mb20 ">
+                <!-- <h4 class="title-content "><b>Committee Materials</b></h4> -->
+              
+                <ul class="ul-committee">
+                  {materials}
+                  <li>{materials_filename} <a class="tangan" d-title="news" id="{mat_idx}"
+                      onclick="download_news_material(this)">click here</a></li>
+                  {/materials}
+                </ul>
+              </div>
+              <div class="{dsp_video_gallery}">
+                <hr class="line-content mt50 mb50">
+                  <h4 class="title-content"><b>Video Gallery</b></h4>
+                  <div class="row mt30">
+                    {list_video}
+                      <div class="col-sm-4 col-md-4 col-xs-12">
+                        <a href="{youtube_url}" data-toggle="modal" data-target="#myModalVideo" class='gallery-video'>
+                          <div class="thumbnail-amcham thumb-gallery">{img_video}<span class="btn-play"><img src="{base_url}asset/images/play-btn.png"></span></div>
+                        </a>
+                      </div>
+                    {/list_video} 
+                  </div>
+              </div>
+
+              <div  class="{dsp_photo_gallery}">
+                <hr class="line-content mt50 mb50">
+                <h4 class="title-content"><b>Photo Gallery</b></h4>
+                {imagelist}
+              </div>
+              
+
+            </div>
+          </div>
+          <!-- sidebar -->
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{modal_imagelist}
+
+<div class="modal fade" id="myModalVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  $('#myModalVideo').on('hide.bs.modal', function () {
+    // #stopVideo
+    var $this = $(this).find('iframe');
+    $this.attr('src', '');
+  });
+  $('.frame-content').find('img').each(function(){
+   if($(this).css('float') === 'right'){
+  $(this).css('margin-left','20px');
+  }
+  })
+});
+
+</script>
+{style}

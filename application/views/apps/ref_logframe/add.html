@@ -1,0 +1,18 @@
+<div class="judul">{judul} Logframe </div>
+<hr>
+<form action='{this_controller}proses/{id}' id='form1'>
+	<div class='row-fluid'>
+		<div class='col-sm-6'>
+			<div class='row-fluid'>
+				<div class='col-sm-4'>Name <i class='req'>*</i></div>
+				<div class="col-sm-8"><input type="text" value="{name}" id="name" class='col-sm-12' name="name"></div>
+			</div> 
+		</div>
+	</div>
+	<div>
+		<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+		<a class="btn btn-warning" href='{this_controller}'><i class="icon-ban-circle"></i> Batal</a>
+	</div>
+
+</form> 
+<script language="JavaScript" src="{base_url}assets/js/apps/ref_logframe.js"></script>

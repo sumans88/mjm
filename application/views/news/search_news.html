@@ -1,0 +1,17 @@
+<div id="media-news">
+{news}
+  <div class="media media-latest">
+    <div class="media-left">
+      <div class="thumbnail-amcham thumb-latest">{news_img}</div>
+    </div>
+    <div class="media-body">
+      <div class="widget-white">
+        <div class="event-type">{news_category}  |  {news_date}</div> <!-- Sep 29, 2017 -->
+        <div class="title-event-list"><a href="{news_url}">{news_title}</a></div>
+        <p>{news_teaser}</p>
+      </div>
+    </div>
+  </div>
+{/news}
+</div>
+<div class="text-center mt15 {dsp_load_more}"><span href="{base_url}{lang}/news/more/{uri_path}/{paging}/0/{keyword}/{month}/{year}" class="load-more tangan">{lang_load_more}</span></div>

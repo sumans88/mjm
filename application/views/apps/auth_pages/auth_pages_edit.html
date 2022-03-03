@@ -1,0 +1,50 @@
+<div class="col-sm-6">	
+	<form method='post' name='form_auth' id='form_auth'>
+		<table class='table table-striped'>
+			<thead>
+				<tr>
+					<th class='ui-state-default ui-th-column ui-th-ltr bl bt bb' rowspan='2'>Menu</th>
+					<th class='ui-state-default ui-th-column ui-th-ltr bt bb'>View</th>
+					<th class='ui-state-default ui-th-column ui-th-ltr bt bb'>Insert</th>
+					<th class='ui-state-default ui-th-column ui-th-ltr bt bb'>Update</th>
+					<th class='ui-state-default ui-th-column ui-th-ltr bt bb br'>Delete</th>
+				</tr>
+				<tr>
+					<td class='ui-state-default ui-th-column ui-th-ltr bb ck'><input type='checkbox' onclick="$('.v').attr('checked',this.checked);"></td>
+					<td class='ui-state-default ui-th-column ui-th-ltr bb ck'><input type='checkbox' onclick="$('.i').attr('checked',this.checked);"></td>
+					<td class='ui-state-default ui-th-column ui-th-ltr bb ck'><input type='checkbox' onclick="$('.u').attr('checked',this.checked);"></td>
+					<td class='ui-state-default ui-th-column ui-th-ltr bb br ck'><input type='checkbox' onclick="$('.d').attr('checked',this.checked);"></td>
+				</tr>
+			</thead>
+			{list_menu}
+			<tr align='center' class='hov'>
+				<td class='bb bl' align='left'>{nama_menu}<input type='hidden' value='{id}' name='menu[{id}]'></td>
+				<td class='bb bl'><input type='checkbox' class='v' name='view[{id}]' value='1' {rchecked}></td>
+				<td class='bb bl'><input type='checkbox' class='i' name='insert[{id}]' value='1' {cchecked}></td>
+				<td class='bb bl'><input type='checkbox' class='u' name='update[{id}]' value='1' {uchecked}></td>
+				<td class='bb bl br'><input type='checkbox' class='d' name='delete[{id}]' value='1' {dchecked}></td>
+			</tr>
+			{/list_menu}
+		</table>
+		<input type='hidden' name='id_grup' value='{id_grup}'>	
+		<!--<input type='button' id='update_auth' class='update' value='Update Auth'>-->
+		<button type="button" value='Update Auth' id='update_auth' class="btn btn-primary update"><i class="fa fa-save"></i> Update Auth</button>
+	
+	</form>
+</div>
+<script>
+$('#update_auth').click(function(){
+		var param 			= $('#form_auth').serialize();
+		var url 			= '{base_url}apps/auth_pages/update_auth';
+		$.ajax({
+			url         : url,
+			type        : "POST",
+			data        : param,
+			beforeSend  : function(){$('#update_auth').html(loadingBtn);},
+			success     : function(msg){
+				$('#update_auth').html(updateBtn+' Auth');
+				$.gritter.add({title:page_name, text: msg});
+			}
+	})
+})
+auth_system('{auth_insert}','{auth_update}','{auth_delete}');</script>

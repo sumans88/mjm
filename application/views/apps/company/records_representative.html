@@ -1,0 +1,24 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{full_name}</td>
+		<td>{job}</td>
+		<!-- <td>{citizenship}</td> -->
+		<td>{m_email}</td>
+		<td>{m_t_number}</td>
+		<!-- <td>{m_m_number}</td> -->
+		<td>{create_date}</td>
+		<td>{status_payment}</td>
+		<td class="center">
+			<a href="{this_controller}view/{member_id}" title="View Detail" target="_BLANK" class="fa fa-search action-form-icon"></a>
+			<a href="{this_controller}add/{member_id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Block Member"class="fa fa-times-circle-o tangan block action-form-icon {dsp_btn_block}" id='{member_id}' data-url-rm='block_member'></a>
+			<a title="Unblock Member" class="fa fa-check-circle-o tangan unblock action-form-icon {dsp_btn_unblock}" id='{member_id}' data-url-rm='unblock_member'></a>
+			<a title="Delete Member" class="fa fa-trash-o tangan hapus action-form-icon" id='{member_id}' data-url-rm='del_member'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="20">{paging}</td>
+</tr>

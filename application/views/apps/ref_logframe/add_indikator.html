@@ -1,0 +1,46 @@
+<div class="judul">{judul} Indikator</div>
+<hr>
+<form action='{this_controller}proses_indikator/{id}' id='form1'>
+	<input type='hidden' name='id_ref_logframe' id='id_ref_logframe' value="{id_ref_logframe}">
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Logframe Title</div>
+		<div class="col-sm-6">{logframe}</div> 
+	</div>
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Indicator <i class='req'>*</i></div>
+		<div class="col-sm-4"><textarea name="indikator" id="indikator" class="col-sm-12">{indikator}</textarea></div> 
+	</div>
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Baseline</div>
+		<div class="col-sm-4"><textarea name="baseline" id="baseline" class="col-sm-12">{baseline}</textarea></div> 
+	</div> 
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Milestone 1</div>
+		<div class="col-sm-4"><textarea name="milestone1" id="milestone1" class="col-sm-12">{milestone1}</textarea></div>
+		<div class="col-sm-4"><input type="text" value="{tgl_milestone1}" id="tgl_milestone1" class='col-sm-5 datepicker' name="tgl_milestone1"></div>
+	</div> 
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Milestone 2</div>
+		<div class="col-sm-4"><textarea name="milestone2" id="milestone2" class="col-sm-12">{milestone2}</textarea></div>
+		<div class="col-sm-4"><input type="text" value="{tgl_milestone2}" id="tgl_milestone2" class='col-sm-5 datepicker' name="tgl_milestone2"></div>
+	</div>
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Milestone 3</div>
+		<div class="col-sm-4"><textarea name="milestone3" id="milestone3" class="col-sm-12">{milestone3}</textarea></div>
+		<div class="col-sm-4"><input type="text" value="{tgl_milestone3}" id="tgl_milestone3" class='col-sm-8 datepicker' name="tgl_milestone3"></div>
+	</div>
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Target</div>
+		<div class="col-sm-4"><textarea name="target" id="target" class="col-sm-12">{target}</textarea></div>
+		<div class="col-sm-4"><input type="text" value="{tgl_target}" id="tgl_target" class='col-sm-5 datepicker' name="tgl_target"></div>
+	</div>
+	<div class='row-fluid'>
+		<div class='col-sm-2'>Posisi Urutan Tampilan</div>
+		<div class="col-sm-4"><input type="text" value="{urutan}" id="urutan" class='col-sm-12' name="urutan"></div>
+	</div> 
+	<div class='row-fluid'>
+		<a class="btn btn-primary" id='save_kontak2'><i class="fa fa-save"></i> {proses}</a>
+		<a class="btn btn-warning" href="{this_controller}view/{id_ref_logframe}"><i class="icon-ban-circle"></i> Batal</a>
+	</div> 
+</form> 
+<script language="javascript" src="{base_url}assets/js/apps/ref_logframe.js"></script>

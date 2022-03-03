@@ -1,0 +1,25 @@
+{list_images}
+<div id="imag{nomorGal}{rowNum}"  class="col-md-12 album-gallery-list" data-id="{idGallery}" style="margin-bottom: 15px;">
+	<div class="col-md-3">
+		<img src="{base_url}images/gallery/{filename}" width="100px" />
+	</div>
+	<div class="col-md-9">
+		<input type="text" placeholder="Name" class="form-control" style="margin-bottom: 10px;" value="{name_img}" readonly="readonly">
+		<textarea id="descImag{nomorGal}{rowNum}" placeholder="Description" class="form-control" style="height: 75px;resize: none;margin-bottom: 10px;" readonly="readonly">{description_img}</textarea>
+		<select id="tag-image-{rowNum}" disabled="disabled" multiple class="form-control" style="max-width:100%;"></select>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		var tags;
+		$("#tag-image-{rowNum}").select2({
+		  tags: [{tags}],
+		  tokenSeparators: [","]
+		})
+		var temp = "{tag_images}";
+		var selectedValues = temp.split(',');
+		$("#tag-image-{rowNum}").select2('val',selectedValues);
+	});
+</script>
+{/list_images}

@@ -1,0 +1,314 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} {page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update {disable_edit} tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1'  class="form-horizontal">
+							<div class="form-group  no-margin">
+								<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">First Name<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{firstname}" id="firstname" data-parsley-required="true" class='form-control' name="firstname"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Last Name</label>
+								<div class="col-md-9"><input type="text" value="{lastname}" id="lastname" data-parsley-required="true" class='form-control' name="lastname"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Mr/Ms/etc<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{prefix_name}" id="prefix_name" data-parsley-required="true" class='form-control' name="prefix_name"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Job Title</label>
+								<div class="col-md-9"><input type="text" value="{job}" id="job" data-parsley-required="true" class='form-control' name="job"></div>
+							</div>
+							<!-- <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Linkedin ID</label>
+								<div class="col-md-9"><input type="text" value="{linkedin_id}" id="linkedin_id" data-parsley-required="true" class='form-control' name="linkedin_id"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Citizenship</label>
+								<div class="col-md-9"><input type="text" value="{citizenship}" id="citizenship" data-parsley-required="true" class='form-control' name="citizenship"></div>
+							</div> -->
+						
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Photo</label>
+								<div class="col-md-9">
+									<div class="input-group">
+				                          <span class="input-group-btn">
+				                              <span class="btn btn-default btn-file">
+				                                  Browse… <input type="file" id="imgInp" src="{img}" name="img">
+				                              </span>
+				                          </span>
+				                          <input type="text" class="form-control" readonly>
+				                      </div>
+                      				<img id='img-upload' style="max-width: 40%" src="{img}"/>
+								</div>
+							</div>
+							
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Sector</label>
+								<div class="col-md-9">
+
+									 <div class="title-frame text-left"></div>
+					                    <div id="area-sector">
+					                    	 <div class="col-sm-6 col-md-6 col-xs-12">
+								              {list_sector_1}
+								            </div><div class="col-sm-6 col-md-6 col-xs-12">
+								              {list_sector_2}
+								              <input type="text" name="other-sector-name" class="form-control input-amcham" placeholder="Name of Sector" style="border:1px solid #ccc ;display: none;">
+								            </div>
+					                    </div>
+								</div>
+							</div> 
+
+							<hr>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Company Name <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name_in}" id="name_in" data-parsley-required="true" class='form-control' name="name_in"></div>
+							</div>
+
+							<!-- <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">International/Affiliate Name (USA/Overseas)<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name_out}" id="name_out" data-parsley-required="true" class='form-control' name="name_out"></div>
+							</div> -->
+
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">City<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{city}" id="city" data-parsley-required="true" class='form-control' name="city"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Address</label>
+								<div class="col-md-9"><textarea name="address" rows="4" id="address" class="form-control">{address}</textarea></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Headquarters<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{headquarters}" id="headquarters" data-parsley-required="true" class='form-control' name="headquarters"></div>
+							</div>
+
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Website<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{website}" id="website" data-parsley-required="true" class='form-control' name="website"></div>
+							</div>
+
+							<!-- <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Email<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="email" value="{email}" id="email" data-parsley-required="true" class='form-control' name="email"></div>
+							</div> -->
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Description </label>
+								<div class="col-md-9"><textarea  rows="4" id="description" class="form-control" name="description">{description}</textarea></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Photo</label>
+								<div class="col-md-9">
+									<div class="input-group">
+				                          <span class="input-group-btn">
+				                              <span class="btn btn-default btn-file">
+				                                  Browse… <input type="file" id="imgInp1" src="{img_company}" name="img_company" >
+				                              </span>
+				                          </span>
+				                          <input type="text" class="form-control" readonly>
+				                      </div>
+                      				<img id='img-upload1' src="{img_company}" style="max-width: 40%"  />
+								</div>
+							</div>
+							<input type="hidden" name="company_id" value="{company_id}">
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Information not available for Public<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="checkbox" value="1" name="is_invis" id="is_invis" {checked_gratis}> Hide </div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Committee</label>
+								<div class="col-md-9">
+
+									 <div class="title-frame text-left"></div>
+					                    <div id="area-committee">
+					                        {list_committee}
+					                    </div>
+								</div>
+							</div>
+							<hr>
+
+						<!-- <hr> -->
+
+							<!-- <div class='form-group no-margin'>
+								<label class="col-md-3 control-label">Expired Date</label>
+								<div class="col-md-9">
+									<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+										<input type="text" value="{expired_date}" id="expired_date" class='form-control' name="expired_date" readonly="readonly">
+										<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									</div>
+								</div>
+							</div> -->
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	img = "{img}";
+	img_company = "{img_company}";
+
+	if (img.split('/').pop() =='no_image.png' ) {
+		$("#img-upload").hide();
+	}
+
+	if (img_company.split('/').pop() =='no_image.png' ) {
+		$("#img-upload1").hide();
+	}
+
+	$(document).ready( function() {
+      $(document).on('change', '.btn-file :file', function() {
+    var input = $(this),
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [label]);
+    });
+
+    $('.btn-file :file').on('fileselect', function(event, label) {
+        
+        var input = $(this).parents('.input-group').find(':text'),
+            log = label;
+        
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+      
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+            	$('#img-upload').show();
+                $('#img-upload').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function(){
+        readURL(this);
+    });   
+  });
+</script>
+
+
+<script type="text/javascript">
+	$(document).ready( function() {
+      $(document).on('change', '.btn-file :file', function() {
+    var input = $(this),
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [label]);
+    });
+
+    $('.btn-file :file').on('fileselect', function(event, label) {
+        
+        var input = $(this).parents('.input-group').find(':text'),
+            log = label;
+        
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+      
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+            	$('#img-upload1').show();
+                $('#img-upload1').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp1").change(function(){
+        readURL(this);
+    });   
+  });
+
+	$(document).ready(function(){
+
+	var other_check       = '{check_other}';
+    // var other_check_value = '{check_other_value}';
+    if (other_check == 1) {
+    	$('input[name="other-sector-name"]').show();
+    	// $("input[name=other-sector-name]").val(other_check_value); 
+    	$(".sector[id=66]").prop("checked",true);
+    } else{
+    	$('input[name="other-sector-name"]').hide();
+    }
+
+    // $('.sector').attr('id',66).click(function(){
+    // 	if($(this).prop('checked')){
+    // 		$('input[name="other-sector-name"]').show();
+    // 	}else{
+    // 		$('input[name="other-sector-name"]').hide();
+    // 	}
+    // });
+    
+
+	$('.sector').change(function() {
+	var maxCheckedSector = 3 
+	var countCheckedSector = document.querySelectorAll('input[name="id_sector[]"]:checked').length;
+
+	if (countCheckedSector > maxCheckedSector){
+		console.log('enough');
+		this.checked = false; 
+    	event.preventDefault();
+    	alert('Maximal 3 Sector You Are Choosen')
+	} else {
+		console.log('more than');
+	}
+
+	});
+});
+
+$(document).on("click", "#is_invis", function(){
+	if($(this).attr('checked')){
+          $(this).val(1);
+     }else{
+          $(this).val(0);
+     }
+});
+</script>
+

@@ -1,0 +1,14 @@
+<div style="text-align: center;">
+  <img src="{base_url}asset/images/404.png" alt="not found">
+  <div class="four04-isi" >
+    Sorry, we dont cant found page u looking for
+    <!-- Maaf, kami tidak bisa menemukan halaman yang Anda tuju. Halaman mungkin sudah tidak ada atau pindah. -->
+  </div>
+  <!-- <div class="btn-four04"> -->
+    <a  class="" href="{base_url}">
+      <input class="btn btn-danger" type="button" value="
+      GO BACK TO HOME PAGE      
+      "></a>
+      <!-- SILAHKAN KEMBALI KE HALAMAN BERANDA -->
+  <!-- </div>   -->
+</div>

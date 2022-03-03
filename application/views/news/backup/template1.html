@@ -1,0 +1,87 @@
+<div class="container-fluid container-fluid-dtl {dsp_no_event}">
+  <div class="container">
+    <div class="row row-dtl">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-dtl">
+        <div class="breadcrumb-share">
+          <div class="breadcrumb-dtl">
+            <ol class="breadcrumb">
+              {lang_no_news}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid {top_view}">
+    <div class="row">
+        <div class="col-sm-12 no-padding">
+            <div id="slide-header" class="owl-carousel owl-theme"> 
+                <div class="item">
+                    <img src="{top_img}" alt="The Last of us">
+                    <div class="tb-caption-slider-page">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-xs-12 no-padding">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="date-slider-page"><span>{top_start_date_day}</span><span class="month">{top_start_date_month}</span></div>
+                                        </div>  
+                                    <div class="media-body">{top_teaser}<a href="{url}/detail/{uri_path_detail}">....{lang_read_more}</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid container-fluid-content-page">
+    <div class="container">
+            <div class="row row-list-eventspage">
+            {top3}
+                <div class="col-sm-6 col-md-6 col-xs-12 col-list-eventspage heightsame">
+                    <div class="list-events-page">
+                        <div class="thumb-list-events-page">
+                            <div class="type-newsvents">{top3_category}</div>
+                            <a href="#"><img src="{top3_img}"></a>
+                        </div>
+                        <div class="desc-list-events-page">
+                            <div class="media">
+                                <div class="media-left">
+                                    <div class="date-slider-page"><span>{top3_day}</span><span class="month">{top3_month}</span></div>
+                                </div>
+                                <div class="media-body">
+                                    <div class="title-ft-news"><a href="{url}/detail/{top3_url}">{top3_title}</a></div>
+                                    <p>{top3_teaser}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {/top3}
+            <div class="col-sm-6 col-md-6 col-xs-12 col-list-eventspage heightsame">
+                <div class="list-events-page list-events-page-list">
+                    {news}
+                        <div class="list-onlist">
+                            <div class="type-newsvents">{category}</div>
+                            <div class="media">
+                                <div class="media-left">
+                                    <div class="date-slider-page"><span>{event_day}</span><span class="month">{event_month}</span></div>
+                                </div>
+                                <div class="media-body">
+                                    <div class="title-ft-news"><a href="{url}/detail/{event_url}"><p>{event_name}</p></a></div>
+                                    <!-- <p>{teaser}</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    {/news}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

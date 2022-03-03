@@ -1,0 +1,58 @@
+{slideshow}
+<div class="container-fluid container-fluid-content-page">
+    <div class="container">
+      <div class="row row-list-eventspage">
+      {top3}
+      <div class="col-sm-6 col-md-6 col-xs-12 col-list-eventspage heightsame heightsame-2">
+        <div class="list-events-page">
+          <div class="thumb-list-events-page" {isImg}>
+            <!-- <div class="type-newsvents">{top3_category}</div> -->
+            <a href="{url}/detail/{top3_url}">{top3_img}</a>
+          </div>
+          <div class="desc-list-events-page top-news-3">
+            <div class="media">
+              <div class="media-left">
+                <div class="date-slider-page"><span>{top3_day}</span><span class="month">{top3_month}</span></div>
+              </div>
+              <div class="media-body">
+                <span style="font-size: 14px;">{top3_category}</span>
+                <div class="title-ft-news">
+                  <a href="{url}/detail/{top3_url}">{top3_title}</a>
+                </div>
+                <p>{top3_teaser}</p>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      {/top3}
+        <div id="list-news">
+          {news}
+          <div class="col-sm-12 col-md-12 col-xs-12 col-list-eventspage">
+            <div class="list-events-page list-events-listall">
+              <div class="thumb-list-events-page" {event_imgCategory}>
+                <!-- <div class="type-newsvents">{category}</div> -->
+                <a href="{url}/detail/{event_url}">{event_img}</a>
+              </div>
+              <div class="desc-list-events-page"{event_imgMedia}>
+                <div class="media">
+                  <div class="media-left">
+                    <div class="date-slider-page"><span>{event_day}</span><span class="month">{event_month}</span></div>
+                  </div>
+                  <div class="media-body">
+                    <span style="font-size: 14px;">{category}</span>
+                    <div class="title-ft-news">
+                      <a href="{url}/detail/{event_url}">{event_name}</a>
+                    </div>
+                    <p>{teaser}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/news}
+          <div class="text-center {dsp_load_more}"><a href="{base_url}{lang}/news/more/{uri_path}/{paging}" class="load-more">{lang_load_more}</a></div>
+        </div>
+    </div>
+    </div>
+</div>

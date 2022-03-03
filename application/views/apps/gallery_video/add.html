@@ -1,0 +1,200 @@
+<style type="text/css">
+	.myProgress {
+	    position: relative;
+	    width: 100%;
+	    height: 30px;
+	    background-color: #ababab;
+	    margin-bottom: 10px;
+	}
+	.myBar {
+	    position: absolute;
+	    width: 1%;
+	    height: 100%;
+	    background-color: #31b0d5;
+	}	
+	.labelImag {
+	    text-align: center; /* If you want to center it */
+	    line-height: 30px; /* Set the line-height to the same as the height of the progress bar container, to center it vertically */
+	    color: white;
+	}
+</style>
+<script src="{base_url}assets/js/html5shiv.js"></script>
+<script src="{base_url}assets/js/selectivizr.js"></script>
+<link rel="stylesheet" type="text/css" href="{base_url}assets/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="{base_url}assets/css/component.css" />
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+<script type="text/javascript">
+	function progressLoad(idLang, idImag){
+		var elem = document.getElementById("myBar" + idLang + idImag); 	    
+	    var width = 10;
+	    var id = setInterval(frame, 10);
+	    function frame() {
+	        if (width >= 100) {
+	            clearInterval(id);
+	        } else {
+	        	width++; 
+	    		elem.style.width = width + '%'; 
+	        	document.getElementById("label" + idLang + idImag).innerHTML = width * 1 + '%';
+	        }
+	    }
+	}
+	function progressLoadAll(){
+		var elem = document.getElementByClassName("myBar"); 	    
+	    var width = 10;
+	    var id = setInterval(frame, 10);
+	    function frame() {
+	        if (width >= 100) {
+	            clearInterval(id);
+	        } else {
+	        	width++; 
+	    		elem.style.width = width + '%'; 
+	        	document.getElementByClassName("label").innerHTML = width * 1 + '%';
+	        }
+	    }
+	}
+</script>
+<h1 class="page-header">Gallery Video</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Gallery Video</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear-fix">&nbsp;</div>
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+						<ul class="nav nav-pills">
+					<!-- 		{list_lang2}
+							<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+							{/list_lang2} -->
+						</ul>
+						<div class="tab-content">
+							{list_lang}
+							<div class="tab-pane fade {active}" id="nav-pills-tab-{nomor}">
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Gallery Video Name <i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{name_data}" data-parsley-required="{validation}" id="name{nomor}" class='uri_path form-control' name="name[]"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<label class="col-md-2 control-label">Gallery Video URL <i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{uri_path}" id="uri_path{nomor}" class='uri_path form-control' name="uri_path[]"></div>
+								</div> 
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Description</label>
+									<div class="col-md-9"><textarea name="description[]" rows="4" id="description{nomor}" class="form-control">{description}</textarea></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Image</label>
+									<div class="col-md-9">
+										{img}
+										<div style="color: green">size : 850 x 480px</div><br/>
+										<a style="cursor: pointer;" onclick="delImage('{nomor}', '{base_url}')">Delete Image</a>
+										<input type="hidden" name="imgDelete[]" id="imgDelete{nomor}" value="0">
+									</div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Youtube URL</label>
+									<div class="col-md-9"><input type="text" value="{youtube_url}" id="youtube_url{nomor}" class='form-control' name="youtube_url[]"></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">&nbsp;</label>
+									<div class="col-md-9"><b>Example: https://www.youtube.com/embed/DB6PUtcwiD0</b></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Tags</label>
+									<div class="col-md-9"><select id="tags{nomor}" multiple class='form-control' name="tags[{lang_id}][]"></select></div>
+								</div>
+							   <!--  <div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Seo Title</label>
+									<div class="col-md-9"><input type="text" value="{seo_title}" id="seo_title{nomor}" class='form-control' name="seo_title[]"></div>
+								</div> -->
+							   <!--  <div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Meta Description</label>
+									<div class="col-md-9"><textarea  rows="4" id="meta_description{nomor}" name="meta_description[]" class="form-control ckeditor">{meta_description}</textarea></div>
+								</div>
+							    <br> -->
+							    <!-- <div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Meta Keywords</label>
+									<div class="col-md-9"><input type="text" value="{meta_keywords}" id="meta_keywords{nomor}" class='form-control' name="meta_keywords[]"></div>
+								</div> -->
+								<div class="form-group  no-margin {enable_edit_status_publish} {invis}">
+									<label class="col-md-2 control-label">Status <i class='req'>*</i></label>
+									<div class="col-md-9"><select id="id_status_publish{nomor}" class='form-control' name="id_status_publish[]">{list_status_publish}</select></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{lang_id}" id="id_lang{nomor}" class='form-control' name="id_lang[]"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{id_gallery}" id="id_gallery{nomor}" class='form-control' name="id[]"></div>
+								</div>
+							</div>
+							 <input type="hidden" id="number" value="{jmlImages}"/>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$('#name{nomor},#uri_path{nomor}').keyup(function(){
+										$('#uri_path{nomor}').val(convert_to_uri($(this).val()));
+									});
+									$('#name{nomor},#seo_title{nomor}').keyup(function(){
+										$('#seo_title{nomor}').val($(this).val());
+									});
+									$('#description{nomor},#meta_description{nomor}').keyup(function(){
+										CKEDITOR.instances.meta_description{nomor}.setData($(this).val());
+									});
+								})
+								$(document).ready(function(){
+									$("#tags{nomor}").select2({
+									  tags: [{tags}],
+									  tokenSeparators: [","]
+									})
+									var selectedValues = "{tags_data}".split(',');
+									$("#tags{nomor}").select2('val',selectedValues);
+								}) 
+
+							
+							</script>
+							{imagemanager_config}
+							{/list_lang}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{gallery_images_modal}
+{filemanager_config}
+<script src="{base_url}assets/js/custom-file-input.js"></script>
+<script type="text/javascript">
+	$(".category").change(function(){
+		var id = $(this).val();
+		if(id == 2){
+			$("#area-youtube").show();
+		}
+		else{
+			$("#area-youtube").hide();
+		}
+	})
+	if('{id_gallery_category}' == 2){
+		$("#area-youtube").show();
+	}
+
+
+							
+</script>
+
+

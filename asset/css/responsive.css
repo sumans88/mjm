@@ -1,0 +1,205 @@
+
+@media screen and (max-width: 1199px) {
+	.container, .container-md, .container-sm {
+		max-width: 100%;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.navbar-toggler  {
+		border: 1px solid #8F271F;
+		padding: 10px;
+	}
+	.navbar-toggler:focus {
+		box-shadow: none;
+	}
+	.navbar-toggler-icon {
+		height: 25px;
+		border-top: 4px solid #8F271F;
+    	border-bottom: 4px solid #8F271F;
+    	position: relative;
+	}
+	.navbar-toggler-icon:before {
+		height: 4px;
+		width: 100%;
+		background: #8F271F;
+		content: "";
+		position: absolute;
+		top: calc(50% - 2px);
+		left: 0;
+	}
+	.card-listmur  {
+		margin-bottom: 20px;
+	}
+	.card-listmur a {
+		width: auto;
+	}
+	.listmur-child .d-flex.align-items-center.col-sm-4 {
+		height: 100%;
+	}
+}
+@media screen and (max-width: 991px) {
+	header .navbar-collapse {
+	    position: fixed;
+	    left: 0px;
+	    top: 0px;
+	    width: 270px;
+	    bottom: 0;
+	    background: #026874;
+    	box-shadow: 1px 3px 4px 3px rgb(0 0 0 / 30%);
+	}
+	header .navbar-collapse .navbar-nav {
+		height: calc(100vh - 90px);
+	    overflow: auto;
+	    padding-top: 30px;
+	}
+	.navbar-mjm .navbar-nav .nav-link {
+		color: #fff;
+		padding-left: 20px;
+		padding-right: 20px;
+		width: 100%;
+		font-weight: 500;
+	}
+	.navbar-mjm .navbar-nav .nav-link.btn-yellow {
+		margin-left: 0px !important;
+	    position: absolute;
+	    bottom: 20px;
+	    left: 20px;
+	    right: 20px;
+	    width: auto;
+	}
+	.logo-mobile {
+		display: block;
+		padding: 20px;
+		text-align: center;
+		border-bottom: 1px solid #047381;
+	}
+	.logo-mobile img {
+		width: 75%;
+		filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(191deg) brightness(101%) contrast(104%);;
+	}
+	.navbar-expand-lg .navbar-toggler {
+		display: inline-block !important;
+	}
+	.navbar-mjm .navbar-nav .nav-link:hover, .navbar-mjm .navbar-nav .nav-link.active {
+		color: #fee74e;
+	}
+	.slider-pt {
+		padding: 70px;
+		padding-right: 70px;
+	}
+	.row-choose {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	.col-choose {
+		padding: 15px;
+	}
+}
+@media screen and (max-width: 767px) {
+	.navbar-mjm .c-navbar {
+		height: 60px;
+	}
+	.top-header .container {
+		padding-bottom: 0;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.top-header .d-flex.w-100 span:first-child {
+		display: none !important;
+	}
+	.logo img {
+		height: 40px;
+	}
+	.listmur-child .h-100 {
+		height: auto !important;
+		margin-bottom: 15px;
+	}
+	.banner-index .desc h1 {
+		font-size: 36px;
+	}
+	.banner-index .desc h3 {
+		font-size: 28px;
+	}
+	.about .w-50, .process-tolling .w-50, .choose-mursmedic .w-50, .certifications .w-50 {
+		width: 100% !important;
+	}
+	.about .pe-5 {
+		padding-right: calc(var(--bs-gutter-x) * .5) !important;
+		margin-bottom: 20px;
+	}
+	.list-about li h3 {
+		font-size: 16px;
+	}
+	.list-about li p {
+		font-size: 16px;
+	}
+	.col-choose {
+		padding-top: 10px;
+		padding-bottom: 10px;		
+	}
+}
+@media screen and (max-width: 575px) {
+	.about h3, .process-tolling h2, .choose-mursmedic h2, .certifications h2 {
+		font-size: 20px;
+	}
+	.about h2 {
+		font-size: 18px;
+	}
+	.about .w-50, .choose-mursmedic .w-50, .certifications .w-50
+	.list-about li p {
+		font-size: 14px;
+	}
+	.card-listmur .card-body {
+		padding: 20px !important;
+	}
+	.listmur-child .d-flex.align-items-center.col-sm-4 {
+		height: auto;
+		margin-bottom: 20px;
+	}
+	.listmur-child .card {
+		min-height: auto;
+	}
+	.banner-index .desc h1 {
+		font-size: 28px;
+	}
+	.banner-index .desc h3 {
+		font-size: 18px;
+	}
+	.navbar-toggler {
+		padding: 7px;
+	}
+	.form-contact .form-check .form-check-input, .form-client .form-check .form-check-input {
+		margin-right: 10px;
+	}
+	.form-client label.form-check-label {
+		font-size: 14px;
+	}
+	.btn-nu {
+		display: block !important;
+	}
+	.btn-nu a, .btn-nu span {
+		display: block !important;
+		width: 100% !important;
+	}
+	.list-about li {
+		padding-left: 70px;
+	}
+	.list-about li .thumb {
+		width: 50px;
+		height: 50px;
+	}
+	.slider-pt {
+		padding: 20px;
+		padding-right: 20px;
+	}
+	.slider-pt .swiper-prev, .slider-pt .swiper-next {
+		background: #fee74e;
+		color: #026874;
+		opacity: .5;
+	}
+}
+@media screen and (max-width: 340px) {
+	header .navbar-collapse {
+		width: 245px;
+	}
+}

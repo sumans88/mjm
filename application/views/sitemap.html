@@ -1,0 +1,61 @@
+<div class="container-fluid container-fluid-dtl">
+  <div class="container">
+    <div class="row row-dtl">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-dtl">
+        <div class="breadcrumb-share">
+          <div class="breadcrumb-dtl">
+            <ol class="breadcrumb">
+              {lang_sitemap}
+            </ol>
+          </div>
+          <div class="share-dtl">
+            <ul>
+              <li><a href="#"><img src="{base_url}asset/images/icon-download.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-share.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-print.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-email.png"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-3 col-xs-12 col-dtl">
+        <div class="intro-dtl">
+        </div>
+      </div> 
+      <div class="col-sm-8 col-md-9 col-xs-12 col-dtl">
+        <div class="decs-dtl">
+          <h2 class="title-dtl-cnt">{lang_sitemap}</h2>
+          <ul id="sitemap">
+          	{sitemap}
+          </ul>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<style type="text/css">
+	#sitemap li ul{
+		border-bottom: none !important;
+		list-style-type: circle !important;
+	}
+	#sitemap li ul li{
+		padding: 0 !important;
+	}
+
+	#sitemap li{
+			width: 100% !important;
+
+	}
+	#sitemap .nav>li{
+		display: list-item !important;
+		margin-left: 30px;
+	}
+	#sitemap .nav>li a{
+	 padding:0px;
+	}
+</style>

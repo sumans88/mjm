@@ -1,0 +1,44 @@
+  <style>
+.getImage{
+    border-style: solid;
+    border-width: thick;
+    border-color: #31b0d5;
+}
+
+/*.btn.btn-primary {
+    margin-bottom: 20px;
+    margin-right: 40px;
+}*/
+</style>
+
+  <div class="modal fade invis" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+          <h4 class="modal-title">Gallery Images Uploaded</h4>
+          <div class="form-inline">
+            <input type="hidden" id="idModal" />
+            <input type="text" id="search-picture-server" style="width: 50%; height: 34px; padding: 6px 12px; display: inline-block;
+            margin-top: 10px;" placeholder="Search...">
+            <a class="btn btn-primary" id="search_image_manager" style="margin-top: -1px;"><i class="fa fa-search"></i> Search</a>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row-fluid" id="list-image">
+            <i class="fa fa-refresh fa-spin"></i> Loading...
+          </div>
+        </div>
+        <span class="col-md-offset-1">
+          <div class="pagination-server"></div>
+        </span>
+        <div class="text-right">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addImages()">Add Images Selected</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      var function_pagination_server = 0;
+  </script>

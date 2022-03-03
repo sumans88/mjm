@@ -1,0 +1,16 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{page_name}</td>
+		<td>{uri_path}</td>
+		<td class="center">
+			<a href="{this_controller}view/{id_parent_lang}" title="View Detail" class="fa fa-search action-form-icon"></a>
+			<a href="{this_controller}add/{id_parent_lang}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id_parent_lang}' data-url-rm='del'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

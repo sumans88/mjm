@@ -1,0 +1,20 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{namadepan}</td>
+		<td>{namabelakang}</td>
+		<td>{email}</td>
+		<td>{nohp}</td>
+		<td class="center">{process_time}</td>
+		<td class="center">{is_active_status}</td>
+		<td class="center">
+			<a href="{this_controller}view/{id}" title="View Detail" target="_BLANK" class="fa fa-search action-form-icon"></a>
+			<!--<a href="{this_controller}view/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>-->
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

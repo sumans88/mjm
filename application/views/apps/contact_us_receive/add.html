@@ -1,0 +1,49 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{email} Contact Us Receive</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update {disable_edit} tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Email <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" data-parsley-required="true" value="{email}" id="email" class='col-sm-12' name="email"></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Template  <i class='req'>*</i></label>
+								<div class="col-md-9"><select id="id_email_category"  class='form-control' name="id_email_category">{list_default_email}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Status Publish <i class='req'>*</i></label>
+								<div class="col-md-9">
+									<select id="id_status_publish" class='form-control' data-parsley-required="true" name="id_status_publish">
+										{list_status_publish}
+									</select>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

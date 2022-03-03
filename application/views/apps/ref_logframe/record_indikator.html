@@ -1,0 +1,19 @@
+{data}
+	<tr>
+		<td class="center">{no}</td>
+		<td>{indikator}</td>
+		<td>{baseline}</td>
+		<td>{milestone1}</td>
+		<td>{milestone2}</td>
+		<td>{milestone3}</td>  
+		<td>{target}</td> 
+		<td class="center">
+			<a href="{this_controller}view_indikator/{id}" title="View Detail" class="fa fa-search"></a>
+			<a href="{this_controller}add_indikator/{id_ref_logframe}/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus" id='{id}' data-url-rm='del_indikator'></a>
+		</td> 
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

@@ -1,0 +1,425 @@
+<script>
+function sortable_value(){
+	var productOrder = $(this).sortable('toArray', {attribute: 'data-id'});
+	$("#sortable-value").text (productOrder);
+}
+
+	$(function() {
+		$( "#sortable" ).sortable({ 
+			placeholder: "ui-sortable-placeholder",
+			connectWith: "li",
+			update: function(event, ui) {
+				var productOrder = $(this).sortable('toArray',{attribute: 'data-id'}).toString();
+				$("#sortable-value").text(productOrder);
+				firstCharCommaProductOrder = productOrder.charAt(0);
+				if (firstCharCommaProductOrder == ','){
+					productOrder = productOrder.substring(1);
+				}
+				$("#sortable-value").text(productOrder);
+
+
+
+			}
+		});
+	});
+</script>
+
+<h1 class="page-header">Template Form Register</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Template Form Register</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="span12 text-right">
+							<a class="btn btn-primary insert_data {disable_edit} tangan" id='saves'><i class="icon-save"></i> {proses}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}'><i class="icon-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-12 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+
+							<div class="form-group  no-margin">
+								<label class="col-md-1 control-label">Template Name <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name}" id="title" class='form-control' id="title" name="name" ></div>
+							</div>
+							
+							<div class="form-group  no-margin">
+								<label class="col-md-1 control-label">Form input <i class='req'>*</i></label>
+
+								<!-- form builder -->
+								<div class="col-md-4">
+									<div class="form-builder">	
+										<ul class="ui-selectable" style="list-style-type: none;">
+
+											{list_tipe_input}
+								        	<li id="tipe_input" class="list availablelist" data-id={id_tipe_input} data-id_tipe_input={id_tipe_input} data-name="{name_tipe_input}">{name_tipe_input}
+								        	</li>
+								        	{/list_tipe_input}
+
+								    	</ul>
+						    		</div>
+								</div>
+						    	<!-- end form builder -->
+
+						    	<!-- form sortable -->
+								<div class="col-md-7">	
+									<div class="items" id="sortable">
+										<ul class="ui-sortable list" style="list-style-type: none;">
+										<p>Drag Input Form Here</p>
+										</ul>
+									</div>
+							    </div>
+							    <!-- form sortable -->
+
+						    </div>
+
+						    <div class="form-group  no-margin">
+								<label class="col-md-1 control-label">Status <i class='req'>*</i></label>
+								<div class="col-md-9"><select id="id_status_publish"  class='form-control' name="id_status_publish" data-parsley-required="true">{list_status_publish}</select></div>
+							</div>
+
+							<div id="sortable-value" name="sortable" class="invis"></div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+	.form-builder{
+    border:3px dashed #ccc;
+    margin-right:5px;
+    background-color:hsla(0,0%,100%,.25);
+    width:100%;
+    height:500px;
+    background:#F0FFFF;
+    overflow-y: scroll;
+}
+
+#sortable{
+    border:3px #ccc;
+    margin-right:5px;
+    background-color:hsla(0,0%,100%,.25);
+    width:100%;
+    height:500px;
+    background:#F0FFFF;
+    height: 500px;
+    overflow-y: scroll;
+}
+ul, li {list-style-type: none;}
+
+</style>
+
+<style>
+	ul{
+		padding: 0;
+	}
+	.ui-sortable li.ui-state-default { 
+		margin: 0; 
+		line-height: 48px;
+		font-size: 1.4em; 
+		color: #fff;
+		outline: 0;
+		padding: 0;
+		text-indent: 15px;
+		background: rgb(78,82,91);
+		background: -moz-linear-gradient(top,  rgb(78,82,91) 0%, rgb(57,61,68) 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(78,82,91)), color-stop(100%,rgb(57,61,68)));
+		background: -webkit-linear-gradient(top,  rgb(78,82,91) 0%,rgb(57,61,68) 100%);
+		background: -o-linear-gradient(top,  rgb(78,82,91) 0%,rgb(57,61,68) 100%);
+		background: -ms-linear-gradient(top,  rgb(78,82,91) 0%,rgb(57,61,68) 100%);
+		background: linear-gradient(to bottom,  rgb(78,82,91) 0%,rgb(57,61,68) 100%);
+		border-top: 1px solid rgba(255,255,255,.2);
+		border-bottom: 1px solid rgba(0,0,0,.5);
+		text-shadow: -1px -1px 0px rgba(0,0,0,.5);
+		font-size: 1.1em;
+		position: relative;
+		cursor: pointer;
+		list-style-type: none;
+	}
+	.ui-sortable li.ui-state-default:first-child {
+		border-top: 0; 
+	}
+	.ui-sortable li.ui-state-default:last-child {
+		border-bottom: 0;
+	}
+	
+	.ui-sortable-placeholder {
+		border: 3px dashed #aaa;
+		height: 45px;
+		background: #ccc;
+		list-style-type: none;
+	}
+	.ui-sortable .sort:after {
+		content: "\f0c9";
+		display: inline-block;
+		font-family: "FontAwesome";
+		position: absolute;
+		right: 36px;
+		top: 9px;
+		text-align: center;
+		line-height: 35px;
+		color: rgba(255,255,255,.2);
+		text-shadow: 0px 0px 0px rgba(0,0,0,0);
+		cursor: move;
+		list-style-type: none;
+	}
+	.ui-sortable .remove:after {
+		content: "X";
+		display: inline-block;
+		font-family: "FontAwesome";
+		position: absolute;
+		right: 12px;
+		top: 9px;
+		text-align: center;
+		line-height: 35px;
+		color: rgba(255,255,255,.2);
+		text-shadow: 0px 0px 0px rgba(0,0,0,0);
+		list-style-type: none;
+	}
+	.ui-sortable .is_required:after {
+		display: inline-block;
+		font-family: "FontAwesome";
+		position: absolute;
+		right: 12px;
+		top: 9px;
+		text-align: center;
+		line-height: 35px;
+		color: rgba(255,255,255,.2);
+		text-shadow: 0px 0px 0px rgba(0,0,0,0);
+		cursor: pointer;
+		list-style-type: none;
+	}
+	.is_required{
+		margin-left: 0;
+		float: right;
+		margin-right: 40px;
+	}
+	.is_required input {
+		float: right;
+		margin-top: 18px;
+		margin-left: 10px;
+	}
+	.is_row {
+		margin-left: 0;
+		float: right;
+		margin-right: 40px;
+	}
+	.is_row input {
+		float: right;
+		margin-top: 18px;
+		margin-left: 10px;
+	}
+	.availablelist{
+		 cursor: pointer;
+		 margin: 0; 
+		height: 48px;
+		line-height: 48px;
+		font-size: 1.4em; 
+		color: #fff;
+		outline: 0;
+		padding: 0;
+		margin: 0;
+		text-indent: 15px;
+		background-color: #7A7A7A;
+		/*background-image: repeating-linear-gradient(90deg, transparent, transparent 50px,
+		      rgba(255, 127, 0, 0.25) 50px, rgba(255, 127, 0, 0.25) 56px, transparent 56px, transparent 63px,
+		      rgba(255, 127, 0, 0.25) 63px, rgba(255, 127, 0, 0.25) 69px, transparent 69px, transparent 116px,
+		      rgba(255, 206, 0, 0.25) 116px, rgba(255, 206, 0, 0.25) 166px),
+		repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 127, 0, 0.25) 50px,
+		      rgba(255, 127, 0, 0.25) 56px, transparent 56px, transparent 63px, rgba(255, 127, 0, 0.25) 63px,
+		      rgba(255, 127, 0, 0.25) 69px, transparent 69px, transparent 116px, rgba(255, 206, 0, 0.25) 116px,
+		      rgba(255, 206, 0, 0.25) 166px),
+		repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(143, 77, 63, 0.25) 5px,
+		      rgba(143, 77, 63, 0.25) 10px),
+		repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(143, 77, 63, 0.25) 5px,
+		      rgba(143, 77, 63, 0.25) 10px);*/
+		border-top: 1px solid rgba(255,255,255,.2);
+		border-bottom: 1px solid rgba(0,0,0,.5);
+		text-shadow: -1px -1px 0px rgba(0,0,0,.5);
+		font-size: 1.1em;
+		position: relative;
+		cursor: pointer;
+		list-style-type: none;
+	}
+</style>
+
+
+<!-- Javascript -->
+<script type="text/javascript">
+
+
+$(function() {
+	$(".availablelist" ).draggable({
+ 	helper: "clone",
+ 	connectToSortable: ".items",
+ 	cursor: "pointer"
+
+	});
+
+	$(".items").droppable({
+	drop: function( event, ui ) {
+
+	var name 			= ui.draggable.attr("data-name");
+	var id 				= ui.draggable.attr("data-id");
+	var id_tipe_input 	= ui.draggable.attr("data-id_tipe_input");
+
+	$('.ui-selectable').find('li[data-id="'+id_tipe_input+'"]').draggable({ disabled: true });
+
+	$(ui.draggable).html("<li data-id_tipe_input='"+id_tipe_input+"' class='ui-state-default' data-id='"+id+"'  data-name='"+name+"'>"+name+"<span class='is_required'>Is Required <input type='checkbox' class='is_required' id='is_required"+id+"'  data-id='is_required"+id+"' value='0' name='is_required[]'></span><span class='is_row'>One Row <input type='checkbox' id='is_row"+id+"' data-id='is_row"+id+"' value='0' name='is_row[]' class='is_row'></span><a href='#' class='remove' data-id='"+id+"' data-id_tipe_input='"+id_tipe_input+"'></a></li>");
+	}
+
+
+
+	});
+});
+
+
+$(document).on("click", ".is_row", function(){
+	var id = $(this).data("id");
+	if($(this).attr('checked')){
+          $(this).val('1');
+     }else{
+          $(this).val('0');
+     }
+});
+
+$(document).on("click", ".is_required", function(){
+	var id = $(this).data("id");
+	if($(this).attr('checked')){
+          $(this).val(1);
+     }else{
+          $(this).val(0);
+     }
+});
+
+$(document).on("click", ".remove", function(){
+	if ( $('.ui-state-default').size() <= 1 ){
+		alert('Field Input Minimum 1');
+	} else 
+	if ($('#sortable').find('li').size() <= 1 ){
+		alert('Field Input Minimum 1');
+	} else {
+		var id 			= $(this).data("id");
+		var id_tipe_input = $(this).data("id_tipe_input");
+
+		$('.ui-state-default[data-id="'+id+'"]').remove();
+		$('#sortable').find('li[data-id="'+id+'"]').remove();
+		
+
+		$('li#tipe_input.list.availablelist.ui-draggable[data-id_tipe_input="'+id_tipe_input+'"]').draggable({ disabled: false });
+
+		var sortable_value = $("#sortable-value").text();
+		sortable_value  = sortable_value.toString().split(",");
+		remove_value	= id_tipe_input.toString();
+
+		var i = sortable_value.indexOf(remove_value);
+		if(i != -1) {
+			sortable_value.splice(i, 1);
+		}
+		$("#sortable-value").text(sortable_value);
+
+	}
+	return false;
+});
+
+$('#saves').click(function(){
+	var is_required=[];
+	$('input.is_required').each( function() {
+        if($(this)) {
+                is_required.push($(this).attr('value'));
+        }
+	} );
+
+
+	var is_row=[];
+	$('input.is_row').each( function() {
+        if($(this)) {
+                is_row.push($(this).attr('value'));
+        }
+	} );
+
+	var name = $('#title').val();
+	var id_status_publish = $('#id_status_publish').val();
+
+	$.ajax({
+		url         : $('#form1').attr('action'),
+		type        : "POST",
+		dataType	: 'json',
+		data        : 'id_tipe_input_form='+$('#sortable-value').html()+'&is_required='+is_required+'&is_row='+is_row+'&name='+name+'&id_status_publish='+id_status_publish,
+		success     : function(ret){
+			window.location.href= this_controller;
+		}
+	});
+	});
+
+
+
+	var str = window.location.href;
+	if(str.indexOf("template_form_register/add/")>0){
+		$(window).load(function() {
+			id =  window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+			var url = '{base_url}apps/template_form_register/get_template_tipe_input';
+			$.ajax({
+				url			: url,
+				data 		: 'id='+id,
+				type        : "POST",
+				success		: function(ret){
+					var data = jQuery.parseJSON(ret);
+					if (data) {
+						val_data = '';
+
+						var joined = [];
+						for (i = 0; i < data.length; ++i) {
+							val = data[i];
+
+							var required 		= val.is_required;
+							var row 	 		= val.is_row;
+							var id_tipe_input 	= val.id_tipe_input;
+							joined.push(id_tipe_input);
+
+							if (required == 1){
+								required = 'checked'
+							} else {
+								required ='';
+							}
+
+							if (row == 1){
+								row = 'checked'
+							} else {
+								row ='';
+							}
+
+							val_data += "<li class='ui-state-default' data-id_tipe_input='"+val.id_tipe_input+"' data-id='"+val.id_tipe_input+"'  data-name='"+val.name+"'>"+val.name+"<span class='is_required'>Is Required <input type='checkbox' class='is_required' id='is_required"+val.id_tipe_input+"'  data-id='is_required"+id+"' value='"+val.is_required+"' name='is_required[]' "+required+"></span><span class='is_row'>One Row <input type='checkbox' id='is_row"+val.id_tipe_input+"' data-id='is_row"+val.id_tipe_input+"' value='"+val.is_row+"' name='is_row[]' class='is_row' "+row+"></span><a href='#' class='remove' data-id='"+val.id_tipe_input+"' data-id_tipe_input='"+val.id_tipe_input+"' ></a></li>";
+
+							$('.ui-selectable').find('li[data-id="'+val.id_tipe_input+'"]').draggable({ disabled: true });
+						}
+						joined = joined.join(',');
+						$('#sortable').append(val_data);
+						$("#sortable-value").text(joined);
+					}
+					
+				}
+			});
+	});
+
+	} else {
+		
+	}
+
+</script>
+<!-- end include -->

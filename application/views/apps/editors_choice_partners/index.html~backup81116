@@ -1,0 +1,280 @@
+<h1 class="page-header">Editor's Choice</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<form id="form_choice_language" method="post">
+							<div class="col-sm-12">
+								<div class="text-left">
+									<div class="row">
+										<div class="col-sm-3">
+											<select type="text" class='form-control' id="select-lang" name="id_lang">{list_languages}</select>
+										</div>
+										<!-- <div class="col-sm-3">
+											<a class="btn btn-primary" id='btn-choice-language'><i class="fa fa-chain"></i> Choose Language</a>
+										</div> -->
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<script>
+						$(function() {
+							$( "#sortable" ).sortable({ 
+								placeholder: "ui-sortable-placeholder",
+								update: function(event, ui) {
+									var productOrder = $(this).sortable('toArray').toString();
+									$("#sortable-value").text (productOrder);
+								}
+							});
+						});
+					</script>
+					
+					<div class="row-fluid">
+						<div class="col-sm-12">
+							<div class="col-sm-12 col-lg-12 col-md-12 well">
+								<div class='text-left col-sm-6'><a class="btn btn-primary insert tangan invis" href="#"><i class="fa fa-plus"></i> Add New</a></i>
+									<i class='fa fa-spin fa-spinner invis' style='position:absolute;padding:7px;' id='loading-callback'></i>
+								</div>
+								<div class='text-right col-sm-6'><a class="btn btn-primary save tangan invis" href="#"><i class="fa fa-save"></i> Save</a></i>
+									<i class='fa fa-spin fa-spinner invis' style='position:absolute;padding:7px;' id='loading-callback-save'></i>
+								</div>
+								<div class="clearfix">&nbsp;</div>
+								<div id='loading-callback-sort' class="invis"><i class='fa fa-spin fa-spinner'></i> Loading...<div class="clearfix">&nbsp;</div></div>
+								<div class="col-sm-12">
+									<ul id="sortable"></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="sortable-value" class="invis"></div>
+					<div id="id_lang" class="invis" data-id-lang="123"></div>
+					<div id="id_category" class="invis"></div>
+					<div id="is_featured" class="invis"></div>					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal invis fade" id="popViewDetail">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+				<h4 class="modal-title">Select News</h4>
+			</div>
+			<div class="modal-body">
+				<div class="modal-body">
+					<div id="view-detail"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	function sortable_value(){
+		var productOrder = $( "#sortable" ).sortable('toArray').toString();
+		$("#sortable-value").text (productOrder);
+	}
+	// get_news();
+	function get_news(dat) {
+		var url = '{base_url}apps/editors_choice/get_editor_choice';
+		$('#loading-callback-sort').show();
+		$('#sortable>li').remove();
+		$.ajax({
+			url		: url,
+			type	: 'POST',
+			data 	: dat,
+			success	: function(ret){
+				$('#sortable>li').remove();
+				$('.insert').show();
+				$('.save').show();
+				var data = jQuery.parseJSON(ret);
+				if (data) {
+					val_data = '';
+					for (i = 0; i < data.length; ++i) {
+						val = data[i];						
+						val_data += '<li class="ui-state-default" id="'+val.id+'_'+val.id_news_category+'">'+ val.news_title+'\
+								<span class="sort"></span>\
+								<span class="remove" id="'+val.id+'_'+val.id_news_category+'"></span></li>';
+					}
+					$('#sortable').append(val_data);
+					$('#sortable .remove').click(function() {
+						$('#sortable>#'+$(this).attr('id')).remove();
+						sortable_value();
+					});
+					sortable_value();
+				}
+				$('#loading-callback-sort').hide();
+			},
+			error	: function() {notify('ERROR','error');$('#loading-callback-sort').hide();}
+		});
+	}
+
+	$('#select-lang').change(function(){
+		$dat = $('#form_choice_language').serializeObject();
+		$('#id_lang').attr('data-id-lang',$dat['id_lang']); //place id_lang
+		get_news($dat);
+	});
+
+	$('.insert').click(function(){
+		var id = parseInt($('#id_category').html());
+		var is_featured = parseInt($('#is_featured').html());
+		var id_lang = $('#id_lang').attr('data-id-lang');
+		// console.log(id);
+		$('#loading-callback').show();
+		var ajax = null;
+		var ajax2 = null;
+		if ( ajax ) { ajax.abort();}
+		ajax = $.ajax({
+			url         : base_url+'apps/editors_choice/get_callback',
+			type		: 'POST',
+			data		: 'id='+id+'&id_lang='+id_lang,
+			error		: function () {$('#view-detail').html('error loading data, please try again');},
+			success     : function(ret){
+			if(ret){
+				$('#view-detail').html('<div id="loading-modal"><i class="fa fa-spinner fa-spin"></i> Loading....</div>');
+				$('#popViewDetail').modal('show');
+				
+				if ( ajax2 ) { ajax.abort();}
+
+				ajax2 = $.ajax({
+					url         : base_url+'apps/editors_choice/select_category',
+					type		: 'POST',
+					data		: 'id_lang='+id_lang,
+					error 		: function(err){},
+					success 	: function(ret){$('#view-detail').html(ret);}
+				});
+				console.log(id_lang);
+			}
+			else{
+				$('#extra_param').val('');
+				$('#type_extra').hide();
+			}
+			$('#loading-callback').hide();
+			}
+		});
+	});
+	$(document).on('click','.select-data',function(){
+		var news_id = $(this).attr('data-id');
+		var news_title = $(this).attr('data-title');
+		console.log(1);
+		if ($('#sortable li #'+news_id).length>0) {
+			console.log(2);
+			notify('Article allready taken','error');
+		}else{
+			if ($('#sortable li').length>=3){
+				console.log(3);
+				notify("Max. 3 article for editor's choice",'error');
+			} else {
+				console.log(4);
+				val_data = '<li class="ui-state-default" id="'+news_id+'">'+ news_title+'\
+						<span class="sort"></span>\
+						<span class="remove" id="'+news_id+'"></span></li>';
+				$('#sortable').append(val_data);
+				$('#sortable .remove').click(function() {
+					$('#sortable>#'+$(this).attr('id')).remove();
+					sortable_value();
+				});
+			}
+			sortable_value();
+		}
+	});
+	$(document).on('click','.save',function(){
+		$('#loading-callback-save').show();
+		var id_lang = $('#id_lang').attr('data-id-lang');
+		
+		$.ajax({
+			url		: base_url+'apps/editors_choice/process',
+			type	: 'POST',
+			data	: 'value='+$('#sortable-value').html()+'&id_category='+$('#id_category').html()+'&is_featured='+$('#is_featured').html()+'&id_lang='+id_lang,
+			success	: function(ret){
+				var data = jQuery.parseJSON(ret);
+				notify(data.msg,data.error_status);
+				$('#loading-callback-save').hide();
+			},
+			error	: function() {notify('error','error');$('#loading-callback-save').hide();}
+		});
+	});
+</script>
+<style>
+	ul{
+		padding: 0;
+	}
+	.ui-sortable li.ui-state-default { 
+		margin: 0; 
+		height: 45px;
+		line-height: 48px;
+		font-size: 1.4em; 
+		color: #fff;
+		outline: 0;
+		padding: 0;
+		margin: 0;
+		text-indent: 15px;
+		background: rgb(78,82,91);
+		background: -moz-linear-gradient(top,  rgb(78,82,91) 0%, rgb(57,61,68) 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(78,82,91)), color-stop(100%,rgb(57,61,68)));
+		background: -webkit-linear-gradient(top,  rgb(78,82,91) 0%,rgb(57,61,68) 100%);
+		background: -o-linear-gradient(top,  rgb(78,82,91) 0%,rgb(57,61,68) 100%);
+		background: -ms-linear-gradient(top,  rgb(78,82,91) 0%,rgb(57,61,68) 100%);
+		background: linear-gradient(to bottom,  rgb(78,82,91) 0%,rgb(57,61,68) 100%);
+		border-top: 1px solid rgba(255,255,255,.2);
+		border-bottom: 1px solid rgba(0,0,0,.5);
+		text-shadow: -1px -1px 0px rgba(0,0,0,.5);
+		font-size: 1.1em;
+		position: relative;
+		cursor: pointer;
+	}
+	.ui-sortable li.ui-state-default:first-child {
+		border-top: 0; 
+	}
+	.ui-sortable li.ui-state-default:last-child {
+		border-bottom: 0;
+	}
+	
+	.ui-sortable-placeholder {
+		border: 3px dashed #aaa;
+		height: 45px;
+		background: #ccc;
+	}
+	.ui-sortable .sort:after {
+		content: "\f0c9";
+		display: inline-block;
+		font-family: "FontAwesome";
+		position: absolute;
+		right: 36px;
+		top: 9px;
+		text-align: center;
+		line-height: 35px;
+		color: rgba(255,255,255,.2);
+		text-shadow: 0px 0px 0px rgba(0,0,0,0);
+		cursor: move;
+	}
+	.ui-sortable .remove:after {
+		content: "X";
+		display: inline-block;
+		font-family: "FontAwesome";
+		position: absolute;
+		right: 12px;
+		top: 9px;
+		text-align: center;
+		line-height: 35px;
+		color: rgba(255,255,255,.2);
+		text-shadow: 0px 0px 0px rgba(0,0,0,0);
+		cursor: pointer;
+	}
+</style>
+

@@ -1,0 +1,28 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{id}</td>
+		<td>{news_category}</td>
+		<td><div class="teaser" style="max-width:250px" title="{news_title}"><a href="{base_url}apps/news/view/{id}">{news_title}</a></div></td>
+		<td><div class="teaser" style="max-width:250px" title="{news_title_e}">{news_title_e}</div></td>
+		<!-- <td><div class="teaser" style="max-widt:120px;" title="{uri_path}">{uri_path}</div></td> -->
+		<td><div class="teaser" style="width:120px;" title="{username}">{username}</div></td>
+		<!-- <td class="center {hide_data} {is_publisher}">{publish_date} <br></td> -->
+		<!-- <td class="center">{modify_date}</td> -->
+		<td>{status} <br>{approval_level}</td>
+		<!-- <td>{status}</td> -->
+		<td class="text-right">{hits_id}</td>
+		<td class="text-right">{hits_en}</td>
+		<!-- <td class="center"></td> -->
+		<td class="center">
+			<!-- <a href="{base_url}apps/news/view/{id_parent_lang}" title="View Detail" class="fa fa-search action-form-icon"></a> -->
+			{edit}
+			<!-- <a href="{this_controller}add/{id_parent_lang}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a> -->
+			<a title="Delete Data" class="fa fa-trash-o action-form-icon tangan hapus" id='{id}' data-url-rm='del' data-base-url="news"></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="12">{paging}</td> 
+</tr>

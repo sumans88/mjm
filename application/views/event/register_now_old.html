@@ -1,0 +1,361 @@
+<!-- modal register -->
+<div class="modal fade fade-events" id="myModalEvents" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="text-center">
+          <div class="media logo">
+            <div class="media-left media-middle"><img src="{base_url}asset/images/logo.png"></div>
+            <div class="media-body media-middle">
+              <span>AMCHAM INDONESIA</span>
+              <i>MJM<br>SINCE 1971</i>
+            </div>
+          </div>
+        </div>
+        <hr class="line-content line-white">
+        <div class="grey-widget mb15">
+          <div class="title-event-list">{news_title}</div>
+          <p>{event_date} - {location_name}</p>
+        </div>
+        <div class="grey-widget">
+            <form action="{base_url_lang}event/register" class="form-register-events" method="post" id="form1">
+              
+            <div class="row">
+              {list_tipe_input_form}
+                  {field}
+              {/list_tipe_input_form}
+  
+            <div class="col-sm-6 col-md-6 col-xs-12 {dsp_list_event_price}">
+              <label class="label-amcham">Event Price</label> 
+                <select id="id_ref_event_price" class='form-control input-amcham' name="id_ref_event_price" {req_list_event_price}>{list_event_price}</select>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-xs-12">
+               <input type="hidden" name="event_id" id="event" value="{event}" class="form-control input-amcham">
+               <input type="hidden" name="full_url" id="full_url" value="" class="form-control input-amcham">
+            </div>
+            
+            </div>
+            <div class="row {dsp_list_event_price}" id="payment_method">
+              <div class="col-sm-6 col-md-6 col-xs-12"><label class="label-amcham text-left">Payment Method</label></div>
+              <div class="col-sm-12 col-md-12 col-xs-12">
+
+                <div class="checkbox cb-amcham cb-amcham-grey">
+                   <label class="checkbox-committee">
+                        <input type="radio" class="committee {dsp_list_event_price}" name="payment_method" value="payment_online" required data-parsley-errors-container="#error-payment-method">
+                        <span><i class="glyphicon glyphicon-ok"></i></span>Online Payment</label>
+                </div>
+
+                <div class="checkbox cb-amcham cb-amcham-grey">
+                   <label class="checkbox-committee">
+                        <input type="radio" class="committee" name="payment_method" value="bank_transfer">
+                        <span><i class="glyphicon glyphicon-ok"></i></span>Bank Transfer
+                    </label>
+                </div>
+                <div class="checkbox cb-amcham cb-amcham-grey {hdn_event_golf}">
+                   <label class="checkbox-committee">
+                        <input type="radio" class="committee" name="payment_method" value="onsite_payment">
+                        <span><i class="glyphicon glyphicon-ok"></i></span>Onsite Payment
+                    </label>
+                </div>
+                    <div id="error-payment-method"></div>
+              </div>
+            </div>
+            <button type="button" class="btn-red btn-link-price mt15 register_event" id="pay_button">Register </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal newsletter -->
+<div class="modal fade fade-events" id="myModalNewsletter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="text-center">
+          <div class="media logo">
+            <div class="media-left media-middle"><img src="{base_url}asset/images/logo.png"></div>
+            <div class="media-body media-middle">
+              <span>AMCHAM INDONESIA</span>
+              <i>MJM<br>SINCE 1971</i>
+            </div>
+          </div>
+        </div>
+        <hr class="line-content line-white">
+        <div class="pop-header">
+          <div class="subtitle-event-list">You're Registered for the event!</div>
+          <div class="title-event-list">{news_title}</div>
+          <p>{event_date} - {location_name}</p>
+        </div>
+        <div class="grey-widget text-left">
+          <h3 class="title-content mb15">While you're here, you should subscribe to the AmCham Indonesia Newsletter</h3>
+          <p>Get the update news, articles, interviews delivered right to your inbox.</p>
+          <hr class="line-content">
+          <form action="{base_url_lang}news/registNewsletter" class="form-register-events" method="post" id="form2">
+            <div class="row">
+              <div class="col-sm-7 col-md-7 col-xs-12">
+                <input type="text" name="name" placeholder="Name" class="form-control input-amcham">
+                <input type="text" name="email" placeholder="Contact Email" class="form-control input-amcham" required>
+              </div>
+              <div class="col-sm-5 col-md-5 col-xs-12">
+                <button type="button" class="btn-red btn-link-price btn-news-popup" onclick="window.location.replace('{base_url_lang}')">No Thanks</button>
+                <button type="button" class="btn-red btn-link-price btn-news-popup" onclick="formclick(this)">Subscribe Newsletter</button>
+                <!-- <a href="#" class="btn-red btn-link-price mt33">Subscribe Newsletter</a> -->
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal newsletter register thank -->
+<div class="modal fade fade-events" id="myModalThanks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="text-center">
+          <div class="media logo">
+            <div class="media-left media-middle"><img src="{base_url}asset/images/logo.png"></div>
+            <div class="media-body media-middle">
+              <span>AMCHAM INDONESIA</span>
+              <i>MJM<br>SINCE 1971</i>
+            </div>
+          </div>
+        </div>
+        <hr class="line-content line-white">
+        <div class="pop-header">
+          <div class="title-event-list">Thank you for subscribing to our newsletter!</div>
+          <div class="disclamer-tq">We are very pleased to bring you the AmCham Indonesia Newsletter, an informative and proactive bi-weekly digest of focused news, relevant information, critical sector analyses, and exclusive profiles of our member Executives.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal not member -->
+<div class="modal fade fade-events" id="myModalNotMember" tabindex="-1" role="dialog" aria-labelledby="myModalNotMemberLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="text-center">
+          <div class="media logo">
+            <div class="media-left media-middle"><img src="{base_url}asset/images/logo.png"></div>
+            <div class="media-body media-middle">
+              <span>AMCHAM INDONESIA</span>
+              <i>MJM<br>SINCE 1971</i>
+            </div>
+          </div>
+        </div>
+        <hr class="line-content line-white">
+        <div class="grey-widget mb15">
+          <div class="title-event-list">Yes, I want to be part of AmCham Indonesia </div>
+          <a class="btn-red btn-link-price mt15" href="{base_url_lang}/member/#member-join">JOIN</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $(document).ready(function(){
+    $('#full_url').val(full_url);
+    if ('{dsp_list_event_price}' == 'hidden') {
+      $('#payment_method').find('[data-parsley-errors-container]').each(function(){
+        $(this).attr('required',false)
+      })
+    }
+
+
+    $('#id_ref_event_price').on('change',function(){
+      var id_price = $(this).val();
+
+      $.ajax({
+        url         : '{base_url_lang}'+'event/check_price',
+        type        : "POST",
+        dataType    : "json",     
+        data        : {'id_price':id_price},
+        success     : function(ret)
+        {
+          if (ret == 'true') {
+            $('#payment_method').slideUp();
+            $('#payment_method').find('[data-parsley-errors-container]').each(function(){
+              $(this).attr('required',false)
+            })
+          }else{
+            $('#payment_method').slideDown();
+            $('#payment_method').find('[data-parsley-errors-container]').each(function(){
+              $(this).attr('required',true)
+            })
+          }
+        }
+      })
+    })
+
+    
+
+    $('#myModalEvents').on('show.bs.modal', function (e) {
+      $("#form1")[0].reset();
+    })
+    //untuk modal join bila bukan member 
+
+    $('.register_event').click(function(){
+        check_field_member_type = $(this).closest('form').find('#id_ref_member').is('select')
+
+        if (check_field_member_type) {
+          $value_field = $(this).closest('form').find('#id_ref_member').val();
+          if($value_field == 2){
+            // non member 
+            $('#myModalThanks').attr('status_member',true);
+
+            $('#myModalNewsletter').on('hidden.bs.modal', function (e) {
+              $('#myModalNotMember').modal('show')
+            })
+          }else{
+            // member
+            $('#myModalThanks').attr('status_member',false);
+            $('#myModalNewsletter').unbind()
+          }
+
+        }else{
+          // tidak ada field type member
+          $('#myModalNewsletter').on('hidden.bs.modal', function (e) {
+            $('#myModalNewsletter').unbind()
+            $('#myModalThanks').attr('status_member',false);
+          })
+
+        }
+
+    });
+
+    $('#myModalThanks').on('hidden.bs.modal', function (e) {
+     if ($(this).attr('status_member') == 'true' ) {
+        $('#myModalNotMember').modal('show')
+      }
+    })
+
+    $('#myModalThanks').on('shown.bs.modal', function (e) {
+      $('#myModalNewsletter').unbind()
+      $('#myModalNewsletter').modal('hide')
+    })
+
+  });
+</script>
+
+<script src="https://app.midtrans.com/snap/snap.js" data-client-key="{MITRANS_CLIENT_KEY}"></script>
+
+<script type="text/javascript">
+  window.proses_form = function($id_form ,$status_lanjut) {
+      var btnname    = 'Register'; 
+      $status_lanjut = ($status_lanjut)?$status_lanjut:'';
+          $.ajax({
+              url         : $('#'+$id_form).attr('action')+'/'+$status_lanjut,
+              type        : "POST",
+              dataType    : "json",     
+              data        : $('#'+$id_form).serialize(),
+              error: function (ret) 
+              {
+                // console.log(ret);
+                $('#pay_button').attr('disabled',false);
+                $('#pay_button').html(btnname);
+              },
+              success     : function(ret)
+              {
+                  $('#pay_button').attr('disabled',false);
+                  $('#pay_button').text(btnname);
+                    if (ret.error == 1 ) {
+                        if(typeof ret.msg != 'undefined')       alert(ret.msg);
+                    }else{
+                        if(typeof ret.modalclose != 'undefined') $('#'+ret.modalclose).modal('hide');
+                        if(typeof ret.clearform != 'undefined')  $('#'+$id_form)[0].reset();
+                    }        
+
+                    if(typeof ret.modalname != 'undefined')  $('#'+ret.modalname).modal('show');
+                    if(typeof ret.redirect != 'undefined')  window.location = ret.redirect; 
+              }
+            })
+      }
+  $('.register_event').click(function(){
+      var $id_form  = $('.register_event').parents('form').attr('id');
+
+      if ($('#'+$id_form).parsley().validate()) {
+        var btnname = $('.register_event').text();
+
+        if ($('.register_event').attr('disabled') == "disabled" ) return false ;
+
+        $('.register_event').text('Loading...');
+        $('.register_event').attr('disabled',true);
+
+        // payment proses
+        if ($("input[name='payment_method']:checked").val() == 'payment_online') {
+          // payment_online
+          var snapToken = '';
+          $.ajax({
+            url: "{base_url_lang}midtrans/event_getSnapToken",
+            type: "POST",
+            dataType: 'json',
+            data: $('#form1').serialize(),
+            success: function(ret){
+              var snapToken = ret.token;
+              
+              $('#'+$id_form).append('<input type="hidden" name="invoice_number" value="'+ret.invoice_number+'">');
+              $('#'+$id_form).append('<input type="hidden" name="success_invoice" value="false">');
+              proses_form($id_form);
+
+              $('#myModalEvents').modal('hide')
+              // SnapToken acquired from previous step
+              snap.pay(snapToken, {
+                // Optional
+                onSuccess: function(result){
+                  proses_form($id_form,1);
+                  $('#myModalNewsletter').modal('show')
+
+                 },
+                // Optional
+                onPending: function(result){
+                  proses_form($id_form,1);
+                  $('#myModalNewsletter').modal('show')
+                  // proses_form($id_form,status_lanjut);
+
+                },
+                // Optional
+                onError: function(result){
+                  alert('Error')
+                  // proses_form($id_form,status_lanjut);
+                  },
+                onClose: function(result){
+                  var status_lanjut = 0;
+
+                  $.ajax({
+                      type: 'post',
+                      url: '{base_url_lang}midtrans/payment_cancel/event/'+ret.invoice_number
+                  })
+                  // proses_form($id_form,status_lanjut);
+                }
+              });
+
+            },
+            error: function(ret){
+              alert('error');
+
+            }
+          });
+          $("input[name='invoice_number']").remove()
+          $("input[name='success_invoice']").remove()
+        }else{
+          proses_form($id_form);
+          proses_form($id_form,1);
+          // $('#myModalNewsletter').modal('show')
+        }
+      }
+      return false;
+  });
+</script>

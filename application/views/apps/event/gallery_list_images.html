@@ -1,0 +1,42 @@
+{dataImages}
+<div id="imag{nomorGal}{rowNum}" class="col-md-12" style="margin-bottom: 15px;">
+	<div class="col-md-3">
+		<img src="{base_url}images/gallery/{filename}" width="100px" />
+	</div>
+	<div class="col-md-9">
+		<div class="myProgress" id="myProgress">
+			<div class="myBar" id="myBar{nomorGal}{rowNum}" style="width: 100%;">
+				<div class="labelImag" id="label{nomorGal}{rowNum}" style="width: 100%;">100%</div>
+			</div>
+		</div>
+		<input type="text" id="nameImag{nomorGal}{rowNum}" placeholder="Name" class="form-control" style="margin-bottom: 10px;" value="{name_img}">
+		<textarea id="descImag{nomorGal}{rowNum}" placeholder="Description" class="form-control" style="height: 75px;resize: none;margin-bottom: 10px;">{description_img}</textarea>
+		<!-- <select id="tag-image{rowNum}"  multiple class="form-control" name="tag-image[]"  style="max-width:100%;"></select> -->
+
+		<div class="clear-fix">&nbsp;</div>
+		<button type="button" class="btn btn-info dataimgupload" id="btnImag{nomorGal}{rowNum}" onClick="saveOne({nomorGal}, {rowNum}, {jmlImages}, {rowNum})">Update</button>
+		<button type="button" class="btn btn-danger" style="margin-left:10px;" onClick="deleteOne({nomorGal}, {rowNum}, {jmlImages}, '{filename}')">Delete</button>
+	</div>
+	<input type="hidden" id="filename{nomorGal}{rowNum}" value="{filename}" />
+	<input type="hidden" id="statusImag{nomorGal}{rowNum}" value="1" />
+	<input type="hidden" id="idSavedImag{nomorGal}{rowNum}" value="{idImag}" />
+</div>
+<script>
+	// progressLoad({nomorGal}, {rowNum});
+
+	// $(document).ready(function(){
+	// 	var tags;
+	// 	$("#tag-image{rowNum}").select2({
+	// 	  tags: [{tags}],
+	// 	  tokenSeparators: [","]
+	// 	})
+	// 	var temp = "{tag_images}";
+	// 	var selectedValues = temp.split(',');
+	// 	$("#tag-image{rowNum}").select2('val',selectedValues);
+	// });
+</script>
+{/dataImages}
+<script>
+var jmlImagesSaved{nomorGal} = '{jmlImages}';
+</script>
+

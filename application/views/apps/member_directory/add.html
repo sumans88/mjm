@@ -1,0 +1,66 @@
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+				<div class="panel-heading-btn">
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+				</div>
+				<h4 class="panel-title">{judul} Member directory</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update {disable_edit}   tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-12 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+							<input type="hidden" name="name" id="name">
+							<div class="form-group  no-margin">
+								<label class="col-md-2 control-label">Banner Image <i class='req'>*</i></label>
+								<div class="col-md-9">
+									{img}
+									<div style="color: green">size : 830 x 330px</div><br />
+									<a style="cursor: pointer;" onclick="delImage(1, '{base_url}')">Delete Image</a>
+									<input type="hidden" name="imgDelete1[]" id="imgDelete1" value="0">
+								</div>
+
+							</div>
+							<div class="form-group  no-margin" id="form_file">
+								<label class="col-md-2 control-label" style="padding-top: 20px !important;">Upload File</label>
+								<div class="col-md-9">
+									<input type="file" name="userfile" class="form-control" id="file_input" />
+									<br>
+									<div id="filename">
+										{name}
+									</div>
+								</div>
+							</div>
+							<div class="form-group  no-margin ">
+								<label class="col-md-2 control-label">Status <i class='req'>*</i></label>
+								<div class="col-md-9">
+									<select id="id_status_publish" class='form-control' name="id_status_publish" data-parsley-required="true">{list_status_publish}</select>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$('#file_input').on('change', function () {
+		$file = $(this).val().split('\\').slice(-1)[0]
+		$('#filename').empty();
+		$('#filename').html($file);
+		$('#name').val($file);
+	})
+</script>
+{imagemanager_config}

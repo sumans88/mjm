@@ -1,0 +1,37 @@
+<div class="row-fluid"> 
+	<div class='col-sm-6 judul'>Preview</div>
+	<span class='col-sm-6'>
+		<div class='text-right'>
+			<a class="btn btn-warning" href="{this_controller}"><i class="fa fa-arrow-left"></i> Back</a>
+			<a class="btn btn-primary" href="{this_controller}add/{id}"><i class="fa fa-pencil-square-o tangan"></i> Edit</a>
+		</div>
+	</span>
+</div>
+<hr>
+<!-- <div class='row-fluid'>
+	<div class="judul">{page_name}</div>
+	<br>
+	<img src='{img}' style="border:1px solid #BCBCBC;">
+	{teaser}
+ -->
+ <br>
+<div class="content-list">
+<div class="judul">TEASER : {page_name}</div>
+<hr>
+<div class="row-fluid">
+      <div class="col-sm-12">
+		<img src="{img_thumb}" class="thumb" />
+	      {teaser}
+      </div>
+</div>
+
+<br><br>
+<div class="content-list">
+<div class="judul">DETAIL : {page_name}</div>
+<hr>
+<div class="row-fluid">
+      <div class="col-sm-12">
+		<img src="{img_ori}" class="thumb" style="max-width:800px" />
+	      {page_content}
+      </div>
+</div>

@@ -1,0 +1,30 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<!-- <td class="center">{id}</td> -->
+		<!-- <td class="center">{modify_date}</td> -->
+		<td>{name}</td>
+		<td>{category}</td>
+		<!-- <td>{subcategory}</td> -->
+		<!-- <td>{name_e}</td> -->
+		<!-- <td>{speaker}</td> -->
+		<td>{start_date}</td>
+		<td>{end_date}</td>
+		<!--td>{teaser}</td>-->
+		<td><a title="Close Data" class=" tangan close_event {is_close}" id='{id}' data-url-rm='close_event'>Close Event</a></td>
+		<td>{status_publish}</td>
+		<td class="center">
+			<a href="{this_controller}preview/{uri_path}" title="View Detail Content" class="fa fa-search action-form-icon"></a>
+			<a href="{this_controller}view/{id}" title="View Detail Participant" class="fa fa-user action-form-icon"></a>
+			<a href="{this_controller}hits_files/{id}" title="View Hits Download Files" class="fa fa-download action-form-icon"></a>
+			<a href="{this_controller}add_multiple_image/{id}" title="Add Gallery Event" class="fa fa-image action-form-icon"></a>
+			<br/>
+      <a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

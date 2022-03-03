@@ -1,0 +1,232 @@
+<script>
+	$(function() {
+           $( "#area-tipe_input" ).sortable({ 
+           update: function(event, ui) {
+           var productOrder = $(this).sortable('toArray',{attribute: 'data-id'}).toString();
+	    $("#sortable-value").text (productOrder);
+	     }});});
+</script>
+
+<script type="text/javascript">
+	
+	$(document).on('click','.tipe_form',function(e){
+		var value = $(this).val();
+	
+		if ($("#tipe_form"+value).is(":checked")) {  
+    		$("#is_required"+value).removeAttr("disabled");
+		} else {
+    		$("#is_required"+value).attr("disabled", true);
+		}
+
+	});
+
+	$(".is_required").attr("disabled", true);
+
+
+</script>
+
+<h1 class="page-header">Template Form Register</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Template Form Register</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="span12 text-right">
+							<a class="btn btn-primary insert_data {disable_edit} tangan" id='save'><i class="icon-save"></i> {proses}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}'><i class="icon-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Template <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name}" id="title" class='form-control' id="title" name="name" data-parsley-required="true"></div>
+							</div>
+							
+							<div class="form-group  no-margin" id="uri_path_form">
+								<label class="col-md-3 control-label">URL <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{uri_path}" id="uri_path" class='form-control' name="uri_path" ></div>
+							</div>
+
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Form Element</label>
+								<div class="col-md-9">
+
+									 <div class="title-frame text-left"></div>
+					                    <div id="area-tipe_input">
+					                        {list_tipe_input}
+					                    </div>
+								</div>
+							</div>
+
+							<div id="sortable-value" class="invis"></div>
+
+
+							<div class="form-group  no-margin">
+								<label class="col-md-1 control-label">Form Element</label>
+								<div class="col-md-11">
+									<!-- content -->
+
+									<div style="float:left;width:500px;">
+								    <div>Available employee</div>
+								    <ul id="available1" data-myval="10" class="items">
+								        <li class="list availablelist">Jhonny</li>
+								    </ul>
+								    <ul id="available2" data-myval="20" class="items">    
+								        <li class="list availablelist">Tim</li>
+								    </ul>
+								    <ul id="available3" data-myval="30" class="items">    
+								        <li class="list availablelist">George</li>
+								    </ul>
+								    <ul id="available4" data-myval="40" class="items">    
+								        <li class="list availablelist">Melissa</li>
+								    </ul>
+								    <ul id="available5" data-myval="50" class="items">    
+								        <li class="list availablelist">Alice</li>
+								    </ul>
+								</div>
+								<div style="clear:both"></div>
+								<div id="timetable" style="float:left;width:700px;">
+								    <div class="weekday">Monday
+								        <ul class="items">
+								            <li class="list">Jhonny<a class="closeIt">X</a></li>
+								            <li class="list">Tim<a class="closeIt">X</a></li>
+								        </ul>
+								    </div>
+								</div>
+
+									
+									<!-- end content -->
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- include -->
+
+<style type="text/css">
+.bar {
+    width: 100px;
+    height: 20px;
+    margin: 2px;
+    border: 1px solid black;
+    background-color: lightgreen;
+    text-align: center;
+    float: left;
+    margin: 2px;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.list {
+    background-color: lightblue;
+    border: 1px solid gray;
+}
+
+.items .ui-selected {
+    background: red;
+    color: white;
+    font-weight: bold;
+}
+
+.items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+}
+
+.items li {
+    margin: 2px;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.weekday {
+    float: left;
+}
+
+.availablelist {
+    background-color: orange;
+    display: inline;
+}
+.toggle {background:green;margin:3px 0 0 0;}
+</style>
+
+<!-- Javascript -->
+<script>
+    $(function () {
+    	//fungsi 'timetable .items' pemanggilan bertahap karena source 1 tidak hilang
+
+    	//sortable
+        $("#timetable .items").sortable({
+        	connectWith: "ul",
+        	receive: function(event, ui) {
+	            $(this).push('<div class="toggle">'+$(this).html()+'</div>');
+	            $(this).find('li').replaceWith(html.join(''));
+            },
+
+            //add flag sortable success
+            stop: function(event, ui) {
+     			alert(1);
+  			}
+          
+
+       
+
+
+
+        });
+        
+
+
+
+        //draggable
+        $("ul[id^='available']").draggable({
+            helper: "clone",
+            connectToSortable: ".items",
+        });
+
+        $(document).on("click", ".closeIt", function(){
+		    var parent = $(this).parent();
+		    parent.remove();
+  		});
+
+  		$("#timetable .items").droppable({
+    		drop: function( event, ui ) {
+    		alert('dropped');
+
+    		ui.draggable.html('<input type="checkbox" name="id_tipe_input">'+ui.draggable.attr("data-myval"));
+	    		
+    		var b = ui.draggable.attr("data-myval");
+    		alert(b);
+
+    		}
+
+  		});
+
+    });
+
+</script>
+
+<!-- end include -->

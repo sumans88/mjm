@@ -1,0 +1,476 @@
+<!-- member -->
+{data_member}
+<div class="title-member-dtl m0">{member_name}</div>
+<!-- Member Name -->
+<div class="media media-profile mb15">
+  <div class="media-left">
+    <div class="thumbnail-amcham thum-members"><img src="{member_img}"></div>
+    <!-- {base_url}asset/images/co-chair.jpg -->
+  </div>
+  <div class="media-body">
+    <div class="media media-listmember">
+      <div class="media-left">
+        <div class="icon-listmember"><img src="{base_url}asset/images/card.png"></div>
+      </div>
+      <div class="media-body">{member_job}</div>
+    </div>
+    <div class="media media-listmember">
+      <div class="media-left">
+        <div class="icon-listmember"><img src="{base_url}asset/images/envalop.png"></div>
+      </div>
+      <div class="media-body">{member_email}</div>
+    </div>
+    <div class="media media-listmember">
+      <div class="media-left">
+        <div class="icon-listmember"><img src="{base_url}asset/images/phone-o.png"></div>
+      </div>
+      <div class="media-body">{member_t_number}</div>
+    </div>
+    <div class="media media-listmember">
+      <div class="media-left">
+        <div class="icon-listmember"><img src="{base_url}asset/images/maps.png"></div>
+      </div>
+      <div class="media-body">{member_address}</div>
+    </div>
+    <!-- <div class="media media-listmember">
+      <div class="media-left">
+        <div class="icon-listmember"><img src="{base_url}asset/images/phone.png"></div>
+      </div>
+      <div class="media-body">{member_m_number}</div>
+    </div> -->
+    <!-- <div class="media media-listmember">
+      <div class="media-left">
+        <div class="icon-listmember"><img src="{base_url}asset/images/in-o.png"></div>
+      </div>
+      <div class="media-body">{member_linkedin_id}</div>
+    </div> -->
+    <!-- <div class="media media-listmember">
+      <div class="media-left">
+        <div class="icon-listmember"><img src="{base_url}asset/images/maps.png"></div>
+      </div>
+      <div class="media-body">{member_address}</div>
+    </div>
+    <div class="media media-listmember">
+      <div class="media-left">
+        <div class="icon-listmember"><img src="{base_url}asset/images/link-website.png"></div>
+      </div>
+      <div class="media-body">{member_website}</div>
+    </div> -->
+  </div>
+
+  <div class="row row-form mt20">
+    <!-- <div class="col-sm-6 col-md-6 col-xs-12 col-form"><button class="btn-grey-member member-cancel-profile">Cancel</button></div> -->
+    <!-- <div class="col-sm-2 col-md-2 col-xs-12 col-form"><button class="btn-grey-member member-edit-profile" data-name="{member_id}" data-toggle="modal" id="getEditProfile" data-target="#myModalEditProfile">Edit Profile</button></div>
+    <div class="col-sm-3 col-md-3 col-xs-12 col-form {is_paid}">
+      <button class="btn-red-member member-edit-profile" onclick="location.href=('{base_url}member/edit/committee')" href="{base_url}member/edit/committee" target="_BLANK">Edit Committee</button></div>
+    <div class="col-sm-2 col-md-2 col-xs-12 col-form {is_paid}">
+      <button class="btn-red-member member-edit-profile" onclick="location.href=('{base_url}member/edit/sector')" href="{base_url}member/edit/sector" target="_BLANK">Edit Sector</button></div> -->
+    <!-- <div class="col-sm-6 col-md-6 col-xs-12 col-form"><button class="btn-red-member member-save-profile">Save</button></div> -->
+  </div>
+  </div>
+</div>
+
+{/data_member}
+<!-- end member -->
+<!-- company -->
+{data_company}
+  <div class="title-member-dtl mb0">{company_name}</div>
+  <div class="widget-white pt30 pb0 mb15">
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-xs-12">
+        <div class="media media-listmember">
+          <div class="media-left">
+            <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/maps.png"></div>
+          </div>
+          <div class="media-body">{company_address}</div>
+        </div>
+        <div class="media media-listmember mt30">
+          <div class="media-left">
+            <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/phone-o.png"></div>
+          </div>
+          <div class="media-body">{company_t_number}</div>
+        </div>
+        <div class="media media-listmember mt30">
+          <div class="media-left">
+            <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/link-website.png"></div>
+          </div>
+          <div class="media-body">{company_website}</div>
+        </div>
+        <div class="media media-listmember mt30">
+          <div class="media-left">
+            <div class="icon-listmember il-dtlpart"><img src="{base_url}asset/images/sector-icon.png"></div>
+          </div>
+          <div class="media-body">{company_sector}</div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-xs-12 text-right">
+        <div class="thumbnail-amcham thumb-product thumb-logo">
+          <!-- <img src="{company_img}"> -->
+        </div>
+      </div>
+    </div>
+   <!--  <hr class="line-content">
+   {company_description} -->
+    <!-- 
+      <div class="row row-form mt20 ">
+      <div class="col-sm-4 col-md-4 col-xs-12 col-form {is_representative}"><button class="btn-grey-member member-edit-profile" id="getEditProfileCompany" data-name="{company_name_out}" data-toggle="modal" data-target="#myModalEditcompanyProfile">Edit Company Profile</button></div>
+      //<div class="col-sm-4 col-md-4 col-xs-12 col-form {is_paid}"> <button class="btn-red-member member-edit-profile" onclick="location.href=('{base_url}member/edit/committee')" href="{base_url}member/edit/committee" target="_BLANK">Edit Committee</button></div>
+      //<div class="col-sm-4 col-md-4 col-xs-12 col-form {is_paid}"><button class="btn-red-member member-edit-profile" onclick="location.href=('{base_url}member/edit/sector')" href="{base_url}member/edit/sector" target="_BLANK">Edit Sector</button></div>
+        // <div class="col-sm-2 col-md-2 col-xs-6 col-form"><button class="btn-red-member member-save-profile">Save</button></div>
+    </div> -->
+  </div>
+  <!-- end company -->
+{/data_company}
+
+<!-- Modal -->
+<div class="modal fade fade-events" id="myModalEditcompanyProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="text-center">
+          <div class="media logo">
+            <div class="media-left media-middle"><img src="{base_url}asset/images/logo.png"></div>
+            <div class="media-body media-middle">
+              <span>AMCHAM INDONESIA</span>
+              <i>MJM<br>SINCE 1971</i>
+            </div>
+          </div>
+        </div>
+        <hr class="line-content line-white">
+        <div class="pop-header">
+          <div class="title-event-list">Edit Company Profile</div>
+          <div class="disclamer-tq">
+             <form action='{this_controller}member/update_profile_member_company' method="post" id='form2' enctype="multipart/form-data">
+              <div class="row col-form">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-form">
+                  <label class="label-amcham text-left">Company Name </label>
+                  <input type="text" class="form-control input-amcham" name="name_in" id="name_in">
+                </div>
+                <!-- <div class="col-sm-6 col-md-6 col-xs-12 col-form">
+                  <label class="label-amcham">International/Affiliate Name (USA/Overseas)</label>
+                  <input type="text" class="form-control input-amcham" name="name_out" id="name_out">
+                </div> -->
+                <div class="col-sm-12 col-md-12 col-xs-12 col-form">
+                  <label class="label-amcham text-left">Company Address</label>
+                  <textarea class="form-control input-amcham" name="address" id="address" rows="3" placeholder="Address"></textarea>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 col-form">
+                  <label class="label-amcham">City</label>
+                  <input type="text" class="form-control input-amcham" name="city" id="city">
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 col-form">
+                  <label class="label-amcham">Postal Code</label>
+                  <input type="text" class="form-control input-amcham" name="postal_code" id="postal_code">
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 col-form">
+                  <label class="label-amcham">Telephone number</label>
+                  <input type="text" class="form-control input-amcham" name="t_number" id="t_number" placeholder="Telephone number">
+                </div>
+               <div class="col-sm-6 col-md-6 col-xs-12 col-form">
+                  <label class="label-amcham">Company Headquarters (country / state)</label>
+                    <input type="text" class="form-control input-amcham" name="headquarters" id="headquarters" placeholder="Headquarters">
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 col-form">
+                    <label class="label-amcham">Website</label>
+                    <input type="text" class="form-control input-amcham" name="website" id="website" placeholder="Website">
+                </div>
+                <!-- <div class="col-sm-3 col-md-3 col-xs-12 col-form">
+                    <label class="label-amcham">E-Mail address </label>
+                    <input type="text" class="form-control input-amcham" name="email" data-parsley-type="email" id="c_email">
+                </div> -->
+               <!--  <div class="col-sm-12 col-md-12 col-xs-12 col-form">
+                  <label class="label-amcham text-left">Description</label>
+                  <textarea class="form-control input-amcham" rows="3" name="description" id="description" placeholder="Description"></textarea>
+                </div> -->
+                <!-- div class="col-sm-6 col-md-6 col-xs-12 col-form">
+                  <label class="label-amcham">Mobile Number (*not for publication)</label>
+                  <input type="text" class="form-control input-amcham" id="m_number" name="m_number" placeholder="Mobile Number (*not for publication)">
+                </div> -->
+                <div class="col-sm-12 col-md-12 col-xs-12 col-form">
+                  <label class="label-amcham text-left">Information not available for Public</label>
+                  <input type="checkbox" name="is_invis_company" id="is_invis_company"> Hide
+                </div>
+               <div class="col-sm-12 col-md-12 col-xs-12 col-form">
+                  <input type="hidden" class="form-control input-amcham" name="id_com" id="id_com" placeholder="Website">
+                </div>
+
+                <!-- <div class="col-sm-12 col-md-12 col-xs-12 col-form">
+                 <label class="label-amcham text-left">Photo Company</label>
+                   <div class="form-group">
+                      <div class="input-group">
+                          <span class="input-group-btn">
+                              <span class="btn btn-default btn-file">
+                                  Browse… <input type="file" id="imgInp" name="img">
+                              </span>
+                          </span>
+                          <input type="text" class="form-control" readonly>
+                      </div>
+                      <img id='img-upload'/>
+                  </div>
+                </div> -->
+              </div>
+              <div class="row">                    
+                <div class="col-sm-6 col-md-6 col-xs-12 mb10"><button class="btn-grey-member member-edit-profile">Submit</button></div>
+                <div class="col-sm-6 col-md-6 col-xs-12"><button class="btn-red-member member-save-profile" data-dismiss="modal" aria-label="Close">Cancel</button></div>
+              </div>
+            </form> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    if ($('#is_invis').is(':checked')) {
+      $(this).attr("value",1);
+    } else {
+      $(this).attr("value",0);
+    }
+});
+
+$(document).on('click', '#getEditProfileCompany', function(){
+  var uname =  $(this).attr('data-name'); 
+    $.ajax({
+      url     : base_url+'member/edit_profile_member_company/'+uname,
+      type    : 'get',
+      success : function (data) {
+        data = JSON.parse(data);
+        // $('#name_out').val(data.name_out);
+        $('#name_in').val(data.name_in);
+        $('#city').val(data.city);
+        $('#postal_code').val(data.postal_code);
+        $('#website').val(data.website);
+        $('#c_email').val(data.email);
+        $('#t_number').val(data.t_number);
+        $('#m_number').val(data.m_number);
+        $('#headquarters').val(data.headquarters);
+        $('#address').val(data.address);
+        $('#description').val(data.description);
+        $('#id_com').val(data.id_company);
+        // $('#imgInp').parent().parent().next('input').val(data.img);
+        // $('#img-upload').attr('src',data.img_src);
+        
+          if (data.is_invis_company == 0){
+             $('#is_invis_company').attr('checked',false);
+          } else{
+             $('#is_invis_company').attr('checked',true);
+          }
+      
+        }
+   })
+  
+});
+
+$('#is_invis_company').on('change', function(){
+   this.value = this.checked ? 1 : 0;
+}).change();
+
+$(document).on('click', '.member-save-profile-company', function(){
+    $.ajax({
+        url         : $('#form2').attr('action'),
+        type        : "POST",
+        dataType    : 'json',
+        data        : $('#form2').serialize(),
+        success     : function(ret){
+                      location.reload();
+                      alert('Update Profile Succeess');
+        }
+      });
+  
+});
+</script>
+
+<!-- Modal -->
+<div class="modal fade fade-events" id="myModalEditProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="text-center">
+          <div class="media logo">
+            <div class="media-left media-middle"><img src="asset/images/logo.png"></div>
+            <div class="media-body media-middle">
+              <span>AMCHAM INDONESIA</span>
+              <i>MJM<br>SINCE 1971</i>
+            </div>
+          </div>
+        </div>
+        <hr class="line-content line-white">
+        <div class="pop-header">
+          <div class="title-event-list">Edit Profile</div>
+          <div class="disclamer-tq">
+            <form action='{this_controller}member/update_profile_member' method="post" id='form2'  enctype="multipart/form-data">
+              <div class="row">
+                <!-- <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">First Name</label>
+                  <input type="type" name="firstname" id="firstname" class="form-control input-amcham" placeholder="First Name">
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Middle Name</label>
+                  <input type="type" name="middlename" id="middlename" class="form-control input-amcham" placeholder="Middle Name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Last Name</label>
+                  <input type="type" name="lastname" id="lastname" class="form-control input-amcham" placeholder="Last Name">
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Mr/Ms/etc</label>
+                  <input type="type" name="prefix_name" id="prefix_name" class="form-control input-amcham" placeholder="Mr/Ms/etc">
+                </div>
+              </div> -->
+
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">First Name</label>
+                  <input type="type" name="firstname" id="firstname" class="form-control input-amcham" placeholder="First Name">
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Last Name</label>
+                  <input type="type" name="lastname" id="lastname" class="form-control input-amcham" placeholder="Last Name">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Mr/Ms/etc</label>
+                  <input type="type" name="prefix_name" id="prefix_name" class="form-control input-amcham" placeholder="Mr/Ms/etc">
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Job Position</label>
+                  <input type="type" name="job" id="job" class="form-control input-amcham" placeholder="Job Position">
+                </div>
+              </div>
+                <!-- <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Website</label>
+                  <input type="text" name="website" id="website" class="form-control input-amcham" placeholder="Website">
+                </div> -->
+              <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Email</label>
+                  <input type="email" name="email" id="email" class="form-control input-amcham" placeholder="Email">
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Telephone</label>
+                  <input type="type" name="m_t_number" id="m_t_number" class="form-control input-amcham" placeholder="Telephone">
+                </div>
+               
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Information not available for Public</label>
+                  <input type="checkbox" name="is_invis" id="is_invis" > Hide
+                </div>
+              </div>
+              <!-- <div class="row">
+               <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                <label class="label-amcham text-left">Phone</label>
+                <input type="text" name="m_m_number" id="m_m_number" class="form-control input-amcham" placeholder="Phone">
+              </div>
+              <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                <label class="label-amcham text-left">LinkedIn</label>
+                <input type="type" name="linkedin_id" id="linkedin_id" class="form-control input-amcham" placeholder="LinkedIn">
+              </div>
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Website</label>
+                  <input type="text" name="website" id="website" class="form-control input-amcham" placeholder="Website">
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Address</label>
+                  <textarea class="form-control input-amcham" name="address" id="address" rows="3" placeholder="Address"></textarea>
+                </div>
+              </div> -->
+              <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+                  <input type="hidden" name="id" id="id" class="form-control input-amcham">
+                  <input type="hidden" name="id_com" id="id_com" class="form-control input-amcham">
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+                  <label class="label-amcham text-left">Photo</label>
+                   <div class="form-group">
+                      <div class="input-group">
+                          <span class="input-group-btn">
+                              <span class="btn btn-default btn-file">
+                                  Browse… <input type="file" id="imgInp7" name="img">
+                              </span>
+                          </span>
+                          <input type="text" class="form-control" readonly>
+                      </div>
+                      <img id='img-upload7'/>
+                  </div>
+                </div>
+              </div>
+              <div class="row">                    
+                <div class="col-sm-6 col-md-6 col-xs-12"><button class="btn-grey-member member-edit-profile">Submit</button></div>
+                <div class="col-sm-6 col-md-6 col-xs-12"><button class="btn-red-member" data-dismiss="modal" aria-label="Close">Cancel</button></div>
+              </div>
+            </form> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+$(document).on('click', '#getEditProfile', function(){
+  var uname =  $(this).attr('data-name'); 
+    $.ajax({
+      url     : base_url+'member/edit_profile_member/0/'+uname,
+      type    : 'get',
+      success : function (data) {
+        data = JSON.parse(data);
+        $('#firstname').val(data.firstname);  
+        // $('#middlename').val(data.middlename);  
+        $('#lastname').val(data.lastname);  
+        $('#prefix_name').val(data.prefix_name);  
+        $('#job').val(data.job);  
+        $('#email').val(data.email);
+        $('#m_t_number').val(data.m_t_number);
+        if (data.is_invis == 0){
+                 $('#is_invis').attr('checked',false);
+              } else{
+                 $('#is_invis').attr('checked',true);
+              }
+        // $('#m_m_number').val(data.m_m_number);
+        // $('#linkedin_id').val(data.linkedin_id);
+        $('#website').val(data.website);
+        $('#address').val(data.address);
+        $('#id').val(data.member_id);
+        $('#id_com').val(data.company_id);
+        $('#myModalEditProfile').find('#imgInp7').parent().parent().next('input').val(data.img);
+        $('#myModalEditProfile').find('#img-upload7').attr('src',data.img_src);
+        }
+   })
+  
+});
+
+$(document).on('click', '.member-save-profile', function(){
+    $.ajax({
+        url         : $('#form2').attr('action'),
+        type        : "POST",
+        dataType    : 'json',
+        data        : $('#form2').serialize(),
+        success     : function(ret){
+                      location.reload();
+                      alert('Update Profile Succeess');
+        }
+      });
+  
+});
+</script>
+
+<style type="text/css">
+.committee{
+  background-color: red;
+}
+</style>

@@ -1,0 +1,27 @@
+{dataFiles}
+<div id="imag{nomorFile}{rowNum}" class="col-md-12" style="margin-bottom: 15px;">
+	<div class="col-md-3">
+		<img src="{base_url}assets/images/{imageFile}" width="100px" />
+	</div>
+	<div class="col-md-9">
+		<div class="myProgress" id="myProgress">
+			<div class="myBar" id="myBar{nomorFile}{rowNum}" style="width: 100%;">
+				<div class="labelImag" id="label{nomorFile}{rowNum}" style="width: 100%;">100%</div>
+			</div>
+		</div>
+		<input type="text" id="nameFile{nomorFile}{rowNum}" placeholder="Name" class="form-control" style="margin-bottom: 10px;" value="{name_file}">
+		<label>Hits Download : {hits_file}</label><br/><br/>
+		<button type="button" class="btn btn-info" id="btnFile{nomorFile}{rowNum}" onClick="file_saveOne({nomorFile}, {rowNum}, {jmlFiles})">Update</button>
+		<button type="button" class="btn btn-danger" style="margin-left:10px;" onClick="file_deleteOne({nomorFile}, {rowNum}, {jmlFiles}, '{filename}')">Delete</button>
+	</div>
+	<input type="hidden" id="filename{nomorFile}{rowNum}" value="{filename}" />
+	<input type="hidden" id="statusFile{nomorFile}{rowNum}" value="1" />
+	<input type="hidden" id="idSavedFile{nomorFile}{rowNum}" value="{idFile}" />
+</div>
+<script>
+	progressLoad({nomorFile}, {rowNum});
+</script>
+{/dataFiles}
+<script>
+var jmlFilesSaved{nomorFile} = '{jmlFiles}';
+</script>

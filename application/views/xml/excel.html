@@ -1,0 +1,20 @@
+<table width="100%" border="1">
+	<tr>
+		<th>No</th>
+		<th>News Title</th>
+		<th>URL</th>
+		<th>Publish Date</th>
+		<th>Category</th>
+		<th>Topic</th>
+	</tr>
+	{list_data}
+		<tr>
+		<td>{nomor}</td>
+		<td>{news_title}</td>
+		<td><a href="http://www.futuready.in/beta/articledetail/index/{uri_path}">http://www.futuready.in/beta/articledetail/index/{uri_path}</a></td>
+		<td>{publish_date}</td>
+		<td>{category}</td>
+		<td>{topic}</td>
+		</tr>
+	{/list_data}
+</table>

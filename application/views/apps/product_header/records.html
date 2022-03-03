@@ -1,0 +1,18 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td><div class="teaser" style="max-width:250px" title="{title}">{title}</div></td>
+		<td><div class="teaser" style="width:120px;" title="{username}">{username}</div></td>
+		<td class="center">{publish_date}</td>
+		<td>{status}</td>
+		<td class="center">
+			<a href="{this_controller}add/{id}" title="View Detail" class="fa fa-search"></a>
+			<a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus" id='{id}' data-url-rm='del'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

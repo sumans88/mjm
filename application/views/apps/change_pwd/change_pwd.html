@@ -1,0 +1,81 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+			    <div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action="{base_url}apps/change_pwd/proses" id="form1" method="post" class="form-horizontal">
+							<div class="clearfix"><div id="message"></div></div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">User ID <i class='req'>*</i></label>
+								<div class="col-md-9"><input {disabled} type="text" data-parsley-required="true" class="form-control" name="userid" id="userid" maxlength='64' value='{userid}'></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Old Password <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="password" data-parsley-required="true" class="form-control" name="old_userpass" id="old_userpass"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">New Password <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="password" data-parsley-required="true" class="form-control" name="new_userpass" id="new_userpass"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Confirm New Password <i class='req'>*</i></label>
+								<div class="col-md-9"><input type="password" data-parsley-required="true" class="form-control" name="re_userpass" id="re_userpass"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label"><input type="hidden" name="userid" id="userid" value='{userid}'></label>
+								<div class="col-md-9"><button   type="button" value="Simpan" id="save" class="btn btn-primary insert"><i class="fa fa-save"></i> Save</button></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+jQuery(document).ready(function(){
+			// binds form submission and fields to the validation engine
+			jQuery("#form1").validationEngine();
+		});	
+$('#save').click(function(){
+	if( $("#form1").validationEngine('validate') == true){
+		var param 				= $('#form1').serialize();
+		var url 				= '{this_controller}/proses';
+		$.ajax({
+				url         : url,
+				type        : "POST",
+				data        : param,
+				beforeSend  : function(){$('#save').html('Loading...');},
+				success     : function(msg){
+								if(msg == 'notsame'){
+									$('#old_userpass').validationEngine('showPrompt', 'Incorrect Password','');
+								} 
+								else if(msg == 'beda'){
+									$('#re_userpass').validationEngine('showPrompt', 'Password doesnt match','');
+								} 
+								else {
+									$.gritter.add({title:page_name, text: msg});
+									$('#old_userpass').val('');
+									$('#new_userpass').val('');
+									$('#re_userpass').val('');
+								}	
+								$('#save').html('Simpan');
+								location.reload();
+							  }
+		});
+	}
+});
+
+		
+</script>

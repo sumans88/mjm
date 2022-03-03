@@ -1,0 +1,128 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      
+      <!-- <div class="{hide_breadcrumb}">
+        {breadcrumb_frontend}
+      </div> -->
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+              <ul class="perent-menu">
+                <!-- <li><a href="{base_url}en/member/#member-benefit">Member Benefit</a></li> -->
+                <li><a href="{base_url}en/member/#member-join">Join AmCham</a></li>
+                <li><a href="{base_url}en/member/#member-privileges">Membership Privileges</a></li>
+                <li><a href="{base_url}en/member/#member-directory">Directory</a></li>
+              </ul>
+                <div class="form-login {signin}">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xs-12"><div class="title-event-list">Welcome AmCham Members!</div>
+                    <p>{pages_membership_login_teaser}</p> <br></div>
+                    <div class="col-sm-12 col-md-5 col-xs-12">
+                      <form action='{base_url}{lang}/member/login' id='form1' method="POST">
+                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                        <div class="login-input-frame">
+                          <input type="text" class="form-control input-amcham" name="username" id="username" placeholder="Username" data-parsley-required>
+                        </div>
+                        <div class="login-input-frame">                      
+                          <input type="password" class="form-control input-amcham" name="password" id="password" placeholder="Password" data-parsley-required>
+                        </div>
+                        <div class="media mt5">
+                          <div class="media-body media-middle">
+                            <div class="checkbox checkbox-amcham">
+                              <label>
+                                <input type="checkbox" name="remember_me"> Remember me 
+                              </label>
+                            </div>
+                          </div>
+                          <div class="media-right media-middle"><button type="button" class="btn-red btn-red-login" onClick="formclick(this)">Log in</button></div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-sm-12 col-md-7 col-xs-12 intro-login">
+                      {pages_membership_login_content}
+                    </div>
+                  </div>
+                </div>
+
+              <div id="member-benefit" class="member-section">
+                {pages_member_benefit}
+              </div>
+
+              <hr class="line-content mt50 mb50">
+              
+              <div id="member-join" class="member-section">
+                {pages_membership_category}
+                
+                <!-- <h4 class="title-content">Membership Categories</h4>
+                {data_membership}
+                <div class="widget-white  mb15 p20">
+                  <div class="title-event-list">{membership_alias}</div>
+                  {membership_content}
+                </div>
+                {/data_membership} -->
+              <hr class="line-content mt50 mb50">
+              </div>
+    
+              <div id="member-privileges" class="member-section">
+                <h4 class="title-content">Membership Privileges Program</h4>
+                {pages_member_privileges}
+              </div>
+              
+              <hr class="line-content mt50 mb50">
+
+              <div id="member-directory" class="member-section">
+                <h4 class="title-content">Member Directory</h4>
+                <a href="{lang}/directorys" class="btn-red btn-link-price">See All Members</a>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src='https://www.google.com/recaptcha/api.js?render={recaptcha_site_key}'></script>
+  <script>
+   grecaptcha.ready(function() {
+   grecaptcha.execute('{recaptcha_site_key}', {action: 'index'}).then(function(token) {  
+    document.getElementById('g-recaptcha-response').value=token;
+   });
+  });
+  </script>
+<script type="text/javascript">
+$('#password').keypress(function (e) {
+  var key = e.which;
+  if(key == 13){
+    $('.btn-red-login').click();
+    return false;  
+  }
+}); 
+</script>   

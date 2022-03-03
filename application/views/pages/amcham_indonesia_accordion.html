@@ -1,0 +1,26 @@
+<div aria-multiselectable="true" class="panel-group pg-amcham" id="accordion" role="tablist">
+    {accordion}
+    <div class="panel panel-default-{no_accordion}">
+        <div class="panel-heading" id="heading{no_accordion}" role="tab">
+            <h4 class="panel-title">
+                <a aria-controls="collapse{no_accordion}" aria-expanded="false" class="collapsed"
+                    data-parent="#accordion" data-toggle="collapse" href="#collapse{no_accordion}" role="button">
+                    {page_name}
+                </a>
+            </h4>
+        </div>
+
+        <div aria-expanded="false" aria-labelledby="heading{no_accordion}" class="panel-collapse collapse"
+            id="collapse{no_accordion}" role="tabpanel">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <!-- content tab -->
+                        {content_accordion}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/accordion}
+</div>

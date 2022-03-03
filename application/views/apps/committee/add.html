@@ -1,0 +1,437 @@
+<style type="text/css">
+	.myProgress {
+		position: relative;
+		width: 100%;
+		height: 30px;
+		background-color: #ababab;
+		margin-bottom: 10px;
+	}
+
+	.myBar {
+		position: absolute;
+		width: 1%;
+		height: 100%;
+		background-color: #31b0d5;
+	}
+
+	.labelImag {
+		text-align: center;
+		/* If you want to center it */
+		line-height: 30px;
+		/* Set the line-height to the same as the height of the progress bar container, to center it vertically */
+		color: white;
+	}
+</style>
+
+<script src="{base_url}assets/js/html5shiv.js"></script>
+<script src="{base_url}assets/js/selectivizr.js"></script>
+<link rel="stylesheet" type="text/css" href="{base_url}assets/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="{base_url}assets/css/component.css" />
+
+<form action='{this_controller}proses/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+
+	<h1 class="page-header">{page_name}</h1>
+
+	<div class="row">
+
+		<!-- begin col-12 -->
+
+		<div class="col-md-12">
+
+			<!-- begin panel -->
+
+			<div class="panel panel-inverse" data-sortable-id="index-1">
+
+				<div class="panel-heading">
+
+					<div class="panel-heading-btn">
+
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default"
+							data-click="panel-expand"><i class="fa fa-expand"></i></a>
+
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning"
+							data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+
+					</div>
+
+					<h4 class="panel-title">{judul} Committee</h4>
+
+				</div>
+
+				<div class="panel-body">
+
+					<div class="col-sm-12 col-lg-12 col-md-12">
+
+						<div class="row-fluid">
+
+							<div class="col-sm-12 text-right">
+
+								<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i>
+									{proses}</a>
+
+								<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i>
+									Back</a>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="clear-fix">&nbsp;</div>
+
+					<div class="col-sm-12 col-lg-9 col-md-12">
+
+
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Committee Name <i class='req'>*</i></label>
+
+							<div class="col-md-9"><input type="text" value="{name}" data-parsley-required="true"
+									id="title" class='form-control' name="name"></div>
+
+						</div>
+
+
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Chair Name</label>
+
+							<div class="col-md-9"><input type="text" value="{chair}" id="chair" class='form-control'
+									name="chair"></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Chair Photo</label>
+
+							<div class="col-md-9">{chair_img}
+
+								<small><i>(Max Dimension : 1200 x 800px)</i></small>
+
+							</div>
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Chair Teaser </label>
+
+							<div class="col-md-9"><textarea name="chair_teaser" rows="4" id="chair_teaser"
+									class="form-control">{chair_teaser}</textarea></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Chair Description</label>
+
+							<div class="col-md-9"><textarea rows="4" id="chair_description"
+									class="form-control ckeditor">{chair_description}</textarea></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Co Chair Name</label>
+
+							<div class="col-md-9"><input type="text" value="{co_chair}" id="co_chair"
+									class='form-control' name="co_chair"></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">CO Chair Photo</label>
+
+							<div class="col-md-9">{co_chair_img}
+
+								<small><i>(Max Dimension : 1200 x 800px)</i></small>
+
+							</div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">CO Chair Teaser </label>
+
+							<div class="col-md-9"><textarea name="co_chair_teaser" chair rows="4" id="co_chair_teaser"
+									class="form-control">{co_chair_teaser}</textarea></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">CO Chair Description</label>
+
+							<div class="col-md-9"><textarea rows="4" id="co_chair_description"
+									class="form-control ckeditor">{co_chair_description}</textarea></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Second Co Chair Name</label>
+
+							<div class="col-md-9"><input type="text" value="{co_chair2}" id="co_chair2"
+									class='form-control' name="co_chair2">
+							</div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Second CO Chair Photo</label>
+
+							<div class="col-md-9">{co_chair_img2}
+
+								<small><i>(Max Dimension : 1200 x 800px)</i></small>
+
+							</div>
+
+						</div>
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Second CO Chair Teaser </label>
+
+							<div class="col-md-9"><textarea name="co_chair_teaser2" rows="4" id="co_chair_teaser2"
+									class="form-control">{co_chair_teaser2}</textarea></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Second CO Chair Description</label>
+
+							<div class="col-md-9"><textarea rows="4" id="co_chair_description2"
+									class="form-control ckeditor">{co_chair_description2}</textarea></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Committee Teaser </label>
+
+							<div class="col-md-9"><textarea name="teaser" rows="4" id="teaser"
+									class="form-control">{teaser}</textarea></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Committee Description</label>
+
+							<div class="col-md-9"><textarea rows="4" id="page_content"
+									class="form-control ckeditor">{page_content}</textarea></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Contact</label>
+
+							<div class="col-md-9"><textarea rows="4" id="contact" name="contact"
+									class="form-control ckeditor">{contact}</textarea></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+							<label class="col-md-3 control-label">Tags</label>
+							<div class="col-md-9"><select id="tags" multiple class='form-control'
+									name="tags[]"></select></div>
+						</div>
+
+						<div class="form-group  no-margin">
+
+							<label class="col-md-3 control-label">Page URL <i class='req'>*</i></label>
+
+							<div class="col-md-9"><input type="text" value="{uri_path}" data-parsley-required="true"
+									id="uri_path" class='form-control' name="uri_path" readonly="readonly"></div>
+
+						</div>
+
+						<div class="form-group  no-margin">
+							<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
+							<div class="col-md-9">
+								<select id="id_status_publish" class='form-control' data-parsley-required="true"
+									name="id_status_publish">
+									{list_status_publish}
+								</select>
+							</div>
+						</div>
+
+
+						<div class="form-group  no-margin hide">
+							<div class="col-md-9"><input type="text" value="1" id="id_lang{nomor}" class='form-control'
+									name="id_lang"></div>
+						</div>
+
+						<div class="form-group  no-margin hide">
+							<div class="col-md-9"><input type="text" value="{id}" id="id" class='form-control'
+									name="id_committee"></div>
+						</div>
+
+						<div class="inv {invis}">
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Material Files</label>
+								<div class="col-md-9">
+									<div class="box">
+										<input type="file" name="uploadFiles[]" id="uploadFiles{nomor}"
+											style="display: none;" class="inputfile inputfile-6"
+											data-multiple-caption="{count} files selected" multiple />
+										<label for="uploadFiles{nomor}"><span></span> <strong><svg
+													xmlns="http://www.w3.org/2000/svg" width="20" height="17"
+													viewBox="0 0 20 17">
+													<path
+														d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" />
+												</svg>Select Files</strong></label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group no-margin" id="buttonFiles{nomor}" style="display: {showUploadAll};">
+								<div class="col-md-3"></div>
+								<span class="col-md-9" style="padding-top: 10px !important;">
+									<button type="button" class="btn btn-primary"
+										onclick="saveAll('{nomor}', '{jmlFiles}')">Upload & Update All</button>
+									<button type="button" class="btn btn-danger"
+										onclick="deleteAll('{nomor}', '{jmlFiles}')">Delete All</button>
+								</span>
+							</div>
+							<div class="form-group  no-margin">
+								<div class="col-md-3"></div>
+								<span class="col-md-9" style="padding-top: 10px !important;">
+									<div id="fileSaved{nomor}">
+										{committee_files}
+									</div>
+									<div id="filePreview{nomor}"></div>
+								</span>
+							</div>
+						</div>
+
+
+						<script type="text/javascript">
+
+							var inputLocalFont = document.getElementById("uploadFiles{nomor}");
+							inputLocalFont.addEventListener("change", previewImages, false);
+
+							function previewImages() {
+								var fileList = this.files;
+
+								if (fileList.length != 0) {
+									document.getElementById("buttonFiles{nomor}").style.display = 'block';
+								}
+
+								var anyWindow = window.URL || window.webkitURL;
+
+								var getJml = 'jmlFilesSaved' + '{nomor}';
+								var jmlFiles = 0;
+								if (getJml != 0 || getJml != '') {
+									jmlFiles = getJml;
+								} else {
+									jmlFiles = 0;
+								}
+
+								for (var i = 0; i < fileList.length; i++) {
+									//alert(fileList[i]);
+									var jmlNow = parseInt(i) + parseInt(jmlFiles);
+
+									var arrType = ["application/pdf", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation"];
+
+									var typeImg = ["{base_url}assets/images/file-pdf.jpg", "{base_url}assets/images/file-excel.png", "{base_url}assets/images/file-excel.png", "{base_url}assets/images/file-word.png", "{base_url}assets/images/file-word.png", "{base_url}assets/images/file-ppt.png", "{base_url}assets/images/file-ppt.png"];
+
+									var cekType = arrType.indexOf(fileList[i].type);
+									if (cekType != -1) {
+										var getImgType = typeImg[cekType];
+
+										$('#filePreview{nomor}').append('<div id="imag{nomor}' + jmlNow + '" class="col-md-12" style="margin-bottom: 15px;"><div class="col-md-3"><img src="' + getImgType + '" width="100px" /></div><div class="col-md-9"><div class="myProgress" id="myProgress"><div class="myBar" id="myBar{nomor}' + jmlNow + '"><div class="labelImag" id="label{nomor}' + jmlNow + '">0%</div></div></div><input type="text" id="nameFile{nomor}' + jmlNow + '" placeholder="Name" class="form-control" style="margin-bottom: 10px;"><button type="button" class="btn btn-info" id="btnFile{nomor}' + jmlNow + '" onClick="saveOne({nomor}, ' + i + ', ' + jmlFiles + ')">Upload and Save</button><button type="button" class="btn btn-danger" style="margin-left:10px;" onClick="deleteOne({nomor}, ' + i + ', ' + jmlFiles + ', 0)">Delete</button><input type="hidden" id="statusFile{nomor}' + jmlNow + '" value="0" /><input type="hidden" id="idSavedFile{nomor}' + jmlNow + '" value="" /></div></div>');
+										//move(i, 50);
+
+										window.URL.revokeObjectURL(fileList[i]);
+									} else {
+										alert("File type must be formatted as .pdf, .xls, .xlsx, .doc, .docx, .ppt and .pptx");
+									}
+
+								}
+							} 
+						</script>
+						{imagemanager_config}
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</form>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#tags").select2({
+			tags: [{tags_data}],
+			tokenSeparators: [","]
+		})
+		var selectedValues = "{tags}".split(',');
+		$("#tags").select2('val', selectedValues);
+	})
+
+</script>
+
+<script src="{base_url}assets/js/custom-file-input.js"></script>
+<!-- {filemanager_config} -->
+<script type="text/javascript">
+	$('.is_open').change(function () {
+		if (!$(this).attr("checked")) {
+			$('.is_open').attr('checked', false);
+		}
+	})
+	function uploadFile(id) {
+		$('#loading-' + id).html('<i class="fa fa-refresh fa-spin"><i>');
+		$.ajaxFileUpload({
+			url: '{this_controller}prosesdocument/' + id,
+			secureuri: false,
+			fileElementId: id,
+			dataType: 'json',
+			success: function (ret) {
+				console.log(ret);
+				$('#loading-' + id).html('<i class="fa fa-check"><i>');
+				$('#' + id + 'nya').val(ret.fname);
+			},
+			error: function (a) {
+				alert('error');
+				$('#loading-' + id).html('upload failed');
+			}
+
+		})
+	}
+	$(document).on('change', '.upload-file', function () {
+		if ($(this).val()) {
+			uploadFile($(this).attr("id"));
+		}
+	})
+
+	$('#id_event_category0, #id_event_category1').change(function () {
+		$('#id_event_subcategory0, #id_event_subcategory1').empty();
+		var id = $(this).val();
+
+		$.ajax({
+			url: this_controller + 'listopt_subevent',
+			type: 'post',
+			data: 'id=' + id,
+			dataType: 'json',
+			success: function (ret) {
+				$('#id_event_subcategory0, #id_event_subcategory1').append(ret.listopt);
+			},
+			error: function (err) {
+			},
+		});
+	});
+</script>
+
+{multiple_file_script}

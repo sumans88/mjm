@@ -1,0 +1,104 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} {page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update {disable_edit} tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}'><i class="fa fa-arrow-left"></i> Kembali</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1'  class="form-horizontal">
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Tipe Input Jawaban<i class='req'>*</i></label>
+								<div class="col-md-9"><select id="tipe_input" class='form-control' name="id_ref_tipe_input" data-parsley-required="true">{list_tipe_input}</select></div>
+							</div>
+							
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Label</label>
+								<div class="col-md-9"><input type="text" value="{name}" class='form-control' name="name" data-parsley-required="true"></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(document).on('change','#jenis_form', function(){
+			var id_form = $(this).val();
+			$('#kategori_pertanyaan').empty();
+			$.ajax({
+				url		: this_controller+'getKategoriPertanyaan',
+				type	: 'post',
+				data 	: 'id_form='+id_form,
+				dataType: 'json',
+				success	: function(ret){
+							$('#kategori_pertanyaan').append(ret.list_kategori);
+							$('#kategori_pertanyaan').select2().change();
+				},
+				error	: function(){
+							console.log(1);
+				}
+			});
+		});
+
+		$(document).on('change','#kategori_pertanyaan', function(){
+			var id_kategori = $(this).val();
+			$('#id_pertanyaan_parent').empty();
+			$.ajax({
+				url		: this_controller+'getPertanyaanParent',
+				type	: 'post',
+				data 	: 'id_kategori='+id_kategori,
+				dataType: 'json',
+				success	: function(ret){
+							$('#id_pertanyaan_parent').append(ret.list_parent);
+							$('#id_pertanyaan_parent').select2().change();
+				},
+				error	: function(){
+							console.log('error');
+				}
+			});
+		});
+
+		$(document).on('change','#id_pertanyaan_parent', function(){
+			var id_parent = $(this).val();
+			$('#id_pertanyaan').empty();
+			$.ajax({
+				url		: this_controller+'getPertanyaan',
+				type	: 'post',
+				data 	: 'id_parent='+id_parent,
+				dataType: 'json',
+				success	: function(ret){
+							if(ret.status == 0){
+								$('.hidden_child').slideUp();
+								$('#id_pertanyaan_parent').attr("name", "id_pertanyaan");
+							} else {
+								$('.hidden_child').slideDown();
+								$('#id_pertanyaan_parent').attr("name", "");
+								$('#id_pertanyaan').append(ret.list_id_pertanyaan);
+								$('#id_pertanyaan').select2().change();
+							}
+				},
+				error	: function(){
+							console.log(1);
+				}
+			});
+		});
+	});
+</script>

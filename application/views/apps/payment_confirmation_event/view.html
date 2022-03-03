@@ -1,0 +1,89 @@
+<h1 class="page-header">Preview</h1>
+<div class="row">
+  <!-- begin col-12 -->
+  <div class="col-md-12">
+    <!-- begin panel -->
+    <div class="panel panel-inverse">
+      <div class="panel-heading">
+          <div class="panel-heading-btn">
+        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+          </div>
+          <h4 class="panel-title">Participant</b></h4>
+      </div>
+      <div class="panel-body">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+          <div class="row-fluid"> 
+            <span class='col-sm-12'>
+              <div class='text-right'>
+                <a class="btn btn-warning" href="{this_controller}"><i class="fa fa-arrow-left"></i> Back</a>
+                <a class="btn btn-primary modal-send-invoice {dsp_button_sent}" data-id="{id}"><i class="fa fa-pencil-square-o tangan"></i> Send Invoice </a>
+              </div>
+            </span>
+          </div>
+          <hr>
+          <div class="clearfix">&nbsp;</div> 
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th width="150">Name </th>
+                    <td>{full_name}</td>
+                  </tr>
+                  <tr>
+                    <th>Company Name </th>
+                    <td>{name_in}</td>
+                  </tr>
+                  <!-- <tr>
+                    <th>International/Affiliate Name (USA/Overseas)</th>
+                    <td>{name_out}</td>
+                  </tr>  -->
+                  <tr>
+                    <th>Job </th>
+                    <td>{job}</td>
+                  </tr> 
+                  <!-- <tr>
+                    <th>Citizenship </th>
+                    <td>{citizenship}</td>
+                  </tr> 
+ -->                  <tr>
+                    <th>Job </th>
+                    <td>{job}</td>
+                  </tr> 
+                  <tr>
+                    <th>Company Address </th>
+                    <td>{c_address}</td>
+                  </tr> 
+                  <tr class="{is_individu}">
+                    <th>Email </th>
+                    <td>{p_email}</td>
+                  </tr> 
+                  <!-- <tr>
+                    <th>Company Email </th>
+                    <td>{c_email}</td>
+                  </tr>  -->
+                  <tr>
+                    <th>Telephone Number </th>
+                    <td>{t_number}</td>
+                  </tr>
+                  <tr>
+                    <th>Website</th>
+                    <td>{website}</td>
+                  </tr>
+                  <!-- <tr>
+                    <th>Mobile Number </th>
+                    <td>{m_number}</td>
+                  </tr> -->
+                  <tr>
+                    <th>Register As</th>
+                    <td>{membership}</td>
+                  </tr>
+                  </thead>
+                <tbody></tbody>
+              </table> 
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{modal_invoice}

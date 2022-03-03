@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      {breadcrumb_frontend}
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="media">
+
+              <div class="frame-content" >
+              <div class="frame-search-news {dsp_search}">
+                <div class="select-sortby">
+                  <select class="form-control" id="month" name="month">
+                    {list_month}
+                  </select>
+                  <select class="form-control" id="year" name="year">
+                    {list_year}
+                  </select>
+                </div>
+                <div class="input-group ig-srclist mb15">
+                  <input type="text" id="search-news-input" name="search-news-input" class="form-control search-news" placeholder="Search our news">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" id="search-news-btn" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                  </span>             
+
+                </div>
+              </div>
+
+              <div id="media-news">
+                
+              {news}
+                <div class="media media-latest">
+                  <div class="media-left">
+                    <div class="thumbnail-amcham thumb-latest">{news_img}</div>
+                  </div>
+                  <div class="media-body">
+                    <div class="widget-white">
+                      <div class="event-type">{news_category}  |  {news_date} | {news_writer}</div> <!-- Sep 29, 2017 -->
+                      <div class="title-event-list"><a href="{news_url}">{news_title}</a></div>
+                      <p>{news_teaser}</p>
+                    </div>
+                  </div>
+                </div>
+              {/news}
+              <div class="text-center mt15 {dsp_load_more} " id="load-more-news"><span href="{base_url}{lang}/news/more/{uri_path}/{paging}" class="load-more tangan">{lang_load_more}</span></div>
+              </div>
+
+              </div>
+
+           </div>
+          </div>
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

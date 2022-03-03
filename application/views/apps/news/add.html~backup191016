@@ -1,0 +1,167 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} News</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update {disable_edit}   tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-primary insert update {disable_edit} {edit_button} tangan" id='save_approve'><i class="fa fa-paper-plane"></i> {proses}   {next_approval}</a>
+							<a class="btn btn-warning tangan" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+							<ul class="nav nav-pills">
+								{list_lang2}
+								<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+								{/list_lang2}
+							</ul>
+							<div class="tab-content">
+								{list_lang}
+								<div class="tab-pane fade {active}" id="nav-pills-tab-{nomor}">
+									<div class="form-group  no-margin">
+										<label class="col-md-3 control-label">Not available in  {bahasa}</label>
+										<div class="col-md-9"><input type="checkbox" class="lang_na" value="1" name="is_not_available[{lang_id}]" {is_not_available}></div>
+									</div>
+									<div class="form-content">
+										<div class="form-group no-margin {invis}">
+											<label class="col-md-3 control-label">Category <i class='req'>*</i></label>
+											<div class="col-md-9"><select id="id_news_category{nomor}" class='form-control' name="id_news_category[]" data-parsley-required="{validation}">{list_news_category}</select></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Title<i class='req'>*</i></label>
+											<div class="col-md-9"><input type="text" value="{news_title}" id="title{nomor}" class='form-control' name="news_title[]" data-parsley-required="{validation}"></div>
+										</div>
+										<div class="form-group  no-margin ">
+											<label class="col-md-3 control-label">URL <i class='req'>*</i></label>
+											<div class="col-md-9"><input type="text" value="{uri_path}" id="uri_path{nomor}" class='form-control' name="uri_path[]" data-parsley-required="{validation}"></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Image</label>
+											<div class="col-md-9">
+												{img}
+												<div style="color: green">size : 850 x 480px</div>
+											</div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Link Youtube Video</label>
+											<div class="col-md-9"><input type="text" value="{link_youtube_video}" id="link_youtube_video{nomor}" class='form-control' name="link_youtube_video[]"></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">&nbsp;</label>
+											<div class="col-md-9"><b>Example: https://www.youtube.com/watch?v=DVwHCGAr_OE</b></div>
+										</div>
+										<!-- <div class='form-group {last_edited_show}'>
+											<label class="col-md-3 control-label">Last Modify</label>
+											<div class="col-md-9">{last_edited}</div>
+										</div> -->
+										<div class='form-group no-margin {dsp_publish_date}'> <!-- {dsp_publish_date} -->
+											<label class="col-md-3 control-label">Publish Date </label>
+											<div class="col-md-9">
+												<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+													<input type="text" value="{publish_date2}" id="publish_date{nomor}" class='form-control' name="publish_date[]" readonly="readonly">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
+											</div>
+										</div>
+										<!-- <div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Expected Publish Date </label>
+											<div class="col-md-9">
+												<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+													<input type="text" value="{expected_publish_date}" id="expected_publish_date{nomor}" class='form-control' name="expected_publish_date[]" readonly="readonly">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
+											</div>
+										</div> -->
+										<div class="form-group  no-margin {enable_edit_status_publish} {invis}">
+											<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
+											<div class="col-md-9"><select id="id_status_publish{nomor}" class='form-control' name="id_status_publish[]">{list_status_publish}</select></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Tags</label>
+											<div class="col-md-9"><select id="tags{nomor}" multiple class='form-control' name="tags[{lang_id}][]"></select></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Teaser <i class='req'>*</i></label>
+											<div class="col-md-9"><textarea name="teaser[]" rows="4" id="teaser{nomor}" class="form-control" data-parsley-required="{validation}">{teaser}</textarea></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Content<i class='req'>*</i></label>
+											<div class="col-md-9"><textarea  rows="4" id="page_content{nomor}" name="page_content[]" class="form-control ckeditor" data-parsley-required="{validation}">{page_content}</textarea></div>
+										</div>
+									    <br>
+									    <!-- <div class="form-group  no-margin hide">
+											<label class="col-md-3 control-label">Language <i class='req'>*</i></label>
+											<div class="col-md-9"><select id="id_lang{nomor}" class='form-control' name="id_lang[]" data-parsley-required="{validation}">{list_language}</select></div>
+										</div>  -->
+									    
+									    <br>
+									    <div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Seo Title</label>
+											<div class="col-md-9"><input type="text" value="{seo_title}" id="seo_title{nomor}" class='form-control' name="seo_title[]"></div>
+										</div>
+									    <div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Meta Description</label>
+											<div class="col-md-9"><textarea  rows="4" id="meta_description{nomor}" name="meta_description[]" class="form-control ckeditor">{meta_description}</textarea></div>
+										</div>
+									    <br>
+									    <div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Meta Keywords</label>
+											<div class="col-md-9"><input type="text" value="{meta_keywords}" id="meta_keywords{nomor}" class='form-control' name="meta_keywords[]"></div>
+										</div>
+										<div class="form-group  no-margin">
+											<label class="col-md-3 control-label">Is RSS Feed</label>
+											<div class="col-md-9"><input type="checkbox" value="1" name="is_rssfeed[{lang_id}]" {is_rssfeed}> Yes</div>
+										</div>
+										<div class="form-group  no-margin hide">
+											<div class="col-md-9"><input type="text" value="{lang_id}" id="id_lang" class='form-control' name="id_lang[]"></div>
+										</div>
+										<div class="form-group  no-margin hide">
+											<div class="col-md-9"><input type="text" value="{id}" id="id" class='form-control' name="id[]"></div>
+										</div>
+									</div>
+								</div>
+								<script type="text/javascript">
+									// $(document).ready(function(){
+										$('#title{nomor},#uri_path{nomor}').keyup(function(){
+											$('#uri_path{nomor}').val(convert_to_uri($(this).val()));
+										});
+									// })
+								</script>
+
+								<script type="text/javascript">
+									$(document).ready(function(){
+										$("#tags{nomor}").select2({
+										  tags: [{tags}],
+										  tokenSeparators: [","]
+										})
+										var selectedValues = "{tags_data}".split(',');
+										$("#tags{nomor}").select2('val',selectedValues);
+									})
+								</script>
+								{imagemanager_config}
+								{/list_lang}
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+

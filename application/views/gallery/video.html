@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      {breadcrumb_frontend}
+      <div class="col-sm-12 col-md-12 col-xs-12 pt50 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+              <div class="row {hidden_gallery}" >
+                {video}
+                  <div class="col-sm-4 col-md-4 col-xs-12">
+                    <a href="{youtube_url}" data-toggle="modal" data-target="#myModalVideo" class='gallery-video'>
+                      <div class="thumbnail-amcham thumb-gallery">{img_video}
+
+                        <div class="desc-video-footer">
+                          <img src="{base_url}asset/images/play-btn.png">
+                          <h2>{name}</h2>
+                          <p>{description}</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                {/video} 
+              </div>
+              <!-- <div class="row row-gallery" id="list-news">
+                {video}
+                <div class="col-sm-4 col-md-4 col-xs-6 col-gallery heightsame">
+                  <div class="frame-slider-choice list-gallery load-video" data-youtube-url='{youtube_url}'>
+                    <div class="thumb-slider-choice">
+                      <a href="{url}/detail/{uri_path}"><img src="{base_url}images/article/small/{img}"><span class="btn-play"><img src="{base_url}asset/images/play-btn.png"></span></a>
+                    </div>
+                    <div class="title-news-slider-choice">
+                      <a href="{url}/detail/{uri_path}">{news_title}</a>
+                    </div>
+                  </div>            
+                </div>
+                {/video}     
+              </div> -->
+              <div class="text-center col-sm-12 col-md-12 col-xs-12 col-gallery {dsp_load_more}"><a href="{base_url}{lang}/gallery/morevideo/{paging}" class="load-more-video">{lang_load_more}</a></div>
+
+
+            </div>
+          </div>
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModalVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  $('#myModalVideo').on('hide.bs.modal', function () {
+    // #stopVideo
+    var $this = $(this).find('iframe');
+    $this.attr('src', '');
+  });
+});
+</script>

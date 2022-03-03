@@ -1,0 +1,326 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+				<div class="panel-heading-btn">
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+				</div>
+				<h4 class="panel-title">{judul} Pages</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i>
+								Back</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear-fix">&nbsp;</div>
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+						<ul class="nav nav-pills">
+							<li class="active"><a href="#nav-pills-tab-1" data-toggle="tab">Content</a></li>
+							<li class=""><a href="#nav-pills-tab-2" data-toggle="tab">List of People</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="nav-pills-tab-1">
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Page Name </label>
+									<div class="col-md-9"><input type="text" value="{page_name_data}" data-parsley-required="true" id="title" class='form-control' name="page_name[]"></div>
+								</div>
+
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Page Parent </label>
+									<div class="col-md-9">
+										<select id="id_parent" class='form-control' name="id_parent[]">
+											{list_parent}
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group  no-margin {dsp_main_content}">
+									<label class="col-md-2 control-label">Page URL </label>
+									<div class="col-md-9"><input type="text" value="{uri_path}" data-parsley-required="true" id="uri_path" class='form-control' name="uri_path[]"></div>
+								</div>
+								<!-- <div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Image</label>
+									<div class="col-md-9">
+										img}
+										<div style="color: green">size : 850 x 480px</div><br/>
+										<a style="cursor: pointer;" onclick="delImage('', '{base_url}')">Delete Image</a>
+										<input type="hidden" name="imgDelete[]" id="imgDelete" value="0">
+									</div>
+								</div> -->
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Teaser</label>
+									<div class="col-md-9"><textarea name="teaser[]" rows="4" id="teaser" class="form-control">{teaser}</textarea></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Content</label>
+									<div class="col-md-9"><textarea rows="4" id="page_content" name="page_content[]" class="form-control ckeditor">{page_content}</textarea></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Seo Title</label>
+									<div class="col-md-9"><input type="text" value="{seo_title}" id="seo_title" class='form-control' name="seo_title[]"></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Meta Description</label>
+									<div class="col-md-9"><textarea rows="4" id="meta_description" name="meta_description[]" class="form-control ckeditor">{meta_description}</textarea></div>
+								</div>
+								<br>
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Meta Keywords</label>
+									<div class="col-md-9"><input type="text" value="{meta_keywords}" id="meta_keywords" class='form-control' name="meta_keywords[]"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{lang_id}" id="id_lang" class='form-control' name="id_lang[]"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{id}" id="id" class='form-control' name="id[]"></div>
+								</div>
+								<script type="text/javascript">
+									// $(document).ready(function(){
+									$('#title,#uri_path').keyup(function() {
+										if (true === true) {
+											$('#uri_path').val(convert_to_uri($(this).val()));
+										} else {
+											return false;
+										}
+									});
+									$('#title,#seo_title').keyup(function() {
+										$('#seo_title').val($(this).val());
+									});
+									$('#teaser,#meta_description').keyup(function() {
+										CKEDITOR.instances.meta_description.setData($(this).val());
+									});
+									// })
+								</script>
+							</div>
+
+							<div class="tab-pane" id="nav-pills-tab-2">
+								<div class="text-right form-group">
+									<input type="number" id="inputNumberListOfPerson" value="1" class="form-control text-center" style="width: 60px !important;margin: 10px;display: inline-block;">
+									<a class="btn btn-primary" id="btnNumberListOfPerson"><i class="fa fa-plus"></i>
+										Add New</a>
+								</div>
+								<div id="listOfPerson" class="panel-group">
+
+								</div>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="dropBag" class="ui-widget-header hide"></div>
+<script>
+	$(function() {
+		$("#listOfPerson").collapse().sortable({
+			iframeFix: true,
+			connectWith: "#dropBag"
+		});
+
+		$("#dropBag").sortable({
+			iframeFix: true,
+			connectWith: "#listOfPerson"
+		});
+	});
+</script>
+<script id="TemplistOfPerson" type="text/template">
+
+	<div class="panel panel-default">
+		<input type="hidden" name="list_id[]" id="list_id">
+		<div class="panel-heading">
+			<div class="btn-group pull-right">
+				<a href="#" class="btn btn-danger btn-xs delListOfPerson"><i class="fa fa-close"></i></a>
+			</div>
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse">					
+				</a>
+			</h4>
+		</div>
+		<div id="collapse" class="panel-collapse collapse">
+			<div class="panel-body">
+				<div class="form-group  no-margin">
+					<label class="col-md-2 control-label">Name <i class='req'>*</i></label>
+					<div class="col-md-9">
+						<input type="text" value="" data-parsley-required="true" id="list_name" class='form-control inputPersonName'
+							name="list_name[]">
+					</div>
+				</div>
+				<div class="form-group  no-margin">
+					<label class="col-md-2 control-label">Position </label>
+					<div class="col-md-9">
+						<input type="text" value=""  id="list_position" class='form-control'
+							name="list_position[]">
+					</div>
+				</div>
+				<div class="form-group  no-margin">
+					<label class="col-md-2 control-label">Teaser </label>
+					<div class="col-md-9">
+						<textarea  id="list_teaser" class='form-control '
+							name="list_teaser[]"></textarea>
+					</div>
+				</div>
+				<div class="form-group  no-margin">
+					<label class="col-md-2 control-label">Description </label>
+					<div class="col-md-9">
+						<textarea  id="list_description" class='form-control '
+							name="list_description[]"></textarea>
+					</div>
+				</div>
+				<div class="form-group  no-margin">
+					<label class="col-md-2 control-label">Img</label>
+					<div class="col-md-9">
+						<div class="browse-image" id="list_img">
+							<img width="100%" src="/amcham/images/article/small/no_image.png">
+						</div>
+						<i class="fa fa-times-circle img_reset text-danger " title="Delete" style="font-size:20px; cursor:pointer;"></i>
+						<input type="hidden" name="list_img[]" value="">
+						<input type="hidden" name="is_delete_list_img[]" value="">
+					</div>
+				</div>
+				<div class="form-group  no-margin">
+					<label class="col-md-2 control-label">One Line</label>
+					<div class="col-md-9">
+						<div class="col-md-1">
+							<input type="checkbox" name="list_is_row[]" id="list_is_row" class="form-control inputOneRow"> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script>
+	$(document).on('click', '.img_reset', function() {
+		if (confirm('Are you sure delete photo ?')) {
+			$(this).prev().find('img').attr('src', '/amcham/images/article/small/no_image.png')
+			$(this).next().val('')
+			$(this).next().next().val('1')
+		}
+	})
+</script>
+<style>
+	.list-of-people-one-row {
+		border-bottom: 3px solid seagreen !important;
+	}
+</style>
+
+<script>
+	// list of person
+
+	ttl_ListOfPeople = 0;
+	data_ListOfPeople = {json_people};
+
+	// btn tambah
+	$('#btnNumberListOfPerson').on('click', function() {
+		event.preventDefault()
+		let jml = $('#inputNumberListOfPerson').val();
+		duplicate_form(jml)
+		$('#inputNumberListOfPerson').val('1')
+	})
+
+	// btn delete
+	$(document).on('click', '.delListOfPerson', function() {
+		event.preventDefault()
+		if (confirm('Are you sure delete person ?')) {
+			$(this).parents('.panel-default').remove()
+		}
+
+		// <input type="hidden" name="list_id[]" id="list_id" value="12">
+	})
+
+	// input nama
+	$(document).on('keyup', '.inputPersonName', function() {
+		let title = $(this).val()
+		if (title == '') {
+			title = "People " + $(this).attr('id').match(/\d+/);
+		}
+		$(this).parents('.panel-default').find('h4.panel-title a').text(title)
+	})
+
+	// check one row
+	$(document).on('click', '.inputOneRow', function() {
+		check_oneRow($(this))
+	})
+	$(document).ready(function() {
+		if (data_ListOfPeople != '') {
+			duplicate_form('', data_ListOfPeople)
+		}
+	})
+
+	function check_oneRow(el) {
+		if (el.prop('checked')) {
+			el.parents('.panel-default').find('.panel-heading').addClass('list-of-people-one-row')
+		} else {
+			el.parents('.panel-default').find('.panel-heading').removeClass('list-of-people-one-row')
+		}
+	}
+
+	// 
+	function duplicate_form(num, data_ListOfPeople = '') {
+		let ttl_row = num;
+		let checkData = data_ListOfPeople.length > 0 && data_ListOfPeople != ''
+		ttl_row = checkData == true ? data_ListOfPeople.length : num;
+
+		for (let index = 0; index < ttl_row; index++) {
+			ttl_ListOfPeople = ttl_ListOfPeople + 1
+			let TempList = $($('#TemplistOfPerson').html());
+			let idTemp = ttl_ListOfPeople.toString();
+
+
+			// set id
+			if (checkData) {
+				let dataTemp = data_ListOfPeople[index]
+				$('#list_id', TempList).val(dataTemp.id)
+				$('#list_name', TempList).val(dataTemp.name)
+				$('#list_position', TempList).val(dataTemp.position)
+				$('#list_teaser', TempList).text(dataTemp.teaser)
+				$('#list_description', TempList).text(dataTemp.description)
+				if (dataTemp.img != '') {
+					$('#list_img img', TempList).attr('src', base_url + '/images/article/small/' + dataTemp.img)
+				}
+				$('#list_is_row', TempList).prop('checked', dataTemp.is_row == '1' ? true : false)
+			}
+			check_oneRow($('#list_is_row', TempList))
+			$('#list_name, #list_position, #list_teaser, #list_description, #list_img, #list_is_row,#collapse', TempList)
+				.attr('id',
+					function(index, currentvalue) {
+						return currentvalue + idTemp
+					}
+				)
+			$('a[data-toggle="collapse"]', TempList)
+				.attr('href',
+					function(index, currentvalue) {
+						return currentvalue + idTemp
+					}
+				)
+				.text(
+					function(index, currentvalue) {
+						return 'People ' + idTemp
+					}
+				)
+			$('#listOfPerson').append(TempList)
+
+			// // ckeditor
+			// CKEDITOR.replace('list_teaser' + idTemp);
+			// CKEDITOR.replace('list_description' + idTemp);
+			// change header
+			$('.inputPersonName').trigger('keyup');
+		}
+
+	}
+</script>
+{imagemanager_config}

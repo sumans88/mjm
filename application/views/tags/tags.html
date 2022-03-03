@@ -1,0 +1,48 @@
+<div class="container-fluid container-fluid-dtl">
+  <div class="container">
+    <div class="row row-dtl">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-dtl">
+        <div class="breadcrumb-share">
+          <div class="breadcrumb-dtl">
+            <ol class="breadcrumb">
+              <li class="active">Tags : {tags}</li>
+            </ol>
+          </div> 
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-xs-12 col-dtl">
+        <div class="decs-dtl"> 
+            <!-- <div class="searchresult">{lang_topic}: "{tags}"</div>  -->
+          <div class="list-search">
+            {list_news}
+              <div class="list-events-page list-events-listall" style="margin-bottom: 20px;">
+                <div class="thumb-list-events-page {isImg}">
+                  <!-- <div class="type-newsvents">Berita Terkini</div> -->
+                  <a href="{url}/{detail}/{uri_path_detail}">{show_img}</a>
+                </div>
+                <div class="desc-list-events-page">
+                  <div class="media">
+                    <div class="media-left">
+                      <span>&nbsp;</span>
+                    </div>
+                    <div class="media-body">
+                      <span style="font-size: 14px;">{category} | {publish_date}</span>
+                      <div class="title-ft-news">
+                        <a href="{url}/{detail}/{uri_path_detail}"> {news_title}</a>
+                      </div>
+                     <p>{teaser}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {/list_news}
+            <div class="text-center">
+              <!-- <button class="btn-readmore">{paging}</button> -->
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+ 

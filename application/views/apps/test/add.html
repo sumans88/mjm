@@ -1,0 +1,119 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Frontend Menu</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+					<div class="clear-fix">&nbsp;</div>
+					<div class="col-sm-12 col-lg-9 col-md-12">
+						<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Position <i class='req'>*</i></label>
+								<div class="col-md-9"><select class="form-control" id="id_menu_position" name="id_menu_position" data-parsley-required="true" >{list_menu_position}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Menu Name<i class='req'>*</i></label>
+								<div class="col-md-9"><input type="text" value="{name}" id="name" class='form-control' data-parsley-required="true"  name="name"></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Parent Menu</label>
+								<div class="col-md-9"><select class="form-control" id="id_parent" name="id_parent">{list_parent}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Menu Type <i class='req'>*</i></label>
+								<div class="col-md-9"><select class="form-control" id="id_frontend_menu_type" data-parsley-required="true"  name="id_frontend_menu_type">{list_frontend_menu_type}</select></div>
+							</div>
+							<div class="form-group  no-margin invis" id="type_module">
+								<label class="col-md-3 control-label">Module</label>
+								<div class="col-md-9">
+									<select class="form-control" id="id_module" name="id_module">{list_module}</select> 
+									<i class='fa fa-spinner fa-spin invis' style='position:absolute;padding:7px;' id='loading-callback'></i> 
+								</div>
+							</div>
+							<div class="form-group  no-margin invis" id="type_extra">
+								<label class="col-md-3 control-label">URL <i class='req'>*</i></label>
+								<div class="col-md-9 text-right">
+									<input type="text" value="{extra_param}" id="extra_param"  class='form-control' name="extra_param">
+									<a class='invis' style='position:absolute;margin:-25px 0 0 5px;' id='change-data' data-toggle='modal' href='#popViewDetail'> Change</a>
+								</div>
+							</div>
+							<div class='form-group no-margin'>
+								<label class="col-md-3 control-label">Publish Date </label>
+								<div class="col-md-9">
+									<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+										<input type="text" value="{publish_date}" id="publish_date" class='form-control' name="publish_date" readonly="readonly">
+										<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Description</label>
+								<div class="col-md-9"><textarea  rows="4" id="description" class="form-control ckeditor">{description}</textarea></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
+								<div class="col-md-9"><select id="id_status_publish" class='form-control' data-parsley-required="true" name="id_status_publish">{list_status_publish}</select></div>
+							</div>
+							<div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Seo Title</label>
+								<div class="col-md-9"><input type="text" value="{seo_title}" id="seo_title" class='form-control' name="seo_title"></div>
+							</div>
+						    <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Meta Description</label>
+								<div class="col-md-9"><textarea  rows="4" id="meta_description" class="form-control ckeditor">{meta_description}</textarea></div>
+							</div>
+						    <br>
+						    <div class="form-group  no-margin">
+								<label class="col-md-3 control-label">Meta Keywords</label>
+								<div class="col-md-9"><input type="text" value="{meta_keywords}" id="meta_keywords" class='form-control' name="meta_keywords"></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal" id="popViewDetail">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+				<h4 class="modal-title">Select Top Article</h4>
+			</div>
+			<div class="modal-body">
+				<div id="view-detail"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$('document').ready(function(){
+	$('#id_frontend_menu_type').trigger('change');
+	$('#extra_param').val('{extra_param}');
+	$('#id_module').select2('val','{id_module}');
+	if('{id_module}' == '1'){
+		$('#type_extra,#change-data').show();
+		$('#change-data').click(function(){
+			$('#id_module').trigger('change');
+		});
+	}
+
+})
+</script>
+

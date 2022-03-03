@@ -1,0 +1,130 @@
+<!-- banner top -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- heading  -->
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_name}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- content -->
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      <!-- breadcumb -->
+      {breadcrumb_frontend}
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+              <!-- content -->
+              <div class="title-comdet">{news_title}</div>
+              <div class="date-articles">
+                <div class="media">
+                  <div class="media-left media-middle"><span class="icon-time"></span></div>
+                    <div class="media-body media-middle">{news_date}
+                  </div><!-- Nov 4, 2017   /   18:00 - 20:30 -->
+                </div>
+                {user_publish}<!--  By Jet Damazo-Santos --></div>
+                {share}
+              <div class="slider-index si-artdei {dsp_detail_image}">
+              <div class="owl-carousel owl-theme" id="slider-index">
+                  {detail_image}
+                  <div class="item">
+                    {detail_image_img}
+                    <div class="feature-number">
+                      {detail_image_description}
+                    </div>
+                  </div>
+                  {/detail_image}
+                </div>
+              </div>
+                {page_content}
+                <!-- for detail events -->
+                <div class="{is_past_event}">
+                  <div class="media media-events-dtl">
+                    <div class="media-left media-middle">
+                      <img src="{base_url}/asset/images/clock-dtl.png">
+                    </div>
+                    <div class="media-body media-middle">
+                      <div class="title-event-list">{event_date} 
+                        <!-- November 4, 2017 -->
+                      </div>
+                      <p>{event_time}
+                        <!-- Saturday, 18:00 - 20:30 -->
+                      </p>
+                    </div>
+                  </div> 
+                  <div class="media media-events-dtl">
+                    <div class="media-left media-middle">
+                      <img src="{base_url}/asset/images/maps-dtl.png">
+                    </div>
+                    <div class="media-body media-middle">
+                      <div class="title-event-list">{location_name}</div>
+                      <p>{location_address}</p>
+                      <!-- Jl. Jendral Sudirman Kav. 10-11, Central Jakarta City, Jakarta 10220  -->
+                    </div>
+                  </div>
+                  <div class="media media-events-dtl {dsp_price}">
+                    <div class="media-left media-middle">
+                      <img src="{base_url}/asset/images/prize-dtl.png">
+                    </div>
+                    <div class="media-body media-middle">
+                      <div class="title-event-list">Price</div>
+                      <p>{event_price}</p>
+                  </div>
+                  </div>
+                 {join_event}
+                </div>
+
+                <!-- event material -->                
+                <div class="{dsp_materials}">
+                  <hr class="line-content mt50 mb20 ">
+                  <h4 class="title-content "><b>Committee Materials</b></h4>
+
+                  <ul class="ul-committee ">
+                   {materials}
+                        <li>Downloadable {materials_filename} <a class="tangan" d-title="event" id="{mat_idx}" onclick="download_event_material(this)">click here</a></li>
+                      {/materials}
+                  </ul>
+                </div>
+
+                <div class="message-error {signin} {dsp_materials} {is_upcoming_event} mt15">Members Only Access. Please submit your user name and password in the Members Only area to access the full current Material Event. <a href="{base_url}member">LOGIN</a></div>
+
+                <!-- end event material -->
+
+                <!--gallery past event -->
+                <div  class="{dsp_gallery}">
+                <hr class="line-content mt50 mb50">
+                  <h4 class="title-content"><b>Photo Gallery</b></h4>
+                   {imagelist}
+
+                </div>
+                <!-- end gallery past event-->
+              
+            </div>
+          </div>
+          <!-- sidebar -->
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{modal_event_register}
+{modal_imagelist}

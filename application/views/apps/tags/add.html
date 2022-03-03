@@ -1,0 +1,53 @@
+<form action='{this_controller}proses/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+	<h1 class="page-header">{page_name}</h1>
+	<div class="row">
+		<!-- begin col-12 -->
+		<div class="col-md-12">
+			<!-- begin panel -->
+			<div class="panel panel-inverse" data-sortable-id="index-1">
+				<div class="panel-heading">
+				    <div class="panel-heading-btn">
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+				    </div>
+				    <h4 class="panel-title">{judul} News Category</h4>
+				</div>
+				<div class="panel-body">
+				    <div class="col-sm-12 col-lg-12 col-md-12">
+						<div class="row-fluid">
+							<div class="col-sm-12 text-right">
+								<a class="btn btn-primary insert update {disable_edit} tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+								<a class="btn btn-warning tangan" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+							</div>
+						</div>
+						<div class="clear-fix">&nbsp;</div>
+						<div class="col-sm-12 col-lg-12 col-md-12">
+							<div class="tab-content">
+								{det_tags}
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Name <i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{name}" id="name" class='form-control' name="name" data-parsley-required="{validation}"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<label class="col-md-2 control-label">Uri Path <i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{uri_path}" id="uri_path" class='form-control' name="uri_path" data-parsley-required="{validation}"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{id}" id="id" class='form-control' name="id"></div>
+								</div>
+								<script type="text/javascript">
+									$(document).ready(function(){
+										$('#name,#uri_path').keyup(function(){
+											$('#uri_path').val(convert_to_uri($(this).val()));
+										});
+									});
+								</script>
+								{/det_tags}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,111 @@
+<div class="media-body">
+  <div class="frame-content">
+    <div class="title-event-list mt10">Please complete this form</div>
+    <hr class="lin  e-content">
+    <form class="form-join" action='{base_url}{lang}/contactus' id='form1' method="POST">
+      <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+      <div class="row row-form">
+        <div class="col-sm-4 col-md-4 col-xs-6 col-form">
+          <label class="label-amcham">Name</label>
+          <input type="text" class="form-control input-amcham" name="name" required>
+        </div>
+        <div class="col-sm-4 col-md-4 col-xs-6 col-form">
+          <label class="label-amcham">Email</label>
+          <input type="email" class="form-control input-amcham" name="email" required>
+        </div>
+        <div class="col-sm-4 col-md-4 col-xs-12 col-form">
+          <label class="label-amcham">Phone</label>
+          <input type="text" class="form-control input-amcham" name="phone_number">
+        </div>
+      </div>
+      <div class="row row-form">
+        <div class="col-sm-12 col-md-12 col-xs-12 col-form">
+          <label class="label-amcham">Message</label>
+          <textarea type="text" rows="5" class="form-control" name="message" required> </textarea>
+        </div>
+      </div>
+  
+      <hr class="line-content">
+      <div class="row row-form">
+        <div class="col-sm-6 col-md-8 col-xs-12 ">
+          {footer_data}
+            <div class="media">
+              <div class="media-left"><i class="fa fa-map-marker"></i></div>
+              <div class="media-body">
+                {f_address}
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-xs-12">                
+            {contact}
+              <div class="media">
+               <div class="media-left"><i class="{logo}"></i></div>
+               <div class="media-body">
+                 {value}
+               </div>
+             </div>
+            {/contact}
+         {/footer_data}
+         </div>
+      </div>
+      <hr class="line-content">
+      <button type="button" class="btn-red btn-link-price tangan" id="contact_us_btn">Submit</button>
+    </form>
+    <!-- end content -->
+  </div>
+</div>
+<script src='https://www.google.com/recaptcha/api.js?render={recaptcha_site_key}'></script>
+<script>
+  $("#contact_us_btn").click(function(){
+    event.preventDefault();
+    grecaptcha.ready(function() {
+     grecaptcha.execute('{recaptcha_site_key}', {action: 'contact_us'}).then(function(token) {  
+        document.getElementById('g-recaptcha-response').value=token;
+        $('#form1').prepend('<input type="hidden" name="action" value="contact_us">');
+        var btn  = $("#contact_us_btn"); 
+        if ($('#form1').parsley().validate()) {
+          if(btn.text() == 'Loading...'){
+            return false;
+          }
+          btn.text('Loading...')
+          $.ajax({
+            url         : $('#form1').attr('action'),
+            type        : "POST",
+            dataType    : 'json',
+            data        : $('#form1').serialize(),
+          
+            error   : function () {
+                    alert('error!');
+                    btn.text('Submit')
+
+                  },
+
+            success     : function(ret){
+                    // if (ret.error==1) {
+                    //   alert(ret.message)
+                    //   btn.text('Submit')
+
+
+                      // $('#save-schedule').modal('hide')
+                      // loadingcomplete();
+                    // }else{
+                      btn.text('Submit')
+                      
+                      alert(ret.message)
+                      // $.gritter.add({title:page_name,text:ret.message});
+                      if (ret.reload == true) {
+                        location.reload()
+                      }
+                      // window.location.href = this_controller + back_url;
+                      $('#form1')[0].reset()
+                    // }   
+                    // btn.val('Submit')
+            }
+          })
+        }
+     });
+    });
+    
+  });
+</script>

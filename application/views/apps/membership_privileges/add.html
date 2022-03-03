@@ -1,0 +1,113 @@
+<form action='{this_controller}proses/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+<h1 class="page-header">{page_name}</h1>
+
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Category</h4>
+			</div>
+
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="clear-fix">&nbsp;</div>
+				<div class="col-sm-12 col-lg-9 col-md-12">
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Company Name<i class='req'>*</i></label>
+						<div class="col-md-9"><input type="text" value="{name}" id="title" class='form-control' name="name" data-parsley-required="true"></div>
+					</div>
+									
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Company Image <i class='req'>*</i></label>
+						<div class="col-md-9">
+							{img}
+							<div style="color: green">size : 850 x 480px</div><br/>
+						</div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Description<i class='req'>*</i></label>
+						<div class="col-md-9"><textarea  rows="4" id="page_content" name="page_content[]" class="form-control ckeditor"  data-parsley-required="true">{page_content}</textarea></div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Address </label>
+						<div class="col-md-9"><textarea name="address" rows="4" id="address" class="form-control">{address}</textarea></div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Telephone Number</label>
+						<div class="col-md-9"><input type="text" value="{number}"  id="title" class='form-control' name="number"></div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Email</label>
+						<div class="col-md-9"><input type="text" value="{email}" id="title" class='form-control' name="email"></div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Website</label>
+						<div class="col-md-9"><input type="text" value="{website}" id="title" class='form-control' name="website"></div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Category <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select id="id_category" class='form-control' data-parsley-required="true" name="id_category">
+								{list_category}
+							</select>
+						</div>
+					</div>
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Status Member <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<label class="radio-inline"  for="status_member">
+									<input type="radio" name="status_member" value="1" required {check_member} data-parsley-errors-container="#status_member"> Member<br>
+									<input type="radio" name="status_member" value="2" {check_nonmember}> Non Member
+							</label>
+							
+							<label class="radio-inline" id="status_member">
+					
+							</label>
+						</div>
+					</div>
+
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Status <i class='req'>*</i></label>
+						<div class="col-md-9">
+							<select id="id_status_publish" class='form-control' data-parsley-required="true" name="id_status_publish">
+								{list_status_publish}
+							</select>
+						</div>
+					</div>
+
+					<!-- 
+					<div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Description</label>
+						<div class="col-md-9"><textarea  rows="4" id="page_content" class="form-control ckeditor">{page_content}</textarea></div>
+					</div> -->
+					<!-- <div class="form-group  no-margin">
+						<label class="col-md-3 control-label">Page URL <i class='req'>*</i></label>
+						<div class="col-md-9"><input type="text" value="{uri_path}" data-parsley-required="true" id="uri_path" class='form-control' name="uri_path" readonly="readonly"></div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{imagemanager_config}

@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      
+      <!-- <div class="{hide_breadcrumb}">
+        {breadcrumb_frontend}
+      </div> -->
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+
+             <h4 class="title-content">{member_privileges_head}</h4>
+             <!-- Membership Privileges Program -->
+             {member_privileges_teaser}
+             <!-- <h3 class="red-content mt30 mb30">AmCham Indonesia is very pleased to bring you the AmCham Indonesia Privileges Program!</h3>
+             <p>In addition to the great discounts, we are pleased to bring you some great promotions and events from our participating businesses (see the list of category) - remember to present your AmCham Indonesia membership card to let the participating businesses know how much the AmCham Community appreciates their support! This page will be updated constantly, so be sure to check back for updates</p>
+             <p>** If you are a business interested in participating, contact astari.sutjiningtyas@amcham.or.id to get info on our promotions schedule for 2018.</p> -->
+             <div class="panel-group pg-amcham mt50" id="accordion" role="tablist" aria-multiselectable="true">
+                {list_category_privileges}
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="heading{sort_data}">
+                    <h4 class="panel-title">
+                      <a role="button" id="category_privileges_list" data-id="{id_category_privileges}" data-toggle="collapse" data-parent="#accordion" href="#collapse{sort_data}" aria-expanded="true" aria-controls="collapse{sort_data}">
+                        {name_privileges}
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse{sort_data}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{sort_data}">
+                    <div class="panel-body">
+                      <div class="row">
+
+                       <!--  <div class="col-sm-4 col-md-4 col-xs-12">
+                          <a href="directory-detail.html">
+                            <div class="thumbnail-amcham thumb-gallery"><img src=""></div>
+                          </a>
+                        </div> -->
+                        <div id="list-privileges{sort_data}" class="panel-body"></div>
+
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/list_category_privileges}
+
+             </div>
+
+
+            </div>
+          </div>
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).on("click", "#category_privileges_list", function() {
+   var id                      = $(this).attr('data-id');   
+
+   $.ajax({
+    url     : this_controller+'member/list_privileges',
+    type    : 'post',
+    data    : {id: id},
+    success: function (data) {
+      data = JSON.parse(data);
+      $("#list-privileges"+id).empty().html(data);
+    }
+  });
+
+  return false;
+  });
+</script>

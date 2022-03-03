@@ -1,0 +1,57 @@
+{data}
+    <tr>
+        <td class="center">{nomor}</td>
+        <!-- <td>{id}</td> -->
+        <td>{news_category}</td>
+        <!-- <td><div class="teaser" style="max-width:250px" title="{news_title}"><a href="{base_url}apps/news/view/{id}">{news_title}</a></div></td> -->
+        <td><div class="teaser" style="max-width:250px">{news_title}</div></td>
+        <!-- <td><div class="teaser" style="max-width:250px" title="{news_title_e}">{news_title_e}</div></td> -->
+        <!-- <td><div class="teaser" style="max-widt:120px;" title="{uri_path}">{uri_path}</div></td> -->
+        <td><div class="teaser" style="width:120px;" title="{username}">{username}</div></td>
+        <td class="center">{publish_date} <br></td>
+        <!-- <td class="center">{modify_date}</td> -->
+        <td>{status}</td>
+        <!-- <td>{status}</td> -->
+        <td class="text-right">{hits_id}</td>
+        <!-- <td class="text-right">{hits_en}</td> -->
+        <td class="text-right">{down_id}</td>
+        <!-- <td class="text-right">{down_en}</td> -->
+        <!-- <td class="center"></td> -->
+        <td class="center">
+            <a link="{base_url}news/en/detail/{uri_path}" title="Copy Link" class="fa fa-copy action-form-icon" onclick="copy_link(this)"></a>
+            <a href="{base_url}apps/news/preview/{uri_path}" title="View Detail" class="fa fa-search action-form-icon"></a>
+            <!-- {edit}
+            <a href="{this_controller}add/{id_parent_lang}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a> -->
+            <a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+            <a title="Delete Data" class="fa fa-trash-o action-form-icon tangan hapus" id='{id}' data-url-rm='del' data-base-url="news"></a>
+        </td>
+        
+    </tr>
+{/data}
+<tr class="footer">
+    <td colspan="12">{paging}</td> 
+</tr>
+
+<script>
+    function copy_link(elmnt) {
+        str = $(elmnt).attr('link')        
+
+          // Create new element
+          var el = document.createElement('textarea');
+          // Set value (string to be copied)
+          el.value = str;
+          // Set non-editable to avoid focus and move outside of view
+          el.setAttribute('readonly', '');
+          el.style = {position: 'absolute', left: '-9999px'};
+          document.body.appendChild(el);
+          // Select text inside element
+          el.select();
+          // Copy text to clipboard
+          document.execCommand('copy');
+          // Remove temporary element
+          document.body.removeChild(el);
+          notify('Link has Copied')
+
+    }
+
+</script>

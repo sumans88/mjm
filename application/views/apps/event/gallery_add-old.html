@@ -1,0 +1,324 @@
+	<style type="text/css">
+	.myProgress {
+	    position: relative;
+	    width: 100%;
+	    height: 30px;
+	    background-color: #ababab;
+	    margin-bottom: 10px;
+	}
+	.myBar {
+	    position: absolute;
+	    width: 1%;
+	    height: 100%;
+	    background-color: #31b0d5;
+	}	
+	.labelImag {
+	    text-align: center; /* If you want to center it */
+	    line-height: 30px; /* Set the line-height to the same as the height of the progress bar container, to center it vertically */
+	    color: white;
+	}
+</style>
+<script src="{base_url}assets/js/html5shiv.js"></script>
+<script src="{base_url}assets/js/selectivizr.js"></script>
+<link rel="stylesheet" type="text/css" href="{base_url}assets/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="{base_url}assets/css/component.css" />
+<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+<script type="text/javascript">
+	function progressLoad(idLang, idImag){
+		var elem = document.getElementById("myBar" + idLang + idImag); 	    
+	    var width = 10;
+	    var id = setInterval(frame, 10);
+	    function frame() {
+	        if (width >= 100) {
+	            clearInterval(id);
+	        } else {
+	        	width++; 
+	    		elem.style.width = width + '%'; 
+	        	document.getElementById("label" + idLang + idImag).innerHTML = width * 1 + '%';
+	        }
+	    }
+	}
+	function progressLoadAll(){
+		var elem = document.getElementByClassName("myBar"); 	    
+	    var width = 10;
+	    var id = setInterval(frame, 10);
+	    function frame() {
+	        if (width >= 100) {
+	            clearInterval(id);
+	        } else {
+	        	width++; 
+	    		elem.style.width = width + '%'; 
+	        	document.getElementByClassName("label").innerHTML = width * 1 + '%';
+	        }
+	    }
+	}
+</script>
+<h1 class="page-header">Gallery</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Gallery</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<!-- <a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a> -->
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear-fix">&nbsp;</div>
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<form action='{this_controller}gallery_proses/{id}' id='form1' class="form-horizontal">
+						<ul class="nav nav-pills">
+					<!-- 		{list_lang2}
+							<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+							{/list_lang2} -->
+						</ul>
+						<div class="tab-content">
+							{list_lang}
+							<div class="tab-pane fade {active}" id="nav-pills-tab-{nomor}">
+								<!--<div class="form-group  no-margin {invis}">
+									<label class="col-md-2 control-label">Category <i class='req'>*</i></label>
+									<div class="col-md-9"><select class="category" id="id_gallery_category{nomor}" class='form-control' name="id_gallery_category[]" data-parsley-required="{validation}">{list_gallery_category}</select></div>
+								</div>-->
+								
+								<!-- <div class="form-group  no-margin invis" style="display: none;" id="event_id">
+									<div class="col-md-9"><input type="text" value="{event_id}" id="event_id{nomor}" class='form-control' name="event_id[]"></div>
+								</div> -->
+
+									<!-- <div class="form-group  no-margin {invis}" style="display: none;" id="area-youtube">
+										<label class="col-md-2 control-label">Youtube URL</label>
+										<div class="col-md-9"><input type="text" value="{youtube_url}" id="youtube_url{nomor}" class='form-control' name="youtube_url[]"></div>
+									</div> -->
+
+									<div class="form-group  no-margin invis">
+										<label class="col-md-2 control-label">Gallery Name <i class='req'>*</i></label>
+										<div class="col-md-9"><input type="text" value="{name_data}" data-parsley-required="{validation}" id="title{nomor}" class='uri_path form-control' name="name[]"></div>
+									</div>
+									<!-- 
+									<div class="form-group  no-margin">
+										<label class="col-md-2 control-label">Description</label>
+										<div class="col-md-9"><textarea name="description[]" rows="4" id="description{nomor}" class="form-control">{description}</textarea></div>
+									</div>
+									<div class='form-group no-margin {invis}'>
+										<label class="col-md-2 control-label">Publish Date </label>
+										<div class="col-md-9">
+											<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+												<input type="text" value="{publish_date2}" id="publish_date{nomor}" class='form-control' name="publish_date[]" readonly="readonly">
+												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+											</div>
+										</div>
+									</div>
+									<div class="form-group  no-margin">
+										<label class="col-md-2 control-label">Image</label>
+										<div class="col-md-9">
+											{img}
+											<div style="color: green">size : 850 x 480px</div><br/>
+											<a style="cursor: pointer;" onclick="delImage('{nomor}', '{base_url}')">Delete Image</a>
+											<input type="hidden" name="imgDelete[]" id="imgDelete{nomor}" value="0">
+										</div>
+									</div>
+									<div class="form-group  no-margin ">
+										<label class="col-md-2 control-label">Gallery URL <i class='req'>*</i></label>
+										<div class="col-md-9"><input type="text" value="{uri_path}" id="uri_path{nomor}" class='uri_path form-control' name="uri_path[]"></div>
+									</div>
+									<div class="form-group  no-margin">
+									<label class="col-md-2 control-label" style="padding-top: 20px !important;">Upload File</label>
+										{file_upload}			
+									</div> 
+									<div class="form-group  no-margin">
+										<label class="col-md-2 control-label">Tags</label>
+										<div class="col-md-9"><select id="tags{nomor}" multiple class='form-control' name="tags[{lang_id}][]"></select></div>
+									</div>
+								    <div class="form-group  no-margin">
+										<label class="col-md-2 control-label">Seo Title</label>
+										<div class="col-md-9"><input type="text" value="{seo_title}" id="seo_title{nomor}" class='form-control' name="seo_title[]"></div>
+									</div>
+								    <div class="form-group  no-margin">
+										<label class="col-md-2 control-label">Meta Description</label>
+										<div class="col-md-9"><textarea  rows="4" id="meta_description{nomor}" name="meta_description[]" class="form-control ckeditor">{meta_description}</textarea></div>
+									</div>
+								    <br>
+								    <div class="form-group  no-margin">
+										<label class="col-md-2 control-label">Meta Keywords</label>
+										<div class="col-md-9"><input type="text" value="{meta_keywords}" id="meta_keywords{nomor}" class='form-control' name="meta_keywords[]"></div>
+									</div> -->
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{lang_id}" id="id_lang{nomor}" class='form-control' name="id_lang[]"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{id_gallery}" id="id{nomor}" class='form-control' name="id[]"></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-2 control-label">Images for Detail Event </label>
+									<div class="col-md-9">
+										<div class="box">
+											<input type="file" name="uploadImages[]" id="uploadImages{nomor}" style="display: none;" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" multiple />
+											<label for="uploadImages{nomor}"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg>Select Images</strong></label>
+											<a class="removePrice" id="btnRemoveprice">+ Add New Gallery From Album</a>
+										</div>
+
+										<div style="color: green">size : 847 x 476px</div><br/>
+										<button type="button" class="open-ImagesDialog btn btn-info" data-id="{nomor}" data-toggle="modal" data-target="#myModal">Get Images from Server</button>
+									</div>
+								</div>
+								<div class="form-group no-margin" id="buttonImages{nomor}" style="display: {showUploadAll};">
+									<div class="col-md-2"></div>
+									<span class="col-md-9" style="padding-top: 10px !important;">
+										<button type="button" class="btn btn-primary" onclick="saveAll('{nomor}', '{jmlImages}')">Upload & Update All</button>
+										<button type="button" class="btn btn-danger" onclick="deleteAll('{nomor}', '{jmlImages}')">Delete All</button>
+									</span>
+								</div>
+								<div class="form-group  no-margin">
+									<div class="col-md-2"></div>
+									<span class="col-md-9" style="padding-top: 10px !important;">
+										<div id="imageSaved{nomor}">
+											{gallery_images}
+										</div>
+										<div id="imagePreview{nomor}"></div>
+										<div id="imagePreviewAlbum"></div>
+									</span>
+								</div>
+							</div>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$('#title{nomor},#uri_path{nomor}').keyup(function(){
+										$('#uri_path{nomor}').val(convert_to_uri($(this).val()));
+									});
+									$('#title{nomor},#seo_title{nomor}').keyup(function(){
+										$('#seo_title{nomor}').val($(this).val());
+									});
+									$('#description{nomor},#meta_description{nomor}').keyup(function(){
+										CKEDITOR.instances.meta_description{nomor}.setData($(this).val());
+									});
+								})
+								$(document).ready(function(){
+								$("#tags{nomor}").select2({
+								  tags: [{tags}],
+								  tokenSeparators: [","]
+								})
+								var selectedValues = "{tags_data}".split(',');
+								$("#tags{nomor}").select2('val',selectedValues);
+							}) 
+
+							var inputLocalFont = document.getElementById("uploadImages{nomor}");
+							inputLocalFont.addEventListener("change",previewImages,false);
+
+							function previewImages(){
+							    var fileList = this.files;
+							    
+							    if(fileList.length != 0){
+									document.getElementById("buttonImages{nomor}").style.display = 'block';
+								}
+
+							    var anyWindow = window.URL || window.webkitURL;
+
+							    	var getJml = jmlImagesSaved{nomor};
+							    	var jmlImages = 0;
+							    	if(getJml != 0 || getJml != ''){
+							    		jmlImages = getJml;
+							    	} else{
+							    		jmlImages = 0;
+							    	}
+
+							        for(var i = 0; i < fileList.length; i++){
+							        	//alert(fileList[i]);
+							          var jmlNow = parseInt(i) + parseInt(jmlImages);
+							          
+							          var objectUrl = anyWindow.createObjectURL(fileList[i]);
+
+
+							          if((fileList[i].type == "image/gif") || (fileList[i].type == "image/jpeg") || (fileList[i].type == "image/png") || (fileList[i].type == "image/bmp")){
+							          		$('#imagePreview{nomor}').append('<div id="imag{nomor}' + jmlNow + '" class="col-md-12" style="margin-bottom: 15px;"><div class="col-md-3"><img src="' + objectUrl + '" width="100px" /></div><div class="col-md-9"><div class="myProgress" id="myProgress"><div class="myBar" id="myBar{nomor}' + jmlNow + '"><div class="labelImag" id="label{nomor}' + jmlNow + '">0%</div></div></div><input type="text" id="nameImag{nomor}' + jmlNow + '" placeholder="Name" class="form-control" style="margin-bottom: 10px;"><textarea id="descImag{nomor}' + jmlNow + '" placeholder="Description" class="form-control" style="height: 75px;resize: none;margin-bottom: 10px;"></textarea><button type="button" class="btn btn-info" id="btnImag{nomor}' + jmlNow + '" onClick="saveOne({nomor}, ' + i + ', ' + jmlImages + ')">Upload and Save</button><button type="button" class="btn btn-danger" style="margin-left:10px;" onClick="deleteOne({nomor}, ' + i + ', ' + jmlImages + ', 0)">Delete</button><input type="hidden" id="statusImag{nomor}' + jmlNow + '" value="0" /><input type="hidden" id="idSavedImag{nomor}' + jmlNow + '" value="" /></div></div>');
+								          	//move(i, 50);
+
+										  	window.URL.revokeObjectURL(fileList[i]);
+							          } else{
+							          		alert("File type must be formatted as .gif, .jpg, .jpeg, .png and .bmp");
+							          }
+							          
+							        }
+							}
+							</script>
+							{imagemanager_config}
+							{/list_lang}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal invis fade" id="popViewDetail">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+				<h4 class="modal-title">Select Gallery</h4>
+			</div>
+			<div class="modal-body">
+				<div class="modal-body">
+					<div id="view-detail"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{gallery_images_modal}
+{filemanager_config}
+<script src="{base_url}assets/js/custom-file-input.js"></script>
+<script type="text/javascript">
+	$(".category").change(function(){
+		var id = $(this).val();
+		if(id == 2){
+			$("#area-youtube").show();
+		}
+		else{
+			$("#area-youtube").hide();
+		}
+	})
+	if('{id_gallery_category}' == 2){
+		$("#area-youtube").show();
+	}
+
+	$(document).on('click','#btnRemoveprice', function(e){
+		$.ajax({
+			url         : base_url+'apps/event/getAlbumGallery',
+			type		: 'POST',
+			error 		: function(err){},
+			success 	: function(ret){
+							$('#view-detail').html(ret);
+							$('#popViewDetail').modal('show');
+							}
+		});
+  		return false;
+    });
+
+    $(document).on('click','.select-data',function(){
+    	var id = $(this).attr('data-id');
+		$.ajax({
+			url         : base_url+'apps/event/show_images_AlbumGallery',
+			type		: 'POST',
+			data		: 'id_gallery='+id,
+			error 		: function(err){},
+			success 	: function(ret){
+							$('#popViewDetail').modal('hide');
+							$('#imagePreviewAlbum').html(ret);
+							}
+		});
+  		return false;
+    });
+							
+</script>
+{multiple_image_script}

@@ -1,0 +1,1174 @@
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+
+      <div class="banner-top responsive-banner">
+
+        {banner_top}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container-fluid cf-grey4">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-12 col-md-12 col-xs-12">
+
+        <div class="title-pagination">{page_heading}</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="container-fluid cf-content">
+
+  <div class="container">
+
+    <div class="row">
+
+      
+
+      <!-- <div class="{hide_breadcrumb}">
+
+        {breadcrumb_frontend}
+
+      </div> -->
+
+
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+
+        <div class="media media-content">
+
+          <div class="media-body">
+
+            <div class="frame-content">
+
+
+
+              <!-- content -->
+
+                <div>
+
+                {content_top}
+
+                </div>
+
+                <!-- {data_membership}
+
+                <div class="widget-white mb30 mt50 p20 {is_paid} ">
+
+                  <div class="title-event-list">Membership Information</div>
+
+                  <hr class="line-content mt10">
+
+                  <div class="row mb30">
+
+                    <div class="col-sm-7 col-md-7 col-xs-12">
+
+                      <table cellspacing="0" cellpadding="0" border="0" class="table-membership">
+
+                        <tr>
+
+                          <td>Membership</td>
+
+                          <td>:</td>
+
+                          <td>{membership_code}</td>
+
+                        </tr>
+
+                        <tr>
+
+                          <td>Registered date</td>
+
+                          <td>:</td>
+
+                          <td>{membership_registered}</td>
+
+                        </tr>
+
+                        <tr>
+
+                          <td>Expired on</td>
+
+                          <td>:</td>
+
+                          <td>{membership_expired}</td>
+
+                        </tr>
+
+                        <tr>
+
+                          <td>Last visited date</td>
+
+                          <td>:</td>
+
+                          <td>{membership_lastvisit}</td>
+
+                        </tr>
+
+                      </table>
+
+                    </div> 
+
+                    <div class="col-sm-5 col-md-5 col-xs-12 text-right">
+
+                      <a href="#" class="btn-red btn-link-price renew-membership">Renew Membership</a></div> 
+
+                  </div>
+
+                  <p class="mb0">Looking for help with enrollment or have a membership inquiry? <a href="#" style="color: red">Click here</a></p>
+
+                </div>
+
+                {/data_membership} -->
+
+              <!-- end membership -->
+
+                
+
+              <!-- not membership or expired-->
+
+                <div class="widget-white mb30 mt50 p20 {is_not_paid} {have_not_paid_invoice}">
+
+                  <div class="title-event-list">Membership Information</div>
+
+                  <hr class="line-content mt10">
+
+                  <div class="row mb30">
+
+                    <div class="col-sm-7 col-md-7 col-xs-12">
+
+                      {membership_information_description}
+
+                    </div> 
+
+                    <div class="col-sm-5 col-md-5 col-xs-12 text-right"><a href="member/payment_confirmation" class="btn-red btn-link-price">Payment confirmation</a>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              <!-- end not membership or expired -->
+
+              <div class="{is_paid} {is_not_company} {dsp_event_up}">
+
+                
+
+              <!-- upcoming event <-->
+
+                <div class="title-event-list mb30">Upcoming events</div>
+
+                {upcoming_event}
+
+                <!-- member-events // untuk square -->
+
+                <div class="widget-white {upcoming_color} mb15">
+
+                  <div class="event-type">{upcoming_cat} </div>
+
+                  <div class="title-event-list mb20"><a href="upcoming_link">{upcoming_name}</a></div>
+
+                  <div class="row">
+
+                    <div class="col-sm-5 col-md-5 col-xs-12">
+
+                      <div class="media">
+
+                        <div class="media-left media-middle"><span class="icon-time"></span></div>
+
+                        <div class="media-body media-middle">{upcoming_date}</div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="col-sm-7 col-md-7 col-xs-12">
+
+                      <div class="media">
+
+                        <div class="media-left media-middle"><span class="icon-maps"></span></div>
+
+                        <div class="media-body media-middle">{upcoming_address}</div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+
+                {/upcoming_event}
+
+                <div class="text-center mt15 {dsp_load_more_upcoming_events}"><a href="{base_url_lang}event/more/upcoming-events/{paging_load_more}" class="load-more">Load More</a></div>                
+
+                <hr class="line-content mb50">
+
+              <!-- end upcoming event -->
+
+
+
+              <!-- past event -->
+
+                <div class="{dsp_event_past}">
+
+              
+
+                <div class="title-event-list mb30">Past Events</div>
+
+                <div class="row mb15">
+
+                  <!-- filter year -->
+
+                  <div class="col-sm-3 col-md-3 col-xs-12">
+
+                    <select class="form-control select-amcham" id="select-past-year">
+
+                      {list_year}
+
+                    </select>
+
+                  </div>
+
+                  <!-- filter month -->
+
+                  <div class="col-sm-3 col-md-3 col-xs-12">
+
+                    <select class="form-control select-amcham" id="select-past-month">
+
+                      {list_month}
+
+                    </select>
+
+                  </div>
+
+                </div>
+
+
+
+                <div class="content-past-events">
+
+                  {past_event}
+
+                  <div class="widget-white {past_color} mb15">
+
+                    <div class="event-type">{past_cat}</div>
+
+                    <div class="title-event-list mb20"><a href="{past_link}">{past_name}</a></div>
+
+                    <div class="row">
+
+                      <div class="col-sm-5 col-md-5 col-xs-12">
+
+                        <div class="media">
+
+                          <div class="media-left media-middle"><span class="icon-time"></span></div>
+
+                          <div class="media-body media-middle">{past_date}</div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="col-sm-7 col-md-7 col-xs-12">
+
+                        <div class="media">
+
+                          <div class="media-left media-middle"><span class="icon-maps"></span></div>
+
+                          <div class="media-body media-middle">{past_address}</div>
+
+                        </div>
+
+                      </div>
+
+                      <ul class="profile-past-file {past_dsp_material}">
+
+                        {past_material}
+
+                          <li>Downloadable {material_file} <a d-title="event" id="{mat_idx}" onclick="download_event_material(this)">click here</a></li>
+
+                        {/past_material}
+
+                      </ul>
+
+                        <!-- <p class="mt20 mb0">Downloadable materials_01 <a href="#" style="color: red">Click here</a></p>
+
+                        <p class="mb0">Downloadable materials_02 <a href="#" style="color: red">Click here</a></p>
+
+                        <p class="mb5">Downloadable materials_03 <a href="#" style="color: red">Click here</a></p> -->
+
+                    </div>
+
+                  </div>
+
+                {/past_event}
+
+                </div>
+
+                <div id="past-load-more">
+
+                  <div class="text-center mt15 {dsp_load_more_past_events}"><a href="{base_url_lang}event/more/past-events/{paging_load_more}" class="load-more">Load More</a></div>
+
+                </div>
+
+                </div>
+
+              <!-- past event -->
+
+              </div>
+
+      
+
+              <div class="{is_company} "> 
+
+                <div class="mb30 mt50 row">
+
+                  <div class="col-sm-12 col-md-12 col-xs-12 mb15"><div class="title-member-dtl mb0">Corporate Representative</div></div>
+
+                   <!-- <button class="btn-blue-member member-edit-profile" id="getEditProfileCompanyRepresentative" data-toggle="modal" data-target="#myModalCompanyProfileRepresentative"> <span class="glyphicon glyphicon-plus"></span></button> -->
+
+                     
+
+                <div class="{no_reprepesentative}">
+
+                  {data_re}
+
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+
+                      <div class="title-member-dtl tm-grey mb0">{re_name}
+
+                         <div class="btn-edit-corporate row">
+
+                          <!-- <div class="col-sm-12 col-md-12 col-xs-12 col-form {re_hide_representatif}" data-toggle="modal" data-target="#myModalCompanyProfileRepresentative"> -->
+
+                            <!-- <button class="btn-grey-member re-edit-profile" data-id="{re_id}">Edit</button> -->
+
+                          <!-- </div> -->
+
+                        </div>
+
+                      </div> 
+
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+
+                      <div class="media media-profile">
+
+                        <div class="media-left">
+
+                          <div class="thumbnail-amcham thum-members-btm"><img src="{re_img}"></div>
+
+                        </div>
+
+                        <div class="media-body">
+
+                          <div class="media media-listmember">
+
+                            <div class="media-left">
+
+                              <div class="icon-listmember"><img src="{base_url}asset/images/card.png"></div>
+
+                            </div>
+
+                            <div class="media-body">{re_job}</div>
+
+                          </div>
+
+                          <div class="media media-listmember">
+
+                            <div class="media-left">
+
+                              <div class="icon-listmember"><img src="{base_url}asset/images/envalop.png"></div>
+
+                            </div>
+
+                            <div class="media-body">{re_email}</div>
+
+                          </div>
+
+                          <div class="media media-listmember">
+
+                            <div class="media-left">
+
+                              <div class="icon-listmember"><img src="{base_url}asset/images/phone-o.png"></div>
+
+                            </div>
+
+                            <div class="media-body">{re_t_number}</div>
+
+                          </div>
+                           <div class="media media-listmember">
+      <div class="media-left">
+        <div class="icon-listmember"><img src="{base_url}asset/images/maps.png"></div>
+      </div>
+      <div class="media-body">{re_address}</div>
+    </div>
+
+                          <!-- <div class="media media-listmember">
+
+                            <div class="media-left">
+
+                              <div class="icon-listmember"><img src="{base_url}asset/images/phone.png"></div>
+
+                            </div>
+
+                            <div class="media-body">{re_m_number}</div>
+
+                          </div> -->
+
+                          <!-- <div class="media media-listmember">
+
+                            <div class="media-left">
+
+                              <div class="icon-listmember"><img src="{base_url}asset/images/in-o.png"></div>
+
+                            </div>
+
+                            <div class="media-body">{re_linkedin_id}</div>
+
+                          </div> -->
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  {/data_re}
+
+
+
+                  
+
+                   
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              
+
+
+
+              <!-- end conntent -->
+
+
+
+              <!-- </div> -->
+
+            </div>
+
+          </div>
+
+          <div class="media-right">
+
+            {widget_sidebar}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- Modal -->
+
+<div class="modal fade fade-events" id="myModalCompanyProfileRepresentative" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <div class="text-center">
+
+          <div class="media logo">
+
+            <div class="media-left media-middle"><img src="{base_url}asset/images/logo.png"></div>
+
+            <div class="media-body media-middle">
+
+              <span>AMCHAM INDONESIA</span>
+
+              <i>MJM<br>SINCE 1971</i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <hr class="line-content line-white">
+
+        <div class="pop-header">
+
+          <div class="title-event-list">Edit Representative Profile</div>
+
+          <div class="disclamer-tq">
+
+            <form action='{this_controller}member/add_member_representative' method="post" id='form3'  enctype="multipart/form-data">
+
+              <input type="hidden" name="member_id" id="member_id_re" class="form-control input-amcham">
+
+              <div class="row">
+
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">First Name</label>
+
+                  <input type="type" name="firstname" id="firstname" class="form-control input-amcham" placeholder="First Name">
+
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Last Name</label>
+
+                  <input type="type" name="lastname" id="lastname" class="form-control input-amcham" placeholder="Last Name">
+
+                </div>
+
+                <!-- <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Middle Name</label>
+
+                  <input type="type" name="middlename" id="middlename" class="form-control input-amcham" placeholder="Middle Name">
+
+                </div> -->
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Mr/Ms/etc</label>
+
+                  <input type="type" name="prefix_name" id="prefix_name" class="form-control input-amcham" placeholder="Mr/Ms/etc">
+
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Job Position</label>
+
+                  <input type="type" name="job" id="job" class="form-control input-amcham" placeholder="Job Position">
+
+                </div>
+
+              </div>
+
+
+
+              <div class="row">
+
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Email</label>
+
+                  <input type="email" name="email" id="email" class="form-control input-amcham" placeholder="Email">
+
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Telephone</label>
+
+                  <input type="type" name="t_number" id="m_t_number" class="form-control input-amcham" placeholder="Telephone">
+
+                </div>
+
+              </div>
+
+              
+
+              <!-- <div class="row">
+
+                <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Phone</label>
+
+                  <input type="text" name="m_number" id="m_m_number" class="form-control input-amcham" placeholder="Phone">
+
+                </div>
+
+               <div class="col-sm-6 col-md-6 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">LinkedIn</label>
+
+                  <input type="type" name="linkedin_id" id="linkedin_id" class="form-control input-amcham" placeholder="LinkedIn">
+
+                </div>
+
+              </div> -->
+
+
+
+              <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Information not available for Public</label>
+
+                  <input type="checkbox" name="is_invis" id="is_invis" > Hide
+
+                </div>
+
+              </div>
+
+
+
+              <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Photo</label>
+
+                   <div class="form-group">
+
+                      <div class="input-group">
+
+                          <span class="input-group-btn">
+
+                              <span class="btn btn-default btn-file">
+
+                                  Browse… <input type="file" id="imgInpre" name="img">
+
+                              </span>
+
+                          </span>
+
+                          <input type="text" class="form-control" readonly>
+
+                      </div>
+
+                      <img id='img-upload'/>
+
+                  </div>
+
+                </div>
+
+
+
+                <!-- <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+
+                  <label class="label-amcham text-left">Password</label>
+
+                  <input type="text" name="password" id="password" class="form-control input-amcham" placeholder="Password">
+
+                </div> -->
+
+              </div>
+
+
+
+              <div class="row">     
+
+                <!-- <div class="col-sm-6 col-md-6 col-xs-12"><button class="btn-grey-member member-edit-profile-representative" id="save-profile" name="save-profile">Update</button></div> -->
+
+                <div class="col-sm-6 col-md-6 col-xs-12"><button class="btn-grey-member member-edit-profile-representative" id="member-save-profile" name="member-save-profile">Update</button></div>
+
+                <div class="col-sm-6 col-md-6 col-xs-12"><button class="btn-red-member" data-dismiss="modal" aria-label="Close">Cancel</button></div>
+
+              </div>
+
+            </form> 
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- Modal -->
+
+<div class="modal fade fade-events" id="myModalRenewMembership" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <div class="text-center">
+
+          <div class="media logo">
+
+            <div class="media-left media-middle"><img src="{base_url}asset/images/logo.png"></div>
+
+            <div class="media-body media-middle">
+
+              <span>AMCHAM INDONESIA</span>
+
+              <i>MJM<br>SINCE 1971</i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <hr class="line-content line-white">
+
+        <div class="pop-header">
+
+          <div class="title-event-list">Renew Membership</div>
+
+          <div class="disclamer-tq">
+
+             Thank you, Request renew membership has been sent to Administrator
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+  
+
+  $(document).on('click', '.member-edit-profile-representative', function(){
+
+    var id =  $('#member_id_re').val(); 
+
+    $("#form3").attr("action", $('#form3').attr('action')+'/'+id);
+
+    alert('Profile Data Successfully Updated');
+
+    $('#form3').Submit();
+
+  });
+
+
+
+  $(document).on('click', '.member-insert-profile-representative', function(){
+
+      $.ajax({
+
+          url         : $('#form3').attr('action'),
+
+          type        : "POST",
+
+          dataType    : 'json',
+
+          data        : $('#form3').serialize(),
+
+          success     : function(ret){
+
+            location.reload();
+
+
+
+          }
+
+        });
+
+      return false;
+
+    
+
+  });
+
+
+
+  $(document).on('click', '#getEditProfileCompanyRepresentative', function(){
+
+    $('#form3').trigger("reset");
+
+    $('.member-insert-profile-representative').parent().show();
+
+    $('.member-edit-profile-representative').parent().hide();
+
+  });
+
+
+
+  $('#is_invis').on('change', function(){
+
+     this.value = this.checked ? 1 : 0;
+
+  }).change();
+
+
+
+
+
+    $(document).on('click', '.re-edit-profile', function(){
+
+    // var uname =  $(this).attr('data-id'); 
+
+    $('.member-insert-profile-representative').parent().hide();
+
+    $('.member-edit-profile-representative').parent().show();
+
+    var id_member =  $(this).attr('data-id'); 
+
+        $.ajax({
+
+          // url     : $('#form3').attr('action')+'/'+id_member,
+
+          url: base_url+'member/edit_profile_member/0/'+id_member,
+
+          type    : 'get',
+
+          success : function (data) {
+
+            data = JSON.parse(data);
+
+
+
+            $('#member_id_re').val(id_member);  
+
+            $('#firstname').val(data.firstname);  
+
+            // $('#middlename').val(data.middlename);
+
+            $('#lastname').val(data.lastname);
+
+            $('#prefix_name').val(data.prefix_name);
+
+            // $('#password').val(data.password);
+
+            $('#job').val(data.job);  
+
+            $('#email').val(data.email);
+
+            $('#m_t_number').val(data.m_t_number);
+
+            // $('#m_m_number').val(data.m_m_number);
+
+            // $('#linkedin_id').val(data.linkedin_id);
+
+            $('#website').val(data.website);
+
+            $('#address').val(data.address);
+
+            $('#id').val(data.member_id);
+
+            $('#id_com').val(data.company_id);
+
+            $('#imgInpre').parent().parent().next('input').val(data.img);
+
+            // $('#imgInp').parent().parent().next('input').val(data.img);
+
+            $('#imgInpre').parent().parent().parent().parent().find('img').attr('src', data.img_src);
+
+
+
+              if (data.is_invis == 0){
+
+                 $('#is_invis').attr('checked',false);
+
+              } else{
+
+                 $('#is_invis').attr('checked',true);
+
+              }
+
+
+
+            }
+
+      })
+
+    
+
+  });
+
+
+
+  $(document).on('click', '.member-save-profile', function(){
+
+      $.ajax({
+
+          url         : $('#form2').attr('action'),
+
+          type        : "POST",
+
+          dataType    : 'json',
+
+          data        : $('#form2').serialize(),
+
+          success     : function(ret){
+
+                        location.reload();
+
+                        alert('Update Profile Succeess');
+
+          }
+
+        });
+
+    
+
+  });
+
+
+
+  $(document).on('click', '.renew-membership', function(x){
+
+      x.preventDefault();
+
+
+
+      var btnname = $(x).text();
+
+      $(x).text('Loading...');
+
+      $(x).attr('disabled',true);
+
+      $.ajax({
+
+      url         : base_url_lang+'member/renew_membership',
+
+      type        : "POST",
+
+      dataType    : 'json',
+
+      success     : function(ret){
+
+            $(x).attr('disabled',false);
+
+            $(x).text(btnname);
+
+            if (ret.error == 1 ) {
+
+              // alert(ret.msg);
+
+              // if(typeof ret.parsley != 'undefined'){
+
+              //   alert(ret.parsley_message);
+
+              // }
+
+              if(typeof ret.msg != 'undefined'){
+
+                alert(ret.msg);
+
+              }
+
+              
+
+             
+
+              if(typeof ret.modalname != 'undefined'){
+
+                $('#'+ret.modalname).modal('show');
+
+              }
+
+              if (typeof ret.redirect != 'undefined'){
+
+                window.location = ret.redirect;
+
+              }
+
+     
+
+            }else{
+
+
+
+
+
+               if(typeof ret.modalclose != 'undefined'){
+
+                // jQuery.noConflict();
+
+                $('#'+ret.modalclose).modal('hide');
+
+              }
+
+
+
+              if(typeof ret.clearform != 'undefined'){
+
+                $('#form1')[0].reset();
+
+              }
+
+
+
+              if(typeof ret.modalname != 'undefined'){
+
+                $('#'+ret.modalname).modal('show');
+
+              }
+
+
+
+              if (typeof ret.redirect != 'undefined'){
+
+                window.location = ret.redirect;
+
+              }
+
+
+
+            }        
+
+
+
+          }
+
+        })
+
+  // return false;
+
+  });
+
+
+
+  $(document).ready(function(){
+
+    $(document).on('change','#select-past-year,#select-past-month',function(){
+
+      $('.content-past-events').empty();
+
+      $('#past-load-more').empty();
+
+      search_past_event();
+
+      return false;
+
+    });
+
+
+
+    function search_past_event(){
+
+      year  = $('#select-past-year').val() == "" ? 0 : $('#select-past-year').val();
+
+      month = $('#select-past-month').val() == "" ? 0 : $('#select-past-month').val();  
+
+
+
+      $.ajax({
+
+        url   : "{base_url_lang}member/getPastEvent",
+
+        type  : 'post',
+
+        data  : {
+
+                  month    : month,
+
+                  year     : year
+
+                },
+
+        success: function (data) {
+
+          data = JSON.parse(data);
+
+          $('.content-past-events').append(data);
+
+        }
+
+        
+
+        });
+
+    } 
+
+  });
+
+
+
+    /*function search_past_event(){
+
+      $year  = $('#select-past-year').val() == "" ? 0 : $('#select-past-year').val();
+
+      $month = $('#select-past-month').val() == "" ? 0 : $('#select-past-month').val();  
+
+
+
+      $.ajax({
+
+          url         : "{base_url_lang}event/more/past-events/0/0/"+$year+"/"+$month,
+
+          type        : "POST",
+
+          dataType    : 'json',
+
+          // data        : $('#form2').serialize(),
+
+          success     : function(data){
+
+            alert(data);
+
+          $('.content-past-events').empty();
+
+          $('#past-load-more').empty();
+
+          $('.content-past-events').html(ret);
+
+        }
+
+        
+
+        });
+
+    } 
+
+  });*/
+
+</script>
+
+
+

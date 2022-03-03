@@ -1,0 +1,21 @@
+{data}
+	<tr>
+		<td class="center"><input type="checkbox" value="{id}" name="id_commentar[]" class="id_commentar"></td>
+		<td class="center">{nomor}</td>
+		<td>{news_title}</td>
+		<td>{author}</td>
+		<td class="center">{commentar}</td>
+		<td>{flag}</td>
+		<td>{create_date}</td>
+		<td>{status_delete}</td>
+		<td class="center">
+			<a href="{base_url}apps/news/view/{id_news}" title="View Detail" target="_BLANK" class="fa fa-search action-form-icon"></a>
+			<a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

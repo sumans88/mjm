@@ -1,0 +1,86 @@
+<div class="container-fluid container-fluid-dtl">
+  <div class="container">
+    <div class="row row-dtl">
+      <div class="col-sm-12 col-md-12 col-xs-12 col-dtl" style="padding-top:40px;">
+      <!--   <div class="breadcrumb-share">
+          <div class="breadcrumb-dtl">
+            <ol class="breadcrumb">
+              <li><a href="#">Media</a></li>
+              <li><a href="{base_url}{lang}/gallery/photo">{detail_name}</a></li>
+              <li class="active">{name}</li>
+            </ol>
+          </div>
+          <div class="share-dtl">
+            <ul>
+              <li><a href="#"><img src="{base_url}asset/images/icon-download.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-share.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-print.png"></a></li>
+              <li><a href="#"><img src="{base_url}asset/images/icon-email.png"></a></li>
+            </ul>
+          </div>
+        </div> -->
+      </div>
+      <div class="col-sm-4 col-md-3 col-xs-12 col-dtl">
+        <div class="intro-dtl">
+          {description}
+        </div>
+      </div> 
+      <div class="col-sm-8 col-md-9 col-xs-12 col-dtl">
+        <h2 class="title-dtl-cnt">{name}</h2>
+        <div class="row row-gallery">
+          {list_gallery}
+          <div class="col-sm-{col} col-md-{col} col-xs-12 col-gallery">
+            <div class="frame-slider-choice list-gallery-dtl {full}">
+              <div class="thumb-slider-choice">
+                <a href="#" data-toggle="modal" data-target="#myModalPhoto"><img src="{base_url}images/article/{size}/{img_detail}"></a>
+
+              </div>
+               <div class="title-gallery-dtl">
+                <span>{tphoto}</span>
+                <span class="{inv_desc}">{desc}</span>
+               </div>
+            </div>  
+          </div>
+          {/list_gallery}
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+
+
+ <div class="modal fade" id="myModalPhoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner carousel-gallery" role="listbox">
+                {list_gallery2}
+                <div class="item {active}">
+                  <img src="{base_url}images/article/large/{img_detail}" alt="">
+                  <div class="carousel-caption">
+                    <span>{tphoto}</span>
+                    <span class="{inv_desc}">{desc}</span>
+                  </div>
+                </div>
+                {/list_gallery2}
+              </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

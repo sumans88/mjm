@@ -1,0 +1,76 @@
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12 p0">
+          <div class="banner-top responsive-banner">
+            {banner_top}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid cf-grey4">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-xs-12">
+            <div class="title-pagination">Edit Committee</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid cf-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-xs-12">
+            <div class="breadcrumb-page">
+              <ol class="breadcrumb">
+                <li><a href="{base_url}">AmCham</a></li>
+                <li><a href="{base_url}member/profile">Member</a></li>
+                <li class="active">Edit Committee</li>
+              </ol>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+            <div class="media media-content">
+              <div class="media-body">
+                <div class="frame-content">
+                 <!-- committee -->
+                 <div class="title-member-dtl mb0 {hidden_list}">COMMITTEE PREFERENCES</div>
+                 <div class="widget-white pt30 pb0 mb15 {hidden_list}">
+                  <div class="subtitle-content mb20">(Please select committees you would like to participate in / receive information about)</div>
+                  <div class="row">
+                    <form id="committee_data">
+                    <div id="area-committee">
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+
+                          {list_committee_1}
+                        <!-- </form> -->
+                      <!-- </div> -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                      <!-- <div id="area-committee"> -->
+                        <!-- <form id="committee_data"> -->
+                          {list_committee_2}
+
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12 mb15">
+                      <a href="#" class="btn-red btn-link-price mt15 save-committe">Save Changes</a>
+                    </div>
+                  </div>
+                      </div>
+                        </form>
+                </div>
+                <!-- end committee -->
+
+
+              </div>
+            </div>
+            <div class="media-right">
+              {widget_sidebar}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,29 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{invoice_number}</td>
+		<td>{event_name}</td>
+		<!-- <td>{name_in}</td> -->
+		<!-- <td>{name_out}</td> -->
+		<td>{create_date}</td>
+		<td>{preview_image}</td>
+		<td>{payment_type}</td>
+		<td>{status_payment}</td>
+		<!-- <td>{company}</td> -->
+		<!-- <td>{membership}</td> -->
+		<!-- <td><a class="btn btn-primary" href="{base_url}apps/member/view/{member_id}">Preview</a></td>
+		<td><a class="btn btn-success modal-send-invoice {dsp_button_sent}" data-id="{member_id}">Send</a></td> -->
+		<td class="center btn-inline">
+			<a class="btn btn-success modal-check-invoice-event {dsp_button_check_payment_confirm}" data-id="{member_id}" data-id-payment="{id_payment}">Check</a>
+			<a class="btn btn-warning" href="{base_url}apps/event/approve/{event_id}/{member_id}">See Info</a>
+			<!-- <a href="{this_controller}view/{id}" title="View Detail" target="_BLANK" class="fa fa-search action-form-icon"></a> -->
+			<!-- <a href="{this_controller}add/{id}" title="Edit Data" class="fa fa-pencil-square-o tangan action-form-icon"></a> -->
+			<!-- <a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a> -->
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="20">{paging}</td>
+</tr>
+

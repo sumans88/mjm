@@ -1,0 +1,131 @@
+{list_data}
+<div class="img-list"  title='{filename}'>
+	<div class='img'><img src="{base_url}images/gallery/{filename}"  width="100" id="selectImg{id}" title="{filename}" style="cursor: pointer;" onClick="selectImage({id}, '{filename}')" />
+	<input style="display: none;" type="checkbox" id="selectIdImg{id}" name="selectIdImg" class="selectIdImg" value="{filename}">
+	</div>
+	<div>
+		<span class='img-name'>{filename}</span>
+		<!-- <i class="fa fa-close action-form-icon icon-zoom-in pull-right del-img" data-id="{id}"></i>
+		<i class='fa fa-search-plus action-form-icon icon-zoom-in pull-right zoom-image' title='Zoom'></i>
+		<i class='fa fa-circle-o action-form-icon  icon-ok pull-right select-image' title='Select Image'></i> -->
+	</div>
+</div>
+{/list_data}
+
+<script type="text/javascript">
+
+function pagination_server(){
+	if(function_pagination_server==0){
+		$(".pagination-server").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+		$(".pagination-server").empty();
+		$(".pagination-server").bootpag({
+		   total: {pages_server},
+		   page: 1,
+		   maxVisible: 6,
+		   firstLastUse: true,
+		   first: 'FIRST',
+		   last: 'LAST'
+		}).on("page", function(event, nums){
+			event.preventDefault();
+			var searchKeyword = $("#search-picture-server").val();
+			$("#list-image").html("<i class='fa fa-spinner fa-spin'></i>");
+			$("#list-image").load('{load}', {'page':nums, 'searchPicture' : searchKeyword});
+			return false;
+		});
+		function_pagination_server=1;
+	}
+}
+
+
+// function search_filemanager() {
+// 	var searchKeyword = $('#search-picture-server').val();
+// 	$("#list-image").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+// 	$("#list-image").load('{load}', {'searchPicture': searchKeyword});
+// 	$(".pagination-server").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+// }
+
+// function search_filemanager_bydate() {
+// 	var searchDate = $('#searchImageByTanggal').val();
+// 	$("#list-image").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+// 	$("#list-image").load('{load}', {'searchDate': searchDate});
+// 	$(".pagination-server").empty().html("<i class='fa fa-spinner fa-spin'></i>");
+// }
+
+// $(document).ready(function(event){
+// 	$('#search-picture-server').keydown(function (e){
+// 		if(e.keyCode == 13){
+// 			search_filemanager();
+// 			function_pagination_server=0;
+// 			return false;
+// 		}
+// 	});
+// 	$('#search_image_manager').click(function (){
+// 		search_filemanager();
+// 		function_pagination_server=0;
+// 		return false;
+// 	});
+// 	$('#searchImageByTanggal').change(function (){
+// 		search_filemanager_bydate();
+// 		function_pagination_server=0;
+// 		return false;
+// 	});
+// });
+	pagination_server();
+</script>
+
+<script>
+function selectImage(id, filename){
+  var cekValue = document.getElementById("selectIdImg" + id).checked;
+  if(cekValue == false){
+    document.getElementById("selectIdImg" + id).checked = true;
+    $("#selectImg" + id).addClass("getImage");
+  } else{
+    document.getElementById("selectIdImg" + id).checked = false;
+    $("#selectImg" + id).removeClass("getImage");
+  }
+}
+jQuery.fn.getCheckboxVal = function(){
+  var vals = [];
+  var i = 0;
+  this.each(function(){
+    vals[i++] = jQuery(this).val();
+  });
+  return vals;
+}
+function addImages(){
+  var listImageSelected = $("input[name='selectIdImg']:checked").getCheckboxVal();
+  var nomor = $("#idModal").val();
+  var id_lang = $("#id_lang" + nomor).val();
+  var id_gallery = $("#id" + nomor).val();
+  var formData = new FormData();
+
+  formData.append("selectIdImg", listImageSelected);
+  formData.append("id_lang", id_lang);
+  formData.append("id_gallery", id_gallery);
+  formData.append("key", nomor);
+
+  $.ajax({
+        url: "{this_controller}addImages", // our php file
+        type: 'post',
+        data: formData,
+        dataType: 'html', // we return html from our php file
+        async: true,
+        processData: false,  // tell jQuery not to process the data
+        contentType: false,   // tell jQuery not to set contentType
+        success : function(data) {
+          document.getElementById('imageSaved' + nomor).innerHTML = data;
+          eval($('#imageSaved' + nomor).parent().parent().find('script').text());
+        },
+        error : function(request) {
+            console.log(request.responseText);
+        },
+        complete:function(data){
+          //document.getElementById('imageSaved' + nomor).innerHTML = data;
+        }
+    }); 
+}
+$('#myModal').on('hidden.bs.modal', function () {
+    $('.modal-body').children("img").removeClass("getImage");
+    $('#myModal input[type=checkbox]').prop('checked',false);
+})
+</script>

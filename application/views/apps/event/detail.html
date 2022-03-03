@@ -1,0 +1,139 @@
+<!-- banner top -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- heading  -->
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_name}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- content -->
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      <!-- breadcumb -->
+      {breadcrumb_frontend}
+      <!-- <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="breadcrumb-page">
+          <ol class="breadcrumb">
+            {news_breadcrumb}
+          </ol>
+        </div>
+      </div> -->
+
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+              <!-- content -->
+              <div class="title-comdet">{news_title}</div>
+              <div class="date-articles"><span>{news_date}<!-- November 8, 2017 --> </span>{user_publish}<!--  By Jet Damazo-Santos --></div>
+              <!-- {share} -->
+              <!-- <div class="{is_photo} mb30">
+                {slider_photo}
+                  {slider_photo_img}
+                  {slider_photo_teaser}
+                {/slider_photo}
+              </div> -->
+              <div class="slider-index si-artdei {dsp_detail_image}">
+                <div class="owl-carousel owl-theme" id="slider-index">
+                  {detail_image}
+                  <div class="item">
+                    {detail_image_img}
+                    <!-- <img src="images/slider.jpg"> -->
+                    <div class="feature-number">
+                      {detail_image_description}
+                    </div>
+                  </div>
+                  {/detail_image}
+                </div>
+              </div>
+              <!-- <div class="slider-index si-artdei {is_video}">{video}</div> -->
+                {page_content}
+                <!-- for detail events -->
+                <div class="{is_past_event}">
+                <div class="media media-events-dtl">
+                  <div class="media-left media-middle">
+                    <img src="{base_url}/asset/images/clock-dtl.png">
+                  </div>
+                  <div class="media-body media-middle">
+                    <div class="title-event-list">{event_date}<!--November 4, 2017--></div>
+                    <p>{event_time}<!--Saturday, 18:00 - 20:30--></p>
+                  </div>
+                </div>
+                <div class="media media-events-dtl">
+                  <div class="media-left media-middle">
+                    <img src="{base_url}/asset/images/maps-dtl.png">
+                  </div>
+                  <div class="media-body media-middle">
+                    <div class="title-event-list">{location_name}</div>
+                    <p>{location_address}</p>
+                    <!-- Jl. Jendral Sudirman Kav. 10-11, Central Jakarta City, Jakarta 10220 -->
+                  </div>
+                </div>
+                <div class="media media-events-dtl">
+                  <div class="media-left media-middle">
+                    <img src="{base_url}/asset/images/prize-dtl.png">
+                  </div>
+                  <div class="media-body media-middle">
+                    <div class="title-event-list">Price</div>
+                    <p>{event_price}</p>
+                    <!-- <p>Tickets - Rp. 1,400,000 / guest 
+                       Tables - Rp. 13,000,000 / 10 guests</p> -->
+                  </div>
+                </div>
+               {join_event}
+                <!-- <a href="#" class="btn-red btn-link-price mt30" data-toggle="modal" data-target="#myModalEvents">Join Our Event</a> -->
+                </div>
+
+                <!-- event material -->
+                <div class="{dsp_materials} {is_upcoming_event} {signout}">
+                 <hr class="line-content mt50 mb50">
+                 <h4 class="title-content"><b>Committee Materials</b></h4>
+                 <ul class="ul-committee">
+                   
+                  </ul>
+                </div>
+                <!-- end event material -->
+              
+            </div>
+          </div>
+          <!-- sidebar -->
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  .container-fluid-ft-top {
+    display: none;
+  }
+
+  .btn-red{
+     display: none;
+  }
+
+  .media-right, .media>.pull-right {
+    opacity: 0;
+  }
+
+  .banner-footer{
+    display: none;
+  }
+</style>

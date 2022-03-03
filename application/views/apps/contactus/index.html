@@ -1,0 +1,123 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="clearfix">&nbsp;</div>
+					<div id='grid1' class='my_grid' data-perpage='10' data-url="{this_controller}records">
+						<div class="row-fluid">
+							<div class="row">
+								<div class="col-sm-12 {disable_add}">
+									<button class="btn ml-28 btn-filter-date-unhide"><i class="fa fa-calendar"><span class="default-font"> Filter by Date</span></i></button>
+								</div>
+							</div>	
+						</div>
+						<div class="row">
+							<div id="filter-date" class="round-index col-md-8 hidden">
+								<div class="margs row">
+									<div class="col-md-6">
+										<strong>Create Date</strong>
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+											<input type="text" class='cari form-control' readonly="readonly" id="between_from_create_date" placeholder="From" name="between_from_create_date">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<label></label>
+										<div class="input-group date datepicker" data-date-format="dd-mm-yyyy">
+											<input type="text" class='cari form-control' readonly="readonly" id="between_to_create_date" placeholder="To" name="between_to_create_date">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix">&nbsp;</div>
+
+
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th class="center" width="20">No</th>
+										<th class="center" title='Sort' id='name'>Name <span></span></th>
+										<th class="center" title='Sort' id='phone_number' width="80">Phone <span></span></th>
+										<th class="center" title='Sort' id='email'>Email <span></span></th>
+										<!-- <th class="center" title='Sort' id='city' width="60">City <span></span></th> -->
+										<th class="center" title='Sort' id='message'>Message <span></span></th>
+										<th class="center" width="10">Action</th>
+									</tr>
+									<tr class='filter'>
+										<td></td>
+										<td><input type='text' class='cari form-control' id='search_name' placeholder='Search...'></td>
+										<td><input type='text' class='cari form-control' id='search_phone_number' placeholder='Search...'></td>
+										<td><input type='text' class='cari form-control' id='search_email' placeholder='Search...'></td>
+										<td><input type='text' class='cari form-control' id='search_message' placeholder='Search...'></td>
+										<td></td>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal invis fade" id="popDetail">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+				<h4 class="modal-title">Detail</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row-fluid invis" id="loading-contactus">
+					<i class="fa fa-spinner fa-spin"></i> Loading...
+					<br>
+				</div>
+				<div id="content-contactus" style="height:250px;overflow:auto;"></div>
+			</div>
+			<div class="modal-footer">
+				<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+					<div class="col-md-12">
+						<textarea class="form-control" name="message" id="message-reply" data-parsley-required="true"></textarea>
+						<input type="hidden" id="id-reply" name="id_contact_us">
+					</div>
+					<div class="clearfix">&nbsp;</div>
+					<div class="col-md-12">
+						<a class="btn btn-primary" id="reply-contactus"> <i class="icon-reply"></i> Reply </a>
+					</div>
+				</form>	
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	.row-fluid [class*="span"]{min-height: 20px !important}
+</style>
+
+
+
+<script type="text/javascript">
+	$('#between_from_create_date').change(function(){
+		$( "#between_from_create_date").keyup();
+		return false;
+    });
+    $('#between_to_create_date').change(function(){
+		$( "#between_to_create_date").keyup();
+		return false;
+    });
+</script>
+

@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-xs-12 p0">
+      <div class="banner-top responsive-banner">
+        {banner_top}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid cf-grey4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xs-12">
+        <div class="title-pagination">{page_heading}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid cf-content">
+  <div class="container">
+    <div class="row">
+      {breadcrumb_frontend}
+      <div class="col-sm-12 col-md-12 col-xs-12 pt30 pb50">
+        <div class="media media-content">
+          <div class="media-body">
+            <div class="frame-content">
+              <form action='{this_controller}news/registNewsletter' id='form1' class="form-horizontal" >
+                <div class="form-login">
+                  <div class="title-event-list">Subscribe Our newsletter</div>
+                  <div class="row">
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                      <div class="login-input-frame">
+                          <input type="text" name="name" placeholder="Name" class="form-control input-amcham" data-parsley-required >
+                      </div>
+                      <div class="login-input-frame">
+                        <input type="text" name="email" placeholder="Contact Email" class="form-control input-amcham" data-parsley-required data-parsley-type="email" >
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-12"><button type="button" class="btn-red btn-link-price mt27" onClick="formclick(this)">Subscribe Newsletter</button></div>
+                  </div>
+                  <hr class="line-content line-white">
+                  <div class="title-event-list">Contribute</div>
+                  <p>AmCham Indonesia welcomes input from our members - please note our contribution guidelines <a href="{lang_link_see_contribute_newsletter}">click here</a></p>
+                </div>
+              </form>
+
+              <div class="frame-search-news">
+                <div class="select-sortby">
+                  <select class="form-control" id="month" name="month">
+                    {list_month}
+                  </select>
+                  <select class="form-control" id="year" name="year">
+                    {list_year}
+                  </select>
+                </div>
+                <div class="input-group ig-srclist mb15">
+                  <input type="text" id="search-news-input" name="search-news-input" class="form-control search-news" placeholder="Search our news">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" id="search-news-btn" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                  </span>             
+
+                </div>
+              </div>
+
+              <div id="media-news">
+              {news}
+                <div class="widget-white widget-blue-left media-latest mb15">
+                  <div class="event-type">{news_category}  |  {news_date}</div>
+                  <div class="title-event-list mb20"><a href="{news_url}" {mailchimp}>{news_title}</a></div>
+                  <p>{news_teaser}</p>
+                </div>
+              {/news}
+              <div class="text-center mt15 {dsp_load_more}"><span href="{base_url}{lang}/news/more/{uri_path}/{paging}" class="load-more tangan">{lang_load_more}</span></div>
+              </div>
+           </div>
+          </div>
+          <div class="media-right">
+            {widget_sidebar}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{newsletter_modal}

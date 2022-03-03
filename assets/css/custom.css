@@ -1,0 +1,116 @@
+
+.tangan, .datepicker input, .sort{
+  cursor: pointer !important;
+}
+.invis{
+  display: none;
+}
+.ui-widget-overlay{
+  background: none !important;
+  opacity: 1 !important;
+  position: relative !important;
+}
+.form-horizontal .no-margin{
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.form-control {
+  width: 100% !important;
+}
+#alertmod_gridData, #alertmod_gridMenuLvl1,
+#alertmod_xgridMenuLvl2,
+#alertmod_xgridMenuLvl3, .ui-jqgrid-resize-mark{
+  display: none;
+}
+.bt.bb, .ck{
+  vertical-align: middle;
+  text-align: center;
+}
+.ui-jqgrid-bdiv{
+  overflow: auto;
+}
+.jqgfirstrow, .jqgfirstrow td {
+  padding: 0px !important;
+}
+#auth_area th, #auth_area td{
+  padding:  5px !important;
+}
+.float-right{
+  float: right;
+}
+.perpage{
+    left: 15px;
+    min-width: 80px;
+}
+.action-form-icon{
+    font-size: 18px;
+}
+.img-list .action-form-icon{
+    font-size: 15px;
+}
+.req{
+  color: #FF0000 !important;
+}
+.select2-container.select2-container-multi.form-control{
+  width: 100% !important;
+  height: 100px !important;
+
+}
+.select2-container {
+  width: 100% !important;
+}
+.ui-jqgrid .ui-jqgrid-pager {
+  font-size: 13px;
+  height: 40px;
+  padding: 3px;
+}
+.footer .select2-container {
+  width: 80px !important;
+  margin-left: 10px;
+}
+.datepicker-dropdown {
+  z-index: 1500 !important;
+}
+.select2-container .select2-selection--single, .select2-container--default .select2-selection--multiple{
+  height: auto !important;
+  min-height: 34px;
+}
+label.checkbox-committee input {
+  margin-bottom: 15px;
+  float: left;
+  margin-right: 5px;
+}
+label.checkbox-sector input {
+  margin-bottom: 20px;
+  float: left;
+  margin-right: 5px;
+}
+a.del-img-product {
+    margin-left: 10px;
+}
+.round-index {
+  margin-left: 40px;
+  margin-top: 5px;
+  padding: 5px 0px 7px 16px !important;
+  border: 0px #707478 groove;
+  border-collapse: collapse;
+  border-radius: 5px;
+}
+img#img-upload, img#img-upload1 {
+    margin-top: 10px;
+}
+
+.disabled-select {
+   background-color:#d5d5d5;
+   opacity:0.5;
+   border-radius:3px;
+   cursor:not-allowed;
+   position:absolute;
+   top:0;
+   bottom:0;
+   right:0;
+   left:0;
+}
+.btn-tags{
+  margin-bottom: 5px !important; 
+}

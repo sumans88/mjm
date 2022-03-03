@@ -1,0 +1,369 @@
+<div class="row">
+      <div class="col-md-12 title-page"><a href="{base_url}apps/data_member/"><font color="white"><< Kembali</font></a></div>
+</div>
+{css_file}
+<div class="row content-article">
+    <div class="col-md-9 article-detail article-detail-pages">
+        <div class="detail-isi">
+          <div class="alert alert-success {show_info}" role="alert">{message}</div>
+	  
+            <div class="col-md-12 col-sm-12 col-lg-12 well thumb-profile">
+              <div class="row" style="position:relative;">
+                <div class="col-xs-12 col-sm-4 center">
+                    <form id='change_image' name="change_image">
+                      <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <div class="fileupload-new thumbnail frame-upload" style="max-width:200px;max-height:200px;"><img src="{avatar}" style="max-width:100%;"/></div>
+                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px;max-height: 200px; line-height: 20px;width:200px; height: 200px;">
+                        </div>
+                        
+                      </div>
+                    </form>
+                </div>
+                <div class="col-xs-12 col-sm-8 detail-profile">
+                      <h2>{namadepan} {namabelakang}</h2>
+                    <p><strong>Email: </strong> {email}</p>
+                    <p class="{jeniskelamin_hidden}"><strong>{lang_gender}: </strong> {jeniskelamin}</p>
+                    <p><strong>{lang_join_date}: </strong> {process_time}</p>
+                </div> 
+              </div>
+            </div>
+            <div class="col-sm-12 tab-profile">
+              <div role="tabpanel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">{lang_profile}</a></li>
+                              <li role="presentation"><a href="#full_profile" aria-controls="full_profile" role="tab" data-toggle="tab">{lang_profile_lengkap}</a></li>
+<!--                                <li role="presentation"><a href="#data_calculator" aria-controls="data_calculator" role="tab" data-toggle="tab">DATA KALKULATOR</a></li>
+-->                                <li role="presentation"><a href="#log_activity" aria-controls="log_activity" role="tab" data-toggle="tab">{lang_activity}</a></li>
+                            </ul>                            
+                            <div class="tab-content">
+                                   
+                                <div role="tabpanel" class="tab-pane active" id="profile">
+                                   <div class="row">
+                                   <span class="{tgllahir_hidden} row">
+                                        <div class="col-sm-3 col-xs-4">
+                                           <p><strong>{lang_date_of_birth}:</strong></p>
+                                         </div>
+                                         <div class="col-sm-9 col-xs-8">
+                                           <p>{tgllahir_data}</p>
+                                         </div>
+                                    </span>
+                                   <span class="{tmptlahir_hidden}">
+                                        <div class="col-sm-3 col-xs-4 ">
+                                           <p><strong>{lang_birth_place}:</strong></p>
+                                         </div>
+                                         <div class="col-sm-9 col-xs-8">
+                                           <p>{tmptlahir_data}</p>
+                                         </div>
+                                   </span>
+                                   <span class="{kelurahan_hidden}">
+                                        <div class="col-sm-3 col-xs-4">
+                                          <p><strong>{lang_sub_district}:</strong></p>
+                                        </div>
+                                        <div class="col-sm-9 col-xs-8">
+                                          <p>{kelurahan}</p>
+                                        </div>
+                                   </span>
+                                   <span class="{kecamatan_hidden}">
+                                        <div class="col-sm-3 col-xs-4">
+                                          <p><strong>{lang_district}:</strong></p>
+                                        </div>
+                                        <div class="col-sm-9 col-xs-8">
+                                          <p>{kecamatan}</p>
+                                        </div>
+                                   </span>
+                                   <span class="{kota_hidden}">
+                                        <div class="col-sm-3 col-xs-4">
+                                          <p><strong>{lang_city}:</strong></p>
+                                        </div>
+                                        <div class="col-sm-9 col-xs-8">
+                                          <p>{kota}</p>
+                                        </div>
+                                   </span>
+                                   <span class="{provinsi_hidden}">
+                                        <div class="col-sm-3 col-xs-4">
+                                          <p><strong>{lang_province}:</strong></p>
+                                        </div>
+                                        <div class="col-sm-9 col-xs-8">
+                                          <p>{provinsi_data}</p>
+                                        </div>
+                                   </span>
+                                   <span class="{nohp_hidden}">
+                                        <div class="col-sm-3 col-xs-4">
+                                          <p><strong>No. HP:</strong></p>
+                                        </div>
+                                        <div class="col-sm-9 col-xs-8">
+                                          <p>{nohp}</p>
+                                        </div>
+                                   </span>
+                                   <span class="{home_phone_hidden}">
+                                        <div class="col-sm-3 col-xs-4">
+                                          <p><strong>{lang_phone}:</strong></p>
+                                        </div>
+                                        <div class="col-sm-9 col-xs-8">
+                                          <p>{home_phone}</p>
+                                        </div>
+                                   </span>
+<!--                                    <span class="{office_phone_hidden}">
+                                        <div class="col-sm-3">
+                                          <p><strong>{lang_work_phone} </strong></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                          <p>: {office_phone}</p>
+                                        </div>
+                                   </span> -->
+                                   <span class="{kodepos_hidden}">
+                                    <div class="col-sm-3 col-xs-4">
+                                      <p><strong>{lang_zip_code}:</strong></p>
+                                    </div>
+                                    <div class="col-sm-9 col-xs-8">
+                                      <p>{kodepos}</p>
+                                    </div>
+                                   </span>
+                                    <span class="{alamat_hidden}">
+                                    <div class="col-sm-3 col-xs-4">
+                                      <p><strong>{lang_address}:</strong></p>
+                                    </div>
+                                    <div class="col-sm-9 col-xs-8">
+                                      <p>{alamat}</p>
+                                    </div>
+                                    </span>
+                                    
+                                   </div>
+                                </div>
+                                   <div role="tabpanel" class="tab-pane" id="full_profile">
+                                        <div role="tabpanel" class="row">
+                    
+                                              <!-- Nav tabs -->
+                                              <ul class="nav nav-tabs col-sm-3" role="tablist" id="menuregistrasi">
+                                                  <li role="presentation" class="active"><a href="#data_pasangan" aria-controls="data_pasangan" role="tab" data-toggle="tab">{lang_partner_data}</a></li>
+                                                  <li role="presentation" class="{is_married_have_child_show}"><a href="#data_anak" aria-controls="data_anak" role="tab" data-toggle="tab">{lang_children_data}</a></li>
+                                                  <li role="presentation"><a href="#data_work_and_study" aria-controls="data_work_and_study" role="tab" data-toggle="tab">{lang_education_job_data}</a></li>
+                                              </ul>
+                                              <div class="tab-content col-sm-9">
+                                                  <div role="tabpanel" class="tab-pane" id="data_anak">
+                                                       {data_anak_status}
+                                                       {list_data_child_member}
+                                                            <div class="row addanak">    
+                                                              <div class="col-sm-3 col-xs-4">
+                                                                <p><strong>{lang_name}:</strong></p>
+                                                              </div>
+                                                              <div class="col-sm-9 col-xs-8">
+                                                                <p>{nama}</p>
+                                                              </div>
+                                                              <div class="col-sm-3 col-xs-4">
+                                                                <p><strong>{lang_gender}:</strong></p>
+                                                              </div>
+                                                              <div class="col-sm-9 col-xs-8">
+                                                                <p>{jeniskelamin_child}</p>
+                                                              </div>
+                                                              <div class="col-sm-3 col-xs-4">
+                                                                <p><strong>Tanggal Lahir:</strong></p>
+                                                              </div>
+                                                              <div class="col-sm-9 col-xs-8">
+                                                                <p>{dob_child}</p>
+                                                              </div>
+                                                              <!--<div class="col-sm-3">
+                                                                <p><strong>Umur</strong></p>
+                                                              </div>
+                                                              <div class="col-sm-9">
+                                                                <p>: {umur_anak_data}</p>
+                                                              </div>-->
+                                                            </div>
+                                                       {/list_data_child_member}
+                                                  </div>
+                                                  <div role="tabpanel" class="tab-pane active" id="data_pasangan">
+                                                       {show_not_completed_editdataanak}
+                                                       <div class="row">
+                                                            <span class="{status_nikah_hidden}">
+                                                            <div class="col-sm-3 col-xs-4">
+                                                                 <p><strong>{lang_marital_status}:</strong></p>
+                                                               </div>
+                                                               <div class="col-sm-9 col-xs-8">
+                                                                 <p>{status_nikah_data}</p>
+                                                               </div>
+                                                            </span>
+                                                       </div>
+                                                       <span class="{is_married_show}">
+                                                    <div class="row">    
+                                                      <div class="col-sm-3 col-xs-4">
+                                                        <p><strong>{lang_name_spouse}:</strong></p>
+                                                      </div>
+                                                      <div class="col-sm-9 col-xs-8">
+                                                        <p>{nama_pasangan}</p>
+                                                      </div>
+                                                    </div>
+                                                    <div class="row">
+                                                      <div class="col-sm-3 col-xs-4">
+                                                        <p><strong>{lang_date_of_birth} {lang_spouse}:</strong></p>
+                                                      </div>
+                                                      <div class="col-sm-9 col-xs-8">
+                                                        <p>{tgllahir_pasangan}</p>
+                                                      </div>
+                                                    </div>
+													<!--
+														<div class="row">
+														  <div class="col-sm-3">
+															<p><strong>{lang_age} {lang_spouse} </strong></p>
+														  </div>
+														  <div class="col-sm-9">
+															<p>: {data_umur_pasangan}</p>
+														  </div>
+														</div>
+													-->
+						    <span class="{jumlah_anak_hidden} {is_married_have_child_show}">
+						       <div class="row">
+						       <div class="col-sm-3 col-xs-4">
+							 <p><strong>{lang_total_kid}:</strong></p>
+						       </div>
+						       <div class="col-sm-9 col-xs-8">
+							 <p>{total_anak_data}</p>
+						       </div>
+						       </div>
+						       </span>
+                                                    </span>
+                                                  </div>
+                                                  <div role="tabpanel" class="tab-pane" id="data_work_and_study">
+                                                       {show_not_completed_editdataanak}
+                                                    <div class="row {pekerjaan}">
+                                                       <span class="{pekerjaan_hidden}">
+                                                       <div class="col-sm-3 col-xs-4">
+                                                         <p><strong>{lang_occupation}:</strong></p>
+                                                       </div>
+                                                       <div class="col-sm-9 col-xs-8">
+                                                         <p>{pekerjaan_data}</p>
+                                                       </div>
+                                                       </span>
+                                                    </div>
+                                                    <div class="row {pendapatan_bulanan_hidden}">    
+                                                      <div class="col-sm-3 col-xs-4">
+                                                        <p><strong>{lang_monthly_salary}:</strong></p>
+                                                      </div>
+                                                      <div class="col-sm-9 col-xs-8">
+                                                        <p>{pendapatan_bulanan_data}</p>
+                                                      </div>
+                                                    </div>
+                                                    <div class="row {pendidikan_hidden}">    
+                                                      <div class="col-sm-3 col-xs-4">
+                                                        <p><strong>{lang_education}:</strong></p>
+                                                      </div>
+                                                      <div class="col-sm-9 col-xs-8">
+                                                        <p>{pendidikan_data}</p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                              </div>
+                                        </div>
+                                   </div>
+                                   <div role="tabpanel" class="tab-pane" id="data_calculator">
+                                        Data Kalkulator
+                                   </div>
+                                <div role="tabpanel" class="tab-pane" id="log_activity">
+                                        <div class="container">
+                                             <div class="page-header text-center">
+                                                 <h1 id="timeline">{lang_log_activity}</h1>
+                                             </div>
+                                             <ul class="timeline">
+                                                  {list_data}
+                                                       <li class="{class_abu}">    
+                                                            <div class="timeline-badge primary {is_news}"><a><i class="glyphicon glyphicon-record {invert}" rel="tooltip" title="{last_date_read_ago}" id=""></i></a></div>
+                                                            <div class="timeline-panel {is_news}">
+                                                              <div class="timeline-heading">
+                                                                 <a href="{base_url}articledetail/index/{uri_path}"><img class="img-responsive" src="{img}" /></a>
+                                                              </div>
+                                                              <div class="timeline-body">
+                                                                 <a class="topik-kat" href="{base_url}article/index/{uri_path_category}">{category}</a>
+                                                                 <h4><a class="topik-title" href="{base_url}articledetail/index/{uri_path}">{news_title}</a></h4>
+                                                                 {teaser}
+                                                              </div>
+                                                              <div class="timeline-footer">
+                                                                 <a>{last_date_read}</a>
+                                                                 <a class="pull-right" href="#">Total Lihat: <span>{log_count}</span></a>
+                                                             </div>
+                                                              
+                                                            </div>
+                                                            
+                                                            <div class="timeline-badge primary {is_not_news} {is_not_qa}"><a><i class="glyphicon glyphicon-record {invert}" rel="tooltip" title="{create_date_ago}" id=""></i></a></div>
+                                                            <div class="timeline-panel {is_not_news} {is_not_qa}">
+                                                                 <div class="timeline-body">
+                                                                   <p>{description}</p>
+                                                                 </div>
+                                                                 
+                                                                 <div class="timeline-footer primary">
+                                                                     <a>{create_date}</a>
+                                                                 </div>
+                                                            </div>
+															<div class="timeline-badge primary {is_qa}"><a><i class="glyphicon glyphicon-record {invert}" rel="tooltip" title="{create_date_ago}" id=""></i></a></div>
+                                                            <div class="timeline-panel {is_qa}">
+                                                                 <div class="timeline-body qa-activity">
+                                                                   <p>{description} {title_category_qa} {lang_topic_activity} {title_subcategory_qa}</p>
+																   <p class="well">"{question_qa}"</p>
+                                                                 </div>
+                                                                 
+                                                                 <div class="timeline-footer primary">
+                                                                     <a>{create_date}</a>
+                                                                 </div>
+                                                            </div>
+                                                       </li>
+                                                  {/list_data}                                                 
+                                                 {load_more}
+                                             </ul>
+                                         </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 wdg-art">
+        &nbsp;
+    </div>
+</div>
+<link href="{base_url}asset/css/timeline{minify}.css" rel="stylesheet">
+     <script type="text/javascript" src="{base_url}assets/js/ajaxfileupload.js"></script>
+     <script type="text/javascript" src="{base_url}assets/js/bootstrap-fileupload.min.js"></script>
+<script>
+     var provinsi = '{provinsi}';
+     var kota = '{kota}';
+     var kecamatan = '{kecamatan}';
+     var kelurahan = '{kelurahan}';
+     
+     $(document).ready(function(){
+          get_kota_select(provinsi,kota);
+          get_kecamatan_select(kota,kecamatan);
+          get_kelurahan_select(kecamatan,kelurahan);
+          show_tooltip();
+     });
+     function show_tooltip(){
+          var my_posts = $("[rel=tooltip]");
+  
+          var size = $(window).width();
+          for(i=0;i<my_posts.length;i++){
+                  the_post = $(my_posts[i]);
+  
+                  if(the_post.hasClass('invert') && size >=767 ){
+                          the_post.tooltip({ placement: 'left'});
+                          the_post.css("cursor","pointer");
+                  }else{
+                          the_post.tooltip({ placement: 'rigth'});
+                          the_post.css("cursor","pointer");
+                  }
+          }
+     }
+</script>
+<script>
+$(document).on('click','.load-more',function(){
+    btn = $(this);
+    var id_member = "{id_member_data}";
+    btn.html('Loading...');
+    $.ajax({
+        url             : this_controller+'logs_more/'+btn.attr('data-page')+'/'+id_member,
+        success         : function(ret){
+                            $('ul.timeline').append(ret);
+                            btn.remove();
+                            show_tooltip();
+        }
+    });
+})
+
+</script>

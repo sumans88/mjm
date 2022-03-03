@@ -1,0 +1,16 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+$lang['lang_email_exsist']				= 'Email telah terdafar';
+$lang['lang_invalid_email']				= 'Masukkan email dengan format yang benar';
+$lang['lang_required']					= 'Wajib diisi';
+$lang['lang_strong']					= 'Kuat';
+$lang['lang_medium']					= 'Sedang';
+$lang['lang_weak']						= 'Lemah';
+$lang['lang_success']								= 'Berhasil';
+$lang['lang_error']								= 'Terjadi Kesalahan';
+$lang['lang_equal_to']					= 'tidak sama';
+$lang['lang_required_min']					= 'Field ini wajib diisi minimal {0} karakter.';
+$lang['lang_login_failed']					= 'Gagal untuk masuk.';
+$lang['lang_number_format']				= 'Field ini wajib diisi dengan angka saja.';
+$lang['lang_delete_comment_confirm'] = 'Yakin ingin menghapus komentar anda?';
+$lang['lang_email_already_registered'] ='Email sudah terdaftar, mohon gunakan email yang belum pernah didaftarkan.';
+$lang['lang_flag_comment_confirm'] ='Yakin ingin melaporkan komentar ini?';

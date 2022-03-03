@@ -1,0 +1,76 @@
+<h1 class="page-header">Comment</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{page_name}</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div id='grid1' class='my_grid' data-perpage='10' data-url="{this_controller}records">
+						<form action='{this_controller}multiple_delete' id='form1'>
+							<a class="btn btn-primary tangan" id='multiple_delete'>Multiple Delete</a>
+							<p>&nbsp;</p>
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="center" width="20">Multiple Delete</th>
+											<th class="center" width="20">No</th>
+											<th class="center" title='Sort' id='news_title'>News Title <span></span></th>
+											<th class="center" title='Sort' id='namadepan' width="120">Author <span></span></th>
+											<th class="center" title='Sort' id='commentar' width="120">Comment <span></span></th>
+											<th class="center" title='Sort' id='flag' width="110">Flag Total <span></span></th>
+											<th class="center" title='Sort' id='a-create_date' width="110">Create Date <span></span></th>
+											<th class="center" title='Sort' id='a-is_delete' width="94">Status <span></span></th>
+											<th class="center" width="100">Action</th>
+										</tr>
+										<tr class='filter'>
+											<td class="center"><input type="checkbox" class="checkall"></td>
+											<td></td>
+											<!--<td><select id="search_news_title" class='cari'>{list_news}</select></td>-->
+											<td><input type='text' class='cari form-control' id='search_news_title' placeholder='Search...'></td>
+											<td><input type='text' class='cari form-control' id='search_author' placeholder='Search...'></td>
+											<td><input type='text' class='cari form-control' id='search_commentar' placeholder='Search...'></td>
+											<td><input type='text' class='cari form-control' id='search_flag' placeholder='Search...'></td>
+											<td><input type='text' class='cari form-control' id='search_create_date' placeholder='Search...'></td>
+											<td><select id="search_is_delete" class='cari'>{list_status_publish}</select></td>
+											<td></td>
+										</tr>
+									</thead>
+									
+										<tbody></tbody>
+									
+								</table>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$('.checkall').click(function(event) {  //on click 
+		    if(this.checked) { // check select status
+			$('.id_commentar').each(function() { //loop through each checkbox
+			    this.checked = true;  //select all checkboxes with class "checkbox1"               
+			});
+		    }else{
+			$('.id_commentar').each(function() { //loop through each checkbox
+			    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+			});         
+		    }
+		});
+		
+	});
+</script>
+

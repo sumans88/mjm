@@ -1,0 +1,21 @@
+{data}
+	<tr>
+		<td class="center">{nomor}</td>
+		<td>{news_category}</td>
+		<td><div class="teaser" style="max-width:250px" title="{news_title}">{news_title}</div></td>
+		<td><div class="teaser" style="width:150px;" title="{uri_path}">{uri_path}</div></td>
+		<td><div class="teaser" style="width:120px;" title="{username}">{username}</div></td>
+		<td class="center">{publish_date}</td>
+		<td>{approval_level}</td>
+		<td>{status}</td>
+		<td class="center">{hits}</td>
+		<td class="center">
+			<a href="news/view/{id}" title="View Detail" class="fa fa-search action-form-icon"></a>
+			<a title="Delete Data" class="fa fa-trash-o tangan hapus action-form-icon" id='{id}' data-url-rm='del'></a>
+		</td>
+		
+	</tr>
+{/data}
+<tr class="footer">
+	<td colspan="10">{paging}</td>
+</tr>

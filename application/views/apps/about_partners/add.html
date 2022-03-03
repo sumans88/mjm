@@ -1,0 +1,89 @@
+<form action='{this_controller}proses/{id}' class="form-horizontal" method='post' id='form1' autocomplete="off">
+	<h1 class="page-header">{page_name}</h1>
+	<div class="row">
+		<!-- begin col-12 -->
+		<div class="col-md-12">
+			<!-- begin panel -->
+			<div class="panel panel-inverse" data-sortable-id="index-1">
+				<div class="panel-heading">
+				    <div class="panel-heading-btn">
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+				    </div>
+				    <h4 class="panel-title">{judul} Amcham Partner</h4>
+				</div>
+				<div class="panel-body">
+				    <div class="col-sm-12 col-lg-12 col-md-12">
+						<div class="row-fluid">
+							<div class="col-sm-12 text-right">
+								<a class="btn btn-primary insert update {disable_edit} tangan" id='save'><i class="fa fa-save"></i> {proses}</a>
+								<a class="btn btn-warning tangan" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+							</div>
+						</div>
+						<div class="clear-fix">&nbsp;</div>
+						<div class="col-sm-12 col-lg-12 col-md-12">
+							<ul class="nav nav-pills">
+								<!-- {list_lang2}
+								<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+								{/list_lang2} -->
+							</ul>
+							<div class="tab-content">
+								{list_lang}
+								<div class="tab-pane fade {active}" id="nav-pills-tab-{nomor}">
+									<div class="form-group  no-margin">
+										<label class="col-md-2 control-label">Title <i class='req'>*</i></label>
+										<div class="col-md-9"><input type="text" value="{title}" id="title{nomor}" class='form-control' name="title[]" data-parsley-required="{validation}"></div>
+									</div>
+									<div class="form-group  no-margin {invis}">
+										<label class="col-md-2 control-label">URL</label>
+										<div class="col-md-9"><input type="text" value="{url}" id="url{nomor}" class='form-control' name="url[]"></div>
+									</div>
+									<div class="form-group  no-margin">
+										<label class="col-md-2 control-label">&nbsp;</label>
+										<div class="col-md-9"><b>Example: https://www.google.com</b></div>
+									</div>
+									<!-- <script type="text/javascript">
+											$(document).ready(function(){
+											$('#title{nomor},#url{nomor}').keyup(function(){
+												$('#url{nomor}').val(convert_to_uri($(this).val()));
+											});
+										})
+										</script> -->
+									<div class="form-group no-margin {invis}">
+										<label class="col-md-2 control-label">Category <i class='req'>*</i></label>
+										<div class="col-md-9"><select id="id_partners_category{nomor}" class='form-control' name="id_partners_category[]" data-parsley-required="{validation}">{list_partners_category}</select></div>
+									</div>
+									<div class="form-group  no-margin {invis}">
+										<label class="col-md-2 control-label">Image</label>
+										<div class="col-md-9">
+										{img}
+										<div style="color: green">size : 155 x 90px</div><br/>
+										<a style="cursor: pointer;" onclick="delImage('{nomor}', '{base_url}')">Delete Image</a>
+										<input type="hidden" name="imgDelete[]" id="imgDelete{nomor}" value="0">
+										</div>
+									</div>
+									<!-- <div class="form-group  no-margin">
+										<label class="col-md-2 control-label">Description<i class='req'>*</i></label>
+										<div class="col-md-9"><textarea  rows="4" id="description{nomor}" name="description[]" class="form-control ckeditor">{description}</textarea></div>
+									</div> -->
+									<div class="form-group  no-margin {invis}">
+										<label class="col-md-2 control-label">Status <i class='req'>*</i></label>
+										<div class="col-md-9"><select id="id_status_publish{nomor}" class='form-control' name="id_status_publish[]" data-parsley-required="{validation}">{list_status_publish}</select></div>
+									</div>
+									<div class="form-group  no-margin hide">
+										<div class="col-md-9"><input type="text" value="{lang_id}" id="id_lang{nomor}" class='form-control' name="id_lang[]"></div>
+									</div>
+									<div class="form-group  no-margin hide">
+										<div class="col-md-9"><input type="text" value="{id}" id="id{nomor}" class='form-control' name="id[]"></div>
+									</div>
+								</div>
+								{imagemanager_config}
+								{/list_lang}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

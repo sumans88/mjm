@@ -1,0 +1,86 @@
+<!-- Modal -->
+<style>
+.getImage{
+    border-style: solid;
+    border-width: thick;
+    border-color: #31b0d5;
+}
+</style>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Gallery Images Uploaded</h4>
+        <input type="hidden" id="idModal" />
+      </div>
+      <div class="modal-body">
+      {dataImages}
+        <img src="{base_url}images/gallery/{filename}"  width="130px" id="selectImg{id}" title="{filename}" style="margin: 5px;cursor: pointer;" onClick="selectImage({id}, '{filename}')" />
+        <input style="display: none;" type="checkbox" id="selectIdImg{id}" name="selectIdImg" class="selectIdImg" value="{filename}">
+      {/dataImages}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addImages()">Add Images Selected</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+function selectImage(id, filename){
+  var cekValue = document.getElementById("selectIdImg" + id).checked;
+  if(cekValue == false){
+    document.getElementById("selectIdImg" + id).checked = true;
+    $("#selectImg" + id).addClass("getImage");
+  } else{
+    document.getElementById("selectIdImg" + id).checked = false;
+    $("#selectImg" + id).removeClass("getImage");
+  }
+}
+jQuery.fn.getCheckboxVal = function(){
+  var vals = [];
+  var i = 0;
+  this.each(function(){
+    vals[i++] = jQuery(this).val();
+  });
+  return vals;
+}
+function addImages(){
+  var listImageSelected = $("input[name='selectIdImg']:checked").getCheckboxVal();
+  var nomor = $("#idModal").val();
+  var id_lang = $("#id_lang" + nomor).val();
+  var id_gallery = $("#id" + nomor).val();
+  var formData = new FormData();
+
+  formData.append("selectIdImg", listImageSelected);
+  formData.append("id_lang", id_lang);
+  formData.append("id_gallery", id_gallery);
+  formData.append("key", nomor);
+
+  $.ajax({
+        url: "{this_controller}addImages", // our php file
+        type: 'post',
+        data: formData,
+        dataType: 'html', // we return html from our php file
+        async: true,
+        processData: false,  // tell jQuery not to process the data
+        contentType: false,   // tell jQuery not to set contentType
+        success : function(data) {
+          document.getElementById('imageSaved' + nomor).innerHTML = data;
+        },
+        error : function(request) {
+            console.log(request.responseText);
+        },
+        complete:function(data){
+          //document.getElementById('imageSaved' + nomor).innerHTML = data;
+        }
+    }); 
+}
+$('#myModal').on('hidden.bs.modal', function () {
+    $('.modal-body').children("img").removeClass("getImage");
+    $('#myModal input[type=checkbox]').prop('checked',false);
+})
+</script>

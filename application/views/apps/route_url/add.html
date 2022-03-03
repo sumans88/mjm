@@ -1,0 +1,145 @@
+<h1 class="page-header">{page_name}</h1>
+<div class="row">
+	<!-- begin col-12 -->
+	<div class="col-md-12">
+		<!-- begin panel -->
+		<div class="panel panel-inverse" data-sortable-id="index-1">
+			<div class="panel-heading">
+			    <div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+			    </div>
+			    <h4 class="panel-title">{judul} Pages</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12 col-lg-12 col-md-12">
+					<div class="row-fluid">
+						<div class="col-sm-12 text-right">
+							<a class="btn btn-primary insert update" id='save'><i class="fa fa-save"></i> {proses}</a>
+							<a class="btn btn-warning" href='{this_controller}'><i class="fa fa-arrow-left"></i> Back</a>
+						</div>
+					</div>
+				</div>
+				<div class="clear-fix">&nbsp;</div>
+				<div class="col-sm-12 col-lg-9 col-md-12">
+					<form action='{this_controller}proses/{id}' id='form1' class="form-horizontal">
+						<ul class="nav nav-pills">
+							{list_lang2}
+							<li class="{active}"><a href="#nav-pills-tab-{nomor}" data-toggle="tab">{lang_name}</a></li>
+							{/list_lang2}
+						</ul>
+						<div class="tab-content">
+							{list_lang}
+							<div class="tab-pane fade {active}" id="nav-pills-tab-{nomor}">
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Title <i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{title}" data-parsley-required="{validation}" id="title{nomor}" class='form-control' name="title[]">
+									<span id="title_status{nomor}"></span>
+									</div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Controller <i class='req'>*</i></label>
+									<div class="col-md-9"><input type="text" value="{controller}" data-parsley-required="{validation}" id="controller{nomor}" class='form-control' name="controller[]">
+									</div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Value <i class='req'>*</i></label>
+									<div class="col-md-9"><textarea name="value[]" rows="4" data-parsley-required="{validation}" id="value{nomor}" class="form-control">{value}</textarea>
+									</div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{slug}" data-parsley-required="{validation}" id="slug{nomor}" class='form-control' name="slug[]"></div>
+								</div>
+								<div class="form-group  no-margin">
+									<label class="col-md-3 control-label">Description <i class='req'>*</i></label>
+									<div class="col-md-9"><textarea name="description[]" rows="4" data-parsley-required="{validation}" id="description{nomor}" class="form-control">{description}</textarea></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{lang_id}" id="id_lang{nomor}" class='form-control' name="id_lang[]"></div>
+								</div>
+								<div class="form-group  no-margin hide">
+									<div class="col-md-9"><input type="text" value="{id}" id="id{nomor}" class='form-control' name="id[]"></div>
+								</div>
+							</div>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$('#title{nomor},#slug{nomor}').keyup(function(){
+										$('#slug{nomor}').val(convert_to_uri($(this).val()));
+									});
+								})
+							</script>
+							<script type="text/javascript">
+								// $(document).ready(function(){
+								// 	$('#title{nomor},#title{nomor}').keyup(function(){
+								// 		var key=$("#title{nomor}").val();
+								// 	    key=key.replace(" ","_");
+								// 	    key=key.toLowerCase();
+								// 	    $("#title{nomor}").val(key);
+								// 	});
+								// })
+							</script>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$('#title{nomor}').keyup(function(){
+									    var title = $(this).val();
+									    $('#title_status{nomor}').text('Searching database.');
+									    if(title != ''){
+									        $.post('route_url/checkTitle',{
+									        	title: title
+									        },function(data){
+									            $('#title_status{nomor}').text(data);
+									        });
+									    }else{
+									        $('#title_status{nomor}').text('');
+									    }
+									});
+								})
+							</script>
+							<script type="text/javascript">
+								// $(document).ready(function(){
+								// 	$('#title{nomor}').click(function() {
+								//     	$.post('{this_controller}checkTitle',{value: $("#title{nomor}").val()}, function(data){
+								// 			window.alert(data);
+								// 			if(data == true){
+								// 			    window.alert("Name exists");
+								// 			}else{
+								// 			    window.alert("Name doesnt exist");
+								// 			}
+								//     	});
+								// 	})
+								// })
+							</script>
+							<script>
+					    //         $(document).ready(function() {
+									//     /// make loader hidden in start
+									//     $('#Loading{nomor}').hide();    
+									//     $('#title{nomor}').blur(function(){
+									// 	var a = $("#title{nomor}").val();
+									// 	var filter = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{2,4}$/;
+									//        // check if email is valid
+									// 	if(filter.test(a)){
+									//                 // show loader 
+									// 		$('#Loading{nomor}').show();
+									// 		$.post("route_lang/checkTitle", {
+									// 			email: $('#title{nomor}').val()
+									// 		}, function(response){
+									//                         //#emailInfo is a span which will show you message
+									// 			$('#Loading{nomor}').hide();
+									// 			setTimeout("finishAjax('Loading', '"+escape(response)+"')", 400);
+									// 		});
+									// 		return false;
+									// 	}
+									// });
+									// function finishAjax(id, response){
+									//   $('#'+id).html(unescape(response));
+									//   $('#'+id).fadeIn();
+									// } 
+					        </script>
+							{/list_lang}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
