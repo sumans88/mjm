@@ -3,7 +3,7 @@
 class About_partners extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('AboutPartnersModel');
+		$this->load->model('aboutpartnersmodel');
 		$this->load->model('languagemodel');
 	}
 	function index(){
@@ -15,8 +15,8 @@ class About_partners extends CI_Controller {
 	public function add($id=''){
 		$lang = default_lang_id();
 		if($id){
-			// $data = $this->AboutPartnersModel->findById($id);
-			$datas = $this->AboutPartnersModel->selectData($id);
+			// $data = $this->aboutpartnersmodel->findById($id);
+			$datas = $this->aboutpartnersmodel->selectData($id);
             if(!$datas){
 				die('404');
 			}
@@ -58,7 +58,7 @@ class About_partners extends CI_Controller {
 		render('apps/about_partners/add',$data,'apps');
 	}
 	function records(){
-		$data = $this->AboutPartnersModel->records();
+		$data = $this->aboutpartnersmodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['create_date'] 	= iso_date($value['create_date']);
 		}
@@ -118,18 +118,18 @@ class About_partners extends CI_Controller {
                     auth_update();
 					$ret['message']		= 'Update Success';
 					$act				= "Update Amcham Partner";
-					$iddata 			= $this->AboutPartnersModel->update($data_save,$idedit);
+					$iddata 			= $this->aboutpartnersmodel->update($data_save,$idedit);
 				}else{
 					auth_update();
 					$ret['message'] 	= 'Update Success';
 					$act				= "Update Amcham Partner";
-					$iddata 			= $this->AboutPartnersModel->updateKedua($data_save,$idedit);
+					$iddata 			= $this->aboutpartnersmodel->updateKedua($data_save,$idedit);
 				}					
 			}else{
 				auth_insert();
 				$ret['message'] 	= 'Insert Success';
 				$act				= "Insert Amcham Partner";
-				$iddata 			= $this->AboutPartnersModel->insert($data_save);
+				$iddata 			= $this->aboutpartnersmodel->insert($data_save);
 			}
 
 			if($key==0){
@@ -146,12 +146,12 @@ class About_partners extends CI_Controller {
 	function del(){
 		$this->db->trans_start();   
 		$id = $this->input->post('iddel');
-		$this->AboutPartnersModel->delete($id);
-		$this->AboutPartnersModel->delete2($id);
+		$this->aboutpartnersmodel->delete($id);
+		$this->aboutpartnersmodel->delete2($id);
 		$this->db->trans_complete();
 	}
 	function record_select_page(){
-		$data = $this->AboutPartnersModel->records();
+		$data = $this->aboutpartnersmodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['page_name'] = quote_form($value['page_name']);
 		}

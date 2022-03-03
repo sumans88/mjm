@@ -3,7 +3,7 @@ class Committee extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('committee_model');
-        $this->load->model('AboutPartnersModel');
+        $this->load->model('aboutpartnersmodel');
         $this->load->model('CommitteTagsModel');
         $this->load->model('eventmodel');
         $this->load->model('committeefilesmodel');
@@ -75,7 +75,7 @@ class Committee extends CI_Controller {
         //partners
         $this->db->group_by('id_partners_category');
         $this->db->limit(3);
-        $data['partners'] = $this->AboutPartnersModel->findby(array('id_status_publish' => 2));
+        $data['partners'] = $this->aboutpartnersmodel->findby(array('id_status_publish' => 2));
         foreach ($data['partners'] as $key => $value1) {
             $data['partners'][$key]['img'] = image($value1['img'],'small');
             $data['partners'][$key]['url'] = $value1['url'] ? $value1['url'] : '#';

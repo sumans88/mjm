@@ -820,10 +820,10 @@ function banner_top(){
 	$CI       =& get_instance();
 	$base_url = base_url();
 	$lang_id = get_language_id();
-	$CI->load->model('AboutPartnersModel');
+	$CI->load->model('aboutpartnersmodel');
 
 	
-	$data_featured_partners = $CI->AboutPartnersModel->findby(array('id_partners_category'=>8,'id_status_publish' => 2,'id_lang' => $lang_id));
+	$data_featured_partners = $CI->aboutpartnersmodel->findby(array('id_partners_category'=>8,'id_status_publish' => 2,'id_lang' => $lang_id));
 	$data['featured_partners_hide'] = '';
 	if (!$data_featured_partners) {
 		$data['featured_partners_hide'] = 'hide';

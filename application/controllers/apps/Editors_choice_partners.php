@@ -3,7 +3,7 @@
 class Editors_Choice_Partners extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('AboutPartnersModel');
+		$this->load->model('aboutpartnersmodel');
 		$this->load->model('languagemodel');
 		$this->load->library('session');
 	}
@@ -22,7 +22,7 @@ class Editors_Choice_Partners extends CI_Controller {
 				);
 			$this->session->set_userdata($id_lang_session);
 			$this->db->order_by('a.sort_is_featured', 'asc');
-			$ret 	= $this->AboutPartnersModel->findby(array('a.id_lang'=>$post['id_lang'],'a.is_featured' =>'1'));
+			$ret 	= $this->aboutpartnersmodel->findby(array('a.id_lang'=>$post['id_lang'],'a.is_featured' =>'1'));
 			
 			/*jika not available maka akan mengambl title dari news parent yang available*/
 			foreach ($ret as $key => $value) {
@@ -52,7 +52,7 @@ class Editors_Choice_Partners extends CI_Controller {
 
 	function record_select_category(){
 		$id_lang 	= $this->session->userdata('id_lang');
-		$data 		= $this->AboutPartnersModel->get_all_partners(0,$id_lang);
+		$data 		= $this->aboutpartnersmodel->get_all_partners(0,$id_lang);
 		render('apps/editors_choice_partners/record_select_category',$data,'blank');
 	}
 	function select_category(){

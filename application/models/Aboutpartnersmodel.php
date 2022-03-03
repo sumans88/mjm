@@ -1,5 +1,5 @@
 <?php
-class AboutPartnersModel extends  CI_Model{
+class aboutpartnersmodel extends  CI_Model{
 	var $table = 'about_partners';
 	var $tableAs = 'about_partners a';
 	function __construct(){

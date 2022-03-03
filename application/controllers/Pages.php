@@ -4,7 +4,7 @@ class Pages extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('AboutPartnersModel');
+        $this->load->model('aboutpartnersmodel');
         $this->load->model('pagesmodel');
     }
     function index($uri_path)
