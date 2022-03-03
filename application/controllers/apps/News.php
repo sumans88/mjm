@@ -12,7 +12,7 @@ class News extends CI_Controller {
 		$this->load->model('newsFilesModel');
 		$this->load->model('tagsModel');
 		$this->load->model('newsApprovalCommentModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 		$this->load->model('authgroup_model','authGroupModel');
 		$this->load->model('model_user','userModel');
 		$this->load->model('galleryImagesModel');
@@ -135,7 +135,7 @@ class News extends CI_Controller {
 		$data['menu_tags'] = generate_tags($tags_menu,'name');
 		/*end untuk menu tags*/
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 		$n = 0;
 		$detail_images = $this->newsImagesModel->findBy(array('id_news'=>$datas[0]['id'],'is_delete'=>0));
 		if(!empty($detail_images)){
@@ -182,7 +182,7 @@ class News extends CI_Controller {
 			$data['form_images_detail'] 	= $imagemanager['browse'];
 		}
 
-		$id_lang_default	= $this->languageModel->langId();
+		$id_lang_default	= $this->languagemodel->langId();
 		foreach ($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['publish_date']             = date('d-m-Y');
 			$data['list_lang'][$key]['invis']                    = ($key==0) ? '' : 'hide';
@@ -449,7 +449,7 @@ class News extends CI_Controller {
 				die('404');
 			}
 
-			$data['list_lang']	= $this->languageModel->langName();
+			$data['list_lang']	= $this->languagemodel->langName();
 			foreach ($data['list_lang'] as $key => $value){
 				$data['list_lang'][$key]['invis']            = ($key==0) ? '' : 'hide';
 				$data['list_lang'][$key]['active']           = ($key==0) ? 'active in' : '';

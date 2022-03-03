@@ -1,5 +1,5 @@
 <?php
-class LanguageModel extends  CI_Model
+class languagemodel extends  CI_Model
 {
 	var $table = 'language';
 	var $tableAs = 'language a';

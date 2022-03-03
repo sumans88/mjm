@@ -4,7 +4,7 @@ class Editors_Choice extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('Editorschoicemodel');
-		$this->load->model('LanguageModel');
+		$this->load->model('languagemodel');
 		$this->load->library('session');
 	}
 	function index(){

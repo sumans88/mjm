@@ -3,7 +3,7 @@
 class Language extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index(){
 		// $data['list_cat'] = selectlist2(array('table'=>'ref_kategori_logframe','title'=>'All Category'));
@@ -11,7 +11,7 @@ class Language extends CI_Controller {
 	}
 	public function add($id=''){
 		if($id){
-			$data = $this->languageModel->findById($id);
+			$data = $this->languagemodel->findById($id);
 			if(!$data){
 				die('404');
 			}
@@ -38,7 +38,7 @@ class Language extends CI_Controller {
 	}
 	public function view($id=''){
 		if($id){
-			$data = $this->languageModel->findById($id);
+			$data = $this->languagemodel->findById($id);
 			$data['img_thumb'] = image($data['img'],'small');
 			$data['img_ori'] = image($data['img'],'large');
 			if(!$data){
@@ -50,7 +50,7 @@ class Language extends CI_Controller {
 		render('apps/language/view',$data,'apps');
 	}
 	function records(){
-		$data = $this->languageModel->records();
+		$data = $this->languagemodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$status_lang = $value['status_lang'];
 			
@@ -72,7 +72,7 @@ class Language extends CI_Controller {
 		// if($idedit){
 		// 	$where['id !=']		= $idedit;
 		// }
-		// $unik 					= $this->languageModel->findBy($where);
+		// $unik 					= $this->languagemodel->findBy($where);
 		$this->form_validation->set_rules('name', '"Language"', 'required'); 
 		// $this->form_validation->set_rules('uri_path', '"Page URL"', 'required'); 
 		// $this->form_validation->set_rules('teaser', '"Teaser"', 'required'); 
@@ -92,13 +92,13 @@ class Language extends CI_Controller {
 					// if(!$post['img']){
 					// 	unset($post['img']);
 					// }
-					$this->languageModel->update($post,$idedit);
+					$this->languagemodel->update($post,$idedit);
 				}
 				else{
 					auth_insert();
 					$ret['message'] = 'Insert Success';
 					$act			= "Insert Pages";
-					$this->languageModel->insert($post);
+					$this->languagemodel->insert($post);
 				}
 			detail_log();
 			insert_log($act);
@@ -111,7 +111,7 @@ class Language extends CI_Controller {
 	function del(){
 		auth_delete();
 		$id = $this->input->post('iddel');
-		$this->languageModel->delete($id);
+		$this->languagemodel->delete($id);
 		detail_log();
 		insert_log("Delete Pages");
 	}
@@ -120,7 +120,7 @@ class Language extends CI_Controller {
 
 	}
 	function record_select_page(){
-		$data = $this->languageModel->records();
+		$data = $this->languagemodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['page_name'] = quote_form($value['page_name']);
 		}

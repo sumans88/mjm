@@ -10,7 +10,7 @@ class News extends CI_Controller {
 		$this->load->model('newsTagsVersionModel');
 		$this->load->model('tagsModel');
 		$this->load->model('newsApprovalCommentModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 		$this->load->model('authgroup_model','authGroupModel');
 		$this->load->model('model_user','userModel');
 
@@ -82,8 +82,8 @@ class News extends CI_Controller {
 		    $tags_data_val .=  ",'".$value_tags['name']."'";
 		}
 		$data['tags'] = substr($tags_data_val,1);
-		$data['list_lang']	= $this->languageModel->langName();
-		$id_lang_default	= $this->languageModel->langId();
+		$data['list_lang']	= $this->languagemodel->langName();
+		$id_lang_default	= $this->languagemodel->langId();
 		foreach ($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis'] 				= ($key==0) ? '' : 'hide';
 			$data['list_lang'][$key]['active'] 				= ($key==0) ? 'active in' : '';
@@ -156,7 +156,7 @@ class News extends CI_Controller {
 				die('404');
 			}
 
-			$data['list_lang']	= $this->languageModel->langName();
+			$data['list_lang']	= $this->languagemodel->langName();
 			foreach ($data['list_lang'] as $key => $value){
 				$data['list_lang'][$key]['invis'] 				= ($key==0) ? '' : 'hide';
 				$data['list_lang'][$key]['active'] 				= ($key==0) ? 'active in' : '';

@@ -7,7 +7,7 @@ class Gallery_category extends CI_Controller {
 		$this->load->model('gallery_category_model');
 		$this->load->model('galleryImagesModel');
 		$this->load->model('galleryDetailModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 		$this->load->model('tagsModel');
 		$this->load->model('newsTagsModel');
 		$this->load->model('eventTagsModel');
@@ -78,7 +78,7 @@ class Gallery_category extends CI_Controller {
 		$ret['error']			= 1;
 		$id_parent_lang 		= NULL;
 		$this->db->trans_start(); 
-		// $id_parent		= $this->languageModel->langId();
+		// $id_parent		= $this->languagemodel->langId();
 
 		// foreach ($post['name'] as $key => $value){
 			if(!$idedit){

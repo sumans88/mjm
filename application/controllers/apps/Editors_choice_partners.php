@@ -4,7 +4,7 @@ class Editors_Choice_Partners extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('AboutPartnersModel');
-		$this->load->model('LanguageModel');
+		$this->load->model('languagemodel');
 		$this->load->library('session');
 	}
 	function index(){

@@ -4,7 +4,7 @@ class Tags extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('tagsModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index(){
 		render('apps/tags/index',$data,'apps');

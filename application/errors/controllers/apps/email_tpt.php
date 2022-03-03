@@ -4,7 +4,7 @@ class email_tpt extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('EmailTmpModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index(){
 		$data['list_status_publish'] = selectlist2(array('table'=>'status_publish','title'=>'All Status','selected'=>$data['id_status_publish']));
@@ -32,7 +32,7 @@ class email_tpt extends CI_Controller {
             $data['id'] 			= '';
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 
 		foreach($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis']			= ($key==0) ? '' : 'hide';

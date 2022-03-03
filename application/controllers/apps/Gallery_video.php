@@ -6,7 +6,7 @@ class Gallery_video extends CI_Controller {
 		$this->load->model('galleryModel');
 		$this->load->model('galleryImagesModel');
 		$this->load->model('galleryDetailModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 		$this->load->model('tagsModel');
 		$this->load->model('newsTagsModel');
 		$this->load->model('eventTagsModel');
@@ -52,7 +52,7 @@ class Gallery_video extends CI_Controller {
 			$data['publish_date']     = '';
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 		$tags_data = $this->newsTagsModel->records_tags_all();
 		foreach ($tags_data as $key => $value_tags) {
 		    $tags_data_val .=  ',"'.$value_tags['name'].'"';
@@ -203,7 +203,7 @@ class Gallery_video extends CI_Controller {
 		$ret['error']			= 1;
 		$id_parent_lang 		= NULL;
 		$this->db->trans_start(); 
-		// $id_parent		= $this->languageModel->langId();
+		// $id_parent		= $this->languagemodel->langId();
 
 		foreach ($post['name'] as $key => $value){
 			if(!$idedit){
@@ -609,7 +609,7 @@ class Gallery_video extends CI_Controller {
 			$data['id_parent_lang']	= '';
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 
 		foreach ($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis'] 			= ($key==0) ? '' : 'hide';
@@ -650,7 +650,7 @@ class Gallery_video extends CI_Controller {
 		$ret['error']			= 1;
 		$id_parent_lang 		= NULL;
 		$this->db->trans_start(); 
-		// $id_parent		= $this->languageModel->langId();
+		// $id_parent		= $this->languagemodel->langId();
 
 		foreach ($post['title'] as $key => $value){
 			if(!$idedit){

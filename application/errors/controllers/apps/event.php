@@ -4,7 +4,7 @@ class Event extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('eventModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 		$this->load->model('eventCategoryModel');
 	}
 	function index(){
@@ -15,7 +15,7 @@ class Event extends CI_Controller {
 		if($id){
 			// echo $id;exit;
 			// $data = $this->eventModel->findById($id);
-			$id_lang_default	= $this->languageModel->langId();
+			$id_lang_default	= $this->languagemodel->langId();
 			$datas 	= $this->eventModel->selectData($id);
 
 			if(!$datas){
@@ -38,7 +38,7 @@ class Event extends CI_Controller {
 			$data['id_parent_lang']	= '';
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 
 		foreach ($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis'] 			= ($key==0) ? '' : 'hide';
@@ -114,7 +114,7 @@ class Event extends CI_Controller {
 		$ret['error']			= 1;
 		$id_parent_lang 		= NULL;
 		$this->db->trans_start(); 
-		// $id_parent		= $this->languageModel->langId();
+		// $id_parent		= $this->languagemodel->langId();
 
 		foreach ($post['teaser'] as $key => $value){
 			if($key==0){

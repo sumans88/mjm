@@ -4,7 +4,7 @@ class ContactUsReceive extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('contactusreceiveModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index(){
 		$data['list_topic'] = selectlist2(array('table'=>'contact_us_topic','title'=>'All Topic','selected'=>$data['id_topic']));
@@ -30,7 +30,7 @@ class ContactUsReceive extends CI_Controller {
 			$data['id_topic'] 	= '';
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 		
 		foreach ($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis'] 		= ($key==0) ? '' : 'hide';

@@ -4,14 +4,14 @@ class Event extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('eventModel');
-        $this->load->model('languageModel');
+        $this->load->model('languagemodel');
         $this->load->model('eventCategoryModel');
         $this->load->model('eventFilesModel');
         $this->load->model('eventImagesModel');
         $this->load->model('galleryModel');
         $this->load->model('galleryImagesModel');
         $this->load->model('galleryDetailModel');
-        $this->load->model('languageModel');
+        $this->load->model('languagemodel');
         $this->load->model('tagsModel');
         $this->load->model('newsTagsModel');
         $this->load->model('eventTagsModel');
@@ -40,7 +40,7 @@ class Event extends CI_Controller {
     }
     public function add($id=''){
         if($id){
-            $id_lang_default = $this->languageModel->langId();
+            $id_lang_default = $this->languagemodel->langId();
             $datas           = $this->eventModel->selectData($id);
             if(!$datas){
                 die('404');
@@ -96,7 +96,7 @@ class Event extends CI_Controller {
         $data['menu_tags'] = generate_tags($tags_menu,'extra_param');
         /*end untuk menu tags*/
 
-        $data['list_lang']  = $this->languageModel->langName();
+        $data['list_lang']  = $this->languagemodel->langName();
 
         $n = 0;
 
@@ -540,7 +540,7 @@ class Event extends CI_Controller {
         $ret['error']           = 1;
         $id_parent_lang         = NULL;
         $this->db->trans_start(); 
-        // $id_parent       = $this->languageModel->langId();
+        // $id_parent       = $this->languagemodel->langId();
         $this->form_validation->set_rules('name', '"Page Name"', 'required'); 
         $this->form_validation->set_rules('uri_path', '"Page URL"', 'required'); 
         $this->form_validation->set_rules('teaser', '"Teaser"', 'required'); 
@@ -1081,7 +1081,7 @@ class Event extends CI_Controller {
             $data['publish_date']     = '';
         }
 
-        $data['list_lang']  = $this->languageModel->langName();
+        $data['list_lang']  = $this->languagemodel->langName();
         $tags_data = $this->newsTagsModel->records_tags_all();
         foreach ($tags_data as $key => $value_tags) {
             $tags_data_val .=  ",'".$value_tags['name']."'";
@@ -1233,7 +1233,7 @@ class Event extends CI_Controller {
         $ret['error']           = 1;
         $id_parent_lang         = NULL;
         $this->db->trans_start(); 
-        // $id_parent       = $this->languageModel->langId();
+        // $id_parent       = $this->languagemodel->langId();
 
         foreach ($post['name'] as $key => $value){
         // print_r('awawdawd');exit;

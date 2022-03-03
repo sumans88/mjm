@@ -4,7 +4,7 @@ class Footer_images extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('FooterImagesModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index(){
 		render('apps/footer_images/index',$data,'apps');
@@ -29,7 +29,7 @@ class Footer_images extends CI_Controller {
             $data['url']			= '';
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 		foreach ($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis'] 		= ($key==0) ? '' : 'hide';
 			$data['list_lang'][$key]['active'] 		= ($key==0) ? 'active in' : '';

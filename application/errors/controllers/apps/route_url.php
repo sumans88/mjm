@@ -4,7 +4,7 @@ class Route_url extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('RouteUrlModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index(){
 		render('apps/route_url/index',$data,'apps');
@@ -34,7 +34,7 @@ class Route_url extends CI_Controller {
 			$data['id']				= '';
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 
 		foreach ($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis'] 			= ($key==0) ? '' : 'hide';
@@ -78,7 +78,7 @@ class Route_url extends CI_Controller {
 			if(!$datas){
 				die('404');
 			}
-			$data['list_lang']	= $this->languageModel->langName();
+			$data['list_lang']	= $this->languagemodel->langName();
 			foreach ($data['list_lang'] as $key => $value){
 				$data['list_lang'][$key]['invis'] 			= ($key==0) ? '' : 'hide';
 				$data['list_lang'][$key]['active'] 			= ($key==0) ? 'active in' : '';

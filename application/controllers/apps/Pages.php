@@ -6,7 +6,7 @@ class Pages extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('pagesmodel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index()
 	{
@@ -67,7 +67,7 @@ class Pages extends CI_Controller
 				'selected'=>$data['id_parent']
 		));
 
-		// $data['list_lang']	= $this->languageModel->langName();
+		// $data['list_lang']	= $this->languagemodel->langName();
 		render('apps/pages/add', $data, 'apps');
 	}
 	public function view($id = '')
@@ -78,7 +78,7 @@ class Pages extends CI_Controller
 			if (!$datas) {
 				die('404');
 			}
-			$data['list_lang']	= $this->languageModel->langName();
+			$data['list_lang']	= $this->languagemodel->langName();
 			foreach ($data['list_lang'] as $key => $value) {
 				$data['list_lang'][$key]['invis'] 			= ($key == 0) ? '' : 'hide';
 				$data['list_lang'][$key]['active'] 			= ($key == 0) ? 'active in' : '';
@@ -116,7 +116,7 @@ class Pages extends CI_Controller
 		$ret['error']			= 1;
 		$id_parent_lang 		= NULL;
 		$this->db->trans_start();
-		// $id_parent		= $this->languageModel->langId();
+		// $id_parent		= $this->languagemodel->langId();
 		// page data
 		if (!$idedit) {
 			$where['uri_path']			= $post['uri_path'][0];

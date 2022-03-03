@@ -5,7 +5,7 @@ class Banner extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Banner_Model');
 		$this->load->model('frontendmenumodel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index(){
 		$data['list_status_publish'] = selectlist2(array('table'=>'status_publish','title'=>'All Status','selected'=>$data['id_status_publish']));
@@ -14,7 +14,7 @@ class Banner extends CI_Controller {
 	}
 	
 	public function add($id=''){
-		$id_lang_default = $this->languageModel->langId();
+		$id_lang_default = $this->languagemodel->langId();
 		if($id){
 			// $data = $this->Banner_Model->findById($id);
 			$datas 	= $this->Banner_Model->selectData($id);
@@ -41,7 +41,7 @@ class Banner extends CI_Controller {
 
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 
 		foreach($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis']			= ($key==0) ? '' : 'hide';
@@ -100,7 +100,7 @@ class Banner extends CI_Controller {
 				die('404');
 			}
 
-			$data['list_lang']	= $this->languageModel->langName();
+			$data['list_lang']	= $this->languagemodel->langName();
 
 			foreach($data['list_lang'] as $key => $value){
 				

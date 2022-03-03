@@ -702,8 +702,8 @@ function frontend_menu($pos,$id_parent=''){
 	$uri4 		= $CI->uri->segment(4);
 	$uri5 		= $CI->uri->segment(5);
 	$CI->load->model('frontendmenumodel');
-	$CI->load->model('languageModel');
-	$language 	= $CI->languageModel->fetchRow(array('code'=>$lang));
+	$CI->load->model('languagemodel');
+	$language 	= $CI->languagemodel->fetchRow(array('code'=>$lang));
 	$CI->db->order_by('position');
 	$data 		= $CI->frontendmenumodel->findBy(array('id_menu_position'=>$pos,'id_language'=>$language['id'],'id_parent'=>$id_parent)); 
 
@@ -806,8 +806,8 @@ function footer_logo(){
 	$CI=& get_instance();
 	$lang 		= $CI->uri->segment(1);
 	$CI->load->model('footerImagesModel');
-	$CI->load->model('languageModel');
-	$language 	= $CI->languageModel->fetchRow(array('code'=>$lang));
+	$CI->load->model('languagemodel');
+	$language 	= $CI->languagemodel->fetchRow(array('code'=>$lang));
 	$data 		= $CI->footerImagesModel->findBy(array('id_lang'=>$language['id']));
 	$ret = '';
 	foreach ($data as $key => $value) {
@@ -938,8 +938,8 @@ function get_footer_data(){
 function get_language_id(){
 	$CI =& get_instance();
 	$lang 		= $CI->uri->segment(1);
-	$CI->load->model('languageModel');
-	$language 	= $CI->languageModel->fetchRow(array('code'=>$lang))['id'];
+	$CI->load->model('languagemodel');
+	$language 	= $CI->languagemodel->fetchRow(array('code'=>$lang))['id'];
 
 	return $language;
 }
@@ -952,8 +952,8 @@ function get_language_id(){
 	$uri4 		= $CI->uri->segment(4);
 	$extraParam	= $CI->uri->segment(3);
 	$CI->load->model('frontendmenumodel');
-	$CI->load->model('languageModel');
-	$language 	= $CI->languageModel->fetchRow(array('code'=>$lang));
+	$CI->load->model('languagemodel');
+	$language 	= $CI->languagemodel->fetchRow(array('code'=>$lang));
 	$CI->db->order_by('position');
 	$data 		= $CI->frontendmenumodel->findBy(array('id_menu_position'=>$pos,'id_language'=>$language['id'],'id_parent'=>$id_parent)); 
 	// echo print_r($CI->breadcrumb);

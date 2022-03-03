@@ -4,7 +4,7 @@ class News_category extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('NewsCategoryModel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index(){
 		render('apps/news_category/index',$data,'apps');
@@ -30,7 +30,7 @@ class News_category extends CI_Controller {
             $data['hide']			= '';
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 		foreach ($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis'] 		= ($key==0) ? '' : 'hide';
 			$data['list_lang'][$key]['active'] 		= ($key==0) ? 'active in' : '';

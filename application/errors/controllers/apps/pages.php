@@ -4,7 +4,7 @@ class Pages extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('pagesmodel');
-		$this->load->model('languageModel');
+		$this->load->model('languagemodel');
 	}
 	function index(){
 		// $data['list_cat'] = selectlist2(array('table'=>'ref_kategori_logframe','title'=>'All Category'));
@@ -32,7 +32,7 @@ class Pages extends CI_Controller {
 			$data['id_parent_lang']		= '';
 		}
 
-		$data['list_lang']	= $this->languageModel->langName();
+		$data['list_lang']	= $this->languagemodel->langName();
 
 		foreach ($data['list_lang'] as $key => $value){
 			$data['list_lang'][$key]['invis'] 			= ($key==0) ? '' : 'hide';
@@ -62,7 +62,7 @@ class Pages extends CI_Controller {
 			if(!$datas){
 				die('404');
 			}
-			$data['list_lang']	= $this->languageModel->langName();
+			$data['list_lang']	= $this->languagemodel->langName();
 			foreach ($data['list_lang'] as $key => $value){
 				$data['list_lang'][$key]['invis'] 			= ($key==0) ? '' : 'hide';
 				$data['list_lang'][$key]['active'] 			= ($key==0) ? 'active in' : '';
@@ -95,7 +95,7 @@ class Pages extends CI_Controller {
 		$ret['error']			= 1;
 		$id_parent_lang 		= NULL;
 		$this->db->trans_start(); 
-		// $id_parent		= $this->languageModel->langId();
+		// $id_parent		= $this->languagemodel->langId();
 
 		foreach ($post['teaser'] as $key => $value){
 			if(!$idedit){
