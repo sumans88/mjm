@@ -110,7 +110,7 @@ class QaNew extends CI_Controller {
 				unset($post['topic']);
 				$proses = $this->memberAskExpertModel->insert($post);
 				if($proses){
-					$this->load->model('registerModel');
+					$this->load->model('registermodel');
 					$data_now = date('Y-m-d H:i:s');
 					$log_user_activity = array(
 						'id_user'       =>  id_member(),

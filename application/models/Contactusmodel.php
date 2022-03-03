@@ -41,14 +41,14 @@ class ContactUsModel extends  CI_Model{
 		$insert_id = $this->db->insert($this->table,array_filter($data));
 		// $insert_id = $this->db->insert_id();
 		// if($user_sess_data){
-			// $this->load->model('registerModel');
+			// $this->load->model('registermodel');
 			// $log_user_activity = array(
 				// 'id_user'          =>  $user_sess_data['id'],
 				// 'process_date' =>  date('Y-m-d H:i:s'),
 				// 'id_log_category'   =>  41,
 				// 'id_contact_us' => $id_news
 			// );
-			// $this->registerModel->log_user_activity($log_user_activity);
+			// $this->registermodel->log_user_activity($log_user_activity);
 		// }
 		return $insert_id;
 	}

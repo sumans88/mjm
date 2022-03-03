@@ -42,7 +42,7 @@ class CommentModel extends  CI_Model{
 		$this->db->insert($this->table,array_filter($data));
 		$id_comment =  $this->db->insert_id();
 		if($data['is_admin']==0){
-			$this->load->model('registerModel');
+			$this->load->model('registermodel');
 			$log_user_activity = array(
 				'id_user'          =>  $id_user_create,
 				'process_date' =>  date('Y-m-d H:i:s'),
@@ -50,7 +50,7 @@ class CommentModel extends  CI_Model{
 				'id_comment'   =>  $id_comment,
 				'id_article' => $id_news
 			);
-			$this->registerModel->log_user_activity($log_user_activity);
+			$this->registermodel->log_user_activity($log_user_activity);
 		}
 		return $id_comment;
 	}
@@ -65,7 +65,7 @@ class CommentModel extends  CI_Model{
 		$data['is_delete'] = 1;
 		$data['user_id_modify'] = $user_id_modify;
 		if($data['is_admin']==0){
-			$this->load->model('registerModel');
+			$this->load->model('registermodel');
 			$log_user_activity = array(
 				'id_user'          =>  $user_id_modify,
 				'process_date' =>  date('Y-m-d H:i:s'),
@@ -73,7 +73,7 @@ class CommentModel extends  CI_Model{
 				'id_comment'   =>  $id,
 				'id_article' => $this->findBy(array('a.id'=>$id),1)['id_news']
 			);
-			$this->registerModel->log_user_activity($log_user_activity);
+			$this->registermodel->log_user_activity($log_user_activity);
 		}
 		$this->update($data,$id);
 	}

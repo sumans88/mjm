@@ -7,7 +7,7 @@ class payment_confirmation extends CI_Controller {
 		$this->load->model('member_model');
 		$this->load->model('membership_model');
 		$this->load->model('company_model');
-		$this->load->model('LoginModel');
+		$this->load->model('loginmodel');
 		$this->load->model('paymentconfirmation_model');
 		$this->load->model('paymentconfirmationfiles_model');
 	}

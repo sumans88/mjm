@@ -5,8 +5,8 @@ class Data_Member extends CI_Controller {
 		parent::__construct();
 		$this->load->model('datamemberModel');
 		$this->load->model('dashboardmodel');
-		$this->load->model('RegisterModel');
-		$this->load->model('LoginModel');
+		$this->load->model('registermodel');
+		$this->load->model('loginmodel');
 	}
 	function index(){
 		$data['list_is_active'] = selectlist2(array('table'=>'is_active','title'=>'All Status','selected'=>$data['is_active']));

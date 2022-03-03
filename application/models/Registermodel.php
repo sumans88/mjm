@@ -1,5 +1,5 @@
 <?php
-class RegisterModel extends  CI_Model{
+class registermodel extends  CI_Model{
 	var $table = 'auth_member';
 	var $tableAs = 'auth_member a';
 	function __construct(){

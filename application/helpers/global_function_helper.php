@@ -165,8 +165,8 @@ function render($view,$data='',$layout="", $ret=false){
 	}
 	if($user_sess_data){
 		if($user_sess_data['remember_me']=1){
-			$CI->load->model('loginModel');
-			$CI->loginModel->remember_me_login();
+			$CI->load->model('loginmodel');
+			$CI->loginmodel->remember_me_login();
 		}
 		$data['member_namadepan']    = $user_sess_data['member_namadepan'];
 		$data['member_namabelakang'] = $user_sess_data['member_namabelakang'];

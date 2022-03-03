@@ -5,8 +5,8 @@ class Member extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('dashboardmodel');
-		$this->load->model('RegisterModel');
-		$this->load->model('LoginModel');
+		$this->load->model('registermodel');
+		$this->load->model('loginmodel');
 		$this->load->model('company_model');
 		$this->load->model('member_model');
 		$this->load->model('paymentconfirmation_model');
@@ -35,7 +35,7 @@ class Member extends CI_Controller
 		if($user_sess_data){
 			// kalau set remember me 
 			if($user_sess_data['remember_me'] == 1){
-			    $this->LoginModel->remember_me_login();
+			    $this->loginmodel->remember_me_login();
 				redirect('member/profile','refresh');
 		    }
 		}else{
@@ -439,7 +439,7 @@ $ret_sector ='';
 		$user_sess_data = $this->session->userdata('MEM_SESS');
 		if ($user_sess_data) {
 			if ($user_sess_data['remember_me'] == 1) {
-				$this->LoginModel->remember_me_login();
+				$this->loginmodel->remember_me_login();
 			}
 			$where['member_id'] = $user_sess_data['id'];
 			$where['is_paid']   = 0;
@@ -837,8 +837,8 @@ $ret_sector ='';
 		$user_sess_data = $this->session->userdata('MEM_SESS');
 		if ($user_sess_data) {
 			if ($user_sess_data['remember_me'] = 1) {
-				$this->load->model('loginModel');
-				$this->loginModel->remember_me_login();
+				$this->load->model('loginmodel');
+				$this->loginmodel->remember_me_login();
 			}
 			$data = $this->dashboardmodel->fetchRow(array('id' => $user_sess_data['id']));
 			//if($data['is_complete_data']==1 and $data['is_active']==1){
@@ -1087,7 +1087,7 @@ $ret_sector ='';
 		// $data_now = date('Y-m-d H:i:s');
 		// $user_sess_data = $this->session->userdata('MEM_SESS');
 		// if($user_sess_data){
-		// 	$this->load->model('RegisterModel');
+		// 	$this->load->model('registermodel');
 		// 	$data = $this->dashboardmodel->fetchRow(array('id'=>$user_sess_data['id']));
 		// 	if($data['last_login']){
 		// 		$log_user_activity = array(
@@ -1095,7 +1095,7 @@ $ret_sector ='';
 		// 			'process_date' =>  $data_now,
 		// 			'id_log_category'   =>  27,
 		// 		);
-		// 		$this->RegisterModel->log_user_activity($log_user_activity);
+		// 		$this->registermodel->log_user_activity($log_user_activity);
 
 		// 		$where['id'] = $data['id'];
 		// 		$data_update['last_logout'] 	= $data_now;
@@ -1109,7 +1109,7 @@ $ret_sector ='';
 	{
 		$post = purify($this->input->post());
 		if ($post) {
-			$this->load->model('RegisterModel');
+			$this->load->model('registermodel');
 			$this->form_validation->set_rules('namadepan', '"Nama Depan"', 'required');
 			$this->form_validation->set_rules('pwd', '"Password"', 'required');
 			$this->form_validation->set_rules('email', '"Email"', 'required|valid_email');
@@ -1119,7 +1119,7 @@ $ret_sector ='';
 			} else {
 				$email = $post['email'];
 				$user_sess_data = $this->session->userdata('MEM_SESS');
-				$proses = $this->RegisterModel->complete_data($post, $user_sess_data['id']);
+				$proses = $this->registermodel->complete_data($post, $user_sess_data['id']);
 				if ($proses['status'] == 1) {
 					$status = 'success';
 					$this->session->set_flashdata('success_login', $proses['message']);
@@ -1138,7 +1138,7 @@ $ret_sector ='';
 	{
 		$post = purify($this->input->post());
 		if ($post) {
-			$this->load->model('RegisterModel');
+			$this->load->model('registermodel');
 			$email = $post['email'];
 			if ($post['home_phone']) {
 				$post['home_phone'] = $post['home_phone_code'] . '-' . $post['home_phone'];
@@ -1148,7 +1148,7 @@ $ret_sector ='';
 			}
 			unset($post['home_phone_code'], $post['office_phone_code']);
 			$user_sess_data = $this->session->userdata('MEM_SESS');
-			$proses = $this->RegisterModel->update($post, $user_sess_data['id']);
+			$proses = $this->registermodel->update($post, $user_sess_data['id']);
 			if ($proses['status'] == 1) {
 				$status = 'success';
 				$message = $proses['message'];
@@ -1166,8 +1166,8 @@ $ret_sector ='';
 	{
 		$post = purify($this->input->post());
 		if ($post) {
-			$this->load->model('RegisterModel');
-			$this->load->model('RegisterModel');
+			$this->load->model('registermodel');
+			$this->load->model('registermodel');
 			$this->form_validation->set_rules('namadepan', '"Nama Depan"', 'required');
 			$this->form_validation->set_rules('namabelakang', '"Nama Belakang"', 'required');
 			if ($this->form_validation->run() == FALSE) {
@@ -1178,7 +1178,7 @@ $ret_sector ='';
 				$re_email = $post['email_new_retype'];
 				unset($post['email'], $post['email_new_retype']);
 				$user_sess_data = $this->session->userdata('MEM_SESS');
-				$proses = $this->RegisterModel->update($post, $user_sess_data['id']);
+				$proses = $this->registermodel->update($post, $user_sess_data['id']);
 				if ($proses['status'] == 1) {
 					$status = 'success';
 					$message = $proses['message'];
@@ -1197,7 +1197,7 @@ $ret_sector ='';
 							} else if ($check_email) {
 								$message = language('email_already_registered');
 							} else {
-								$this->RegisterModel->change_new_email($email);
+								$this->registermodel->change_new_email($email);
 								$status = 'success';
 								$message = language('change_email_success_message');
 							}
@@ -1227,7 +1227,7 @@ $ret_sector ='';
 	}
 	function confirmation_change_email($activation_code)
 	{
-		$process = $this->RegisterModel->change_new_email_confirmed($activation_code);
+		$process = $this->registermodel->change_new_email_confirmed($activation_code);
 		$data['fb_like_widget'] = fb_like_widget();
 		$data['top_content']     = top_content(1);
 		$data['popular_article'] = popular_article(0);
@@ -1272,7 +1272,7 @@ $ret_sector ='';
 				$status_data = language('not_check_captcha');
 				$message = language('not_check_captcha_message');
 			} else if ($status['success']) {
-				$process_active = $this->RegisterModel->change_new_email_confirmed_process($post['activation_code']);
+				$process_active = $this->registermodel->change_new_email_confirmed_process($post['activation_code']);
 				if ($process_active['status'] == 1) {
 					$this->session->set_flashdata('change_email_success_flash', 'true');
 					$status_data = 'success';
@@ -1293,7 +1293,7 @@ $ret_sector ='';
 	function change_password()
 	{
 		$post = purify($this->input->post());
-		$this->load->model('RegisterModel');
+		$this->load->model('registermodel');
 		if ($post) {
 			$post['id_contact_us_topic'] =  $post['topic'];
 			$this->form_validation->set_rules('current_pwd', '"Password Lama"', 'required');
@@ -1302,7 +1302,7 @@ $ret_sector ='';
 				$message = validation_errors();
 				$status = 'error';
 			} else {
-				$proses = $this->RegisterModel->change_password($post);
+				$proses = $this->registermodel->change_password($post);
 				if ($proses['status'] == 1) {
 					$status = 'success';
 					$message = $proses['message'];
@@ -1356,9 +1356,9 @@ $ret_sector ='';
 	function change_subscriber()
 	{
 		$post = purify($this->input->post());
-		$this->load->model('RegisterModel');
+		$this->load->model('registermodel');
 		if ($post) {
-			$proses = $this->RegisterModel->change_subscriber($post);
+			$proses = $this->registermodel->change_subscriber($post);
 			if ($proses['status'] == 1) {
 				$status = 'success';
 				$message = $proses['message'];
@@ -1383,7 +1383,7 @@ $ret_sector ='';
 
 		$datadataan = $this->db->get_where('auth_member', $where)->row_array();
 
-		$check = $this->RegisterModel->fetchRow($where);
+		$check = $this->registermodel->fetchRow($where);
 		$secret   = GOOGLE_CAPTCHA_SECRET_KEY;
         $response = $_POST['g-recaptcha-response'];
         $ip       = $_SERVER['REMOTE_ADDR'];
@@ -1401,7 +1401,7 @@ $ret_sector ='';
 					$ret['msg']      = 'Sorry Your Accounts is Banned, Please Contact The Administator ';
 				} else {
 					$remember = $post['remember_me'] ? 1 : 0;
-					$this->RegisterModel->login_member($check, $remember);
+					$this->registermodel->login_member($check, $remember);
 					$ret['error']    = 0;
 					$ret['redirect'] = base_url() . 'member/profile';
 				}
@@ -1735,7 +1735,7 @@ $ret_sector ='';
 						log_message('info', 'controllers.HAuth.login: user profile:' . PHP_EOL . print_r($user_profile, TRUE));
 
 						$data['user_profile'] = $user_profile;
-						$process = $this->RegisterModel->inserting_data($data, $provider);
+						$process = $this->registermodel->inserting_data($data, $provider);
 						if ($process == 1) {
 							redirect('/member');
 						} else {
@@ -1812,7 +1812,7 @@ $ret_sector ='';
 	}
 	function active_member($activation_code)
 	{
-		$process = $this->RegisterModel->active_member($activation_code);
+		$process = $this->registermodel->active_member($activation_code);
 		$data['fb_like_widget'] = fb_like_widget();
 		$data['top_content']     = top_content(1);
 		$data['popular_article'] = popular_article(0);
@@ -1858,7 +1858,7 @@ $ret_sector ='';
 				$status_data = language('not_check_captcha');
 				$message = language('not_check_captcha_message');
 			} else if ($status['success']) {
-				$process_active = $this->RegisterModel->process_activation($post['activation_code']);
+				$process_active = $this->registermodel->process_activation($post['activation_code']);
 				if ($process_active['status'] == 1) {
 					$this->session->set_flashdata('email_activation_success', 'true');
 					$status_data = 'success';
@@ -1907,7 +1907,7 @@ $ret_sector ='';
 	}
 	function active_email_member($activation_code)
 	{
-		$process = $this->RegisterModel->active_member($activation_code, 1);
+		$process = $this->registermodel->active_member($activation_code, 1);
 		$data['fb_like_widget'] = fb_like_widget();
 		$data['top_content']     = top_content(1);
 		$data['popular_article'] = popular_article(0);
@@ -1953,7 +1953,7 @@ $ret_sector ='';
 				$status_data = language('not_check_captcha');
 				$message = language('not_check_captcha_message');
 			} else if ($status['success']) {
-				$process_active = $this->RegisterModel->process_activation($post['activation_code'], 1);
+				$process_active = $this->registermodel->process_activation($post['activation_code'], 1);
 				if ($process_active['status'] == 1) {
 					$this->session->set_flashdata('email_activation_member_success', 'true');
 					$status_data = 'success';
@@ -1993,7 +1993,7 @@ $ret_sector ='';
 				$status = 'error';
 			} else {
 				$email = $post['email'];
-				$proses = $this->LoginModel->resend_email_activation($post);
+				$proses = $this->loginmodel->resend_email_activation($post);
 				if ($proses['status'] == 1) {
 					$status = 'success';
 					$message = $proses['message'];
@@ -2022,7 +2022,7 @@ $ret_sector ='';
 				$status = 'error';
 			} else {
 				$email = $post['email'];
-				$proses = $this->LoginModel->reset_password($post);
+				$proses = $this->loginmodel->reset_password($post);
 				if ($proses['status'] == 1) {
 					$this->session->set_flashdata('session_reset_password_send_email_success', 'true');
 					$status = 'success';
@@ -2098,7 +2098,7 @@ $ret_sector ='';
 		$data['popular_article'] = popular_article(0);
 		$data['new_article']    = new_article(1, 2);
 		$data['new_expert']    = new_expert(1, 1);
-		$process = $this->LoginModel->check_reset_due($activation_code);
+		$process = $this->loginmodel->check_reset_due($activation_code);
 		if ($process['status'] == 1) {
 			if ($post) {
 				$this->form_validation->set_rules('pwd', '"Password"', 'required');
@@ -2106,7 +2106,7 @@ $ret_sector ='';
 					$message = validation_errors();
 					$status = 'error';
 				} else {
-					$reset_process = $this->LoginModel->reset_password_code($post);
+					$reset_process = $this->loginmodel->reset_password_code($post);
 					if ($reset_process['status'] == 1) {
 						$this->session->set_flashdata('session_reset_password_success', 'true');
 						$status = 'success';
@@ -2143,7 +2143,7 @@ $ret_sector ='';
 				$message = validation_errors();
 				$status = 'error';
 			} else {
-				$proses = $this->LoginModel->login($post);
+				$proses = $this->loginmodel->login($post);
 				if ($proses['status'] == 1) {
 					$status = 'success';
 					if ($url_redirect == '') {
@@ -2169,7 +2169,7 @@ $ret_sector ='';
 	{
 		$user_sess_data = $this->session->userdata('MEM_SESS');
 		if ($user_sess_data) {
-			$proses = $this->RegisterModel->deactivate_account($user_sess_data['id']);
+			$proses = $this->registermodel->deactivate_account($user_sess_data['id']);
 			if ($proses['status'] == 1) {
 
 				$status = 'success';
@@ -2192,7 +2192,7 @@ $ret_sector ='';
 			$data['popular_article'] = popular_article(0);
 			$data['new_article']    = new_article(1, 2);
 			$data['new_expert']    = new_expert(1, 1);
-			$proses = $this->RegisterModel->reactivate_account_check($idrenderpage);
+			$proses = $this->registermodel->reactivate_account_check($idrenderpage);
 			if ($proses['status'] == 1) {
 				$this->session->set_flashdata('success_login', $proses['message']);
 
@@ -2224,7 +2224,7 @@ $ret_sector ='';
 		$data['new_article']    = new_article(1, 2);
 		$data['new_expert']    = new_expert(1, 1);
 		if ($idrenderpage) {
-			$proses = $this->RegisterModel->reactivate_account($idrenderpage);
+			$proses = $this->registermodel->reactivate_account($idrenderpage);
 			if ($proses['status'] == 1) {
 				$this->session->set_flashdata('success_login', $proses['message']);
 				redirect('/member/');
@@ -2250,10 +2250,10 @@ $ret_sector ='';
 		$post = purify($this->input->post());
 		$data = '';
 		if ($post) {
-			$this->RegisterModel->delete_all_child();
+			$this->registermodel->delete_all_child();
 			foreach ($post['nama'] as $idx => $val) {
 				if ($post['nama'][$idx]) {
-					$this->RegisterModel->insert_child($post['nama'][$idx], $post['dob_child'][$idx], $post['jeniskelamin'][$idx], $post['umur_anak'][$idx]);
+					$this->registermodel->insert_child($post['nama'][$idx], $post['dob_child'][$idx], $post['jeniskelamin'][$idx], $post['umur_anak'][$idx]);
 				}
 			}
 		}

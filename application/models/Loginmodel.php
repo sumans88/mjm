@@ -1,5 +1,5 @@
 <?php
-class LoginModel extends  CI_Model{
+class loginmodel extends  CI_Model{
 	var $table = 'auth_member';
 	var $tableAs = 'auth_member a';
     function __construct(){
@@ -72,7 +72,7 @@ class LoginModel extends  CI_Model{
         $where['reset_code'] = $data['reset_code'];
         $check_code = $this->db->select('*')->get_where($this->tableAs,$where)->row_array();
         if($check_code and !check_block_ip()){
-            $this->load->model('RegisterModel');
+            $this->load->model('registermodel');
             $where_reset['id_member'] = $check_code['id'];
             $data_reset['is_active'] = 0;
             $this->db->update('t_aegon_member_password',$data_reset,$where_reset);
@@ -86,7 +86,7 @@ class LoginModel extends  CI_Model{
                 'process_date' =>  $data_now,
                 'id_log_category'   =>  25,
             );
-            $this->RegisterModel->log_user_activity($log_user_activity);
+            $this->registermodel->log_user_activity($log_user_activity);
             $data_msg['status'] = 1;
             $data_msg['message'] = language('reset_password_success_activation'); 
             $where_reset_password['id'] = $check_code['id'];
@@ -109,7 +109,7 @@ class LoginModel extends  CI_Model{
 	$check_user = $this->db->get($this->tableAs)->row();
         if($check_user){
             if($check_user->is_active==1){
-                $this->load->model('RegisterModel');
+                $this->load->model('registermodel');
                 if($data['remember_me'] ==1){
                     $array_keep_login = array(
                         'userid' => $check_user->id,
@@ -121,16 +121,16 @@ class LoginModel extends  CI_Model{
 		    $this->input->cookie('user',TRUE);
 		    $this->input->cookie('password',TRUE);
                     $query_keep_login = $this->db->insert('t_aegon_keep_login', $array_keep_login);
-		    $this->RegisterModel->login_member($check_user,1);
+		    $this->registermodel->login_member($check_user,1);
                 }else{
-			$this->RegisterModel->login_member($check_user);
+			$this->registermodel->login_member($check_user);
 		}
                 $log_login_data = array(
                     'userid'          =>  $check_user->id,
                     'process_date' =>  $data_now,
                     'type_login'   =>  'Aegon',
                 );
-                $this->RegisterModel->log_login($log_login_data);
+                $this->registermodel->log_login($log_login_data);
                 $log_user_activity = array(
                     'id_user'          =>  $check_user->id,
                     'process_date' =>  $data_now,
@@ -141,7 +141,7 @@ class LoginModel extends  CI_Model{
 		$data_log['is_active'] = 0;
 		$this->db->update('t_aegon_log_max_login',$data_log,$where_data_log);
 		
-                $this->RegisterModel->log_user_activity($log_user_activity);
+                $this->registermodel->log_user_activity($log_user_activity);
                 $data['status'] =1;
                 $data['message'] = language('success')." ".language('login');
                 //$this->session->set_flashdata('success_login',$data['message']);
@@ -186,8 +186,8 @@ class LoginModel extends  CI_Model{
 		$check_user_data_exist = $this->db->get($this->tableAs)->row();
 				
 		if($check_user_data_exist){
-			$this->load->model('maxloginModel');
-			$data_max_login = $this->maxloginModel->findBy(array('email'=>$data['modal_login_form_username'],'is_active' => 1),1);
+			$this->load->model('maxloginmodel');
+			$data_max_login = $this->maxloginmodel->findBy(array('email'=>$data['modal_login_form_username'],'is_active' => 1),1);
 			$max_data_exp_time = EXP_MAX_TIME_FAILED_LOGIN;
 			$max_data_exp_count = EXP_MAX_COUNT_FAILED_LOGIN;
 			$data_now = date('Y-m-d H:i:s');
@@ -230,7 +230,7 @@ class LoginModel extends  CI_Model{
 	}
 	function remember_me_login($data){
 		$user_sess_data = $this->session->userdata('MEM_SESS');
-		$this->load->model('RegisterModel');
+		$this->load->model('registermodel');
 		if(isset($_COOKIE['username']) and isset($_COOKIE['password'])){
 			$this->db->select("a.*");
 			$this->db->where('a.is_delete',0);
@@ -240,7 +240,7 @@ class LoginModel extends  CI_Model{
 			// $this->db->where('b.pwd', md5(base64_decode($_COOKIE['password'])));
 			$check_user = $this->db->get($this->tableAs)->row();
 			if($check_user){
-				$this->RegisterModel->login_member($check_user,1);
+				$this->registermodel->login_member($check_user,1);
 			}
 		}
 		return true;

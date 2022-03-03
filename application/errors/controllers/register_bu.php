@@ -2,7 +2,7 @@
 class Register extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-        $this->load->model('RegisterModel');
+        $this->load->model('registermodel');
 	}
     function index(){
     	$post = purify($this->input->post());
@@ -18,7 +18,7 @@ class Register extends CI_Controller {
 			}
 			else{
                 $email = $post['email'];
-	    		$proses = $this->RegisterModel->register($post);
+	    		$proses = $this->registermodel->register($post);
 	    		if($proses['status']==1){
 	    		$status = 'success';
 	    			$message = $proses['message'];
@@ -115,7 +115,7 @@ class Register extends CI_Controller {
 					log_message('info', 'controllers.HAuth.login: user profile:'.PHP_EOL.print_r($user_profile, TRUE));
 
 					$data['user_profile'] = $user_profile;
-					$process = $this->RegisterModel->inserting_data($data, $provider);
+					$process = $this->registermodel->inserting_data($data, $provider);
                     if($process == 1){
                         redirect('/dashboard');
                     } else {
@@ -186,7 +186,7 @@ class Register extends CI_Controller {
 
 	}
 	function active_member($activation_code){
-		$process = $this->RegisterModel->active_member($activation_code);
+		$process = $this->registermodel->active_member($activation_code);
 		if($process['status']==1){
 				$this->session->set_flashdata('success_login',$process['message']);
 				redirect('/dashboard');

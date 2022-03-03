@@ -2,7 +2,7 @@
 class Login extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-        $this->load->model('LoginModel');
+        $this->load->model('loginmodel');
 	}
     
     function resend_email_activation(){
@@ -15,7 +15,7 @@ class Login extends CI_Controller {
 			}
 			else{
                 $email = $post['email'];
-	    		$proses = $this->LoginModel->resend_email_activation($post);
+	    		$proses = $this->loginmodel->resend_email_activation($post);
 	    		if($proses['status']==1){
                     $status = 'success';
 	    			$message = $proses['message'];
@@ -46,7 +46,7 @@ class Login extends CI_Controller {
 			}
 			else{
 			$email = $post['email'];
-	    		$proses = $this->LoginModel->reset_password($post);
+	    		$proses = $this->loginmodel->reset_password($post);
 	    		if($proses['status']==1){
 				$status = 'success';
 	    			$message = $proses['message'];
@@ -69,7 +69,7 @@ class Login extends CI_Controller {
     }
     function reset_password_code($activation_code){
         $post = purify($this->input->post());
-	$process = $this->LoginModel->check_reset_due($activation_code);
+	$process = $this->loginmodel->check_reset_due($activation_code);
     	if($process['status']==1){
             if($post){
                 $this->form_validation->set_rules('pwd', '"Password"', 'required'); 
@@ -78,7 +78,7 @@ class Login extends CI_Controller {
                      $status = 'error';
                 }
                 else{
-                    $reset_process = $this->LoginModel->reset_password_code($post);
+                    $reset_process = $this->loginmodel->reset_password_code($post);
                     if($reset_process['status']==1){
                         $status = 'success';
                         $message = $reset_process['message'];
@@ -111,7 +111,7 @@ class Login extends CI_Controller {
 				 $status = 'error';
 			}
 			else{
-	    		$proses = $this->LoginModel->login($post);
+	    		$proses = $this->loginmodel->login($post);
 	    		if($proses['status']==1){
                     $status = 'success';
 	    		}

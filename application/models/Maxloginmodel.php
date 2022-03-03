@@ -1,5 +1,5 @@
 <?php
-class MaxLoginModel extends  CI_Model{
+class Maxloginmodel extends  CI_Model{
 	var $table = 't_aegon_log_max_login';
 	var $tableAs = 't_aegon_log_max_login a';
     function __construct(){

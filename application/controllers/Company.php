@@ -3,8 +3,8 @@ class Member extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('dashboardmodel');
-		$this->load->model('RegisterModel');
-		$this->load->model('LoginModel');
+		$this->load->model('registermodel');
+		$this->load->model('loginmodel');
 		$this->load->model('company_model');
 		$this->load->model('member_model');
 		$this->load->model('paymentconfirmation_model');
@@ -20,7 +20,7 @@ class Member extends CI_Controller {
 			// $this->session->set_userdata('MEM_SESS',array('remember_me' => 1));
 			// print_r(base64_decode($this->input->cookie('password')));exit;
 			if($user_sess_data['remember_me'] == 1){
-			    $this->LoginModel->remember_me_login();
+			    $this->loginmodel->remember_me_login();
 				redirect('member/profile','refresh');
 		    }
 		    redirect('member/profile','refresh');
@@ -45,8 +45,8 @@ class Member extends CI_Controller {
 		    $user_sess_data = $this->session->userdata('MEM_SESS');
 		    if($user_sess_data){
 			    if($user_sess_data['remember_me']=1){
-				    $this->load->model('loginModel');
-				    $this->loginModel->remember_me_login();
+				    $this->load->model('loginmodel');
+				    $this->loginmodel->remember_me_login();
 			    }
 			    $data = $this->dashboardmodel->fetchRow(array('id'=>$user_sess_data['id']));
 				//if($data['is_complete_data']==1 and $data['is_active']==1){
@@ -325,7 +325,7 @@ class Member extends CI_Controller {
 		$user_sess_data = $this->session->userdata('MEM_SESS');
 		if($user_sess_data){
 			if($user_sess_data['remember_me'] == 1){
-			    $this->LoginModel->remember_me_login();
+			    $this->loginmodel->remember_me_login();
 		    }
 			$data['page_heading']    = 'Payment Confirmation';
 			$data['banner_top']      = banner_top(); // pake banner top
@@ -389,8 +389,8 @@ class Member extends CI_Controller {
 	    $user_sess_data = $this->session->userdata('MEM_SESS');
 	    if($user_sess_data){
 		    if($user_sess_data['remember_me']=1){
-			    $this->load->model('loginModel');
-			    $this->loginModel->remember_me_login();
+			    $this->load->model('loginmodel');
+			    $this->loginmodel->remember_me_login();
 		    }
 		    $data = $this->dashboardmodel->fetchRow(array('id'=>$user_sess_data['id']));
 			//if($data['is_complete_data']==1 and $data['is_active']==1){
@@ -633,7 +633,7 @@ class Member extends CI_Controller {
 		$data_now = date('Y-m-d H:i:s');
 		$user_sess_data = $this->session->userdata('MEM_SESS');
 		if($user_sess_data){
-			$this->load->model('RegisterModel');
+			$this->load->model('registermodel');
 			$data = $this->dashboardmodel->fetchRow(array('id'=>$user_sess_data['id']));
 			if($data['last_login']){
 				$log_user_activity = array(
@@ -641,7 +641,7 @@ class Member extends CI_Controller {
 					'process_date' =>  $data_now,
 					'id_log_category'   =>  27,
 				);
-				$this->RegisterModel->log_user_activity($log_user_activity);
+				$this->registermodel->log_user_activity($log_user_activity);
 
 				$where['id'] = $data['id'];
 				$data_update['last_logout'] 	= $data_now;
@@ -654,7 +654,7 @@ class Member extends CI_Controller {
 	function complete_data_process(){
 	    $post = purify($this->input->post());
 	    if($post){
-		    $this->load->model('RegisterModel');
+		    $this->load->model('registermodel');
 		    $this->form_validation->set_rules('namadepan', '"Nama Depan"', 'required'); 
 		    $this->form_validation->set_rules('pwd', '"Password"', 'required'); 
 		    $this->form_validation->set_rules('email', '"Email"', 'required|valid_email'); 
@@ -664,7 +664,7 @@ class Member extends CI_Controller {
 		    } else {
 			    $email = $post['email'];
 			    $user_sess_data = $this->session->userdata('MEM_SESS');
-			    $proses = $this->RegisterModel->complete_data($post,$user_sess_data['id']);
+			    $proses = $this->registermodel->complete_data($post,$user_sess_data['id']);
 			    if($proses['status']==1){
 				$status = 'success';
 				$this->session->set_flashdata('success_login',$process['message']);
@@ -682,7 +682,7 @@ class Member extends CI_Controller {
 	function update_process(){
 	    $post = purify($this->input->post());
 	    if($post){
-		$this->load->model('RegisterModel');
+		$this->load->model('registermodel');
 			$email = $post['email'];
 			if($post['home_phone']){
 				$post['home_phone'] = $post['home_phone_code'].'-'.$post['home_phone'];
@@ -692,7 +692,7 @@ class Member extends CI_Controller {
 			}
 			unset($post['home_phone_code'],$post['office_phone_code']);
 			$user_sess_data = $this->session->userdata('MEM_SESS');
-			$proses = $this->RegisterModel->update($post,$user_sess_data['id']);
+			$proses = $this->registermodel->update($post,$user_sess_data['id']);
 			if($proses['status']==1){
 			    $status = 'success';
 			    $message = $proses['message'];
@@ -710,8 +710,8 @@ class Member extends CI_Controller {
 	function update_process_with_email(){
 	    $post = purify($this->input->post());
 	    if($post){
-		$this->load->model('RegisterModel');
-			$this->load->model('RegisterModel');
+		$this->load->model('registermodel');
+			$this->load->model('registermodel');
 			$this->form_validation->set_rules('namadepan', '"Nama Depan"', 'required');
 			$this->form_validation->set_rules('namabelakang', '"Nama Belakang"', 'required'); 
 			if ($this->form_validation->run() == FALSE){
@@ -722,7 +722,7 @@ class Member extends CI_Controller {
 				$re_email = $post['email_new_retype'];
 				unset($post['email'],$post['email_new_retype']);
 				$user_sess_data = $this->session->userdata('MEM_SESS');
-				$proses = $this->RegisterModel->update($post,$user_sess_data['id']);
+				$proses = $this->registermodel->update($post,$user_sess_data['id']);
 				if($proses['status']==1){
 				    $status = 'success';
 				    $message = $proses['message'];
@@ -742,7 +742,7 @@ class Member extends CI_Controller {
 							}else if($check_email){
 								$message = language('email_already_registered');
 							} else {
-								$this->RegisterModel->change_new_email($email);
+								$this->registermodel->change_new_email($email);
 								$status = 'success';
 								$message = language('change_email_success_message');
 							}
@@ -771,7 +771,7 @@ class Member extends CI_Controller {
 		
 	}
 	function confirmation_change_email($activation_code){
-		$process = $this->RegisterModel->change_new_email_confirmed($activation_code);
+		$process = $this->registermodel->change_new_email_confirmed($activation_code);
 		$data['fb_like_widget'] = fb_like_widget();
 		$data['top_content']     = top_content(1);
 		$data['popular_article']= popular_article(0);
@@ -815,7 +815,7 @@ class Member extends CI_Controller {
 				$status_data = language('not_check_captcha');
 				$message = language('not_check_captcha_message');
 			} else if($status['success']){
-				$process_active = $this->RegisterModel->change_new_email_confirmed_process($post['activation_code']);
+				$process_active = $this->registermodel->change_new_email_confirmed_process($post['activation_code']);
 				if($process_active['status']==1){
 					$this->session->set_flashdata('change_email_success_flash','true');
 					$status_data = 'success';
@@ -836,7 +836,7 @@ class Member extends CI_Controller {
 	}
 	function change_password(){
 	    $post = purify($this->input->post());
-	    $this->load->model('RegisterModel');
+	    $this->load->model('registermodel');
 	    if($post){
 		    $post['id_contact_us_topic'] =  $post['topic'];
 		    $this->form_validation->set_rules('current_pwd', '"Password Lama"', 'required'); 
@@ -845,7 +845,7 @@ class Member extends CI_Controller {
 			     $message = validation_errors();
 			     $status = 'error';
 		    }else{
-			    $proses = $this->RegisterModel->change_password($post);
+			    $proses = $this->registermodel->change_password($post);
 			    if($proses['status']==1){
 				    $status = 'success';
 				    $message = $proses['message'];
@@ -898,9 +898,9 @@ class Member extends CI_Controller {
 	}
 	function change_subscriber(){
 	    $post = purify($this->input->post());
-	    $this->load->model('RegisterModel');
+	    $this->load->model('registermodel');
 	    if($post){
-		    $proses = $this->RegisterModel->change_subscriber($post);
+		    $proses = $this->registermodel->change_subscriber($post);
 		    if($proses['status']==1){
 			    $status = 'success';
 			    $message = $proses['message'];
@@ -924,10 +924,10 @@ class Member extends CI_Controller {
 		$where['password']  = md5($password);
 		$where['is_delete'] = 0;
 
-		$check = $this->RegisterModel->fetchRow($where);		
+		$check = $this->registermodel->fetchRow($where);		
 		if ($check) { // true
 			$remember = $post['remember_me'] ? 1 : 0;	
-			$this->RegisterModel->login_member($check,$remember);
+			$this->registermodel->login_member($check,$remember);
 
 			$ret['redirect'] = 'member/profile';			
 		}else{
@@ -951,8 +951,8 @@ class Member extends CI_Controller {
 				$data['url'] = htmlspecialchars(strip_tags($this->input->get('url')));
 				if($user_sess_data){
 					if($user_sess_data['remember_me']=1){
-						$this->load->model('loginModel');
-						$this->loginModel->remember_me_login();
+						$this->load->model('loginmodel');
+						$this->loginmodel->remember_me_login();
 					}
 				}
 				$data['fb_like_widget'] = fb_like_widget();
@@ -1012,7 +1012,7 @@ class Member extends CI_Controller {
 						}else{
 							$email = $post['email'];
 							unset($post['confirm_email']);
-							$proses = $this->RegisterModel->register($post);
+							$proses = $this->registermodel->register($post);
 							if($proses['status']==1){
 								$status = 'success';
 								$message = $proses['message'];
@@ -1181,7 +1181,7 @@ class Member extends CI_Controller {
 						log_message('info', 'controllers.HAuth.login: user profile:'.PHP_EOL.print_r($user_profile, TRUE));
 	
 						$data['user_profile'] = $user_profile;
-						$process = $this->RegisterModel->inserting_data($data, $provider);
+						$process = $this->registermodel->inserting_data($data, $provider);
 			    if($process == 1){
 				redirect('/member');
 			    } else {
@@ -1253,7 +1253,7 @@ class Member extends CI_Controller {
 
 	}
 	function active_member($activation_code){
-		$process = $this->RegisterModel->active_member($activation_code);
+		$process = $this->registermodel->active_member($activation_code);
 		$data['fb_like_widget'] = fb_like_widget();
 		$data['top_content']     = top_content(1);
 		$data['popular_article']= popular_article(0);
@@ -1298,7 +1298,7 @@ class Member extends CI_Controller {
 				$status_data = language('not_check_captcha');
 				$message = language('not_check_captcha_message');
 			} else if($status['success']){
-				$process_active = $this->RegisterModel->process_activation($post['activation_code']);
+				$process_active = $this->registermodel->process_activation($post['activation_code']);
 				if($process_active['status']==1){
 					$this->session->set_flashdata('email_activation_success','true');
 					$status_data = 'success';
@@ -1344,7 +1344,7 @@ class Member extends CI_Controller {
 		}
 	}
 	function active_email_member($activation_code){
-		$process = $this->RegisterModel->active_member($activation_code,1);
+		$process = $this->registermodel->active_member($activation_code,1);
 		$data['fb_like_widget'] = fb_like_widget();
 		$data['top_content']     = top_content(1);
 		$data['popular_article']= popular_article(0);
@@ -1389,7 +1389,7 @@ class Member extends CI_Controller {
 				$status_data = language('not_check_captcha');
 				$message = language('not_check_captcha_message');
 			} else if($status['success']){
-				$process_active = $this->RegisterModel->process_activation($post['activation_code'],1);
+				$process_active = $this->registermodel->process_activation($post['activation_code'],1);
 				if($process_active['status']==1){
 					$this->session->set_flashdata('email_activation_member_success','true');
 					$status_data = 'success';
@@ -1428,7 +1428,7 @@ class Member extends CI_Controller {
 				}
 				else{
 			$email = $post['email'];
-				$proses = $this->LoginModel->resend_email_activation($post);
+				$proses = $this->loginmodel->resend_email_activation($post);
 				if($proses['status']==1){
 			    $status = 'success';
 					$message = $proses['message'];
@@ -1460,7 +1460,7 @@ class Member extends CI_Controller {
 			    }
 			    else{
 			$email = $post['email'];
-			    $proses = $this->LoginModel->reset_password($post);
+			    $proses = $this->loginmodel->reset_password($post);
 			    if($proses['status']==1){
 					$this->session->set_flashdata('session_reset_password_send_email_success','true');
 					$status = 'success';
@@ -1535,7 +1535,7 @@ class Member extends CI_Controller {
 		$data['popular_article']= popular_article(0);
 		$data['new_article']    = new_article(1,2);
 		$data['new_expert']    = new_expert(1,1);
-		$process = $this->LoginModel->check_reset_due($activation_code);
+		$process = $this->loginmodel->check_reset_due($activation_code);
 		if($process['status']==1){
 		    if($post){
 			$this->form_validation->set_rules('pwd', '"Password"', 'required'); 
@@ -1544,7 +1544,7 @@ class Member extends CI_Controller {
 			     $status = 'error';
 			}
 			else{
-			    $reset_process = $this->LoginModel->reset_password_code($post);
+			    $reset_process = $this->loginmodel->reset_password_code($post);
 			    if($reset_process['status']==1){
 				$this->session->set_flashdata('session_reset_password_success','true');
 				$status = 'success';
@@ -1582,7 +1582,7 @@ class Member extends CI_Controller {
 				 $status = 'error';
 			}
 			else{
-				$proses = $this->LoginModel->login($post);
+				$proses = $this->loginmodel->login($post);
 				if($proses['status']==1){
 					$status = 'success';
 					if($url_redirect == ''){
@@ -1608,7 +1608,7 @@ class Member extends CI_Controller {
 	function deactivate_account(){
 		$user_sess_data = $this->session->userdata('MEM_SESS');
 		if($user_sess_data){
-			$proses = $this->RegisterModel->deactivate_account($user_sess_data['id']);
+			$proses = $this->registermodel->deactivate_account($user_sess_data['id']);
 			if($proses['status']==1){
 				
 				$status = 'success';
@@ -1631,7 +1631,7 @@ class Member extends CI_Controller {
 			$data['popular_article']= popular_article(0);
 			$data['new_article']    = new_article(1,2);
 			$data['new_expert']    = new_expert(1,1);
-			$proses = $this->RegisterModel->reactivate_account_check($idrenderpage);
+			$proses = $this->registermodel->reactivate_account_check($idrenderpage);
 			if($proses['status']==1){
 				$this->session->set_flashdata('success_login',$proses['message']);
 				
@@ -1663,7 +1663,7 @@ class Member extends CI_Controller {
 		$data['new_article']    = new_article(1,2);
 		$data['new_expert']    = new_expert(1,1);
 		if($idrenderpage){
-			$proses = $this->RegisterModel->reactivate_account($idrenderpage);
+			$proses = $this->registermodel->reactivate_account($idrenderpage);
 			if($proses['status']==1){
 				$this->session->set_flashdata('success_login',$proses['message']);
 				redirect('/member/');
@@ -1689,10 +1689,10 @@ class Member extends CI_Controller {
 		$post = purify($this->input->post());
 		$data = '';
 		if($post){
-			$this->RegisterModel->delete_all_child();
+			$this->registermodel->delete_all_child();
 			foreach($post['nama'] as $idx => $val){
 				if($post['nama'][$idx]){
-					$this->RegisterModel->insert_child($post['nama'][$idx],$post['dob_child'][$idx],$post['jeniskelamin'][$idx],$post['umur_anak'][$idx]);
+					$this->registermodel->insert_child($post['nama'][$idx],$post['dob_child'][$idx],$post['jeniskelamin'][$idx],$post['umur_anak'][$idx]);
 				}
 			}
 		}
