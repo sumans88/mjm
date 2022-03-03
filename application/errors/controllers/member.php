@@ -2,7 +2,7 @@
 class Member extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('DashboardModel');
+		$this->load->model('dashboardmodel');
 		$this->load->model('RegisterModel');
 		$this->load->model('LoginModel');
 	
@@ -18,7 +18,7 @@ class Member extends CI_Controller {
 			    $this->load->model('loginModel');
 			    $this->loginModel->remember_me_login();
 		    }
-		    $data = $this->DashboardModel->fetchRow(array('id'=>$user_sess_data['id']));
+		    $data = $this->dashboardmodel->fetchRow(array('id'=>$user_sess_data['id']));
 			//if($data['is_complete_data']==1 and $data['is_active']==1){
 		    if($data['is_active']==1){
 			    if($this->session->flashdata('success_login')){
@@ -83,7 +83,7 @@ class Member extends CI_Controller {
 			    $data['newsletter_checked'] 	= ($data['newsletter'] == 1) ? 'checked':'';
 			    $data['marketing_checked'] 	= ($data['marketing'] == 1) ? 'checked':'';
 			    $this->load->model('LogActivityModel');
-			    $data_child_member = $this->DashboardModel->get_child($user_sess_data['id']);
+			    $data_child_member = $this->dashboardmodel->get_child($user_sess_data['id']);
 				if($data['home_phone']){
 					$data['home_phone_hidden'] = '';
 				}else{
@@ -234,7 +234,7 @@ class Member extends CI_Controller {
 			    $this->load->model('loginModel');
 			    $this->loginModel->remember_me_login();
 		    }
-		    $data = $this->DashboardModel->fetchRow(array('id'=>$user_sess_data['id']));
+		    $data = $this->dashboardmodel->fetchRow(array('id'=>$user_sess_data['id']));
 			//if($data['is_complete_data']==1 and $data['is_active']==1){
 		    if($data['is_active']==1){
 			    if($this->session->flashdata('success_login')){
@@ -300,7 +300,7 @@ class Member extends CI_Controller {
 			    $data['newsletter_checked'] 	= ($data['newsletter'] == 1) ? 'checked':'';
 			    $data['marketing_checked'] 	= ($data['marketing'] == 1) ? 'checked':'';
 			    $this->load->model('LogActivityModel');
-			    $data_child_member = $this->DashboardModel->get_child($user_sess_data['id']);
+			    $data_child_member = $this->dashboardmodel->get_child($user_sess_data['id']);
 			    foreach($data_child_member as $n =>  $data_child){
 				    ++$i;
 				    $data_child_member[$n]['nomor'] 	= ++$nomor;
@@ -471,7 +471,7 @@ class Member extends CI_Controller {
 		$user_sess_data = $this->session->userdata('MEM_SESS');
 		if($user_sess_data){
 			$this->load->model('RegisterModel');
-			$data = $this->DashboardModel->fetchRow(array('id'=>$user_sess_data['id']));
+			$data = $this->dashboardmodel->fetchRow(array('id'=>$user_sess_data['id']));
 			if($data['last_login']){
 				$log_user_activity = array(
 					'id_user'          =>  $data['id'],

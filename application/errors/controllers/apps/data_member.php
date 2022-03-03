@@ -4,7 +4,7 @@ class Data_Member extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('datamemberModel');
-		$this->load->model('DashboardModel');
+		$this->load->model('dashboardmodel');
 		$this->load->model('RegisterModel');
 		$this->load->model('LoginModel');
 	}
@@ -92,7 +92,7 @@ class Data_Member extends CI_Controller {
 				$data['newsletter_checked'] 	= ($data['newsletter'] == 1) ? 'checked':'';
 				$data['marketing_checked'] 	= ($data['marketing'] == 1) ? 'checked':'';
 				$this->load->model('LogActivityModel');
-				$data_child_member = $this->DashboardModel->get_child($user_sess_data['id']);
+				$data_child_member = $this->dashboardmodel->get_child($user_sess_data['id']);
 				if($data['home_phone']){
 					$data['home_phone_hidden'] = '';
 				}else{

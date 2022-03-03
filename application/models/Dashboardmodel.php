@@ -1,5 +1,5 @@
 <?php
-class DashboardModel extends  CI_Model{
+class dashboardmodel extends  CI_Model{
 	var $table = 't_aegon_profile_member';
 	var $tableAs = 't_aegon_profile_member a';
     function __construct(){
