@@ -1,5 +1,5 @@
 <?php
-class NewsApprovalCommentModel extends  CI_Model{
+class newsapprovalcommentmodel extends  CI_Model{
 	var $table = 'news_approval_comment';
 	var $tableAs = 'news_approval_comment a';
     function __construct(){

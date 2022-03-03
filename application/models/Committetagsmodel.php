@@ -1,5 +1,5 @@
 <?php
-class CommitteTagsModel extends  CI_Model{
+class Committetagsmodel extends  CI_Model{
 	var $table = 'committee_tags';
 	var $tableAs = 'committee_tags a';
     function __construct(){

@@ -5,10 +5,10 @@ class Articledetail extends CI_Controller {
 		
 	}
     function index($uri_path){
-        $this->load->model('newsModel');
-        $this->load->model('newsTagsModel');
-        $this->load->model('tagsModel');
-        $data = $this->newsModel->fetchRow(array('a.uri_path'=>$uri_path));
+        $this->load->model('newsmodel');
+        $this->load->model('newstagsmodel');
+        $this->load->model('tagsmodel');
+        $data = $this->newsmodel->fetchRow(array('a.uri_path'=>$uri_path));
         if(!$data or $data['publish_date'] > date('Y-m-d')){
             redirect('tidakditemukan');
         }
@@ -26,15 +26,15 @@ class Articledetail extends CI_Controller {
 		}
             $data['share_widget']       = share_widget();
 
-            $tags = $this->newsTagsModel->findBy(array('id_news'=>$data['id']));
+            $tags = $this->newstagsmodel->findBy(array('id_news'=>$data['id']));
             foreach ($tags as $key => $value) {
                 $tag            .=  ', '."<a href='".$this->baseUrl."article/tags/$value[uri_path]'>".$value['tags'].'</a>';
 				$meta_keywords .= ', '.$value['tags'];
                 $id_tags[]       = $value['id_tags'];
             }
-            $this->tagsModel->tagsCounter(implode(',', $id_tags));
+            $this->tagsmodel->tagsCounter(implode(',', $id_tags));
             $data['tags']        = '<span>TOPIK:</span> '.substr($tag,1);
-            $this->newsModel->newsCounter($data['id']);
+            $this->newsmodel->newsCounter($data['id']);
             $img = $data['img'];
             $data['img']             = image($data['img'],'large');
 	    $data['id_news'] = $data['id'];

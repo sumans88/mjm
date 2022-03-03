@@ -3,14 +3,14 @@
 class Product extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('newsModel');
+		$this->load->model('newsmodel');
 		$this->load->model('productModel');
-		$this->load->model('newsVersionModel');
-		$this->load->model('newsCategoryModel');
-		$this->load->model('newsTagsModel');
-		$this->load->model('newsTagsVersionModel');
-		$this->load->model('tagsModel');
-		$this->load->model('newsApprovalCommentModel');
+		$this->load->model('newsversionmodel');
+		$this->load->model('newscategorymodel');
+		$this->load->model('newstagsmodel');
+		$this->load->model('newstagsversionmodel');
+		$this->load->model('tagsmodel');
+		$this->load->model('newsapprovalcommentmodel');
 		$this->load->model('authgroup_model','authGroupModel');
 		$this->load->model('model_user','userModel');
 	}
@@ -126,7 +126,7 @@ class Product extends CI_Controller {
 		$ret['error']			= 1;
 		$where['a.uri_path']		= $post['uri_path'];
 		$where['a.id !=']		= ($idedit) ? $idedit : '';
-		$unik 				= $this->newsModel->findBy($where);
+		$unik 				= $this->newsmodel->findBy($where);
 		$ProductModel_unik 		= $this->productModel->findBy($where);
 		$this->form_validation->set_rules('news_title', '"Title"', 'required'); 
 		$this->form_validation->set_rules('uri_path', '"Page URL"', 'required'); 
@@ -183,11 +183,11 @@ class Product extends CI_Controller {
 	
 	function tagsurl()
 	{
-		$this->load->model('tagsModel');
-		$data = $this->tagsModel->findBy();
+		$this->load->model('tagsmodel');
+		$data = $this->tagsmodel->findBy();
 		foreach ($data as $key => $value) {
 			echo $value['name'].' || '.$value['uri_path'].'<br>';
-			$this->tagsModel->update(array('uri_path'=>url_title(strtolower($value['name']))),$value['id']);
+			$this->tagsmodel->update(array('uri_path'=>url_title(strtolower($value['name']))),$value['id']);
 		}
 	}
 

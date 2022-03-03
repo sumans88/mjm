@@ -1,5 +1,5 @@
 <?php
-class NewsTagsVersionModel extends  CI_Model{
+class newstagsversionmodel extends  CI_Model{
 	var $table = 'news_tags_version';
 	var $tableAs = 'news_tags_version a';
     function __construct(){

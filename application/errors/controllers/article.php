@@ -15,10 +15,10 @@ class Article extends CI_Controller {
         render('article/article',$data);
     }
     function tags_more($uri_path,$page){
-        $this->load->model('newsModel');
-        $this->load->model('tagsModel');
-        $tags = $this->tagsModel->fetchRow(array('uri_path'=>$uri_path));
-        $list_data = $this->newsModel->getNewsByTags($tags['id'],$page);
+        $this->load->model('newsmodel');
+        $this->load->model('tagsmodel');
+        $tags = $this->tagsmodel->fetchRow(array('uri_path'=>$uri_path));
+        $list_data = $this->newsmodel->getNewsByTags($tags['id'],$page);
         foreach ($list_data as $key => $value) {
             $list_data[$key]['img'] = image($value['img'],'small');
             $list_data[$key]['class_abu'] = $key % 2 == 0 ? '' : 'topik-list-abu';
@@ -36,24 +36,24 @@ class Article extends CI_Controller {
 	}
         $data['list_data'] = $list_data;
         $data['tags'] = $tags['name'];
-        $ttl_record = $this->newsModel->getNewsByTags($tags['id'],'all');
+        $ttl_record = $this->newsmodel->getNewsByTags($tags['id'],'all');
         $data['load_more']      = ($ttl_record > ($page+PAGING_PERPAGE)) ? "<div class='parent-load-more'><a class='btn btn-default load-more' data-page='".($page+PAGING_PERPAGE)."'>".language('load_more')."</a></div>" : '';
 
         render('article/article_tags_more',$data,'blank');
 
     }
     function tags($uri_path,$page=0){
-        $this->load->model('newsModel');
-        $this->load->model('tagsModel');
+        $this->load->model('newsmodel');
+        $this->load->model('tagsmodel');
 
         $data['ads_widget'] = ads_widget();
         $data['top_content'] = top_content();
 
-        $tags = $this->tagsModel->fetchRow(array('uri_path'=>$uri_path));
+        $tags = $this->tagsmodel->fetchRow(array('uri_path'=>$uri_path));
 		if($tags){
-			$this->tagsModel->hitsCounter($uri_path);
+			$this->tagsmodel->hitsCounter($uri_path);
 		}
-        $list_data = $this->newsModel->getNewsByTags($tags['id'],$page);
+        $list_data = $this->newsmodel->getNewsByTags($tags['id'],$page);
         foreach ($list_data as $key => $value) {
             $list_data[$key]['img'] = image($value['img'],'small');
             $list_data[$key]['class_abu'] = $key % 2 == 0 ? '' : 'topik-list-abu';
@@ -76,12 +76,12 @@ class Article extends CI_Controller {
 
         // $this->load->library('pagination');
         // $config['base_url'] = $this->currentController.'tags/'.$uri_path.'/';
-        // $config['total_rows'] = $this->newsModel->getNewsByTags($tags['id'],'all');
+        // $config['total_rows'] = $this->newsmodel->getNewsByTags($tags['id'],'all');
         // $config['per_page'] = PAGING_PERPAGE; 
         // $config['uri_segment'] = 4; 
         // $this->pagination->initialize($config); 
         // $data['paging'] =  $this->pagination->create_links();
-        $ttl_record = $this->newsModel->getNewsByTags($tags['id'],'all');
+        $ttl_record = $this->newsmodel->getNewsByTags($tags['id'],'all');
         $data['load_more'] = $ttl_record > PAGING_PERPAGE ? "<div class='parent-load-more'><a class='btn btn-default load-more' data-page='".PAGING_PERPAGE."'>".language('load_more')."</a></div>" : '';
 		$data['meta'] = '<meta name="robots" content="noindex, follow">';
 
@@ -89,8 +89,8 @@ class Article extends CI_Controller {
     }
     function category($uri_path){
         // $data['popular_article'] = popular_article();
-        $this->load->model('newsCategoryModel');
-        $category = $this->newsCategoryModel->fetchRow(array('uri_path'=>'category/'.$uri_path));
+        $this->load->model('newscategorymodel');
+        $category = $this->newscategorymodel->fetchRow(array('uri_path'=>'category/'.$uri_path));
         $data['header_category'] = $category['name'];
         $data['top_article'] = top_article($category['id'],0);
         $data['popular_topic'] = popular_topic();

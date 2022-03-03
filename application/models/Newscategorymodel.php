@@ -1,5 +1,5 @@
 <?php
-class NewsCategoryModel extends  CI_Model{
+class newscategorymodel extends  CI_Model{
 	var $table = 'news_category';
 	var $tableAs = 'news_category a';
 	var $id_lang_default = 0;

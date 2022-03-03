@@ -158,7 +158,7 @@ function render($view,$data='',$layout="", $ret=false){
 	$data['base_url']           = base_url();
 	$data['page_title']         = generate_title();
 	$data['ASSETS_VERSIONING'] = ASSETS_VERSIONING;
-	
+
 	$user_sess_data             = $CI->session->userdata('MEM_SESS');
 	if(!$data['page_name']){
 		$data['page_name'] = generate_title();

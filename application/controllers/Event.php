@@ -268,7 +268,7 @@ class Event extends CI_Controller
     {
         $this->load->model('eventmodel');
         $this->load->model('template_tipe_input_form_register_model');
-        $this->load->model('NewsTagsModel');
+        $this->load->model('newstagsmodel');
         $this->load->model('eventFilesModel');
         $this->load->model('eventImagesModel');
 
@@ -374,7 +374,7 @@ class Event extends CI_Controller
 
         if ($id_gallery) {
             $this->db->select('group_concat(id_tags) as group_id_tags');
-            $tags       = $this->NewsTagsModel->findBy(array('id_news' => $data['id']), 1)['group_id_tags']; //ambil tag 
+            $tags       = $this->newstagsmodel->findBy(array('id_news' => $data['id']), 1)['group_id_tags']; //ambil tag 
             $tags       = explodeable(',', $tags);
 
             $where_listphoto['backurl']     = 'event/index/past-events';

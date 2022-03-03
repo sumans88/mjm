@@ -7,11 +7,11 @@ class Gallery extends CI_Controller {
 		$this->load->model('galleryImagesModel');
 		$this->load->model('galleryDetailModel');
 		$this->load->model('languagemodel');
-		$this->load->model('tagsModel');
-		$this->load->model('newsTagsModel');
-		$this->load->model('eventTagsModel');
-		$this->load->model('newsTagsVersionModel');
-		$this->load->model('galleryTagsModel');
+		$this->load->model('tagsmodel');
+		$this->load->model('newstagsmodel');
+		$this->load->model('eventtagsmodel');
+		$this->load->model('newstagsversionmodel');
+		$this->load->model('gallerytagsmodel');
 	}
 	function index(){
 		// $data['list_cat'] = selectlist2(array('table'=>'ref_kategori_logframe','title'=>'All Category'));
@@ -53,7 +53,7 @@ class Gallery extends CI_Controller {
 		}
 
 		$data['list_lang']	= $this->languagemodel->langName();
-		$tags_data = $this->newsTagsModel->records_tags_all();
+		$tags_data = $this->newstagsmodel->records_tags_all();
 		$data['tags'] = generate_tags($tags_data,'name');
 
 		$this->db->group_by('filename');
@@ -128,7 +128,7 @@ class Gallery extends CI_Controller {
 		$allImages['jmlImages']		= count($allImages['list_images']);
 		$allImages['showUploadAll']	= (count($allImages['list_images']) != NULL ? 'block' : 'none');
 
-		$tags_data = $this->newsTagsModel->records_tags_all();
+		$tags_data = $this->newstagsmodel->records_tags_all();
 		$allImagestags = generate_tags($tags_data,'name');
 
 			// print_r($allImages['list_images']);exit;
@@ -336,7 +336,7 @@ class Gallery extends CI_Controller {
 						$this->db->delete('gallery_tags',array('id'=>$eventTag['id']));
 						// echo $this->db->last_query();exit();
 						/*jika ingin memakai is_delete*/
-						// $this->newsTagsModel->delete($newsTag['id']);
+						// $this->newstagsmodel->delete($newsTag['id']);
 					}
 				}
 			}
@@ -375,38 +375,38 @@ class Gallery extends CI_Controller {
 					$sort = 1;
 					foreach ($tag_image as $key => $value) {
 						$value = strtolower($tag_image[$key]);
-						$cek = $this->tagsModel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
+						$cek = $this->tagsmodel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
 						if(!$cek){//kalo belom ada
-							$id_tags = $this->tagsModel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
+							$id_tags = $this->tagsmodel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
 							detail_log();
 						}
 						else{
 							$id_tags = $cek['id']; //kalo udah ada, tinggal ambil idnya
 						}
 
-						$cekTagsImage = $this->galleryTagsModel->fetchRow(array('id_tags'=>$id_tags,'id_images'=>$iddata)); //liat di tabel news tags, (utk edit)
+						$cekTagsImage = $this->gallerytagsmodel->fetchRow(array('id_tags'=>$id_tags,'id_images'=>$iddata)); //liat di tabel news tags, (utk edit)
 					
 						if(!$cekTagsNews){//kalo blm ada ya di insert
 						$tag['id_gallery'] 	  = $data_save['id_gallery'];
 						$tag['id_images']     = $iddata;
 						$tag['id_tags']   	  = $id_tags;
-						$id_news_tags = $this->galleryTagsModel->insert($tag);
+						$id_news_tags = $this->gallerytagsmodel->insert($tag);
 						}
 						else{//kalo udah ada, ambil id nya utk di simpen sbg array utk kebutuhan delete
 						$tag['id_gallery'] 	  = $data_save['id_gallery'];
 						$tag['id_images']     = $cekTagsImage['id_images'];
 						$tag['id_tags']   	  = $id_tags;
-						$id_news_tags = $this->galleryTagsModel->update($tag,$cekTagsNews['id']);
+						$id_news_tags = $this->gallerytagsmodel->update($tag,$cekTagsNews['id']);
 						}
 						$temp_id[] 			=$id_tags;
 					}
 
 					$this->db->where_not_in('a.id_tags',$temp_id); 
-					$delete = $this->galleryTagsModel->findBy(array('a.id_images'=> $iddata)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $id_template)
+					$delete = $this->gallerytagsmodel->findBy(array('a.id_images'=> $iddata)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $id_template)
 					
 					foreach ($delete as $key => $value) {
 						$a['is_delete'] = 1;
-						$b = $this->galleryTagsModel->update($a,$value['id']);
+						$b = $this->gallerytagsmodel->update($a,$value['id']);
 					}
 
 				}
@@ -423,16 +423,16 @@ class Gallery extends CI_Controller {
 
 					foreach ($tag_image as $key => $value) {
 						$value = strtolower($tag_image[$key]);
-						$cek = $this->tagsModel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
+						$cek = $this->tagsmodel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
 						if(!$cek){//kalo belom ada
-							$id_tags = $this->tagsModel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
+							$id_tags = $this->tagsmodel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
 							detail_log();
 						}
 						else{
 							$id_tags = $cek['id']; //kalo udah ada, tinggal ambil idnya
 						}
 
-						$cekTagsImage = $this->galleryTagsModel->fetchRow(array('id_tags'=>$id_tags,'id_images'=>$iddata)); //liat di tabel news tags, (utk edit)
+						$cekTagsImage = $this->gallerytagsmodel->fetchRow(array('id_tags'=>$id_tags,'id_images'=>$iddata)); //liat di tabel news tags, (utk edit)
 
 
 					
@@ -440,24 +440,24 @@ class Gallery extends CI_Controller {
 						$tag['id_gallery'] 	  = $data_save['id_gallery'];
 						$tag['id_images']     = $iddata;
 						$tag['id_tags']   	  = $id_tags;
-						$id_news_tags = $this->galleryTagsModel->insert($tag);
+						$id_news_tags = $this->gallerytagsmodel->insert($tag);
 						}
 						else{//kalo udah ada, ambil id nya utk di simpen sbg array utk kebutuhan delete
 						$tag['id_gallery'] 	  = $data_save['id_gallery'];
 						$tag['id_images']     = $cekTagsImage['id_images'];
 						$tag['id_tags']   	  = $id_tags;
-						$id_news_tags = $this->galleryTagsModel->update($tag,$cekTagsNews['id']);
+						$id_news_tags = $this->gallerytagsmodel->update($tag,$cekTagsNews['id']);
 						}
 						$temp_id[] 			=$id_tags;
 
 					}
 
 					$this->db->where_not_in('a.id_tags',$temp_id); 
-					$delete = $this->galleryTagsModel->findBy(array('a.id_images'=> $iddata)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $id_template)
+					$delete = $this->gallerytagsmodel->findBy(array('a.id_images'=> $iddata)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $id_template)
 
 					foreach ($delete as $key => $value) {
 						$a['is_delete'] = 1;
-						$b = $this->galleryTagsModel->update($a,$value['id']);
+						$b = $this->gallerytagsmodel->update($a,$value['id']);
 					}
 		}
 

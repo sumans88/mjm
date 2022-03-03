@@ -8,11 +8,11 @@ class Gallery_category extends CI_Controller {
 		$this->load->model('galleryImagesModel');
 		$this->load->model('galleryDetailModel');
 		$this->load->model('languagemodel');
-		$this->load->model('tagsModel');
-		$this->load->model('newsTagsModel');
-		$this->load->model('eventTagsModel');
-		$this->load->model('newsTagsVersionModel');
-		$this->load->model('galleryTagsModel');
+		$this->load->model('tagsmodel');
+		$this->load->model('newstagsmodel');
+		$this->load->model('eventtagsmodel');
+		$this->load->model('newstagsversionmodel');
+		$this->load->model('gallerytagsmodel');
 	}
 	function index(){
 		$data['list_status_publish']   = selectlist2(array('table'=>'status_publish','title'=>'All Status','selected'=>$data['id_status_publish']));
@@ -39,7 +39,7 @@ class Gallery_category extends CI_Controller {
 			$data['publish_date']     = '';
 		}
 
-		$tags_data = $this->newsTagsModel->records_tags_all();
+		$tags_data = $this->newstagsmodel->records_tags_all();
 		foreach ($tags_data as $key => $value_tags) {
 		    $tags_data_val .=  ',"'.$value_tags['name'].'"';
 		}

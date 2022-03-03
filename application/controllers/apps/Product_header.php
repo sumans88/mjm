@@ -3,14 +3,14 @@
 class Product_Header extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('newsModel');
+		$this->load->model('newsmodel');
 		$this->load->model('productheaderModel');
-		$this->load->model('newsVersionModel');
-		$this->load->model('newsCategoryModel');
-		$this->load->model('newsTagsModel');
-		$this->load->model('newsTagsVersionModel');
-		$this->load->model('tagsModel');
-		$this->load->model('newsApprovalCommentModel');
+		$this->load->model('newsversionmodel');
+		$this->load->model('newscategorymodel');
+		$this->load->model('newstagsmodel');
+		$this->load->model('newstagsversionmodel');
+		$this->load->model('tagsmodel');
+		$this->load->model('newsapprovalcommentmodel');
 		$this->load->model('authgroup_model','authGroupModel');
 		$this->load->model('model_user','userModel');
 	}

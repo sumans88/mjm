@@ -1,5 +1,5 @@
 <?php
-class NewsModel extends  CI_Model{
+class newsmodel extends  CI_Model{
 	var $table = 'news';
 	var $tableAs = 'news a';
 	var $view = 'view_content_news';

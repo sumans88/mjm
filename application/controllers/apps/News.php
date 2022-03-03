@@ -3,21 +3,21 @@
 class News extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('newsModel');
-		$this->load->model('newsVersionModel');
-		$this->load->model('newsCategoryModel');
-		$this->load->model('newsTagsModel');
+		$this->load->model('newsmodel');
+		$this->load->model('newsversionmodel');
+		$this->load->model('newscategorymodel');
+		$this->load->model('newstagsmodel');
 		$this->load->model('newsImagesModel');
-		$this->load->model('newsTagsVersionModel');
+		$this->load->model('newstagsversionmodel');
 		$this->load->model('newsFilesModel');
-		$this->load->model('tagsModel');
-		$this->load->model('newsApprovalCommentModel');
+		$this->load->model('tagsmodel');
+		$this->load->model('newsapprovalcommentmodel');
 		$this->load->model('languagemodel');
 		$this->load->model('authgroup_model','authGroupModel');
 		$this->load->model('model_user','userModel');
 		$this->load->model('galleryImagesModel');
 		$this->load->model('galleryModel');
-		$this->load->model('galleryTagsModel');
+		$this->load->model('gallerytagsmodel');
 
 		$this->sess = $this->session->userdata('ADM_SESS');
 	}
@@ -40,11 +40,11 @@ class News extends CI_Controller {
 	}
 	public function add($id=''){
 		if($id){
-			// $data = $this->newsModel->findById($id);
-			$datas 		= $this->newsModel->selectData($id);
+			// $data = $this->newsmodel->findById($id);
+			$datas 		= $this->newsmodel->selectData($id);
 			$id_gallery = get_news_gallery_id($id)?get_news_gallery_id($id):0; 
 			if (empty($id_gallery)) {
-				$ins_data                         = $this->newsModel->selectData($id,1);
+				$ins_data                         = $this->newsmodel->selectData($id,1);
 				$ins_datas['name']                = $ins_data['news_title'] ;
 				$ins_datas['description']         = $ins_data['teaser'] ;
 				$ins_datas['uri_path']            = $ins_data['uri_path'] ;
@@ -79,7 +79,7 @@ class News extends CI_Controller {
 			$data['year']             		  = $datas[0]['year'] == '0000' ? "" : $datas[0]['year'];
 			$data['expected_publish_date']    = iso_date($data['expected_publish_date']);
 			
-			$data_version                     = $this->newsVersionModel->findByrecordversion(array('id_news'=>$id));
+			$data_version                     = $this->newsversionmodel->findByrecordversion(array('id_news'=>$id));
 			$data['last_edited']              = "by <b>$data_version[username]</b>" . ' on ' . iso_date_time($data_version['create_date']);
 			$data['edit_button']              =  ($datas[0]['approval_level'] == 100) ? 'invis' : '';
 			$data['last_edited_show']         = '';
@@ -123,7 +123,7 @@ class News extends CI_Controller {
 		}
 
 
-		$tags_data = $this->newsTagsModel->records_tags_all();
+		$tags_data = $this->newstagsmodel->records_tags_all();
 		$data['tags'] = generate_tags($tags_data,'name');
 
 		/*untuk menu tags*/
@@ -237,7 +237,7 @@ class News extends CI_Controller {
 			$data['list_lang'][$key]['img']						 = $imagemanager['browse'];
 			$data['list_lang'][$key]['imagemanager_config']		 = $imagemanager['config'];
 
-			$tags = $this->newsTagsModel->findBy(array('id_news'=>$datas[$key]['id']));
+			$tags = $this->newstagsmodel->findBy(array('id_news'=>$datas[$key]['id']));
 			$data['list_lang'][$key]['tags_data'] 				= generate_tags($tags,'tags');
 
 			/*untuk menu tag*/
@@ -257,7 +257,7 @@ class News extends CI_Controller {
 
 		$data['filemanager_config'] 	= $filemanager['config'];
 
-		$next_approval                      = $this->newsModel->approvalLevelGroup + 1;
+		$next_approval                      = $this->newsmodel->approvalLevelGroup + 1;
 		$group                              = $this->authGroupModel->fetchRow(array('approval_level'=>$next_approval));
 		$data['next_approval']              = $group['grup'] ? "&amp; Sent to $group[grup]" : '&amp; Publish';
 		$data['enable_edit_status_publish'] = is_edit_publish_status();
@@ -443,7 +443,7 @@ class News extends CI_Controller {
 
 	public function view($id=''){
 		if($id){
-			$datas 	= $this->newsModel->selectData($id);
+			$datas 	= $this->newsmodel->selectData($id);
 			
 			if(!$datas){
 				die('404');
@@ -497,7 +497,7 @@ class News extends CI_Controller {
 		render('apps/news/view',$data,'apps');
 	}
 	function records(){
-		$data = $this->newsModel->records();
+		$data = $this->newsmodel->records();
 		// echo $this->db->last_query();
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
@@ -511,7 +511,7 @@ class News extends CI_Controller {
 			else if(($approval_level_news == 1 && $value['is_revise']== 1) || ($approval_level_news_e == 1 && $value['is_revise_e']== 1)){
 				$approval = 'Revise (editor)';
 			}
-			else if(($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0) || ($this->newsModel->approvalLevelGroup == $approval_level_news_e && $approval_level_news_e != 0)){
+			else if(($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0) || ($this->newsmodel->approvalLevelGroup == $approval_level_news_e && $approval_level_news_e != 0)){
 				$approval = '<a class="btn btn-primary" href="'.$this->currentController.'view/'.$value['id'].'">Review</>';
 			}
 			else if($approval_level_news == 100 || $approval_level_news_e == 100){
@@ -575,7 +575,7 @@ class News extends CI_Controller {
 			}
 		}
 
-		$data['data'] = $this->newsModel->download($where);
+		$data['data'] = $this->newsmodel->download($where);
 		// print_r($data['data']);
 		// exit;
 		$nomor = 1;
@@ -590,7 +590,7 @@ class News extends CI_Controller {
 			else if($approval_level_news == 1 && $value['is_revise']== 1){
 				$approval = 'Revise (editor)';
 			}
-			else if($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
+			else if($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
 				$approval = '<a class="btn btn-primary" href="'.$this->currentController.'view/'.$value['id'].'">Review</>';
 			}
 			else if($approval_level_news == 100){
@@ -644,7 +644,7 @@ class News extends CI_Controller {
 		echo json_encode($data);
 	}
 	function records_version($id_news){
-		$data = $this->newsVersionModel->records(array('id_news'=>$id_news));
+		$data = $this->newsversionmodel->records(array('id_news'=>$id_news));
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
 			$group = $this->authGroupModel->fetchRow(array('approval_level'=>$approval_level_news));
@@ -683,7 +683,7 @@ class News extends CI_Controller {
 			$id_newsx = $post['id_news'][$key];
 			if(!$idedit){
 				$where['a.uri_path']	= $post['uri_path'][$key];
-				$unik 					= $this->newsModel->findBy($where);
+				$unik 					= $this->newsmodel->findBy($where);
 				$this->form_validation->set_rules('id_news_category', '"Category"', 'required'); 
 				$this->form_validation->set_rules('news_title', '"Title"', 'required'); 
 				$this->form_validation->set_rules('uri_path', '"Page URL"', 'required');
@@ -697,7 +697,7 @@ class News extends CI_Controller {
 				}
 			}
 			// $where['a.uri_path']	= $post['uri_path'][$key];
-			// $unik 					= $this->newsModel->findBy($where);
+			// $unik 					= $this->newsmodel->findBy($where);
 			// if($unik){
 			// 	$ret['message']	= "Page URL $value already taken";
 			// 	$ret['error']	= 1;
@@ -762,7 +762,7 @@ class News extends CI_Controller {
 			if($send_approval){
 				$data_save['is_revise'] = NULL;
 
-				$approval_level = $this->newsModel->approvalLevelGroup + 1;
+				$approval_level = $this->newsmodel->approvalLevelGroup + 1;
 				$data_save['approval_level'] = $approval_level;
 				if($approval_level == 2){ #current level = 1 = editor
 					$data_save['user_id_editor'] = $id_user;
@@ -921,7 +921,7 @@ class News extends CI_Controller {
 					}elseif($post['thumb'][$key]=='x'){
 						$post['thumb'][$key] = '';
 					}
-					$iddata 		= $this->newsModel->update($data_save,$idedit);
+					$iddata 		= $this->newsmodel->update($data_save,$idedit);
 				// }else{
 				// 	auth_update();
 				// 	$ret['message'] = 'Update Success';
@@ -931,20 +931,20 @@ class News extends CI_Controller {
 				// 	}elseif($post['thumb'][$key]=='x'){
 				// 		$post['thumb'][$key] = '';
 				// 	}
-				// 	$iddata 		= $this->newsModel->updateKedua($data_save,$idedit);
+				// 	$iddata 		= $this->newsmodel->updateKedua($data_save,$idedit);
 				// }
 			}else{				
 				$data_save['img']	= $post_image;
 				auth_insert();
 				$ret['message']		= 'Insert Success';
 				$act				= "Insert News";
-				$iddata 			= $this->newsModel->insert($data_save);
+				$iddata 			= $this->newsmodel->insert($data_save);
 				$id_newsx			= $iddata;
 
-				$datas 		= $this->newsModel->selectData($iddata);
+				$datas 		= $this->newsmodel->selectData($iddata);
 				$id_gallery = get_news_gallery_id($iddata)?get_news_gallery_id($iddata):0; 
 				if (empty($id_gallery)) {
-					$ins_data                         = $this->newsModel->selectData($iddata,1);
+					$ins_data                         = $this->newsmodel->selectData($iddata,1);
 					$ins_datas['name']                = $ins_data['news_title'] ;
 					$ins_datas['description']         = $ins_data['teaser'] ;
 					$ins_datas['uri_path']            = $ins_data['uri_path'] ;
@@ -989,29 +989,29 @@ class News extends CI_Controller {
 			foreach ($tags as $k => $v) {
 				$tag = strtolower($v);
 				$t['name'] =  $tag;
-				$cek = $this->tagsModel->fetchRow($t);
+				$cek = $this->tagsmodel->fetchRow($t);
 				if(!$cek){
 					$t['uri_path'] =  url_title($tag);
-					$idTags = $this->tagsModel->insert($t);
+					$idTags = $this->tagsmodel->insert($t);
 				}
 				else{
 					$idTags = $cek['id'];
 				}
 				$newsTags['id_news'] = $id_newsx;
 				$newsTags['id_tags'] = $idTags;	
-				$cek2 				 = $this->newsTagsModel->fetchRow($newsTags);
+				$cek2 				 = $this->newstagsmodel->fetchRow($newsTags);
 				if(!$cek2){
-					$this->newsTagsModel->insert($newsTags);
+					$this->newstagsmodel->insert($newsTags);
 				}
 				$idNewsTags[]	 = $idTags;
 			}
 			if ($idNewsTags && $id_newsx) {
-				$deleteNewsTags = $this->newsTagsModel->findByNotIn($id_newsx,$idNewsTags);
+				$deleteNewsTags = $this->newstagsmodel->findByNotIn($id_newsx,$idNewsTags);
 				foreach ($deleteNewsTags as $newsTag) {
 					/*jika ingin langsung delete*/
 					$this->db->delete('news_tags',array('id'=>$newsTag['id']));
 					/*jika ingin memakai is_delete*/
-					// $this->newsTagsModel->delete($newsTag['id']);
+					// $this->newstagsmodel->delete($newsTag['id']);
 				}
 			}
 
@@ -1075,7 +1075,7 @@ class News extends CI_Controller {
 						/*jika ingin langsung didelete*/
 						$this->db->delete('news_menu_tags',array('id'=>$eventTag['id']));
 						/*jika ingin memakai is_delete*/
-						// $this->newsTagsModel->delete($newsTag['id']);
+						// $this->newstagsmodel->delete($newsTag['id']);
 					}
 				}
 			}
@@ -1088,8 +1088,8 @@ class News extends CI_Controller {
 		auth_delete();
 		$this->db->trans_start();   
 		$id = $this->input->post('iddel');
-		$this->newsModel->delete($id);
-		$this->newsModel->delete2($id);
+		$this->newsmodel->delete($id);
+		$this->newsmodel->delete2($id);
 		detail_log();
 		insert_log("Delete News");
 		$this->db->trans_complete();
@@ -1098,7 +1098,7 @@ class News extends CI_Controller {
 		die('?');
 		$this->db->trans_start();   
 			$post			= purify($this->input->post());
-			$news 			= $this->newsModel->findById($post['id_news']);
+			$news 			= $this->newsmodel->findById($post['id_news']);
 			$approval_level = $news['approval_level'];
 			$next_approval 	= $post['proses'] == 'revise' ? ($approval_level - 1) : ($approval_level + 1);
 			if(!$news['publish_date']){
@@ -1110,7 +1110,7 @@ class News extends CI_Controller {
 				$data['id_news'] = $post['id_news'];
 				$data['approval_comment'] = $post['comment'];
 				$data['approval_status'] = $post['proses'] == 'revise' ? '0' : 1;
-				$this->newsApprovalCommentModel->insert($data);
+				$this->newsapprovalcommentmodel->insert($data);
 				if($post['proses'] == 'revise'){
 					$update['is_revise'] = 1;
 					$sent_mail = array(
@@ -1144,7 +1144,7 @@ class News extends CI_Controller {
 				}
 
 				$update['approval_level'] = $next_approval;
-				$this->newsModel->update($update,$post['id_news']);
+				$this->newsmodel->update($update,$post['id_news']);
 
 			// }
 		$this->db->trans_complete();
@@ -1154,7 +1154,7 @@ class News extends CI_Controller {
 	}
 
 	function records_approval($id_news){
-		$data = $this->newsApprovalCommentModel->records(array('id_news'=>$id_news));
+		$data = $this->newsapprovalcommentmodel->records(array('id_news'=>$id_news));
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['create_date'] = iso_date_time($value['create_date']);
 			$data['data'][$key]['status'] = $value['approval_status'] ==  1 ? 'Approve' : 'Revise';
@@ -1163,9 +1163,9 @@ class News extends CI_Controller {
 	}
 
 	function version_detail($id){
-		$data = $this->newsVersionModel->findById($id);
+		$data = $this->newsversionmodel->findById($id);
 		if($data){
-			$news = $this->newsModel->findById($data['id_news']);
+			$news = $this->newsmodel->findById($data['id_news']);
 			$data['username'] = $news['username'];
 			$data['img_thumb'] = image($data['img'],'small');
 			$data['img_ori'] = image($data['img'],'large');
@@ -1176,7 +1176,7 @@ class News extends CI_Controller {
 			$data['teaser'] = quote_form($data['teaser']);
 			$data['create_date'] = iso_date_time($data['create_date']);
 
-			$tags = $this->newsTagsVersionModel->findBy(array('id_news_version'=>$id));
+			$tags = $this->newstagsversionmodel->findBy(array('id_news_version'=>$id));
 			foreach ($tags as $key => $value) {
 				$tag .=  ', '.$value['tags'];
 			}
@@ -1193,7 +1193,7 @@ class News extends CI_Controller {
 		render('apps/news/select_category',$data,'blank');
 	}
 	function record_select_category(){
-		$data = $this->newsCategoryModel->records();
+		$data = $this->newscategorymodel->records();
 		foreach ($data['data'] as $key => $value) {
 			// $data['data'][$key]['page_name'] = quote_form($value['page_name']);
 		}
@@ -1203,11 +1203,11 @@ class News extends CI_Controller {
 	
 	function tagsurl()
 	{
-		$this->load->model('tagsModel');
-		$data = $this->tagsModel->findBy();
+		$this->load->model('tagsmodel');
+		$data = $this->tagsmodel->findBy();
 		foreach ($data as $key => $value) {
 			echo $value['name'].' || '.$value['uri_path'].'<br>';
-			$this->tagsModel->update(array('uri_path'=>url_title(strtolower($value['name']))),$value['id']);
+			$this->tagsmodel->update(array('uri_path'=>url_title(strtolower($value['name']))),$value['id']);
 		}
 	}
 	function preview($uri_path){
@@ -1263,7 +1263,7 @@ class News extends CI_Controller {
 
 		where_grid($post, $alias);
 
-		$data['data'] = $this->newsModel->export_to_excel();
+		$data['data'] = $this->newsmodel->export_to_excel();
 		$i=1;
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
@@ -1275,7 +1275,7 @@ class News extends CI_Controller {
 			else if($approval_level_news == 1 && $value['is_revise']== 1){
 				$approval = 'Revise (editor)';
 			}
-			else if($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
+			else if($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
 				$approval = '<a class="btn btn-primary" href="'.$this->currentController.'view/'.$value['id'].'">Review</>';
 			}
 			else if($approval_level_news == 100){
@@ -1342,7 +1342,7 @@ class News extends CI_Controller {
 		// print_r(count($allImages['list_images']));exit;
 		$allImages['showUploadAll']	= (count($allImages['list_images']) == 0 ? 'none' : 'block');
 
-		$tags_data = $this->newsTagsModel->records_tags_all();
+		$tags_data = $this->newstagsmodel->records_tags_all();
 		$allImagestags = generate_tags($tags_data,'name');
 
 			// print_r($allImages['list_images']);exit;
@@ -1395,38 +1395,38 @@ class News extends CI_Controller {
 					$sort = 1;
 					foreach ($tag_image as $key => $value) {
 						$value = strtolower($tag_image[$key]);
-						$cek = $this->tagsModel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
+						$cek = $this->tagsmodel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
 						if(!$cek){//kalo belom ada
-							$id_tags = $this->tagsModel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
+							$id_tags = $this->tagsmodel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
 							detail_log();
 						}
 						else{
 							$id_tags = $cek['id']; //kalo udah ada, tinggal ambil idnya
 						}
 
-						$cekTagsImage = $this->galleryTagsModel->fetchRow(array('id_tags'=>$id_tags,'id_images'=>$iddata)); //liat di tabel news tags, (utk edit)
+						$cekTagsImage = $this->gallerytagsmodel->fetchRow(array('id_tags'=>$id_tags,'id_images'=>$iddata)); //liat di tabel news tags, (utk edit)
 					
 						if(!$cekTagsNews){//kalo blm ada ya di insert
 						$tag['id_gallery'] 	  = $data_save['id_gallery'];
 						$tag['id_images']     = $iddata;
 						$tag['id_tags']   	  = $id_tags;
-						$id_news_tags = $this->galleryTagsModel->insert($tag);
+						$id_news_tags = $this->gallerytagsmodel->insert($tag);
 						}
 						else{//kalo udah ada, ambil id nya utk di simpen sbg array utk kebutuhan delete
 						$tag['id_gallery'] 	  = $data_save['id_gallery'];
 						$tag['id_images']     = $cekTagsImage['id_images'];
 						$tag['id_tags']   	  = $id_tags;
-						$id_news_tags = $this->galleryTagsModel->update($tag,$cekTagsNews['id']);
+						$id_news_tags = $this->gallerytagsmodel->update($tag,$cekTagsNews['id']);
 						}
 						$temp_id[] 			=$id_tags;
 					}
 
 					$this->db->where_not_in('a.id_tags',$temp_id); 
-					$delete = $this->galleryTagsModel->findBy(array('a.id_images'=> $iddata)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $id_template)
+					$delete = $this->gallerytagsmodel->findBy(array('a.id_images'=> $iddata)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $id_template)
 					
 					foreach ($delete as $key => $value) {
 						$a['is_delete'] = 1;
-						$b = $this->galleryTagsModel->update($a,$value['id']);
+						$b = $this->gallerytagsmodel->update($a,$value['id']);
 					}
 
 				}
@@ -1443,16 +1443,16 @@ class News extends CI_Controller {
 
 					foreach ($tag_image as $key => $value) {
 						$value = strtolower($tag_image[$key]);
-						$cek = $this->tagsModel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
+						$cek = $this->tagsmodel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
 						if(!$cek){//kalo belom ada
-							$id_tags = $this->tagsModel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
+							$id_tags = $this->tagsmodel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
 							detail_log();
 						}
 						else{
 							$id_tags = $cek['id']; //kalo udah ada, tinggal ambil idnya
 						}
 
-						$cekTagsImage = $this->galleryTagsModel->fetchRow(array('id_tags'=>$id_tags,'id_images'=>$iddata)); //liat di tabel news tags, (utk edit)
+						$cekTagsImage = $this->gallerytagsmodel->fetchRow(array('id_tags'=>$id_tags,'id_images'=>$iddata)); //liat di tabel news tags, (utk edit)
 
 
 					
@@ -1460,24 +1460,24 @@ class News extends CI_Controller {
 						$tag['id_gallery'] 	  = $data_save['id_gallery'];
 						$tag['id_images']     = $iddata;
 						$tag['id_tags']   	  = $id_tags;
-						$id_news_tags = $this->galleryTagsModel->insert($tag);
+						$id_news_tags = $this->gallerytagsmodel->insert($tag);
 						}
 						else{//kalo udah ada, ambil id nya utk di simpen sbg array utk kebutuhan delete
 						$tag['id_gallery'] 	  = $data_save['id_gallery'];
 						$tag['id_images']     = $cekTagsImage['id_images'];
 						$tag['id_tags']   	  = $id_tags;
-						$id_news_tags = $this->galleryTagsModel->update($tag,$cekTagsNews['id']);
+						$id_news_tags = $this->gallerytagsmodel->update($tag,$cekTagsNews['id']);
 						}
 						$temp_id[] 			=$id_tags;
 
 					}
 
 					$this->db->where_not_in('a.id_tags',$temp_id); 
-					$delete = $this->galleryTagsModel->findBy(array('a.id_images'=> $iddata)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $id_template)
+					$delete = $this->gallerytagsmodel->findBy(array('a.id_images'=> $iddata)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $id_template)
 
 					foreach ($delete as $key => $value) {
 						$a['is_delete'] = 1;
-						$b = $this->galleryTagsModel->update($a,$value['id']);
+						$b = $this->gallerytagsmodel->update($a,$value['id']);
 					}
 		}
 
@@ -1615,7 +1615,7 @@ class News extends CI_Controller {
         $idevent   =$post['id_event'];
         $arrayid   =$post['array_id'];
 
-        $tags_data = $this->newsTagsModel->records_tags_all();
+        $tags_data = $this->newstagsmodel->records_tags_all();
         foreach ($tags_data as $key => $value_tags) {
         $tags_data_val .=  ",'".$value_tags['name']."'";
         }
@@ -1651,7 +1651,7 @@ class News extends CI_Controller {
         }else{
         	$update_gallery['id_gallery'] = ','.$arrayid.',';
         }
-        $this->newsModel->update($update_gallery,$idevent);
+        $this->newsmodel->update($update_gallery,$idevent);
         
         render('apps/news/gallery_list_images_album_gallery',$allImages,'blank');
     }
@@ -1699,7 +1699,7 @@ class News extends CI_Controller {
 
         $idevent   = $post['id_event'];
 
-        $tags_data = $this->newsTagsModel->records_tags_all();
+        $tags_data = $this->newstagsmodel->records_tags_all();
         foreach ($tags_data as $key => $value_tags) {
         $tags_data_val .=  ",'".$value_tags['name']."'";
         }
@@ -1735,7 +1735,7 @@ class News extends CI_Controller {
 			$update_gallery['id_gallery'] = ','.$idgallery.',';
 		}       
 
-        $this->newsModel->update($update_gallery,$idevent);
+        $this->newsmodel->update($update_gallery,$idevent);
 
         render('apps/news/gallery_list_images_album_gallery',$allImages,'blank');
     }

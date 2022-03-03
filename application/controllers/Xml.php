@@ -6,9 +6,9 @@ class Xml extends CI_Controller {
 	}
     function index($url){
         $this->load->helper('file');
-        $this->load->model('newsModel');
-        $this->load->model('tagsModel');
-        $this->load->model('newsTagsModel');
+        $this->load->model('newsmodel');
+        $this->load->model('tagsmodel');
+        $this->load->model('newstagsmodel');
         $http = 'http://www.bigdecisions.com/blog/';
         echo '<pre>';
         // $url = 'http://www.bigdecisions.com/blog/lifestyle-creep-and-how-it-can-impair-your-retirement/feed/?withoutcomments=1';
@@ -30,7 +30,7 @@ class Xml extends CI_Controller {
         // "seo_title"                 : title
         // "meta_description"          : teaser
         $news_title = (string)$item->title;
-        $cek        = $this->newsModel->fetchRow(array('news_title'=>$news_title));
+        $cek        = $this->newsmodel->fetchRow(array('news_title'=>$news_title));
         if(!$cek){
             $user_id_create = 6;#perlu disesuaikan
             $url_replace = array($http,'/');
@@ -54,7 +54,7 @@ class Xml extends CI_Controller {
             $dt['meta_description']       = (string)$item->teaser;
 
             $this->db->trans_start();   
-                $id_news = $this->newsModel->insert($dt);
+                $id_news = $this->newsmodel->insert($dt);
 
                 foreach ($item->category as $key => $value) {
                     $tags = strtolower((string)$value);
@@ -62,9 +62,9 @@ class Xml extends CI_Controller {
                     $id_tags = db_get_one('tags','id',$where);
                     if(!$id_tags){
                         $where['user_id_create'] = $user_id_create;
-                        $id_tags = $this->tagsModel->insert($where);
+                        $id_tags = $this->tagsmodel->insert($where);
                     }
-                    $this->newsTagsModel->insert(array('id_news'=>$id_news,'id_tags'=>$id_tags,'user_id_create'=>$user_id_create));
+                    $this->newstagsmodel->insert(array('id_news'=>$id_news,'id_tags'=>$id_tags,'user_id_create'=>$user_id_create));
                     echo $value.'<br>';
                 }
             $this->db->trans_complete();
@@ -75,9 +75,9 @@ class Xml extends CI_Controller {
     
     function feed(){
         $this->load->helper('file');
-        $this->load->model('newsModel');
-        $this->load->model('tagsModel');
-        $this->load->model('newsTagsModel');
+        $this->load->model('newsmodel');
+        $this->load->model('tagsmodel');
+        $this->load->model('newstagsmodel');
         $http = 'http://www.bigdecisions.com/blog/';
         echo '<pre>';
         $url = 'http://www.bigdecisions.com/blog/feed/?withoutcomments=1';
@@ -89,7 +89,7 @@ class Xml extends CI_Controller {
             // echo $item->link.'<br>';
             // $this->index($item->link.'/feed/?withoutcomments=1');
              $news_title = (string)$item->title;
-            $cek        = $this->newsModel->fetchRow(array('news_title'=>$news_title));
+            $cek        = $this->newsmodel->fetchRow(array('news_title'=>$news_title));
             if(!$cek){
                 $user_id_create = 6;#perlu disesuaikan
                 $url_replace = array($http,'/');
@@ -114,7 +114,7 @@ class Xml extends CI_Controller {
                 $dt['approval_level']         = 1;
 
                 $this->db->trans_start();   
-                    $id_news = $this->newsModel->insert($dt);
+                    $id_news = $this->newsmodel->insert($dt);
 
                     foreach ($item->category as $key => $value) {
                         $tags = strtolower((string)$value);
@@ -122,9 +122,9 @@ class Xml extends CI_Controller {
                         $id_tags = db_get_one('tags','id',$where);
                         if(!$id_tags){
                             $where['user_id_create'] = $user_id_create;
-                            $id_tags = $this->tagsModel->insert($where);
+                            $id_tags = $this->tagsmodel->insert($where);
                         }
-                        $this->newsTagsModel->insert(array('id_news'=>$id_news,'id_tags'=>$id_tags,'user_id_create'=>$user_id_create));
+                        $this->newstagsmodel->insert(array('id_news'=>$id_news,'id_tags'=>$id_tags,'user_id_create'=>$user_id_create));
                         echo $value.'<br>';
                     }
                 $this->db->trans_complete();
@@ -142,11 +142,11 @@ class Xml extends CI_Controller {
         header("Expires: 0");
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
         header("Cache-Control: private",false);
-        $this->load->model('newsModel');
-        $this->load->model('newsTagsModel');
-        $data['list_data'] = set_nomor_urut($this->newsModel->findBy(array('a.user_id_create'=>6)));
+        $this->load->model('newsmodel');
+        $this->load->model('newstagsmodel');
+        $data['list_data'] = set_nomor_urut($this->newsmodel->findBy(array('a.user_id_create'=>6)));
         foreach ($data['list_data'] as $key => $value) {
-            $topics = $this->newsTagsModel->findBy(array('id_news'=>$value['id']));
+            $topics = $this->newstagsmodel->findBy(array('id_news'=>$value['id']));
             $topic = '';        
             foreach ($topics as $t) {
                 $topic .= ', '. $t['tags'];

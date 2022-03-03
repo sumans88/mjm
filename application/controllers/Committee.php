@@ -4,7 +4,7 @@ class Committee extends CI_Controller {
         parent::__construct();
         $this->load->model('committee_model');
         $this->load->model('aboutpartnersmodel');
-        $this->load->model('CommitteTagsModel');
+        $this->load->model('Committetagsmodel');
         $this->load->model('eventmodel');
         $this->load->model('committeefilesmodel');
     }
@@ -65,7 +65,7 @@ class Committee extends CI_Controller {
         $data['back_to_committee'] = base_url_lang().'/pages/committee';
 
         // tags
-        $tags = $this->CommitteTagsModel->findBy(array('id_committee'=>$data['id']));
+        $tags = $this->Committetagsmodel->findBy(array('id_committee'=>$data['id']));
         foreach ($tags as $key => $value) 
         {
             $tag .=  ','.$value['id_tags'];

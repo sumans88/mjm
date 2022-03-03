@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2019 - 2022, CodeIgniter Foundation
+ * Copyright (c) 2014 - 2015, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,11 +28,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
- * @license	https://opensource.org/licenses/MIT	MIT License
- * @link	https://codeigniter.com
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
+ * @link	http://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
  */
@@ -51,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	Libraries
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/userguide3/general/profiling.html
+ * @link		http://codeigniter.com/user_guide/general/profiling.html
  */
 class CI_Profiler {
 
@@ -101,12 +100,18 @@ class CI_Profiler {
 		$this->CI =& get_instance();
 		$this->CI->load->language('profiler');
 
+		if (isset($config['query_toggle_count']))
+		{
+			$this->_query_toggle_count = (int) $config['query_toggle_count'];
+			unset($config['query_toggle_count']);
+		}
+
 		// default all sections to display
 		foreach ($this->_available_sections as $section)
 		{
 			if ( ! isset($config[$section]))
 			{
-				$this->{'_compile_'.$section} = TRUE;
+				$this->_compile_{$section} = TRUE;
 			}
 		}
 
@@ -136,7 +141,7 @@ class CI_Profiler {
 		{
 			if (in_array($method, $this->_available_sections))
 			{
-				$this->{'_compile_'.$method} = ($enable !== FALSE);
+				$this->_compile_{$method} = ($enable !== FALSE);
 			}
 		}
 	}
@@ -315,14 +320,12 @@ class CI_Profiler {
 
 			foreach ($_GET as $key => $val)
 			{
-				is_int($key) OR $key = "'".htmlspecialchars($key, ENT_QUOTES, config_item('charset'))."'";
-				$val = (is_array($val) OR is_object($val))
-					? '<pre>'.htmlspecialchars(print_r($val, TRUE), ENT_QUOTES, config_item('charset')).'</pre>'
-					: htmlspecialchars($val, ENT_QUOTES, config_item('charset'));
+				is_int($key) OR $key = "'".$key."'";
 
 				$output .= '<tr><td style="width:50%;color:#000;background-color:#ddd;padding:5px;">&#36;_GET['
 					.$key.']&nbsp;&nbsp; </td><td style="width:50%;padding:5px;color:#cd6e00;font-weight:normal;background-color:#ddd;">'
-					.$val."</td></tr>\n";
+					.((is_array($val) OR is_object($val)) ? '<pre>'.htmlspecialchars(stripslashes(print_r($val, TRUE))).'</pre>' : htmlspecialchars(stripslashes($val)))
+					."</td></tr>\n";
 			}
 
 			$output .= "</table>\n";
@@ -355,26 +358,36 @@ class CI_Profiler {
 
 			foreach ($_POST as $key => $val)
 			{
-				is_int($key) OR $key = "'".htmlspecialchars($key, ENT_QUOTES, config_item('charset'))."'";
-				$val = (is_array($val) OR is_object($val))
-					? '<pre>'.htmlspecialchars(print_r($val, TRUE), ENT_QUOTES, config_item('charset')).'</pre>'
-					: htmlspecialchars($val, ENT_QUOTES, config_item('charset'));
+				is_int($key) OR $key = "'".$key."'";
 
 				$output .= '<tr><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">&#36;_POST['
-					.$key.']&nbsp;&nbsp; </td><td style="width:50%;padding:5px;color:#009900;font-weight:normal;background-color:#ddd;">'
-					.$val."</td></tr>\n";
+					.$key.']&nbsp;&nbsp; </td><td style="width:50%;padding:5px;color:#009900;font-weight:normal;background-color:#ddd;">';
+
+				if (is_array($val) OR is_object($val))
+				{
+					$output .= '<pre>'.htmlspecialchars(stripslashes(print_r($val, TRUE))).'</pre>';
+				}
+				else
+				{
+					$output .= htmlspecialchars(stripslashes($val));
+				}
+
+				$output .= "</td></tr>\n";
 			}
 
 			foreach ($_FILES as $key => $val)
 			{
-				is_int($key) OR $key = "'".htmlspecialchars($key, ENT_QUOTES, config_item('charset'))."'";
-				$val = (is_array($val) OR is_object($val))
-					? '<pre>'.htmlspecialchars(print_r($val, TRUE), ENT_QUOTES, config_item('charset')).'</pre>'
-					: htmlspecialchars($val, ENT_QUOTES, config_item('charset'));
+				is_int($key) OR $key = "'".$key."'";
 
 				$output .= '<tr><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">&#36;_FILES['
-					.$key.']&nbsp;&nbsp; </td><td style="width:50%;padding:5px;color:#009900;font-weight:normal;background-color:#ddd;">'
-					.$val."</td></tr>\n";
+					.$key.']&nbsp;&nbsp; </td><td style="width:50%;padding:5px;color:#009900;font-weight:normal;background-color:#ddd;">';
+
+				if (is_array($val) OR is_object($val))
+				{
+					$output .= '<pre>'.htmlspecialchars(stripslashes(print_r($val, TRUE))).'</pre>';
+				}
+
+				$output .= "</td></tr>\n";
 			}
 
 			$output .= "</table>\n";
@@ -458,7 +471,7 @@ class CI_Profiler {
 
 		foreach (array('HTTP_ACCEPT', 'HTTP_USER_AGENT', 'HTTP_CONNECTION', 'SERVER_PORT', 'SERVER_NAME', 'REMOTE_ADDR', 'SERVER_SOFTWARE', 'HTTP_ACCEPT_LANGUAGE', 'SCRIPT_NAME', 'REQUEST_METHOD',' HTTP_HOST', 'REMOTE_HOST', 'CONTENT_TYPE', 'SERVER_PROTOCOL', 'QUERY_STRING', 'HTTP_ACCEPT_ENCODING', 'HTTP_X_FORWARDED_FOR', 'HTTP_DNT') as $header)
 		{
-			$val = isset($_SERVER[$header]) ? htmlspecialchars($_SERVER[$header], ENT_QUOTES, config_item('charset')) : '';
+			$val = isset($_SERVER[$header]) ? $_SERVER[$header] : '';
 			$output .= '<tr><td style="vertical-align:top;width:50%;padding:5px;color:#900;background-color:#ddd;">'
 				.$header.'&nbsp;&nbsp;</td><td style="width:50%;padding:5px;color:#000;background-color:#ddd;">'.$val."</td></tr>\n";
 		}
@@ -485,19 +498,13 @@ class CI_Profiler {
 
 		foreach ($this->CI->config->config as $config => $val)
 		{
-			$pre       = '';
-			$pre_close = '';
-
 			if (is_array($val) OR is_object($val))
 			{
 				$val = print_r($val, TRUE);
-
-				$pre       = '<pre>' ;
-				$pre_close = '</pre>';
 			}
 
 			$output .= '<tr><td style="padding:5px;vertical-align:top;color:#900;background-color:#ddd;">'
-				.$config.'&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">'.$pre.htmlspecialchars((string) $val, ENT_QUOTES, config_item('charset')).$pre_close."</td></tr>\n";
+				.$config.'&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">'.htmlspecialchars($val)."</td></tr>\n";
 		}
 
 		return $output."</table>\n</fieldset>";
@@ -523,19 +530,13 @@ class CI_Profiler {
 
 		foreach ($this->CI->session->userdata() as $key => $val)
 		{
-			$pre       = '';
-			$pre_close = '';
-
 			if (is_array($val) OR is_object($val))
 			{
 				$val = print_r($val, TRUE);
-
-				$pre       = '<pre>' ;
-				$pre_close = '</pre>';
 			}
 
 			$output .= '<tr><td style="padding:5px;vertical-align:top;color:#900;background-color:#ddd;">'
-				.$key.'&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">'.$pre.htmlspecialchars((string) $val, ENT_QUOTES, config_item('charset')).$pre_close."</td></tr>\n";
+				.$key.'&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">'.htmlspecialchars($val)."</td></tr>\n";
 		}
 
 		return $output."</table>\n</fieldset>";
@@ -555,7 +556,7 @@ class CI_Profiler {
 
 		foreach ($this->_available_sections as $section)
 		{
-			if ($this->{'_compile_'.$section} !== FALSE)
+			if ($this->_compile_{$section} !== FALSE)
 			{
 				$func = '_compile_'.$section;
 				$output .= $this->{$func}();

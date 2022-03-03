@@ -1,5 +1,5 @@
 <?php
-class EventTagsModel extends  CI_Model{
+class Eventtagsmodel extends  CI_Model{
 	var $table = 'event_tags';
 	var $tableAs = 'event_tags a';
     function __construct(){

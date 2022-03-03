@@ -23,12 +23,13 @@ class MY_Lang extends CI_Lang {
   // languages
   private $languages = array(
     'en' => 'english',
-	'id' => 'indonesia'
+	  'id' => 'indonesia'
   );
  
   // special URIs (not localized)
   private $special = array (
-    "controlpanel"
+    "apps",
+    "generaterssfeed"
   );
   
   // where to redirect if no language in URI

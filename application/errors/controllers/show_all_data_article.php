@@ -5,10 +5,10 @@ class Show_All_Data_Article extends CI_Controller {
 		
 	}
     function index(){
-        $this->load->model('newsModel');
-        $this->load->model('newsTagsModel');
-        $this->load->model('tagsModel');
-        $data = $this->newsModel->findBy(array('a.is_delete'=>0));
+        $this->load->model('newsmodel');
+        $this->load->model('newstagsmodel');
+        $this->load->model('tagsmodel');
+        $data = $this->newsmodel->findBy(array('a.is_delete'=>0));
         echo '<table border="1">';
         foreach ($data as $key_data => $value_data) {
             echo "<tr><td>$value_data[news_title]</td>";
@@ -16,7 +16,7 @@ class Show_All_Data_Article extends CI_Controller {
             echo "<td>".$value_data['publish_date']."</td>";
             echo "<td>$value_data[category]</td>";
             echo '<td>';
-            $tags = $this->newsTagsModel->findBy(array('id_news'=>$value_data['id']));
+            $tags = $this->newstagsmodel->findBy(array('id_news'=>$value_data['id']));
             foreach ($tags as $key => $value) {
                 $tag            .=  ', '."<a href='".$this->baseUrl."article/tags/$value[uri_path]'>".$value['tags'].'</a>';
                 $id_tags[]       = $value['id_tags'];

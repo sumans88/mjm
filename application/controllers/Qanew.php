@@ -5,8 +5,8 @@ class QaNew extends CI_Controller {
 		
 	}
     function index(){
-        $this->load->model('newsCategoryModel');
-        $category = $this->newsCategoryModel->fetchRow(array('uri_path'=>'qanew/index'));
+        $this->load->model('newscategorymodel');
+        $category = $this->newscategorymodel->fetchRow(array('uri_path'=>'qanew/index'));
         $post = purify($this->input->post());
     	if($post){
     		$post['id_contact_us_topic'] =  $post['topic'];

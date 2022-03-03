@@ -3,14 +3,14 @@ class Home extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->layout = 'none';
-		$this->load->model('HomeAdminModel');
-		$this->load->model('newsModel');
-		$this->load->model('newsVersionModel');
-		$this->load->model('newsCategoryModel');
-		$this->load->model('newsTagsModel');
-		$this->load->model('newsTagsVersionModel');
-		$this->load->model('tagsModel');
-		$this->load->model('newsApprovalCommentModel');
+		$this->load->model('homeadminmodel');
+		$this->load->model('newsmodel');
+		$this->load->model('newsversionmodel');
+		$this->load->model('newscategorymodel');
+		$this->load->model('newstagsmodel');
+		$this->load->model('newstagsversionmodel');
+		$this->load->model('tagsmodel');
+		$this->load->model('newsapprovalcommentmodel');
 		$this->load->model('authgroup_model','authGroupModel');
 		$this->load->model('model_user','userModel');
 	}
@@ -19,9 +19,9 @@ class Home extends CI_Controller {
 	}
 	function pending(){
 		if(group_id() == 2){
-			$data = $this->newsModel->records_home(array('approval_level' => 0, 'is_revise'=>'1'));
+			$data = $this->newsmodel->records_home(array('approval_level' => 0, 'is_revise'=>'1'));
 		} else {
-			$data = $this->newsModel->records_home(array('approval_level' => $this->newsModel->approvalLevelGroup, 'approval_level !='=>'0'));
+			$data = $this->newsmodel->records_home(array('approval_level' => $this->newsmodel->approvalLevelGroup, 'approval_level !='=>'0'));
 		}
 		foreach ($data['data'] as $key => $value) {
 			
@@ -34,7 +34,7 @@ class Home extends CI_Controller {
 			else if($approval_level_news == 1 && $value['is_revise']== 1){
 				$approval = 'Revise (editor)';
 			}
-			else if($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
+			else if($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
 				$approval = '<a class="btn btn-primary" href="'.base_url().'apps/news/view/'.$value['id'].'" target="_BLANK">Review</>';
 			}
 			else if($approval_level_news == 100){
@@ -58,7 +58,7 @@ class Home extends CI_Controller {
 		render('apps/news/records',$data,'blank');
 	}
 	function approve(){
-		$data = $this->newsModel->records_home(array('approval_level' => 100));
+		$data = $this->newsmodel->records_home(array('approval_level' => 100));
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
 			$group = $this->authGroupModel->fetchRow(array('approval_level'=>$approval_level_news));
@@ -69,7 +69,7 @@ class Home extends CI_Controller {
 			else if($approval_level_news == 1 && $value['is_revise']== 1){
 				$approval = 'Revise (editor)';
 			}
-			else if($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
+			else if($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
 				$approval = '<a class="btn btn-primary" href="'.base_url().'apps/news/view/'.$value['id'].'" target="_BLANK">Review</>';
 			}
 			else if($approval_level_news == 100){
@@ -93,7 +93,7 @@ class Home extends CI_Controller {
 		render('apps/news/records',$data,'blank');
 	}
 	function schedule(){
-		$data = $this->newsModel->records_home(array('approval_level' => 100, 'publish_date >' => date('Y-m-d'), 'id_status_publish'=> 2));
+		$data = $this->newsmodel->records_home(array('approval_level' => 100, 'publish_date >' => date('Y-m-d'), 'id_status_publish'=> 2));
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
 			$group = $this->authGroupModel->fetchRow(array('approval_level'=>$approval_level_news));
@@ -104,7 +104,7 @@ class Home extends CI_Controller {
 			else if($approval_level_news == 1 && $value['is_revise']== 1){
 				$approval = 'Revise (editor)';
 			}
-			else if($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
+			else if($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
 				$approval = '<a class="btn btn-primary" href="'.base_url().'apps/news/view/'.$value['id'].'" target="_BLANK">Review</>';
 			}
 			else if($approval_level_news == 100){
@@ -129,7 +129,7 @@ class Home extends CI_Controller {
 	}
 	
 	function all_news(){
-		$data = $this->newsModel->records_all(array('approval_level' => 100, 'id_status_publish'=> 2));
+		$data = $this->newsmodel->records_all(array('approval_level' => 100, 'id_status_publish'=> 2));
 		foreach ($data as $key => $value) {
 			$ret[$key][] = iso_date_custom_format($value['publish_date'],'d/n/Y');
 			$ret[$key][] = 'News Will be Release';
@@ -216,7 +216,7 @@ class Home extends CI_Controller {
 	}
 
 	function log_editors_choice(){
-		$data = $this->HomeAdminModel->log_editor_choice(array('approval_level' => 100, 'publish_date <' => date('Y-m-d'), 'id_status_publish'=> 2));
+		$data = $this->homeadminmodel->log_editor_choice(array('approval_level' => 100, 'publish_date <' => date('Y-m-d'), 'id_status_publish'=> 2));
 		$date_group = '';
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
@@ -228,7 +228,7 @@ class Home extends CI_Controller {
 			else if($approval_level_news == 1 && $value['is_revise']== 1){
 				$approval = 'Revise (editor)';
 			}
-			else if($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
+			else if($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
 				$approval = '<a class="btn btn-primary" href="'.base_url().'apps/news/view/'.$value['id'].'" target="_BLANK">Review</>';
 			}
 			else if($approval_level_news == 100){
@@ -267,7 +267,7 @@ class Home extends CI_Controller {
 	}
 
 	function log_top_content(){
-		$data = $this->HomeAdminModel->log_top_content(array('approval_level' => 100, 'publish_date <' => date('Y-m-d'), 'id_status_publish'=> 2));
+		$data = $this->homeadminmodel->log_top_content(array('approval_level' => 100, 'publish_date <' => date('Y-m-d'), 'id_status_publish'=> 2));
 		$date_group = '';
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
@@ -279,7 +279,7 @@ class Home extends CI_Controller {
 			else if($approval_level_news == 1 && $value['is_revise']== 1){
 				$approval = 'Revise (editor)';
 			}
-			else if($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
+			else if($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
 				$approval = '<a class="btn btn-primary" href="'.base_url().'apps/news/view/'.$value['id'].'" target="_BLANK">Review</>';
 			}
 			else if($approval_level_news == 100){

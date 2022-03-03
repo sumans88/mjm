@@ -317,13 +317,13 @@ function multipleUpload($file, $path, $maxSize) {
 
 function is_edit_news($id_news,$user_id_create,$approval_level_news,$type){
  	$CI 			= & get_instance();
-	$CI->load->model('newsModel');
+	$CI->load->model('newsmodel');
 
 	$grup 			= $CI->session->userdata['ADM_SESS']['admin_id_auth_user_group'];
 	$edit_enable	= "<a href='".$CI->currentController."add/$id_news' title='Edit Data' class='fa fa-pencil-square-o tangan action-form-icon update'></a>";
 	$edit_disable	= '<i class="fa fa-pencil-square-o tangan action-form-icon update"></i>';
-	// if($id_news == '' || ((id_user() == $user_id_create  && $approval_level_news === 0 ) || $approval_level_news == $CI->newsModel->approvalLevelGroup) || $grup == 4 ){
-	if($id_news == '' || ((id_user() == $user_id_create  && $approval_level_news === 0 ) || $approval_level_news == $CI->newsModel->approvalLevelGroup) || $grup == 4 || $grup == 1){
+	// if($id_news == '' || ((id_user() == $user_id_create  && $approval_level_news === 0 ) || $approval_level_news == $CI->newsmodel->approvalLevelGroup) || $grup == 4 ){
+	if($id_news == '' || ((id_user() == $user_id_create  && $approval_level_news === 0 ) || $approval_level_news == $CI->newsmodel->approvalLevelGroup) || $grup == 4 || $grup == 1){
 		$ret =  $type == 'return' ? 1 : $edit_enable ;
 	}
 	else{

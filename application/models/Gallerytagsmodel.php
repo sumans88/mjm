@@ -1,5 +1,5 @@
 <?php
-class GalleryTagsModel extends  CI_Model{
+class Gallerytagsmodel extends  CI_Model{
 	var $table = 'gallery_tags';
 	var $tableAs = 'gallery_tags a';
     function __construct(){

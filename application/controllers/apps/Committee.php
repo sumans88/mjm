@@ -4,9 +4,9 @@ class Committee extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('committee_model');
-		$this->load->model('committeTagsModel');
-		$this->load->model('newsTagsModel');
-		$this->load->model('tagsModel');
+		$this->load->model('committetagsmodel');
+		$this->load->model('newstagsmodel');
+		$this->load->model('tagsmodel');
 		$this->load->model('committeeFilesModel');
 	}
 
@@ -41,7 +41,7 @@ class Committee extends CI_Controller{
 
 			$data['proses']			= 'Update';
 
-			$tags = $this->committeTagsModel->findBy(array('id_committee'=>$id));
+			$tags = $this->committetagsmodel->findBy(array('id_committee'=>$id));
 			
             foreach ($tags as $key => $value) 
             {
@@ -111,7 +111,7 @@ class Committee extends CI_Controller{
 
 		$data['imagemanager_config']	= $imagemanager['config'];
 
-		$tags_data = $this->newsTagsModel->records_tags_all();
+		$tags_data = $this->newstagsmodel->records_tags_all();
 		foreach ($tags_data as $key => $value_tags) {
 		    $tags_data_val .=  ",'".$value_tags['name']."'";
 		}
@@ -289,20 +289,20 @@ class Committee extends CI_Controller{
 			foreach ($tags as $key => $value) {
 					$value = strtolower($tags[$key]);
 					if($value){
-						$cek = $this->tagsModel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
+						$cek = $this->tagsmodel->fetchRow(array('name'=>$value));//liat tags name di tabel ref
 						if(!$cek){//kalo belom ada
-							$id_tags = $this->tagsModel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
+							$id_tags = $this->tagsmodel->insert(array('name'=>$value,'uri_path'=>url_title($value)));//insert ke tabel ref
 							detail_log();
 						}
 						else{
 							$id_tags = $cek['id']; //kalo udah ada, tinggal ambil idnya
 						}
-						$cekTagsNews = $this->committeTagsModel->fetchRow(array('id_committee'=>$idedit,'id_tags'=>$id_tags)); //liat di tabel news tags, (utk edit)
+						$cekTagsNews = $this->committetagsmodel->fetchRow(array('id_committee'=>$idedit,'id_tags'=>$id_tags)); //liat di tabel news tags, (utk edit)
 					
 						if(!$cekTagsNews){//kalo blm ada ya di insert
 							$tag['id_committee'] = $idedit;
 							$tag['id_tags'] = $id_tags;
-							$id_news_tags = $this->committeTagsModel->insert($tag);
+							$id_news_tags = $this->committetagsmodel->insert($tag);
 						}
 						else{//kalo udah ada, ambil id nya utk di simpen sbg array utk kebutuhan delete
 							$id_news_tags = $cekTagsNews['id'];
@@ -312,9 +312,9 @@ class Committee extends CI_Controller{
 					}
 				}
 				$this->db->where_not_in('a.id',$del_tags_news); 
-				$delete = $this->committeTagsModel->findBy(array('a.id_committee'=>$idedit)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $idedit)
+				$delete = $this->committetagsmodel->findBy(array('a.id_committee'=>$idedit)); //dapetin id news tags yg diapus  (where id not in insert / select and id_news = $idedit)
 				foreach ($delete as $key => $value) {
-					$this->committeTagsModel->delete($value['id']);
+					$this->committetagsmodel->delete($value['id']);
 				}
 
 			detail_log();
@@ -377,11 +377,11 @@ class Committee extends CI_Controller{
 
 	function tagsurl()
 	{
-		$this->load->model('tagsModel');
-		$data = $this->tagsModel->findBy();
+		$this->load->model('tagsmodel');
+		$data = $this->tagsmodel->findBy();
 		foreach ($data as $key => $value) {
 			echo $value['name'].' || '.$value['uri_path'].'<br>';
-			$this->tagsModel->update(array('uri_path'=>url_title(strtolower($value['name']))),$value['id']);
+			$this->tagsmodel->update(array('uri_path'=>url_title(strtolower($value['name']))),$value['id']);
 		}
 	}
 

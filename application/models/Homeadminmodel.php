@@ -1,5 +1,5 @@
 <?php
-class HomeAdminModel extends  CI_Model{
+class homeadminmodel extends  CI_Model{
 	var $table = 'comment';
 	var $tableAs = 'comment a';
 	function __construct(){

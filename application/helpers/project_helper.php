@@ -424,16 +424,16 @@ function top_article_expert($id_category=0,$is_featured=1,$is_qa=0,$is_expert=0)
 }
 function popular_topic(){
 	$CI=& get_instance();
-	$CI->load->model('tagsModel');
+	$CI->load->model('tagsmodel');
 	$CI->load->model('newsmodel');
-	$CI->load->model('newsTagsModel');
+	$CI->load->model('newstagsmodel');
 	$CI->db->order_by('tags_count','desc');
 	$CI->db->limit(10);
-	$list_tag = $CI->tagsModel->findBy(array('tags_count >'=> 0));
+	$list_tag = $CI->tagsmodel->findBy(array('tags_count >'=> 0));
 	// $data['list_popular_topic'] = $CI->newsmodel->getPopularTopic();
 	$CI->db->order_by('tags_count','desc');
 	$CI->db->limit(4);
-	$list_tag_bottom = $CI->tagsModel->findBy(array('tags_count >'=> 0));
+	$list_tag_bottom = $CI->tagsmodel->findBy(array('tags_count >'=> 0));
 
 	$data['list_tags'] = $list_tag;
 	$data['list_tag_bottom'] = $list_tag_bottom;
@@ -442,8 +442,8 @@ function popular_topic(){
 	$lang = $CI->lang->language;
 
 	foreach ($list_tag_bottom as $key => $value) {
-	    $news =  $CI->newsTagsModel->getLatesNewsByTagsId($value['id'],$newsIds);
-	    $ret .= "<div class='sub-topic'><h2><a href='".$CI->base_url."article/tags/".$value['uri_path']."' title='".$value['name']."' >".$value['name']."</a> - ".$CI->newsTagsModel->getTotalUpdateNewsByTagsId($value['id'])." Terkini</h2>";
+	    $news =  $CI->newstagsmodel->getLatesNewsByTagsId($value['id'],$newsIds);
+	    $ret .= "<div class='sub-topic'><h2><a href='".$CI->base_url."article/tags/".$value['uri_path']."' title='".$value['name']."' >".$value['name']."</a> - ".$CI->newstagsmodel->getTotalUpdateNewsByTagsId($value['id'])." Terkini</h2>";
 	    foreach ($news as $keynews => $valuenews) {
 			    $url_detail =  get_url_article_qa($valuenews['is_qa'],$valuenews['is_experts']);
 			    $newsIds[] = $valuenews['id'];
@@ -459,19 +459,19 @@ function popular_topic(){
 }
 function popular_topic_search(){
 	$CI=& get_instance();
-	$CI->load->model('tagsModel');
+	$CI->load->model('tagsmodel');
 	$CI->load->model('newsmodel');
-	$CI->load->model('newsTagsModel');
+	$CI->load->model('newstagsmodel');
 	$CI->db->order_by('tags_count','desc');
 	$CI->db->limit(10);
 
-	$list_tag = $CI->tagsModel->findBy(array('tags_count >'=> 0));
+	$list_tag = $CI->tagsmodel->findBy(array('tags_count >'=> 0));
 	// $data['list_popular_topic'] = $CI->newsmodel->getPopularTopic();
 
 	$data['list_tags'] = $list_tag;
 	foreach ($list_tag as $key => $value) {
-		$news =  $CI->newsTagsModel->getLatesNewsByTagsId($value['id'],$newsIds);
-		$list_tag[$key]['ttl_update'] = $CI->newsTagsModel->getTotalUpdateNewsByTagsId($value['id']);
+		$news =  $CI->newstagsmodel->getLatesNewsByTagsId($value['id'],$newsIds);
+		$list_tag[$key]['ttl_update'] = $CI->newstagsmodel->getTotalUpdateNewsByTagsId($value['id']);
 		$list_tag[$key]['news_title'] = $news['news_title'];
 		$list_tag[$key]['uri_path_news'] = $news['uri_path'];
 		$newsIds[] = $news['id'];
@@ -553,8 +553,8 @@ function artikel_terkait($id,$status){
 /*function artikel_terkait($id_news){
 	$CI=& get_instance();
 	$CI->load->model('newsmodel');
-	$CI->load->model('newsTagsModel');
-	$tags = $CI->newsTagsModel->findBy(array('id_news'=>$id_news));
+	$CI->load->model('newstagsmodel');
+	$tags = $CI->newstagsmodel->findBy(array('id_news'=>$id_news));
 	$newsIds[] = 0;
 	$t[] = 0;
 	foreach ($tags as $key => $value) {

@@ -3,13 +3,13 @@
 class News extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('newsModel');
-		$this->load->model('newsVersionModel');
-		$this->load->model('newsCategoryModel');
-		$this->load->model('newsTagsModel');
-		$this->load->model('newsTagsVersionModel');
-		$this->load->model('tagsModel');
-		$this->load->model('newsApprovalCommentModel');
+		$this->load->model('newsmodel');
+		$this->load->model('newsversionmodel');
+		$this->load->model('newscategorymodel');
+		$this->load->model('newstagsmodel');
+		$this->load->model('newstagsversionmodel');
+		$this->load->model('tagsmodel');
+		$this->load->model('newsapprovalcommentmodel');
 		$this->load->model('languagemodel');
 		$this->load->model('authgroup_model','authGroupModel');
 		$this->load->model('model_user','userModel');
@@ -34,8 +34,8 @@ class News extends CI_Controller {
 	}
 	public function add($id=''){
 		if($id){
-			// $data = $this->newsModel->findById($id);
-			$datas 	= $this->newsModel->selectData($id);
+			// $data = $this->newsmodel->findById($id);
+			$datas 	= $this->newsmodel->selectData($id);
 
 			if(!$datas){
 				die('404');
@@ -46,7 +46,7 @@ class News extends CI_Controller {
 			$data['publish_date'] 			= iso_date($data['publish_date']);
 			$data['expected_publish_date'] 	= iso_date($data['expected_publish_date']);
 			
-			$data_version 				= $this->newsVersionModel->findByrecordversion(array('id_news'=>$id));
+			$data_version 				= $this->newsversionmodel->findByrecordversion(array('id_news'=>$id));
 			$data['last_edited'] 		= "by <b>$data_version[username]</b>" . ' on ' . iso_date_time($data_version['create_date']);
 			$data['edit_button'] 		=  (group_id() == 4 and $data['approval_level']==100) ? 'invis' : '';
 			$data['last_edited_show'] 	= '';
@@ -77,7 +77,7 @@ class News extends CI_Controller {
 		}
 
 
-		$tags_data = $this->newsTagsModel->records_tags_all();
+		$tags_data = $this->newstagsmodel->records_tags_all();
 		foreach ($tags_data as $key => $value_tags) {
 		    $tags_data_val .=  ",'".$value_tags['name']."'";
 		}
@@ -128,7 +128,7 @@ class News extends CI_Controller {
 			$data['list_lang'][$key]['img']						= $imagemanager['browse'];
 			$data['list_lang'][$key]['imagemanager_config']		= $imagemanager['config'];
 
-			$tags = $this->newsTagsModel->findBy(array('id_news'=>$datas[$key]['id']));
+			$tags = $this->newstagsmodel->findBy(array('id_news'=>$datas[$key]['id']));
 			$tag = '';
 			foreach ($tags as $k => $v){
 				$tag .=  ','.$v['tags'];
@@ -139,7 +139,7 @@ class News extends CI_Controller {
 		// exit;
 			// $data['tags_data']			= '';
 
-		// $next_approval 	= $this->newsModel->approvalLevelGroup + 1;
+		// $next_approval 	= $this->newsmodel->approvalLevelGroup + 1;
 		// $group 			= $this->authGroupModel->fetchRow(array('approval_level'=>$next_approval));
 		// $data['next_approval'] = $group['grup'] ? "&amp; Sent to $group[grup]" : '&amp; Publish';
 		// $data['enable_edit_status_publish'] = is_edit_publish_status();
@@ -150,7 +150,7 @@ class News extends CI_Controller {
 	}
 	public function view($id=''){
 		if($id){
-			$datas 	= $this->newsModel->selectData($id);
+			$datas 	= $this->newsmodel->selectData($id);
 			
 			if(!$datas){
 				die('404');
@@ -183,7 +183,7 @@ class News extends CI_Controller {
 				$data['list_lang'][$key]['teaser']		 				= remove_html_tag_news($datas[$key]['teaser']);
 				$data['list_lang'][$key]['create_date'] 				= iso_date_time($datas[$key]['create_date']);
 
-				// $tags = $this->newsTagsModel->findBy(array('id_news'=>$id));
+				// $tags = $this->newstagsmodel->findBy(array('id_news'=>$id));
 				// foreach ($tags as $key => $value) {
 				// 	$tag .=  ', '.$value['tags'];
 				// }
@@ -206,7 +206,7 @@ class News extends CI_Controller {
 		}
 		$data['list_lang2'] 			= $data['list_lang'];
 
-		// $data['approval'] 				= $this->newsModel->approvalLevelGroup == $data['approval_level'] && $data['approval_level'] != 0 ? '' : 'invis';
+		// $data['approval'] 				= $this->newsmodel->approvalLevelGroup == $data['approval_level'] && $data['approval_level'] != 0 ? '' : 'invis';
 		// $data['list_news_category'] 	= selectlist2(array('table'=>'news_category','where'=> 'id!=35','title'=>'All Category'));
 		// $data['list_status_publish'] 	= selectlist2(array('table'=>'status_publish','title'=>'All Status'));
   //       $data['share_widget']    		= '';//share_widget();
@@ -223,7 +223,7 @@ class News extends CI_Controller {
 		render('apps/news/view',$data,'apps');
 	}
 	function records(){
-		$data = $this->newsModel->records();
+		$data = $this->newsmodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
 			$group = $this->authGroupModel->fetchRow(array('approval_level'=>$approval_level_news));
@@ -234,7 +234,7 @@ class News extends CI_Controller {
 			else if($approval_level_news == 1 && $value['is_revise']== 1){
 				$approval = 'Revise (editor)';
 			}
-			else if($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
+			else if($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
 				$approval = '<a class="btn btn-primary" href="'.$this->currentController.'view/'.$value['id'].'">Review</>';
 			}
 			else if($approval_level_news == 100){
@@ -270,7 +270,7 @@ class News extends CI_Controller {
 		echo json_encode($data);
 	}
 	function records_version($id_news){
-		$data = $this->newsVersionModel->records(array('id_news'=>$id_news));
+		$data = $this->newsversionmodel->records(array('id_news'=>$id_news));
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
 			$group = $this->authGroupModel->fetchRow(array('approval_level'=>$approval_level_news));
@@ -308,7 +308,7 @@ class News extends CI_Controller {
 		foreach ($post['news_title'] as $key => $value){
 			if(!$idedit){
 				$where['a.uri_path']	= $post['uri_path'][$key];
-				$unik 					= $this->newsModel->findBy($where);
+				$unik 					= $this->newsmodel->findBy($where);
 				$this->form_validation->set_rules('id_news_category', '"Category"', 'required'); 
 				$this->form_validation->set_rules('news_title', '"Title"', 'required'); 
 				$this->form_validation->set_rules('uri_path', '"Page URL"', 'required');
@@ -380,7 +380,7 @@ class News extends CI_Controller {
 					}elseif($post['thumb'][$key]=='x'){
 						$post['thumb'][$key] = '';
 					}
-					$iddata 		= $this->newsModel->update($data_save,$idedit);
+					$iddata 		= $this->newsmodel->update($data_save,$idedit);
 				/*}else{
 					auth_update();
 					$ret['message'] = 'Update Success';
@@ -390,14 +390,14 @@ class News extends CI_Controller {
 					}elseif($post['thumb'][$key]=='x'){
 						$post['thumb'][$key] = '';
 					}
-					$iddata 		= $this->newsModel->updateKedua($data_save,$idedit);
+					$iddata 		= $this->newsmodel->updateKedua($data_save,$idedit);
 				}*/
 			}else{
 				$data_save['img']	= $post_image;
 				auth_insert();
 				$ret['message']		= 'Insert Success';
 				$act				= "Insert News";
-				$iddata 			= $this->newsModel->insert($data_save);
+				$iddata 			= $this->newsmodel->insert($data_save);
 			}
 			if($key==0){
 				$id_parent_lang = $iddata;
@@ -414,25 +414,25 @@ class News extends CI_Controller {
 			foreach ($tags as $k => $v) {
 				$tag = strtolower($v);
 				$t['uri_path'] =  url_title($tag);
-				$cek = $this->tagsModel->fetchRow($t);
+				$cek = $this->tagsmodel->fetchRow($t);
 				if(!$cek){
 					$t['name'] =  $tag;
-					$idTags = $this->tagsModel->insert($t);
+					$idTags = $this->tagsmodel->insert($t);
 				}
 				else{
 					$idTags = $cek['id'];
 				}
 				$newsTags['id_news'] = $idedit;
 				$newsTags['id_tags'] = $idTags;
-				$cek2 				 = $this->newsTagsModel->fetchRow($newsTags);
+				$cek2 				 = $this->newstagsmodel->fetchRow($newsTags);
 				if(!$cek2){
-					$this->newsTagsModel->insert($newsTags);
+					$this->newstagsmodel->insert($newsTags);
 				}
 				$idNewsTags[]	 = $idTags;
 			}
-			$deleteNewsTags = $this->newsTagsModel->findByNotIn($idedit,$idNewsTags);
+			$deleteNewsTags = $this->newstagsmodel->findByNotIn($idedit,$idNewsTags);
 			foreach ($deleteNewsTags as $newsTag) {
-				$this->newsTagsModel->delete($newsTag['id']);
+				$this->newstagsmodel->delete($newsTag['id']);
 			}
 		}
 		echo json_encode($ret);
@@ -441,8 +441,8 @@ class News extends CI_Controller {
 		auth_delete();
 		$this->db->trans_start();   
 		$id = $this->input->post('iddel');
-		$this->newsModel->delete($id);
-		$this->newsModel->delete2($id);
+		$this->newsmodel->delete($id);
+		$this->newsmodel->delete2($id);
 		detail_log();
 		insert_log("Delete News");
 		$this->db->trans_complete();
@@ -450,7 +450,7 @@ class News extends CI_Controller {
 	function proses_approval(){
 		$this->db->trans_start();   
 			$post			= purify($this->input->post());
-			$news 			= $this->newsModel->findById($post['id_news']);
+			$news 			= $this->newsmodel->findById($post['id_news']);
 			$approval_level = $news['approval_level'];
 			$next_approval 	= $post['proses'] == 'revise' ? ($approval_level - 1) : ($approval_level + 1);
 			if(!$news['publish_date']){
@@ -462,7 +462,7 @@ class News extends CI_Controller {
 				$data['id_news'] = $post['id_news'];
 				$data['approval_comment'] = $post['comment'];
 				$data['approval_status'] = $post['proses'] == 'revise' ? '0' : 1;
-				$this->newsApprovalCommentModel->insert($data);
+				$this->newsapprovalcommentmodel->insert($data);
 				if($post['proses'] == 'revise'){
 					$update['is_revise'] = 1;
 					$sent_mail = array(
@@ -496,7 +496,7 @@ class News extends CI_Controller {
 				}
 
 				$update['approval_level'] = $next_approval;
-				$this->newsModel->update($update,$post['id_news']);
+				$this->newsmodel->update($update,$post['id_news']);
 
 			// }
 		$this->db->trans_complete();
@@ -506,7 +506,7 @@ class News extends CI_Controller {
 	}
 
 	function records_approval($id_news){
-		$data = $this->newsApprovalCommentModel->records(array('id_news'=>$id_news));
+		$data = $this->newsapprovalcommentmodel->records(array('id_news'=>$id_news));
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['create_date'] = iso_date_time($value['create_date']);
 			$data['data'][$key]['status'] = $value['approval_status'] ==  1 ? 'Approve' : 'Revise';
@@ -515,9 +515,9 @@ class News extends CI_Controller {
 	}
 
 	function version_detail($id){
-		$data = $this->newsVersionModel->findById($id);
+		$data = $this->newsversionmodel->findById($id);
 		if($data){
-			$news = $this->newsModel->findById($data['id_news']);
+			$news = $this->newsmodel->findById($data['id_news']);
 			$data['username'] = $news['username'];
 			$data['img_thumb'] = image($data['img'],'small');
 			$data['img_ori'] = image($data['img'],'large');
@@ -528,7 +528,7 @@ class News extends CI_Controller {
 			$data['teaser'] = quote_form($data['teaser']);
 			$data['create_date'] = iso_date_time($data['create_date']);
 
-			$tags = $this->newsTagsVersionModel->findBy(array('id_news_version'=>$id));
+			$tags = $this->newstagsversionmodel->findBy(array('id_news_version'=>$id));
 			foreach ($tags as $key => $value) {
 				$tag .=  ', '.$value['tags'];
 			}
@@ -545,7 +545,7 @@ class News extends CI_Controller {
 		render('apps/news/select_category',$data,'blank');
 	}
 	function record_select_category(){
-		$data = $this->newsCategoryModel->records();
+		$data = $this->newscategorymodel->records();
 		foreach ($data['data'] as $key => $value) {
 			// $data['data'][$key]['page_name'] = quote_form($value['page_name']);
 		}
@@ -555,18 +555,18 @@ class News extends CI_Controller {
 	
 	function tagsurl()
 	{
-		$this->load->model('tagsModel');
-		$data = $this->tagsModel->findBy();
+		$this->load->model('tagsmodel');
+		$data = $this->tagsmodel->findBy();
 		foreach ($data as $key => $value) {
 			echo $value['name'].' || '.$value['uri_path'].'<br>';
-			$this->tagsModel->update(array('uri_path'=>url_title(strtolower($value['name']))),$value['id']);
+			$this->tagsmodel->update(array('uri_path'=>url_title(strtolower($value['name']))),$value['id']);
 		}
 	}
 	function preview(){
 		$data	= purify($this->input->post());
 		if($data){
 			if($data['id']!=0 and $data['id']){
-				$data_file = $this->newsModel->findById($data['id']);
+				$data_file = $this->newsmodel->findById($data['id']);
 				$data['img'] = $data_file['img']; 
 			}
 			$data['img_thumb'] = image($data['img'],'small');
@@ -636,7 +636,7 @@ class News extends CI_Controller {
 
 		where_grid($post, $alias);
 
-		$data['data'] = $this->newsModel->export_to_excel();
+		$data['data'] = $this->newsmodel->export_to_excel();
 		$i=1;
 		foreach ($data['data'] as $key => $value) {
 			$approval_level_news = $value['approval_level'];
@@ -648,7 +648,7 @@ class News extends CI_Controller {
 			else if($approval_level_news == 1 && $value['is_revise']== 1){
 				$approval = 'Revise (editor)';
 			}
-			else if($this->newsModel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
+			else if($this->newsmodel->approvalLevelGroup == $approval_level_news && $approval_level_news != 0){
 				$approval = '<a class="btn btn-primary" href="'.$this->currentController.'view/'.$value['id'].'">Review</>';
 			}
 			else if($approval_level_news == 100){

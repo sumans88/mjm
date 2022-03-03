@@ -5,7 +5,7 @@ class Gallery extends CI_Controller {
          $this->load->model('gallerymodel');
          $this->load->model('galleryImagesModel');
          $this->load->model('gallery_category_model');
-         $this->load->model('GalleryTagsModel');
+         $this->load->model('Gallerytagsmodel');
 
     }
     function photo(){
@@ -290,7 +290,7 @@ class Gallery extends CI_Controller {
                               $this->db->select('a.*,b.name as tags,b.uri_path as uri_path_tags');
                               $this->db->join('tags b','b.id = a.id_tags');
         $tags               = $this->db->get_where('gallery_tags a',$where)->result_array();
-        // $tags               = $this->NewsTagsModel->findBy(array('id_news'=>$data['id']));
+        // $tags               = $this->newstagsmodel->findBy(array('id_news'=>$data['id']));
 
         /*new script (dwiki)*/
         $count_tags = count($tags);

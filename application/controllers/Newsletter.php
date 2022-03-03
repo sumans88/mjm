@@ -5,9 +5,9 @@ class Newsletter extends CI_Controller {
 
     function __construct(){
         parent::__construct();
-        $this->load->model('newsModel');
-        $this->load->model('newsCategoryModel');
-        $this->load->model('newsTagsModel');
+        $this->load->model('newsmodel');
+        $this->load->model('newscategorymodel');
+        $this->load->model('newstagsmodel');
         $this->load->model('frontendmenumodel');
         $this->load->model('newsletterModel');
         // $this->parentMenu = getParentMenu();

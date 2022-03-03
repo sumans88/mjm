@@ -5,8 +5,8 @@ class Expert extends CI_Controller {
 		
 	}
     function index(){
-        $this->load->model('newsCategoryModel');
-        $category = $this->newsCategoryModel->fetchRow(array('uri_path'=>'expert'));
+        $this->load->model('newscategorymodel');
+        $category = $this->newscategorymodel->fetchRow(array('uri_path'=>'expert'));
         $data['header_category'] = $category['name'];
         $data['top_article'] = top_article_expert($category['id'],0);
         $data['popular_topic'] = popular_topic();

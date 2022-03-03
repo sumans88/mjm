@@ -3,7 +3,7 @@
 class News_category extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('NewsCategoryModel');
+		$this->load->model('newscategorymodel');
 		$this->load->model('languagemodel');
 	}
 	function index(){
@@ -11,8 +11,8 @@ class News_category extends CI_Controller {
 	}
 	public function add($id=''){
 		if($id){
-			// $data = $this->NewsCategoryModel->findById($id);
-			$datas = $this->NewsCategoryModel->selectData($id);
+			// $data = $this->newscategorymodel->findById($id);
+			$datas = $this->newscategorymodel->selectData($id);
             if(!$datas){
 				die('404');
 			}
@@ -53,7 +53,7 @@ class News_category extends CI_Controller {
 		render('apps/news_category/add',$data,'apps');
 	}
 	function records(){
-		$data = $this->NewsCategoryModel->records();
+		$data = $this->newscategorymodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['create_date'] 	= iso_date($value['create_date']);
 		}
@@ -71,7 +71,7 @@ class News_category extends CI_Controller {
 				$this->form_validation->set_rules('name', '"Name"', 'required');
 				$this->form_validation->set_rules('uri_path', '"Uri Path"', 'required');
 				$where['uri_path']		= $post['uri_path'][$key];
-				$unik 					= $this->NewsCategoryModel->findBy($where);
+				$unik 					= $this->newscategorymodel->findBy($where);
 				if ($this->form_validation->run() == FALSE){
 					$ret['message']  = validation_errors(' ',' ');
 				}else if($unik){
@@ -99,7 +99,7 @@ class News_category extends CI_Controller {
 			if($idedit && $post['img'][$key]){
 				$data_save['img']	= $post['img'][$key];
 			}elseif($idedit){
-				$datas 				= $this->NewsCategoryModel->selectData($idedit);
+				$datas 				= $this->newscategorymodel->selectData($idedit);
 				$data_save['img']	= $datas[$key]['img'];
 			}else{
 				$data_save['img']	= $post['img'][$key];
@@ -110,18 +110,18 @@ class News_category extends CI_Controller {
                     auth_update();
 					$ret['message']		= 'Update Success';
 					$act				= "Update News Category";
-					$iddata 			= $this->NewsCategoryModel->update($data_save,$idedit);
+					$iddata 			= $this->newscategorymodel->update($data_save,$idedit);
 				}else{
 					auth_update();
 					$ret['message'] 	= 'Update Success';
 					$act				= "Update News Category";
-					$iddata 			= $this->NewsCategoryModel->updateKedua($data_save,$idedit);
+					$iddata 			= $this->newscategorymodel->updateKedua($data_save,$idedit);
 				}					
 			}else{
 				auth_insert();
 				$ret['message'] 	= 'Insert Success';
 				$act				= "Insert News Category";
-				$iddata 			= $this->NewsCategoryModel->insert($data_save);
+				$iddata 			= $this->newscategorymodel->insert($data_save);
 			}
 
 			if($key==0){
@@ -137,12 +137,12 @@ class News_category extends CI_Controller {
 	function del(){
 		$this->db->trans_start();   
 		$id = $this->input->post('iddel');
-		$this->NewsCategoryModel->delete($id);
-		$this->NewsCategoryModel->delete2($id);
+		$this->newscategorymodel->delete($id);
+		$this->newscategorymodel->delete2($id);
 		$this->db->trans_complete();
 	}
 	function record_select_page(){
-		$data = $this->NewsCategoryModel->records();
+		$data = $this->newscategorymodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['page_name'] = quote_form($value['page_name']);
 		}

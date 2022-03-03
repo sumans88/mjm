@@ -3,7 +3,7 @@ class file_upload extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('eventmodel');
-        $this->load->model('NewsTagsModel');
+        $this->load->model('newstagsmodel');
         $this->load->model('eventFilesModel');
         $this->load->model('eventImagesModel');
         $this->load->model('eventCategoryModel');

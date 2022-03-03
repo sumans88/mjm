@@ -3,7 +3,7 @@ class Search extends CI_Controller {
 	function __construct(){
 		parent::__construct();
         $this->load->model('searchModel');
-        $this->load->model('newsModel');
+        $this->load->model('newsmodel');
 	}
     function index(){
         $lang           = $this->uri->segment(1);

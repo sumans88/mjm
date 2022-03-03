@@ -3,14 +3,14 @@
 class News_Tags extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('tagsModel');
+		$this->load->model('tagsmodel');
 	}
 	function index(){
 		render('apps/news_tags/index',$data,'apps');
 	}
 	public function add($id=''){
 		if($id){
-			$data = $this->tagsModel->findById($id);
+			$data = $this->tagsmodel->findById($id);
             if(!$data){
 				die('404');
 			}
@@ -33,7 +33,7 @@ class News_Tags extends CI_Controller {
 		render('apps/news_tags/add',$data,'apps');
 	}
 	function records(){
-		$data = $this->tagsModel->records();
+		$data = $this->tagsmodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['create_date'] 	= iso_date($value['create_date']);
 		}
@@ -52,7 +52,7 @@ class News_Tags extends CI_Controller {
 		$this->form_validation->set_rules('name', '"Name"', 'required');
 		$this->form_validation->set_rules('uri_path', '"Uri Path"', 'required');
 		$where['uri_path']		= $post['uri_path'];
-		$unik 					= $this->tagsModel->findBy($where);
+		$unik 					= $this->tagsmodel->findBy($where);
 
 		if ($this->form_validation->run() == FALSE){
 			$ret['message']  = validation_errors(' ',' ');
@@ -66,13 +66,13 @@ class News_Tags extends CI_Controller {
                     auth_update();
 					$ret['message'] = 'Update Success';
 					$act			= "Update News Tags";
-					$this->tagsModel->update($post,$idedit);
+					$this->tagsmodel->update($post,$idedit);
 				}
 				else{
 					auth_insert();
 					$ret['message'] = 'Insert Success';
 					$act			= "Insert News Tags";
-					$idedit = $this->tagsModel->insert($post);
+					$idedit = $this->tagsmodel->insert($post);
 				}
 			$this->db->trans_complete();
 			set_flash_session('message',$ret['message']);
@@ -83,7 +83,7 @@ class News_Tags extends CI_Controller {
 	function del(){
 		$this->db->trans_start();   
 		$id = $this->input->post('iddel');
-		$this->tagsModel->delete($id);
+		$this->tagsmodel->delete($id);
 		$this->db->trans_complete();
 	}
 	

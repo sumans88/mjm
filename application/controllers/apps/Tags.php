@@ -3,7 +3,7 @@
 class Tags extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('tagsModel');
+		$this->load->model('tagsmodel');
 		$this->load->model('languagemodel');
 	}
 	function index(){
@@ -11,7 +11,7 @@ class Tags extends CI_Controller {
 	}
 	public function add($id=''){
 		if($id){
-			$datas = $this->tagsModel->selectData($id);
+			$datas = $this->tagsmodel->selectData($id);
             if(!$datas){
 				die('404');
 			}
@@ -32,7 +32,7 @@ class Tags extends CI_Controller {
 		render('apps/tags/add',$data,'apps');
 	}
 	function records(){
-		$data = $this->tagsModel->records();
+		$data = $this->tagsmodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['create_date'] 	= iso_date($value['create_date']);
 		}
@@ -50,7 +50,7 @@ class Tags extends CI_Controller {
 			$this->form_validation->set_rules('name', '"Name"', 'required');
 			$this->form_validation->set_rules('uri_path', '"Uri Path"', 'required');
 			$where['uri_path']		= $post['uri_path'];
-			$unik 					= $this->tagsModel->findBy($where);
+			$unik 					= $this->tagsmodel->findBy($where);
 			if ($this->form_validation->run() == FALSE){
 				$ret['message']  = validation_errors(' ',' ');
 			}else if($unik){
@@ -66,12 +66,12 @@ class Tags extends CI_Controller {
             auth_update();
 			$ret['message']		= 'Update Success';
 			$act				= "Update Tags";
-			$iddata 			= $this->tagsModel->update($data_save,$idedit);
+			$iddata 			= $this->tagsmodel->update($data_save,$idedit);
 		}else{
 			auth_insert();
 			$ret['message'] 	= 'Insert Success';
 			$act				= "Insert Tags";
-			$iddata 			= $this->tagsModel->insert($data_save);
+			$iddata 			= $this->tagsmodel->insert($data_save);
 		}
 
 		$this->db->trans_complete();
@@ -83,11 +83,11 @@ class Tags extends CI_Controller {
 	function del(){
 		$this->db->trans_start();   
 		$id = $this->input->post('iddel');
-		$this->tagsModel->delete($id);
+		$this->tagsmodel->delete($id);
 		$this->db->trans_complete();
 	}
 	function record_select_page(){
-		$data = $this->NewsCategoryModel->records();
+		$data = $this->newscategorymodel->records();
 		foreach ($data['data'] as $key => $value) {
 			$data['data'][$key]['page_name'] = quote_form($value['page_name']);
 		}

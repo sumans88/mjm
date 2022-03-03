@@ -4,10 +4,10 @@ class News extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('newsModel');
+        $this->load->model('newsmodel');
         $this->load->model('newsImagesModel');
-        $this->load->model('newsCategoryModel');
-        $this->load->model('newsTagsModel');
+        $this->load->model('newscategorymodel');
+        $this->load->model('newstagsmodel');
         $this->load->model('frontendmenumodel');
         $this->load->model('gallerymodel');
         $this->load->model('pagesmodel');
@@ -37,10 +37,10 @@ class News extends CI_Controller
             $page     = $post['page'];
         }
 
-        $data = $this->newsCategoryModel->fetchRow(array('uri_path' => $uri_path, 'a.id_lang' => $id_lang));
+        $data = $this->newscategorymodel->fetchRow(array('uri_path' => $uri_path, 'a.id_lang' => $id_lang));
 
         if (!$data) {
-            $data = $this->newsCategoryModel->fetchRow(array('uri_path' => $uri_path));
+            $data = $this->newscategorymodel->fetchRow(array('uri_path' => $uri_path));
             if (!$data) {
                 not_found_page();
             }
@@ -49,7 +49,7 @@ class News extends CI_Controller
         if ($id_lang != $data['id_lang']) {
             $id = $data['id_parent_lang'] ? $data['id_parent_lang'] : $data['id'];
             $this->db->where("(id_parent_lang = '$id' or id = '$id')");
-            $datas = $this->newsCategoryModel->findBy();
+            $datas = $this->newscategorymodel->findBy();
             foreach ($datas as $key => $value) {
                 if ($value['id_lang'] == $id_lang) {
                     redirect(base_url("$lang/news/index/$value[uri_path]/$page"));
@@ -111,7 +111,7 @@ class News extends CI_Controller
         }
 
         if (!$menu) {
-            $getCatChild = $this->newsCategoryModel->fetchRow(array('id_parent_lang' => $data['id'], 'is_delete' => 0));
+            $getCatChild = $this->newscategorymodel->fetchRow(array('id_parent_lang' => $data['id'], 'is_delete' => 0));
             $menu = $this->frontendmenumodel->fetchRow(array('a.id_language' => $id_lang, 'extra_param' => $getCatChild['uri_path']));
         }
         $data['page_heading'] = $menu['name'];
@@ -188,11 +188,11 @@ class News extends CI_Controller
         $this->db->order_by('publish_date', 'desc');
         $this->db->order_by('id', 'desc');
         $this->db->stop_cache();
-        $news_rows = count($this->newsModel->findViewBy($where, 0, $post));
+        $news_rows = count($this->newsmodel->findViewBy($where, 0, $post));
 
 
         $this->db->limit($this->limit_content, $offset);
-        $news = $this->newsModel->findViewBy($where, 0, $post);
+        $news = $this->newsmodel->findViewBy($where, 0, $post);
         // print_r($this->db->last_query());exit;
         $this->db->flush_cache();
 
@@ -301,13 +301,13 @@ class News extends CI_Controller
         if (!$uri_path) {
             redirect(site_url('news'));
         }
-        $this->load->model('newsModel');
-        $this->load->model('NewsTagsModel');
+        $this->load->model('newsmodel');
+        $this->load->model('newstagsmodel');
         $currentLang = id_lang();
-        $data = $this->newsModel->fetchRow(array('a.uri_path' => $uri_path, 'a.id_lang' => $currentLang));
+        $data = $this->newsmodel->fetchRow(array('a.uri_path' => $uri_path, 'a.id_lang' => $currentLang));
         // $data['category_news'] = db_get_one('news_category','name',array('id'=>$data['id_news_category']));
         if (!$data) {
-            $data = $this->newsModel->fetchRow(array('a.uri_path' => $uri_path));
+            $data = $this->newsmodel->fetchRow(array('a.uri_path' => $uri_path));
 
             if ($uri_path == "contribute") {
                 $data = $this->pagesmodel->findBy(array('uri_path' => 'contribute'), 1);
@@ -325,7 +325,7 @@ class News extends CI_Controller
         $data['modal_imagelist']   = '';
         $data['style']             = '';
         $this->db->select('group_concat(id_tags) as group_id_tags');
-        $tags       = $this->NewsTagsModel->findBy(array('id_news' => $data['id']), 1)['group_id_tags']; //ambil tag 
+        $tags       = $this->newstagsmodel->findBy(array('id_news' => $data['id']), 1)['group_id_tags']; //ambil tag 
         $tags       = explodeable(',', $tags);
         $id_cat_us  = id_child_news(56, 1); // us investment-initiave
         $id_cat_net = id_child_news(52, 1); // networking
@@ -444,7 +444,7 @@ class News extends CI_Controller
         if ($currentLang != $data['id_lang']) {
             $id = $data['id_parent_lang'] ? $data['id_parent_lang'] : $data['id'];
             $this->db->where("(a.id_parent_lang = '$id' or a.id = '$id')");
-            $datas = $this->newsModel->findBy();
+            $datas = $this->newsmodel->findBy();
             foreach ($datas as $key => $value) {
                 if ($value['id_lang'] == $currentLang && $value['is_not_available'] == 0) {
                     redirect(base_url("$lang/news/detail/$value[uri_path]"));
@@ -616,16 +616,16 @@ class News extends CI_Controller
         $uri_path       = $this->uri->segment(4);
         $page           = $this->uri->segment(5);
         $id_lang        = id_lang();
-        $data           = $this->newsTagsModel->fetchRow(array('b.uri_path' => $uri_path));
+        $data           = $this->newstagsmodel->fetchRow(array('b.uri_path' => $uri_path));
 
         if (!$data) {
             die('404');
         }
 
-        $total = count($this->newsModel->getNewsByTags($data['id_tags'], $page, $id_lang));
+        $total = count($this->newsmodel->getNewsByTags($data['id_tags'], $page, $id_lang));
         $this->db->order_by('publish_date', 'desc');
         $this->db->limit(PAGING_PERPAGE, $page);
-        $news = $this->newsModel->getNewsByTags($data['id_tags'], $page, $id_lang);
+        $news = $this->newsmodel->getNewsByTags($data['id_tags'], $page, $id_lang);
         foreach ($news as $key => $value) {
             $news[$key]['start_date']       = iso_date($value['start_date']);
             $news[$key]['uri_path_detail']  = $value['uri_path'];
@@ -647,7 +647,7 @@ class News extends CI_Controller
     {
         $id_lang = id_lang();
 
-        $dataCat = $this->newsCategoryModel->fetchRow(array('uri_path' => $uri_path, 'a.id_lang' => $id_lang));
+        $dataCat = $this->newscategorymodel->fetchRow(array('uri_path' => $uri_path, 'a.id_lang' => $id_lang));
 
         $menu = $this->frontendmenumodel->fetchRow(array('a.id_language' => $id_lang, 'extra_param' => $uri_path));
 
@@ -677,7 +677,7 @@ class News extends CI_Controller
         }
 
         if (!$menu) {
-            $getCatChild = $this->newsCategoryModel->fetchRow(array('id_parent_lang' => $dataCat['id'], 'is_delete' => 0));
+            $getCatChild = $this->newscategorymodel->fetchRow(array('id_parent_lang' => $dataCat['id'], 'is_delete' => 0));
             $menu = $this->frontendmenumodel->fetchRow(array('a.id_language' => $id_lang, 'extra_param' => $getCatChild['uri_path']));
         }
         if ($menu && $menu['id_parent'] == 0) {
@@ -722,7 +722,7 @@ class News extends CI_Controller
             $post['year'] = $year;
         }
 
-        $data   = $this->newsModel->findViewBy($where, 0, $post);
+        $data   = $this->newsmodel->findViewBy($where, 0, $post);
         // print_r($this->db->last_query());exit;
         $bulan  = array(1 => 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
         if ($ret == 1) {
@@ -876,13 +876,13 @@ class News extends CI_Controller
             $this->db->like('a.news_title', $data['news_title']);
         }
 
-        $total = $this->newsModel->findBy($where, 'all');
+        $total = $this->newsmodel->findBy($where, 'all');
         $this->db->limit(PAGING_PERPAGE, $page);
 
         if ($post['news_title'] != '') {
             $this->db->like('a.news_title', $data['news_title']);
         }
-        $data['news'] = $this->newsModel->findBy($where);
+        $data['news'] = $this->newsmodel->findBy($where);
         $data['keyword_search'] = count($data['news']) == 0 ? ': "' . $post['news_title'] . '" Not Found' : ': "' . $post['news_title'] . '" ';
 
         foreach ($data['news'] as $key => $value) {
