@@ -12,7 +12,6 @@ class Home extends CI_Controller
     function index()
     {
         $id_lang = id_lang();
-
         if ($data["seo_title"] == "") {
             $data["seo_title"] = "MJM";
         }

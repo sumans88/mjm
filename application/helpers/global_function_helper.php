@@ -157,7 +157,6 @@ function render($view,$data='',$layout="", $ret=false){
 	$data['signout']            = 'hide';
 	$data['base_url']           = base_url();
 	$data['page_title']         = generate_title();
-	$data['search_act']			= id_lang() == 1 ? base_url().'en/search' : base_url().'id/search' ;
 	$data['ASSETS_VERSIONING'] = ASSETS_VERSIONING;
 	
 	$user_sess_data             = $CI->session->userdata('MEM_SESS');
@@ -207,11 +206,6 @@ function render($view,$data='',$layout="", $ret=false){
 	$data['meta_og'] = meta_og($data);
 	/*end new script (dwiki)*/
 
-	if($data['news_title']){
-		$head_title = $data['news_title'] . ' - FUTUREADY';
-	} else if ($data['header_category']){
-		$head_title = $data['header_category']. ' - FUTUREADY';
-	}
 	$data['head_title'] = head_title($head_title);
 	$data['meta_description_general'] = meta_description($data['meta_description_general']);
 	$data['meta_keywords_general'] = meta_keywords($data['meta_keywords_general']);
@@ -222,7 +216,6 @@ function render($view,$data='',$layout="", $ret=false){
 	foreach ($lang as $key => $value) {
 		$data[$key] =str_replace($find, $replace, $value);
 	}
-	$data['lang_see_events'] = $data['lang_see_events_not_found'] != "" ? $data['lang_see_events_not_found'] : $data['lang_see_events'];
 	$data['english_view']    = LANGUAGE == 'english' ? '' : 'hidden';
 	$data['indonesia_view']  = LANGUAGE == 'indonesia' ? '' : 'hidden';
 	if(DEVELOPMENT_MEMBER){
@@ -232,6 +225,11 @@ function render($view,$data='',$layout="", $ret=false){
 	}
     $data['current_controller'] = current_controller();
 	$CI->data['list_language'] = list_language();
+	if(id_lang()==1){
+		$data['active_id'] = 'active';
+	} else {
+		$data['active_en'] = 'active';
+	}
 	if(is_array($data)){
 		$CI->data = array_merge($CI->data,$data);
    }

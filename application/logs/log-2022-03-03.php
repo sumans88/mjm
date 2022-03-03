@@ -1915,3 +1915,5 @@ ERROR - 2022-03-03 11:36:34 --> Severity: Notice  --> Undefined index: ADM_SESS 
 ERROR - 2022-03-03 11:38:30 --> Severity: Runtime Notice --> Declaration of MY_Config::site_url() should be compatible with CI_Config::site_url($uri = '', $protocol = NULL) /Users/omnitech-tri/Sites/localhost/mjm/application/core/MY_Config.php 34
 ERROR - 2022-03-03 11:38:30 --> Unable to load the requested class: Uri
 ERROR - 2022-03-03 11:38:30 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/omnitech-tri/Sites/localhost/mjm/system/core/Exceptions.php:272) /Users/omnitech-tri/Sites/localhost/mjm/system/core/Common.php 565
+ERROR - 2022-03-03 12:17:25 --> Severity: Error --> Call to undefined function switch_uri() /Users/omnitech-tri/Sites/localhost/mjm/application/controllers/Home.php 14
+ERROR - 2022-03-03 12:17:26 --> Severity: Error --> Call to undefined function switch_uri() /Users/omnitech-tri/Sites/localhost/mjm/application/controllers/Home.php 14
