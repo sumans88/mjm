@@ -81,6 +81,11 @@ for(var i = 0; i < x.length; i++) {
               slidesPerView: 2,
               spaceBetween: 20
             },
+            // when window width is >= 640px
+            767: {
+              slidesPerView: 3,
+              spaceBetween: 20
+            },
         },
     });
 }
