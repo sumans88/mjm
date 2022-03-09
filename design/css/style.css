@@ -806,3 +806,25 @@ h1, h2, h3, h4, h5, h6 {
 .logo-mobile {
     display: none;
 }
+.float-wa {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    transition: ease all .3s;
+}
+.float-wa:hover {
+    color: #fff;
+    transform: scale(1.03);
+}
+.float-wa .my-float {
+    margin-top: 16px;
+}
