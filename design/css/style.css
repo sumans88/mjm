@@ -983,7 +983,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .article {
     padding-top: 200px;
-    padding-bottom: 70px;
+    padding-bottom: 100px;
 }
 .f-article {
     display: flex;
@@ -1107,4 +1107,129 @@ h1, h2, h3, h4, h5, h6 {
 }
 .list-art-item h2 a:hover {
     text-decoration: underline;
+}
+.careers.p-page {
+    padding-top: 200px;
+    padding-bottom: 100px;
+}
+.list-careers {
+    display: block;
+    text-decoration: none;
+}
+.list-careers .d-flex {
+    align-items: center;
+}
+.list-careers .thumb {
+    width: 200px;
+    height: 180px;
+    overflow: hidden;
+}
+.list-careers .thumb img {
+    height: 100%;
+    width: auto;
+}
+.list-careers .desc {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    width: 100%;
+}
+.list-careers h3 {
+    color: #026874;
+    font-size: 30px;
+    font-weight: 600;
+}
+.list-careers .desc ul {
+    padding: 0;
+}
+.list-careers .desc ul li {
+    list-style: none;
+    padding: 0;
+    color: #7b7b7b;
+    font-style: italic;
+    font-size: 18px;
+}
+.list-careers .salary {
+    font-size: 18px;
+    font-weight: 600;
+    color: #7b7b7b;
+}
+.act-btn .btn-blue-outline {
+    font-size: 18px;
+    padding: 10px 50px;
+    width: 250px;
+    margin-right: 100px;
+}
+.list-careers {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+.pagination {
+    display: inline-flex;
+}
+.pagination .page-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.pagination .page-link {
+    color: #ccc;
+    font-size: 24px;
+    border: 0;
+}
+.pagination .page-link.active,
+.pagination .page-link.active:hover {
+    color: #189fdb;
+    border-radius: 0 !important;
+    opacity: 1;
+}
+.pagination .page-link:hover {
+    background: none;
+    opacity: .5;
+    color: #189fdb;
+}
+.sort {
+    width: 200px;
+    margin: 0 auto;
+    display: inline-block;
+    height: 100%;
+    max-width: 100%;
+}
+.title-dtl {
+    font-size: 28px;
+    font-weight: 700;
+    color: #444;
+}
+.col-dtl {
+    padding-left: 100px;
+}
+.pos-desc {
+    font-size: 16px;
+    color: #7b7b7b;
+    font-weight: 300;
+    font-style: italic;
+    display: flex;
+}
+.pos-desc td {
+    padding-top: 5px;
+    padding-bottom: 5px;   
+}
+.pos-desc td:first-child {
+    padding-right: 50px;
+}
+.btn-apply {
+    text-align: center;
+}
+.btn-apply .btn {
+    width: 600px;
+    max-width: 100%;
+}
+.share-dtl b {
+    margin-right: 15px;
+}
+.c-detail p, .c-detail li {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #7b7b7b;
+    transition: ease all .5s;
 }
