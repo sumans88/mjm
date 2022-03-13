@@ -36,6 +36,16 @@
 	.listmur-child .d-flex.align-items-center.col-sm-4 {
 		height: 100%;
 	}
+	.acc-profile .nav {
+		margin-right: 30px;	
+		width: 250px;	
+		min-width: 250px;
+	}
+	.acc-profile .nav-pills .nav-link {
+		padding: 10px 20px;
+		line-height: normal;
+		min-height: 50px;
+	}
 }
 @media screen and (max-width: 991px) {
 	header .navbar-collapse {
@@ -141,8 +151,86 @@
 		right: 20px;
 		bottom: 15px;
 	}
+	.col-md-6.pe-5 {
+		padding-right: 12.5px !important;
+	}
+	.client-area h4 {
+		margin-top: 20px;
+		margin-bottom: 30px !important;
+	}
+	.list-about li p {
+		font-size: 14px;
+	}
+	.login-form {
+		padding-top: 30px;
+	}
+	.login-form img {
+		margin-bottom: 30px;
+	}
+	.login-form h4 {
+		margin-bottom: 30px !important;
+	}
+	.d-block-m {
+		display: block !important;
+	}
+	.btn-loginc {
+		padding: 0;
+		text-align: center;
+		padding-top: 15px;
+	}
+	.nav-tabs-profile {
+		overflow: auto;
+	}
+	.acc-profile .d-flex.align-items-start {
+		display: block !important;
+	}
+	.acc-profile .nav {
+		width: 100%;
+		flex-direction: row !important;
+		margin-right: 0;
+		width: 660px;
+	}
+	.nav-tabs-profile {
+		margin-bottom: 30px;
+		align-items: center;
+	}
+	.acc-profile .nav-pills .nav-link {
+		white-space: nowrap;
+		border-bottom: 3px solid #026874;
+		border-right: 0;
+		padding: 10px 15px;
+	}
+	.acc-profile .nav-pills .nav-link:last-child {
+		border-right: 3px solid #026874;
+	}
+	.profile-member {
+		padding-top: 150px;
+	}
+	.form-contract label {
+		margin-top: 0 !important;
+		padding-top: 0 !important;
+	}
+	.f-article {
+		display: block;
+	}
+	.list-article {
+		padding-right: 0;
+	}
+	.top-article, .list-top {
+		width: 100%;
+	}
 }
 @media screen and (max-width: 575px) {
+	.list-art-item img {
+		margin-bottom: 15px;
+	}
+	.list-art-item h2 {
+		margin-top: 10px;
+		font-size: 24px;
+	}
+	.member-name {
+		font-size: 14px;
+	}
 	.about h3, .process-tolling h2, .choose-mursmedic h2, .certifications h2 {
 		font-size: 20px;
 	}
@@ -200,6 +288,36 @@
 		background: #fee74e;
 		color: #026874;
 		opacity: .5;
+	}
+	.login-form .fs-16 {
+		font-size: 14px;
+	}
+	.login-form .btn-blue {
+		padding-left: 30px !important;
+		padding-right: 30px !important;
+	}
+	.table-profile th, .table-profile td {
+		padding: 10px;
+	}
+	.in-table {
+		display: none;
+	}
+}
+@media screen and (max-width: 400px) {
+	.select-type {
+		display: flex;
+	}
+	.form-contract .select-type label {
+		width: 50%;
+		padding-right: 3px;
+	}
+	.form-contract .select-type label:last-child {
+		padding-right: 0;
+		padding-left: 3px;
+	}
+	.form-contract .select-type label span {
+		width: 100%;
+		margin: 0 auto;
 	}
 }
 @media screen and (max-width: 340px) {

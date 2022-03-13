@@ -178,7 +178,6 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-mjm .navbar-nav .nav-link.btn-yellow:hover {
     border-color: #026874;
     background: transparent;
-
 }
 .btn-red {
     background: #A30000;
@@ -208,6 +207,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-yellow:hover {
     background: #026874;
     color: #fee74e;
+    border-color: #026874;
 }
 .btn-yellow-outline {
     background: transparent;
@@ -559,7 +559,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .form-client {
     padding-top: 100px;
-    background: #F8F9FA;
 }
 .form-contact label, .form-client label {
     font-weight: 600;
@@ -581,9 +580,6 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 0;
     border-color: #DBDBDB;
 }
-.form-client .form-control {
-    background: #F8F9FA;
- }
 .row-fc {
     margin-left: -40px;
     margin-right: -40px;
@@ -827,4 +823,288 @@ h1, h2, h3, h4, h5, h6 {
 }
 .float-wa .my-float {
     margin-top: 16px;
+}
+.login-form {
+    padding-top: 100px;
+    padding-bottom: 70px;
+    border-bottom: 30px solid #F8F9FA;
+}
+.login-form h4 {
+    position: relative;
+    padding-bottom: 10px;
+}
+.login-form h4:before {
+    height: 1px;
+    width: 80px;
+    background: #ccc;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+}
+.form-mjm {
+    height: 50px;
+    border-radius: 5px !important;
+    border: 0;
+    background: #F8F9FA;
+}
+.btn-rounded {
+    border-radius: 50px;
+}
+.fs-16 {
+    font-size: 16px;
+}
+.client-area {
+    padding-top: 225px;
+    background: #E8FAF8;
+    padding-bottom: 70px;
+}
+.login-form img {
+    width: 310px;
+    max-width: 100%;
+}
+.btn-loginc {
+    text-align: center;
+    line-height: normal;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.btn-loginc span {
+    display: block;
+    font-size: 14px;
+    color: #707070;
+    font-style: italic;
+}
+.btn-loginc a {
+    font-size: 17px;
+    color: #026874;
+    font-weight: 700;
+}
+.profile-member {
+    padding-top: 200px;
+    padding-bottom: 100px;
+}
+.member-name {
+    display: inline-block;
+    color: #026874;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+.acc-profile .nav {
+    width: 290px;
+    min-width: 290px;
+    margin-right: 50px;
+}
+.acc-profile .nav-pills .nav-link {
+    color: #026874;
+    font-size: 14px;
+    border: 3px solid #026874;
+    border-radius: 0;
+    text-align: left;
+    padding: 12px 30px;
+    border-bottom: 0;
+}
+.acc-profile .nav-pills .nav-link:last-child {
+    border-bottom: 3px solid #026874;
+}
+.acc-profile .nav-pills .nav-link:hover,
+.acc-profile .nav-pills .nav-link.active, .acc-profile .nav-pills .show>.nav-link {
+    background: #026874;
+    color: #fff;
+}
+.acc-profile .tab-content {
+    width: 100%;
+}
+.table-profile {
+    margin-top: 30px;
+}
+.table-profile th, .table-profile td {
+    font-size: 14px;
+    padding: 15px;
+}
+.table-profile th {
+    color: #026874;
+    line-height: normal;
+}
+.table-profile.table>:not(:first-child) {
+    border-top: 1px solid #dee2e6;
+}
+.table-profile tr:last-child,
+.table-profile tr:last-child td {
+    border-bottom: 0 !important;
+    border-color: #000;
+}
+.in-table {
+    display: flex;
+    align-items: center;
+    color: #026874;
+}
+.form-profile .form-control,
+.form-contract .form-select,
+.form-contract .form-control {
+    height: 50px;
+    color: #06274c;
+}
+.form-profile label,
+.form-contract label {
+    color: #06274c;
+}
+.select-type input {
+    display: none;
+}
+.select-type label span {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #06274c;
+    color: #06274c;
+    font-size: 18px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: ease all .5s;
+}
+.select-type label input[type=radio]:checked ~ span {
+    background: #06274c;
+    color: #fff;
+
+}
+.form-contract .btn-yellow,
+.form-profile .btn-yellow {
+    letter-spacing: 3px;
+}
+.article {
+    padding-top: 200px;
+    padding-bottom: 70px;
+}
+.f-article {
+    display: flex;
+    flex-direction: row;
+}
+.list-article {
+    width: 100%;
+    padding-bottom: 50px;
+    padding-right: 30px;
+}
+.top-article {
+    padding-bottom: 50px;
+    width: 240px;
+}
+.list-top {
+    width: 240px;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 20px;
+}
+.list-top img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: auto;
+  width: 100%;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+    transition: ease all 1s;
+}
+.list-top span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px 20px;
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.60));
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: flex-end;
+    transition: ease all .5s;
+}
+.list-top:hover span {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.80));
+    padding-bottom: 30px;
+}
+.list-top:hover img {
+    width: 105%;
+}
+.top-article h5 {
+    font-size: 15px;
+    color: #C1C8CE;
+}
+.tags a {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: #33A0FF;
+    border: 1px solid #33A0FF;
+    padding: 5px 10px;
+    line-height: normal;
+    border-radius: 40px;
+    font-size: 12px;
+    text-decoration: none;
+    transition: ease all .5s;
+}
+.tags a:hover {
+    color: #fff;
+    background: #33A0FF;
+}
+.list-art-item {
+    display: block;
+    margin-bottom: 50px;
+}
+.list-art-item img {
+    margin-bottom: 30px;
+    width: 100%;
+}
+.list-art-item .d-flex {
+    align-items: center;
+}
+.list-art-item .d-flex a {
+    font-size: 14px;
+    color: #33A0FF;
+    font-weight: 700;
+    text-decoration: none;
+}
+.list-art-item .date-art {
+    font-size: 14px;
+    color: #262626;
+    font-weight: 700;
+    position: relative;
+    margin-left: 15px;
+    padding-left: 15px;
+}
+.list-art-item .date-art:before {
+    width: 4px;
+    height: 4px;
+    content: "";
+    background: #E5E8EA;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 2px);
+    border-radius: 4px;
+}
+.list-art-item h2,
+.list-art-item h2 a {
+    font-size: 30px;
+    text-decoration: none;
+    color: #33A0FF;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.list-art-item h2 a:hover {
+    text-decoration: underline;
 }

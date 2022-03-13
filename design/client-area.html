@@ -60,14 +60,8 @@
 			        <li class="nav-item">
 			          <a class="nav-link" href="product.html">Product</a>
 			        </li>
-			        <li class="nav-item dropdown">
-			          <a class="nav-link dropdown-toggle" href="#" id="navArticles" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			            Articles
-			          </a>
-			          <ul class="dropdown-menu" aria-labelledby="navArticles">
-			            <li><a class="dropdown-item" href="#">Articles</a></li>
-			            <li><a class="dropdown-item" href="#">Articles 1</a></li>
-			          </ul>
+			        <li class="nav-item">
+			          <a class="nav-link" href="article.html">Article</a>
 			        </li>
 			        <li class="nav-item">
 			          <a class="nav-link" href="contact.html">Contact</a>
@@ -81,68 +75,66 @@
 			</nav>
 		</header>
 
-		<section class="bg-blue-title">
-			<div class="container text-center">
-				<h3 class="wow fadeInUp"><b><span class="text-blue">Client Area</span> Registration Form</b></h3>
-				<p class="wow fadeInUp"><i>We’ll Never Share Your Data With Anyone Else</i></p>
+		<section class="client-area">
+			<div class="container">
+				<h2 class="text-center wow fadeInUp mb-3">Why Should You Join <b><span class="text-blue">Client Area</span></b></h2>
+				<div class="text-center wow fadeInUp mb-5"><span class="w-50 d-inline-block"><i>Let’s Register The Client Area To Get The Many Benefits That You Will Get</i></span></div>
+				<div class="row">
+					<div class="col-md-6 pe-5">
+						<img src="images/clients.jpg" alt="" class="w-100 wow fadeInLeft">
+					</div>
+					<div class="col-md-6">
+						<h4 class="mb-5 wow fadeInUp"><b>Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt.</b></h4>
+						<ul class="list-about">
+							<li class="wow fadeInUp">
+								<div class="thumb"><img src="images/Icon/medicine.svg" alt=""></div>
+								<div>
+									<h3>Lorem ipsum</h3>
+									<p>Uis Aute Irure Dolor In Reprehenderit In Voluptate Velit Esse Cillum Dolore Eu Fugiat Nulla Pariatur. Excepteur Sint Occaecat.</p>
+								</div>
+							</li>
+							<li class="wow fadeInUp">
+								<div class="thumb"><img src="images/Icon/pulse.svg" alt=""></div>
+								<div>
+									<h3>Lorem ipsum dolor sit amet</h3>
+									<p>Uis Aute Irure Dolor In Reprehenderit In Voluptate Velit Esse Cillum Dolore Eu Fugiat Nulla Pariatur. Excepteur Sint Occaecat.</p>
+								</div>
+							</li>
+							<li class="wow fadeInUp">
+								<div class="thumb"><img src="images/Icon/hourglass-end.svg" alt=""></div>
+								<div>
+									<h3>Lorem ipsum dolor</h3>
+									<p>Uis Aute Irure Dolor In Reprehenderit In Voluptate Velit Esse Cillum Dolore Eu Fugiat Nulla Pariatur. Excepteur Sint Occaecat.</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</section>
 
-		<section class="form-client">
+		<section class="login-form">
 			<div class="container">
-				<div class="row row-fc">
-					<div class="col-md-6 mb-5 col-fc wow fadeInUp">
-						<label for="">NAME</label>
-						<input type="text" class="form-control">
-					</div>
-					<div class="col-md-6 mb-5 col-fc wow fadeInUp">
-						<label for="">EMAIL</label>
-						<input type="text" class="form-control">
-					</div>
-					<div class="col-md-6 mb-5 col-fc wow fadeInUp">
-						<label for="">COMPANY NAME</label>
-						<input type="text" class="form-control">
-					</div>
-					<div class="col-md-6 mb-5 col-fc wow fadeInUp">
-						<label for="">PHONE NUMBER</label>
-						<input type="text" class="form-control">
-					</div>
-				</div>
-				<div class="row row-fc">
-					<div class="col-md-6 mb-5 col-fc wow fadeInUp">
-						<label for="">PRODUCT CATEGORY</label>
-						<div>
-							<div class="form-check form-check-inline me-5">
-							  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-							  <label class="form-check-label" for="inlineCheckbox1">PKRT (Household)</label>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 text-center wow fadeInLeft"><img src="images/client-form.jpg" alt=""></div>
+					<div class="col-lg-4 col-md-5">
+						<form action="" class="wow fadeInUp">
+							<h4 class="mb-5"><b>Sign In Client Area</b></h4>
+							<div class="mb-4">
+								<label for="" class="mb-2">User Name <span class="text-red">*</span></label>
+								<input type="text" class="form-control form-mjm">
 							</div>
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-							  <label class="form-check-label" for="inlineCheckbox2">Alat Kesehatan (Medical Device)</label>
+							<div class="mb-4">
+								<label for="" class="mb-2">Password <span class="text-red">*</span></label>
+								<input type="password" class="form-control form-mjm">
 							</div>
-						</div>	
-					</div>
-					<div class="col-md-6 mb-5 col-fc wow fadeInUp">
-						<label for="">TYPES OF PRODUCTS</label>
-						<div>
-							<div class="form-check form-check-inline me-5">
-							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-							  <label class="form-check-label" for="inlineRadio1">OEM</label>
+							<div class="row">
+								<div class="col d-flex align-items-center fs-16"><a href="create-account.html">Create Account?</a></div>
+								<div class="col text-end">
+									<button class="btn btn-blue m-auto py-3 px-5 btn-rounded d-inline-flex">Sign In</button>
+								</div>
 							</div>
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-							  <label class="form-check-label" for="inlineRadio2">ODM</label>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row row-fc">
-					<div class="col-md-12 mb-5 col-fc wow fadeInUp">
-						<label for="">MESSAGE</label>
-						<textarea class="form-control" rows="5"></textarea>
-					</div>
-					<div class="col-md-12 mb-5 col-fc text-center wow fadeInUp">
-						<button class="btn btn-blue m-auto px-5">SEND MESSAGE</button>
+						</form>
 					</div>
 				</div>
 			</div>
