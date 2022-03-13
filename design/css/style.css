@@ -153,8 +153,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 16px;
     color: #002147;
     font-weight: 600;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     position: relative;
     transition: ease all 1s;
 }

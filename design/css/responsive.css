@@ -46,6 +46,10 @@
 		line-height: normal;
 		min-height: 50px;
 	}
+	.navbar-mjm .navbar-nav .nav-link {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 }
 @media screen and (max-width: 991px) {
 	header .navbar-collapse {
