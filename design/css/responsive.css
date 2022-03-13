@@ -270,6 +270,12 @@
 		padding-top: 0;
 		padding-bottom: 0;
 	}
+	.title-404 {
+		font-size: 100px;
+	}
+	.subtitle-404 {
+		font-size: 24px;
+	}
 }
 @media screen and (max-width: 575px) {
 	.list-art-item img {
@@ -390,5 +396,12 @@
 	}
 	.list-careers .desc ul li, .list-careers .salary, .act-btn .btn-blue-outline {
 		font-size: 12px;
+	}
+	.title-404 {
+		font-size: 75px;
+		line-height: 75px;
+	}
+	.subtitle-404 {
+		font-size: 18px;
 	}
 }
